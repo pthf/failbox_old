@@ -1,0 +1,662 @@
+
+
+.sliderCat{
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.leftItem, .rightItem{
+	width: 17%;
+	height: auto;
+	z-index: 10;
+	background: #FFF;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	opacity: .5;
+}
+
+.leftItem{
+	justify-content: flex-end;
+}
+
+.rightItem{
+	justify-content: flex-start;
+}
+
+.leftItem img{
+	width: 10%;
+	height: auto;
+	margin-right: 3vw;
+}
+
+.rightItem img{
+	width: 10%;
+	height: auto;
+	margin-left: 3vw;
+}
+
+.leftItem img:hover, .rightItem img:hover{
+	cursor: pointer;
+	opacity: .5;
+	transition: .5s;
+}
+
+.contendItems{
+	width: 66%;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.contendItems .contItemsPosition{
+	/*width: 500%;*/
+	margin-left: 0%;
+	height: auto;
+	position: relative;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	font-size: 1em;
+	transition: 1s;
+}
+
+.contItemsPosition .groupItems{
+	/*width: 20%;*/
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+}
+
+.contItemsPosition div.item{
+	width: 25%;
+	height: auto;
+	text-align: center;
+}
+
+.contItemsPosition div.selected{
+}
+
+div.item .imgBox{
+	width: 85%;
+	height: auto;
+	margin: 0 auto;
+	background: #FFF;
+	/*background: rgba(88,89,91,.2);*/
+	position: relative;
+	transition: 1s;
+}
+
+div.item .imgBox img{
+	width: 90%;
+	height: auto;
+	margin-top: 1vw;
+	margin-bottom: .5vw;
+}
+
+div.item .imgBox img.imgInfo{
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	width: 20% !important;
+	height: auto;
+	opacity: 0;
+	transition: 1s;
+}
+
+.item .descritem{
+	display: block;
+	width: 85%;
+	height: auto;
+	text-align: center;
+	font-family: 'Gotham-Light';
+	font-size: .9em;
+	margin: 0 auto;
+	margin-bottom: .5vw;
+	margin-top: .5vw;
+}
+
+.item .price_not, .item .price_yes{
+	display: inline-block;
+	width: 35%;
+	height: auto;
+	text-align: center;
+	font-family: 'Gotham-Light';
+	font-size: .9em;
+}
+
+.item .price_yes{
+	color: #FF0000;
+}
+
+.item .price_not{
+	color: #58595B;
+	text-decoration:line-through;
+}
+
+.item .buttonAddCart{
+	width: 15%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: .3vw;
+}
+
+.item .buttonAddCart img{
+	width: 100%;
+	height: auto;
+}
+
+/* CSS Top Menu */
+
+.topMenu{
+	width: 100%;
+	height: auto;
+	background: #6EB153;
+	color: #FFF;
+	font-size: 1em;
+	font-family: 'Gotham-Light';
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+}
+
+.topMenu .logoFailBox{
+	width: 20%;
+}
+
+.logoFailBox div.img{
+	vertical-align: middle;
+	width: 50%;
+	height: auto;
+	display: inline-block;
+}
+
+.logoFailBox div.img img{
+	width: 100%;
+	height: auto;
+}
+
+.titleNav{
+	display: inline-block;
+	vertical-align: middle;
+	border-left: 2px solid #FFF;
+	margin-left: 1vw;
+	padding-left: 1vw;
+	padding-top: .7vw;
+	padding-bottom: .7vw;
+	font-size: .9em;
+}
+
+.topMenu .navegationFailBox{
+	width: 55%;
+	height: auto;
+}
+
+.navegationFailBox label{
+	width: 100%;
+	height: 40px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	font-size: .8em;
+}
+
+.navegationFailBox div.nav{
+	text-align: center;
+	width: 18%;
+	height: 100%;
+	background: #58595B;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	position: relative;
+}
+
+.navegationFailBox input.barNav{
+	background: #FFF;
+	width: 76%;
+	height: 100%;
+	color: #000;
+	border: none;
+	padding: 0;
+	margin: 0;
+	padding-left: 1%;
+}
+
+.navegationFailBox div.search{
+	width: 5%;
+	height: 100%;
+	background: #58595B;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.navegationFailBox div.search img{
+	width: 40%;
+	height: auto;
+}
+
+.topMenu .countBar{
+	width: 6%;
+	height: auto;
+	font-size: .8em;
+	position: relative;
+}
+
+.countBar div.nav{
+	text-align: center;
+	width: 100%;
+	height: 40px;
+	background: #58595B;
+	border-radius: 5px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.topMenu .cartBar{
+	width: 1.5%;
+	height: auto;
+	font-size: .8em;
+	margin-right: 1.5%;
+}
+
+.cartBar div.nav{
+	text-align: center;
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.cartBar div.nav img{
+	width: 100%;
+	height: auto;
+}
+
+.cartBar div.nav .cantidad{
+	border-radius: 50%;
+	width: 50%;
+	height: 50%;
+	display: block;
+	position: absolute;
+	top:-10%;
+	right: -25%;
+	z-index: 1;
+	font-size: .7em;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+	background: #F90606;
+}
+
+.selectIndicator{
+	width: 8px;
+	height: auto;
+	margin-left: 8px;
+}
+
+.nav ul, .nav li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+ul.listNav{
+	width: 110%;
+	height: auto;
+	position: absolute;
+	top: 100%;
+	left: 0%;
+	z-index: 10;
+	
+}
+
+ul.listNav li.itemGroup{
+	display: block;
+	width: 100%;
+	height: auto;
+	position: relative;
+	background: #58595B;
+}
+
+.itemGroup span:hover, ul.listNav li.itemGroup ul.subItems li:hover{
+	cursor: pointer;
+	opacity: .8;
+}
+
+.itemGroup span.title{
+	display: block;
+	width: 100%;
+	height: auto;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+	text-align: left;
+	padding-left: 10%;
+}
+
+ul.listNav li.itemGroup ul.subItems{
+	width: 80%;
+	height: auto;
+	position: absolute;
+	top: 1vw;
+	left: 100%;
+}
+
+ul.listNav li.itemGroup ul.subItems li{
+	width: 100%;
+	height: auto;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+	background: #58595B;
+	text-align: left;
+	padding-left: 10%;
+}
+
+.opctit{
+	display: block;
+	width: 100%;
+	height: auto;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+}
+
+.opctit:hover{
+	cursor: pointer;
+	opacity: .8;
+}
+
+
+.slider{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.slider ul, .slider li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+.slider .contenedor{
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	transition: 1s;
+}
+
+.slider .contenedor li{
+	height: auto;
+	transition: 1s;
+}
+
+.contenedor li img{
+	width: 100%;
+	height: auto;
+}
+
+.itemsSelecteds{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	position: absolute;
+	bottom: 3.5%;
+	left: 0;
+	z-index: 1;
+}
+
+.itemsSelecteds li{
+	width: 20px;
+	height: auto;
+	display: inline-block;
+	margin-right: 5px;
+	margin-left: 5px
+}
+
+.itemsSelecteds li:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+.itemsSelecteds li img{
+	width: 100%;
+	height: auto;
+}
+
+.titleDiv{
+	width: 70%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 2.5vw;
+	margin-bottom: 2.5vw;
+}
+
+.titleHome{
+	display: inline-block;
+	padding-top: .8vw;
+	font-family: 'Gotham-Light';
+	font-size: 2.5em;
+	padding-right: 2.5vw;
+	border-top: 2px solid #6EB153;
+	color: #6EB153;
+}
+
+.bottomSite{
+	margin-top: 3vw;
+	width: 100%;
+	height: auto;
+	background: #6EB153;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+	font-family: 'Gotham-Light';
+	font-size: 1em;
+	overflow: hidden;
+	padding-bottom: 2vw;
+	padding-top: 2vw;
+}
+
+.bottomSite .navFailBox{
+	padding-left: 6vw;
+}
+
+.bottomSite .navFailBox img{
+	width: 18em; 
+	height: auto;
+	margin-bottom: 2vw;
+}
+
+.bottomSite .navFailBox span{
+	display: block;
+	width: 100%;
+	margin-left: 50%;
+	height: auto;
+	font-size: 1.2em;
+	color: #FFF;
+	margin-top: .5vw;
+}
+
+.socialFailBox{
+	color: #FFF;
+	font-size: 1.2em;
+	text-align: right;
+	padding-right: 6vw;
+}
+
+.socialFailBox .followSocial{
+}
+
+.socialFailBox .followSocial ul, .socialFailBox .followSocial li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+.listFailSocial{
+	margin-top: .5vw !important;
+	margin-bottom: .5vw !important;
+}
+
+.listFailSocial li{
+	width: 1.8em;
+	height: auto;
+	display: inline-block;
+	margin-left: .5vw !important;
+}
+
+.listFailSocial li:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+.listFailSocial li img{
+	width: 100%;
+	height: auto;
+}
+
+.newsletter{
+	text-align: left;
+}
+
+.newsletter form input.texti{
+	margin-top: 1vw;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+	padding-left: .25vw;
+	color: #000;
+	margin-top: 1vw;
+	border: none;
+}
+
+.newsletter form{
+}
+
+.newsletter form input.submitt{
+	background: #58595B;
+	padding: .5vw .7vw .5vw .7vw;
+	color: #FFF;
+	border: none;
+	margin-left: 1vw;
+}
+
+.newsletter form input.submitt:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+.newsletter form span.checkb{
+	font-size: .8em !important;
+	display: inline-block;
+	margin-left: .5vw;
+	margin-top: .5vw;
+}
+
+.newsletter form .checkb2{
+	margin-top: .5vw;
+}
+
+.contInformation{
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: center;
+
+}
+
+.contInformation .infoArticulo{
+	width: 75%;
+	height: auto;
+	background: red;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: center;
+}
+
+.contInformation .paypal{
+	width: 25%;
+	height: 10vw;
+	background: yellow;
+}
+
+.sliderStore{
+	width: 50% !important;
+	height: auto;
+	background: pink;
+}
+
+.sliderStore .contenedor li{
+	width: 100% !important;
+	background: blue !important;
+}
+
+.descInfo{
+	width: 50%;
+	height: 10vw;
+	background: orange;
+}

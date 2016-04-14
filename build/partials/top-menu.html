@@ -1,0 +1,64 @@
+<div class="topMenu" ng-controller="topMenuController">
+
+	<div class="logoFailBox">
+		<div class="img">
+			<img src="src/images/failbox-04.png">
+		</div>
+		<div class="titleNav">
+			<span>¿Quiénes somos?</span>
+		</div> 
+	</div>
+	
+	<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">	
+		<label>
+			
+			<div class="nav">
+				<span class="opctit" ng-click="tabs.selectTab(0); tabs.openMenu()">Productos <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+				<ul class="listNav" ng-show="tabs.menuProductos">
+					<li class="itemGroup" ng-repeat="(key, data) in menuProductos.cat"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
+						<span class="title" ng-mouseover="tabs.selectTab($index+1)" >
+							{{key}}
+							<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
+						</span>
+						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}">
+							<li class="" ng-repeat="(key, data) in data"><span>{{key}}</span></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<input class="barNav" type="text">
+			
+			</input>
+			
+			<div class="search">
+				<img src="src/images/failbox-05.png">
+			</div>
+
+		</label>
+	</div>
+	
+	<div class="countBar" ng-controller="tabShowMenuTopController as tabs">
+		<div class="nav">
+			<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+
+			<ul class="listNav" ng-show="tabs.menuCuenta">
+				<li class="itemGroup">
+					<span class="title">Registrarse</span>
+				</li>
+				<li class="itemGroup">
+					<span class="title">Iniciar Sesión</span>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	
+	<div class="cartBar">
+		<div class="nav">
+			<span class="cantidad">2</span>
+			<img src="src/images/failbox-03.png">
+		</div>
+	</div>
+
+</div>

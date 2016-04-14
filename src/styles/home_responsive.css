@@ -1,0 +1,481 @@
+@media (max-width: 1680px){
+
+	.contendItems .contItemsPosition{
+		font-size: .9em;
+	}
+
+	.topMenu{
+		font-size: .9em;
+	}
+
+	.topMenu .logoFailBox{
+		width: 25%;
+	}
+
+	.logoFailBox div.img{
+		width: 50%;
+	}
+
+	.titleNav{
+		border-left: 2px solid #FFF;
+	}
+
+	.topMenu .navegationFailBox{
+		width: 50%;
+	}
+
+	.navegationFailBox label{
+		height: 35px;
+	}
+
+	.navegationFailBox div.nav{
+		width: 18%;
+	}
+
+	.navegationFailBox input.barNav{
+		width: 76%;
+	}
+
+	.navegationFailBox div.search{
+		width: 5%;
+	}
+
+	.topMenu .countBar{
+		width: 8%;
+	}
+
+	.countBar div.nav{
+		height: 35px;
+	}
+
+	.topMenu .cartBar{
+		width: 1.9%;
+	}
+
+	.itemsSelecteds li{
+		width: 18px;
+		margin-right: 5px;
+		margin-left: 5px
+	}
+
+	.titleHome{
+		font-size: 2.2em;
+		border-top: 2px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .9em;
+	}
+
+}
+
+@media (max-width: 1366px){
+
+	.contendItems .contItemsPosition{
+		font-size: .8em;
+	}
+
+	.topMenu{
+		font-size: .8em;
+	}
+
+	.topMenu .logoFailBox{
+		width: 30%;
+	}
+
+	.logoFailBox div.img{
+		width: 50%;
+	}
+
+	.titleNav{
+		border-left: 2px solid #FFF;
+	}
+
+	.topMenu .navegationFailBox{
+		width: 45%;
+	}
+
+	.navegationFailBox label{
+		height: 30px;
+	}
+
+	.navegationFailBox div.nav{
+		width: 18%;
+	}
+
+	.navegationFailBox input.barNav{
+		width: 74%;
+	}
+
+	.navegationFailBox div.search{
+		width: 7%;
+	}
+
+	.topMenu .countBar{
+		width: 8%;
+	}
+
+	.countBar div.nav{
+		height: 30px;
+	}
+
+	.topMenu .cartBar{
+		width: 2.1%;
+	}
+	.selectIndicator{
+		width: 7px;
+		margin-left: 7px;
+	}
+
+	ul.listNav{
+		width: 120%;
+	}
+
+	.itemsSelecteds li{
+		width: 16px;
+		margin-right: 5px;
+		margin-left: 5px
+	}
+
+	.titleHome{
+		font-size: 1.9em;
+		border-top: 2px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .8em;
+	}
+
+}
+
+@media (max-width: 1024px){
+
+	.contendItems .contItemsPosition{
+		font-size: .6em;
+	}
+
+	.topMenu{
+		font-size: .8em;
+	}
+
+	.topMenu .logoFailBox{
+		width: 35%;
+	}
+
+	.logoFailBox div.img{
+		width: 50%;
+	}
+
+	.titleNav{
+		border-left: 2px solid #FFF;
+	}
+
+	.topMenu .navegationFailBox{
+		width: 40%;
+	}
+
+	.navegationFailBox label{
+		height: 25px;
+	}
+
+	.navegationFailBox div.nav{
+		width: 23%;
+	}
+
+	.navegationFailBox input.barNav{
+		width: 67%;
+	}
+
+	.navegationFailBox div.search{
+		width: 9%;
+	}
+
+	.topMenu .countBar{
+		width: 10%;
+	}
+
+	.countBar div.nav{
+		height: 25px;
+	}
+
+	.topMenu .cartBar{
+		width: 2.3%;
+	}
+	.selectIndicator{
+		width: 6px;
+		margin-left: 6px;
+	}
+
+	ul.listNav{
+		width: 135%;
+	}
+
+	.itemsSelecteds li{
+		width: 14px;
+		margin-right: 4px;
+		margin-left: 4px
+	}
+
+	.titleHome{
+		font-size: 1.6em;
+		border-top: 2px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .7em;
+	}
+
+}
+
+@media (max-width: 768px){
+
+	.leftItem img{
+		width: 15%;
+	}
+
+	.rightItem img{
+		width: 15%;
+	}
+
+	.contItemsPosition div.item{
+		width: 35%;
+		height: auto;
+		text-align: center;
+		margin-top: 2vw;
+	}
+
+	.topMenu{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+	}
+
+	.topMenu{
+		font-size: .7em;
+	}
+
+	.topMenu .logoFailBox{
+		width: 70%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.logoFailBox div.img{
+		width: 40%;
+	}
+
+	.titleNav{
+		border-left: 1px solid #FFF;
+	}
+
+	.topMenu .navegationFailBox{
+		width: 60%;
+		margin-right: 2.5%;
+	}
+
+	.navegationFailBox label{
+		height: 25px;
+	}
+
+	.navegationFailBox div.nav{
+		width: 23%;
+	}
+
+	.navegationFailBox input.barNav{
+		width: 67%;
+	}
+
+	.navegationFailBox div.search{
+		width: 9%;
+	}
+
+	.topMenu .countBar{
+		width: 15%;
+		margin-right: 2.5%;
+	}
+
+	.countBar div.nav{
+		height: 25px;
+	}
+
+	.topMenu .cartBar{
+		width: 3.5%;
+	}
+
+	.itemsSelecteds li{
+		width: 12px;
+		margin-right: 3px;
+		margin-left: 3px
+	}
+
+	.titleHome{
+		font-size: 1.3em;
+		border-top: 1px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .6em;
+	}
+
+	.newsletter form span.checkb{
+		margin-top: 1vw;
+	}
+
+	.newsletter form .checkb2{
+		margin-top: 1vw;
+	}
+
+}
+
+@media (max-width: 640px){
+
+	.leftItem img{
+		width: 20%;
+	}
+
+	.rightItem img{
+		width: 20%;
+	}
+
+	.contendItems .contItemsPosition{
+		font-size: .55em;
+	}
+
+	.topMenu{
+		font-size: .6em;
+	}
+	.selectIndicator{
+		width: 5px;
+		margin-left: 5px;
+	}
+
+	.itemsSelecteds li{
+		width: 10px;
+		margin-right: 2px;
+		margin-left: 2px
+	}
+
+	.titleHome{
+		font-size: 1em;
+		border-top: 1px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .5em;
+	}
+
+}
+
+@media (max-width: 480px){
+
+	.contItemsPosition div.item{
+		width: 50%;
+		height: auto;
+		text-align: center;
+		margin-top: 2vw;
+	}
+
+	.contendItems .contItemsPosition{
+		font-size: .5em;
+	}
+
+	.topMenu{
+		font-size: .5em;
+	}
+
+	.topMenu .logoFailBox{
+		width: 80%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.logoFailBox div.img{
+		width: 40%;
+	}
+
+	.titleNav{
+		border-left: 1px solid #FFF;
+	}
+
+	.topMenu .navegationFailBox{
+		width: 70%;
+		margin-right: 2.5%;
+	}
+
+	.navegationFailBox label{
+		height: 20px;
+	}
+
+	.navegationFailBox div.nav{
+		width: 23%;
+	}
+
+	.navegationFailBox input.barNav{
+		width: 67%;
+	}
+
+	.navegationFailBox div.search{
+		width: 9%;
+	}
+
+	.topMenu .countBar{
+		width: 15%;
+		margin-right: 2.5%;
+	}
+
+	.countBar div.nav{
+		height: 20px;
+	}
+
+	.topMenu .cartBar{
+		width: 5%;
+	}
+	.selectIndicator{
+		width: 4px;
+		margin-left: 4px;
+	}
+
+	.itemsSelecteds li{
+		width: 8px;
+		margin-right: 1px;
+		margin-left: 1px
+	}
+
+	.titleHome{
+		font-size: .9em;
+		border-top: 1px solid #6EB153;
+	}
+
+	.bottomSite{
+		font-size: .4em;
+	}
+
+	.navFailBox{
+		display: block;
+		width: 60%;
+		height: auto;
+		margin:  0 auto;
+	}
+
+	.socialFailBox{
+		height: auto;
+		margin: 0 auto;
+		margin-top: 5vw;
+	}
+
+	.bottomSite .navFailBox span{
+		display: block;
+		width: 100%;
+		margin-left: 0%;
+		height: auto;
+		font-size: 1.2em;
+		color: #FFF;
+		margin-top: .5vw;
+	}
+
+}

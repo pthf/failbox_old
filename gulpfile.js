@@ -11,6 +11,8 @@ var config = {
     output: './build/css'
   },
   html: {
+    watch: './build/partials/*.html',
+    watch: './build/views/*.html',
     watch: './build/*.html'
   }
 }
