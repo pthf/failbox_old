@@ -1,0 +1,16 @@
+<div class="slider">
+
+	<ul class="contenedor">
+		<li class="itemBanner" ng-repeat="(key, data) in bannerMenu"  load-home-slider>
+			<img src="./src/images/{{data.image}}">
+		</li>
+	</ul>
+
+	<ul class="itemsSelecteds">
+		<li class="groupItems" ng-repeat="(key, data) in bannerMenu">
+			<img src="./src/images/selected.png" ng-if="$index == 0">
+			<img src="./src/images/notselected.png" ng-if="$index != 0">
+		</li>
+	</ul>
+
+</div>
