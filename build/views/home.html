@@ -1,2 +1,17 @@
 <slider-home ng-if="loadingData"></slider-home>
-<slider-cart ng-controller="sliderCartController" ng-if="loadingData"></slider-cart>
+
+<div class="titleDiv">
+	<span class='titleHome'>
+		Nuevos Productos
+	</span>
+</div>	
+
+<slider-cart-new ng-controller="sliderNewProductsController" ng-if="loadingData"></slider-cart-new>
+
+<div class="titleDiv">
+	<span class='titleHome'>
+		Productos Destacados
+	</span>
+</div>	
+
+<slider-cart-feactured ng-controller="sliderFeacturedProductsController" ng-if="loadingData"></slider-cart-feactured>

@@ -14,10 +14,20 @@
 				return deferred.promise;
 			}
 
-			function sliderCart(){
+			function new_products(){
 				var deferred = $q.defer();
 
-				$http.get('./data/itemsSliderCart.json')
+				$http.get('./data/new_products.json')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
+			function feactured_products(){
+				var deferred = $q.defer();
+
+				$http.get('./data/feactured_products.json')
 					.success(function (data) {
 						deferred.resolve(data);
 					});
@@ -26,7 +36,8 @@
 
 			return {
 				sliderHome: sliderHome,
-				sliderCart: sliderCart
+				new_products: new_products,
+				feactured_products: feactured_products
 			}
 
 		}]);

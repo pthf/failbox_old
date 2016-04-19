@@ -1,0 +1,28 @@
+<div class="sliderCat" id="slide1">
+	<div class="leftItem">
+		<img src="./src/images/moveLeft.png">
+	</div>
+	<div class="contendItems">
+
+		<div class="contItemsPosition">
+						
+			<div class="groupItems" ng-repeat="(key, data) in itemsCart" load-slider-cart-new>
+				<div class="item" ng-repeat="subdata in data.data">
+					<div class="imgBox">
+						<img src="./src/images/{{subdata.image}}">
+						<img src="./src/images/mas_info.png" class="imgInfo">
+					</div>
+					<span class="descritem">{{subdata.name}}</span>
+					<span class="price_not">{{subdata.price | currency }}</span>
+					<span class="price_yes">{{subdata.not_price | currency }}</span>
+					<div class="buttonAddCart"><img src="./src/images/cartimage.png"></div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+	<div class="rightItem">
+		<img src="./src/images/moveRight.png">
+	</div>
+</div>

@@ -54,9 +54,17 @@
 			});
 		}])
 
-		.controller('sliderCartController', ['$scope', 'failboxService', function($scope, failboxService){
+		.controller('sliderNewProductsController', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
-			failboxService.sliderCart().then(function(data){
+			failboxService.new_products().then(function(data){
+				$scope.itemsCart = data;
+				$scope.loadingData = true;
+			});
+		}])
+
+		.controller('sliderFeacturedProductsController', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			failboxService.feactured_products().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
 			});
