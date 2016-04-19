@@ -1,6 +1,7 @@
 (function(){
 
 	angular.module('failboxStore.controllers', [])
+
 		.controller('topMenuController', ['$scope', function($scope){
 			$scope.menuProductos = {
 				cat : {
@@ -51,5 +52,14 @@
 				$scope.bannerMenu = data;
 				$scope.loadingData = true;
 			});
+		}])
+
+		.controller('sliderCartController', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			failboxService.sliderCart().then(function(data){
+				$scope.itemsCart = data;
+				$scope.loadingData = true;
+			});
 		}]);
+
 })();
