@@ -206,4 +206,46 @@
         };
     })
 
+    .directive('bottomSite', function(){
+        return{
+            restrict: 'E',
+            templateUrl: './partials/bottom-site.html'
+        };
+    })
+
+    .directive('descGeneralItem', function(){
+        return{
+            restrict: 'E',
+            templateUrl: './partials/desc-general-item.html'
+        }
+    })
+
+    .directive('loadDescGenItem', function(){
+        return function(){
+
+             var tam_items = $('.sliderContenido li').length-1;
+
+              $('.sliderContenido').css({
+                'width' : (tam_items+1)*100+"%"
+              });
+
+              $('.sliderContenido li').css({
+                'width' : 100/(tam_items+1)+"%"
+              });
+
+              var item_selected = 0;
+              $('.itemSliderConten ul li').click(function(){
+
+                $('.itemSliderConten li img').attr("src", "./src/images/seitemnot.png");
+                $('img', this).attr("src", "./src/images/seitem.png");
+
+                item_selected = $(this).index();
+                $('.sliderContenido').css({
+                  'margin-left' : '-'+(item_selected*100)+'%'
+                });
+              }); 
+
+        };
+    });
+
 })();

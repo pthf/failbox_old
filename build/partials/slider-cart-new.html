@@ -8,14 +8,16 @@
 						
 			<div class="groupItems" ng-repeat="(key, data) in itemsCart" load-slider-cart-new>
 				<div class="item" ng-repeat="subdata in data.data">
-					<div class="imgBox">
-						<img src="./src/images/{{subdata.image}}">
-						<img src="./src/images/mas_info.png" class="imgInfo">
-					</div>
+					<a href="#/articulo/{{subdata.id}}">
+						<div class="imgBox">
+							<img src="./src/images/{{subdata.image}}">
+							<img src="./src/images/mas_info.png" class="imgInfo">
+						</div>
+					</a>
 					<span class="descritem">{{subdata.name}}</span>
 					<span class="price_not">{{subdata.price | currency }}</span>
 					<span class="price_yes">{{subdata.not_price | currency }}</span>
-					<div class="buttonAddCart"><img src="./src/images/cartimage.png"></div>
+					<a href="{{subdata.paypal}}" target="_blank"><div class="buttonAddCart"><img src="./src/images/cartimage.png"></div></a>
 				</div>
 
 			</div>

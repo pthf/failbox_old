@@ -67,6 +67,14 @@
 		font-size: .9em;
 	}
 
+.botttomPrivacy{
+	font-size: .85em;
+}
+
+.contInformation .infoArticulo{
+	font-size: .9em;
+}
+
 }
 
 @media (max-width: 1366px){
@@ -146,6 +154,15 @@
 		font-size: .8em;
 	}
 
+.botttomPrivacy{
+	font-size: .80em;
+}
+
+.contInformation .infoArticulo{
+	font-size: .8em;
+}
+
+
 }
 
 @media (max-width: 1024px){
@@ -224,6 +241,30 @@
 	.bottomSite{
 		font-size: .7em;
 	}
+
+.botttomPrivacy{
+	font-size: .75em;
+}
+
+.contInformation .infoArticulo{
+	font-size: .7em;
+}
+
+.descInfo{
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.contInformation .infoArticulo{
+	width: 85%;
+}
+
+.contInformation .paypal{
+	width: 30%;
+	height: auto;
+	margin-top: 5vw;
+}
 
 }
 
@@ -330,6 +371,25 @@
 		margin-top: 1vw;
 	}
 
+.botttomPrivacy{
+	font-size: .70em;
+}
+
+.contInformation .paypal{
+	width: 40% ;
+	height: auto;
+	margin-top: 5vw;
+}
+
+.contInformation .paypal img{
+	width: 100%;
+	height: auto;
+}
+
+.contInformation .infoArticulo{
+	font-size: .6em;
+}
+
 }
 
 @media (max-width: 640px){
@@ -368,6 +428,32 @@
 	.bottomSite{
 		font-size: .5em;
 	}
+
+.botttomPrivacy{
+	font-size: .65em;
+}
+
+.contInformation .paypal{
+	width: 50% ;
+	height: auto;
+	margin-top: 5vw;
+}
+
+.sliderStore{
+	width: 80% !important;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 3vw;
+}
+
+.descInfo{
+	text-align: justify;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	height: auto;
+	font-family: 'Gotham-Light';
+}
 
 }
 
@@ -477,5 +563,15 @@
 		color: #FFF;
 		margin-top: .5vw;
 	}
+
+.botttomPrivacy{
+	font-size: .60em;
+}
+
+.contInformation .paypal{
+	width: 60% ;
+	height: auto;
+	margin-top: 5vw;
+}
 
 }

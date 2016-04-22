@@ -7,16 +7,21 @@
     	'failboxStore.directives'
   	]);
 
-	app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+	app.config(['$routeProvider', function ($routeProvider) {
+		
 		$routeProvider 
 			.when('/', {
 				templateUrl: 'views/home.html',
 				controller: 'homeSliderController'
 			})
+			.when('/articulo/:id', {
+				templateUrl: 'views/articulo.html',
+				controller: 'itemController'
+			})
 			.otherwise({
 				redirectTo: '/'
-			});
-		$locationProvider.html5Mode(true);
+			});	
+		
 	}]);
 
 })();

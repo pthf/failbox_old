@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="failboxStore">
 <head>
-	<base href="http://localhost:8080/">
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>FailBox - Lo que cuenta es de adentro.</title>
@@ -14,21 +13,19 @@
 <body>
 
 	<div class="contenedor">
-	
 		<top-menu></top-menu>
 		<div class="loadedView" ng-view></div>
-		<!--<bottom-site></bottom-site>-->
-
+		<bottom-site></bottom-site>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="./js/lib/underscore-min.js"></script>
 	<script src="./js/lib/angular.min.js"></script>
-	<script src="./js/lib/angular-route.min.js"></script>
+    <script src="./js/lib/angular-route.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/controllers.js"></script>
+    <script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
-	<script src="./js/controllers.js"></script>
-	<script src="./js/directives.js"></script>
-	<script src="./js/app.js"></script>
-
+	
 </body>
 </html>

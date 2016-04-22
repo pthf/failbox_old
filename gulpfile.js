@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
+var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 
 var config = {
@@ -41,6 +42,15 @@ gulp.task('watch', function() {
   gulp.watch(config.html.watch, ['build']);
 })
 
+gulp.task('prefix', function () {
+  return gulp.src('build/css/main.css')
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(gulp.dest('build/css/'));
+});
+
 gulp.task('build', ['build:css'])
 
-gulp.task('default', ['server', 'watch', 'build']);
+gulp.task('default', ['server', 'watch', 'build', 'prefix']);

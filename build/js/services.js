@@ -11,6 +11,7 @@
 					.success(function (data) {
 						deferred.resolve(data);
 					});
+
 				return deferred.promise;
 			}
 
@@ -21,6 +22,7 @@
 					.success(function (data) {
 						deferred.resolve(data);
 					});
+
 				return deferred.promise;
 			}
 
@@ -31,13 +33,47 @@
 					.success(function (data) {
 						deferred.resolve(data);
 					});
+
 				return deferred.promise;
+			}
+
+			function all(){
+				var deferred = $q.defer();
+
+				$http.get('./data/items.json')
+					.success(function (data) {
+			        	deferred.resolve(data);
+			        });
+
+			    return deferred.promise;
+			}
+
+			function byItem(id){
+				var id = id;
+				var deferred = $q.defer();
+
+				all().then(function (data) {
+					
+		        	var results = data.filter(function(item){
+		        		return item.id === id;
+		        	});
+
+		        	if(results.length > 0 ){
+		        		deferred.resolve(results[0]);
+		        	} else {
+		        		deferred.reject();
+		        	}
+
+		        });
+
+		        return deferred.promise;
 			}
 
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
-				feactured_products: feactured_products
+				feactured_products: feactured_products,
+				byItem:byItem
 			}
 
 		}]);

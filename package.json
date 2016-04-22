@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gmocamarena/FAILBOX#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-stylus": "^2.3.1",
     "gulp-webserver": "^0.9.1",

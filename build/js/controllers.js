@@ -68,6 +68,16 @@
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
 			});
+		}])
+
+		.controller('itemController', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
+			var id = parseInt($routeParams.id, 10);
+			$scope.loadingData = false;
+
+			failboxService.byItem(id).then(function(data){
+				$scope.item = data;
+				$scope.loadingData = true;
+			});
 		}]);
 
 })();
