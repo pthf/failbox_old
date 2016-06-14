@@ -1,7 +1,7 @@
 <?php
 require_once("admin/db/conexion.php");
 
-$query = "SELECT * FROM Productos LIMIT 10";
+$query = "SELECT * FROM Productos";
 $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
 $productos = array();
@@ -30,16 +30,16 @@ while ($row = mysql_fetch_array($resultado)) {
     );
     $productos[] = $producto;
 }
-    echo "<pre>";
-    var_dump($productos);
-    echo "</pre>";
 
-$item = array(
-            array(
-                "group" => "1",
-                "data" =>
-                $productos,
-            )
-);
-//print_r(json_encode($item));
+    $contador = 0;
+    $limite = count($productos);
+    //var_dump($limite);
+    
+    while($contador < $limite){
+        //echo $contador . '<br />';
+        $contador++;
+    }
+
+$item = array( array( "group" => "1", "data" => $productos,));
+print_r(json_encode($item));
 ?>

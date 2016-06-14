@@ -23,7 +23,7 @@
 		<top-menu></top-menu>
 		<div class="loadedView" ng-view></div>
 		<!--Llamadas a los archivos php para la obtencion del JSON de los productos-->
-		<?php include 'php/new_products.php';?>
+		<?php //include 'php/new_products.php';?>
 		<?php //include 'php/items.php';?>
 		<bottom-site></bottom-site>
 	</div>
