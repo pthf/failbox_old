@@ -63,6 +63,15 @@
 		border-top: 2px solid #6EB153;
 	}
 
+	.titleLogin{
+		font-size: 2.2em;
+		color: #6EB153;
+	}
+
+	.bottomLogin{
+		color: #6EB153;
+	}
+
 	.bottomSite{
 		font-size: .9em;
 	}

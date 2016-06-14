@@ -3,7 +3,7 @@
 	<div class="logoFailBox">
 		
 		<div class="img">
-			<a href="/"><img src="src/images/failbox-04.png"></a>
+			<a href="#"><img src="src/images/failbox-04.png"></a>
 		</div>
 		
 		<div class="titleNav">
@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">	
-		<label>
+		<!--<label>
 			
 			<div class="nav">
 				<span class="opctit" ng-click="tabs.selectTab(0); tabs.openMenu()">Productos <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
@@ -37,7 +37,7 @@
 				<img src="src/images/failbox-05.png">
 			</div>
 
-		</label>
+		</label>-->
 	</div>
 	
 	<div class="countBar" ng-controller="tabShowMenuTopController as tabs">
@@ -46,10 +46,10 @@
 
 			<ul class="listNav" ng-show="tabs.menuCuenta">
 				<li class="itemGroup">
-					<span class="title">Registrarse</span>
+					<span class="title" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
 				</li>
 				<li class="itemGroup">
-					<span class="title">Iniciar Sesión</span>
+					<span class="title" data-toggle="modal" data-target="#popup-login">Iniciar Sesión</span>
 				</li>
 			</ul>
 
@@ -61,6 +61,72 @@
 			<span class="cantidad">2</span>
 			<img src="src/images/failbox-03.png">
 		</div>
+	</div>
+
+	<!-- Modal Iniciar Sesion -->
+	<div id="popup-login" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h1 style="color:black" class="modal-title">INICIAR SESION</h1>
+	      </div>
+	      <div class="modal-body">
+                  <form id="form-login" action="login.php" method="POST">
+                      <div class="form-group">
+                          <label style="color:black" for="inputEmail">Correo electronico</label>
+                          <input required="" type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                          <label style="color:black" for="inputPassword">Contraseña</label>
+                          <input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+                      </div>
+                      <button  id="login" type="submit" class="btn btn-primary boton">Enviar</button>
+                  </form>
+                  
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+		<!-- Modal Registrate -->
+	<div id="popup-registrar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h1 style="color:black" class="modal-title">REGISTRARSE</h1>
+	      </div>
+	      <div class="modal-body">
+	        <form id="form-registrate"> 
+			  <div class="form-group">
+			    <!--<label style="color:black" for="inputNombre">Nombre</label>-->
+                            <input required="" type="text" class="form-control" name="nombre" id="inputNombre" placeholder="Nombre">
+			  </div>
+			  <div class="form-group">
+			    <!--<label style="color:black" for="inputApellido">Apellido</label>-->
+                            <input required="" type="text" class="form-control" name="apellido" id="inputApellido" placeholder="Apellido">
+			  </div>
+			  <div class="form-group">
+			    <!--<label style="color:black" for="inputEmail">Correo Electronico</label>-->
+                            <input required="" type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+			    <!--<label style="color:black" for="inputPassword">Contraseña</label>-->
+			    <input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+			  </div>
+			  <div class="form-group">
+			    <!--<label style="color:black" for="inputConfPassword">Confirmar Contraseña</label>-->
+                            <input required="" type="password" class="form-control" name="pass" id="inputConfPassword" placeholder="Comfirma Contraseña">
+			  </div>
+                        <button id="registrar" type="submit" class="btn btn-primary boton">Enviar</button>
+			</form>
+			
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 </div>
