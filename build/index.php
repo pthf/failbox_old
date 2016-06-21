@@ -25,6 +25,7 @@
 		<!--Llamadas a los archivos php para la obtencion del JSON de los productos-->
 		<?php //include 'php/new_products.php';?>
 		<?php //include 'php/items.php';?>
+		<?php //include 'php/menu.php';?>
 		<bottom-site></bottom-site>
 	</div>
 

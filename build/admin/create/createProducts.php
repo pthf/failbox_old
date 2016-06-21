@@ -1,6 +1,8 @@
 <?php 
-    include ("../login/security.php");
-    require_once("../db/conexion.php");
+  session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,21 +66,33 @@
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                                <h3>Administrador</h3>
-                                <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="../listProducts.php">Listar Productos</a>
-                                            </li>
-                                            <li><a href="createProducts.php">Crear</a>
-                                            </li>
-                                            <li><a href="../edit/editProducts.php">Editar</a>
-                                            </li>
-                                            <!--<li><a href="index3.html">Eliminar</a>
-                                            </li>-->
-                                        </ul>
+                              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu" style="display: none">
+                                    <li><a href="../listProducts.php">Productos</a>
                                     </li>
-                                </ul>
+                                    <li><a href="createProducts.php">Crear</a>
+                                    </li>
+                                    <li><a href="../edit/editProducts.php">Editar</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu" style="display: none">
+                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    </li>
+                                    <li><a href="#">Crear</a>
+                                    </li>
+                                    <li><a href="#">Editar</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <?php } ?>
                             </div>
 
                         </div>
@@ -97,7 +111,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="../images/user.png" alt="">Administrador
+                                        <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -137,46 +151,81 @@
                                         <div class="tab-content">
                                             <div class="tab-pane fade active in" id="alta-producto">
                                                 <div class=" form-group">
-                                                    <form name="new_brand" action="" onsubmit="sendBrand(); return false">
-                                                        <label class="control-label col-md-1 col-sm-3 col-xs-12" for="brand">Nueva marca 
+                                                    <form name="new_category" action="" onsubmit="sendCategory(); return false">
+                                                        <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Nueva categoría 
                                                         </label>
                                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                                            <input  id="other_brand" class="form-control col-md-7 col-xs-12" type="text" name="other_brand" placeholder="Nueva marca">
+                                                            <input required id="other_category" class="form-control col-md-7 col-xs-12" type="text" name="other_category" placeholder="Categoría">
                                                         </div>
                                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                                            <button type="submit" value"Grabar" class="btn btn-warning">Guardar</button>
+                                                            <button type="submit" value"Grabar" class="btn btn-warning">Agregar</button>
                                                         </div>
                                                     </form>
                                                 </div>
                                                 <div class=" form-group">
-                                                    <form name="new_category" action="" onsubmit="sendCategory(); return false">
-                                                        <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Nueva categoria 
+                                                    <!--<form name="new_subcategory" action="" onsubmit="sendSubCategory(); return false">-->
+                                                    <form name="new_subcategory" id="formNewSubcategory">
+                                                        <label class="control-label col-md-1 col-sm-3 col-xs-12" for="category">Nueva subcategoría 
                                                         </label>
                                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                                            <input  id="other_category" class="form-control col-md-7 col-xs-12" type="text" name="other_category" placeholder="Nueva categoria">
+                                                        <?php
+                                                            $query = "SELECT * FROM Categorias";
+                                                            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                                echo "<select id='category' name='category' class='form-control' required>";
+                                                                echo "<option disabled selected>Selecciona..</option>";
+                                                            while($row2 = mysql_fetch_array($resultado)){
+                                                                echo "<option value='".$row2['IdCategoria']."'>". $row2['Categoria']."</option>";
+                                                            }
+                                                                echo "</select>";
+                                                          ?>    
                                                         </div>
                                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                                            <button type="submit" value"Grabar" class="btn btn-warning">Guardar</button>
+                                                            <input required id="other_subcategory" class="form-control col-md-7 col-xs-12" type="text" name="other_subcategory" placeholder="Subcategoría">
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <button type="submit" value"Grabar" class="btn btn-warning">Agregar</button>
+                                                        </div>
+                                                    </form>
+                                                        <div class="result_subcategory"></div>
+                                                        <div class="error_subcategory"></div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <form name="new_brand" action="" onsubmit="sendBrand(); return false">
+                                                        <label class="control-label col-md-1 col-sm-3 col-xs-12" for="brand">Nueva marca 
+                                                        </label>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input required id="other_brand" class="form-control col-md-7 col-xs-12" type="text" name="other_brand" placeholder="Marca">
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <button type="submit" value"Grabar" class="btn btn-warning">Agregar</button>
                                                         </div>
                                                     </form>
                                                 </div>
 
-
                                                 <!--<form class="form-horizontal form-label-left" id="formProduct" name="formProductData" action="saveProducts.php" method="POST" enctype="multipart/form-data">-->
                                                 <form class="form-horizontal form-label-left" id="formProduct" name="formProductData" enctype="multipart/form-data">
                                                     <div class="col-sm-5"><br>
+                                                        <div class=" form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoría   
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <div id="result_category"><?php include('consult_category.php');?></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoría   
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <select class='form-control' id="selectSubCategory" required name="subcategory">
+                                                                    <option disabled selected>Selecciona..</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Marca  
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                               <div id="result_brand"><?php include('consult_brand.php');?></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class=" form-group">
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoria   
-                                                            </label>
-                                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <div id="result_category"><?php include('consult_category.php');?></div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -187,7 +236,7 @@
                                                             </div>
                                                         </div>
                                                         <div class=" form-group">
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion 
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripción 
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                                 <textarea id="description" required="" rows="5" name="description" class="form-control col-md-7 col-xs-12" placeholder="Escribe la descripcion del producto" ></textarea>
@@ -200,6 +249,19 @@
                                                                 <input type="number" min="0" id="stocks" name="stocks" required="" class="form-control col-md-7 col-xs-12" placeholder="Cantidad de productos">
                                                             </div>
                                                         </div>
+                                                        <!--<div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warranty">Garantía 
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <select required class="form-control" name="warranty">
+                                                                    <option selected disabled>Selecciona..</option>
+                                                                    <option>6 meses</option>
+                                                                    <option>1 año</option>
+                                                                    <option>2 año</option>
+                                                                    <option>3 año</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="col-sm-5"><br>
                                                         <div class=" form-group">
@@ -220,7 +282,7 @@
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Modelo 
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input id="model" type="text" name="model" required="" placeholder="Codigo de modelo" class="form-control col-md-7 col-xs-12">
+                                                                <input id="model" type="text" name="model" required="" placeholder="Codigo de producto" class="form-control col-md-7 col-xs-12">
                                                             </div>
                                                         </div>
                                                         <div class=" form-group">
@@ -233,7 +295,8 @@
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus 
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <select class="form-control" name="status">
+                                                                <select required class="form-control" name="status">
+                                                                    <option disabled selected>Selecciona..</option>
                                                                     <option>Activo</option>
                                                                     <option>Inactivo</option>
                                                                 </select>
@@ -243,7 +306,8 @@
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">¿Producto destacado?
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <select class="form-control" name="outstanding">
+                                                                <select required class="form-control" name="outstanding">
+                                                                    <option disabled selected>Selecciona..</option>
                                                                     <option>SI</option>
                                                                     <option>NO</option>
                                                                 </select>
@@ -300,6 +364,26 @@
                 <div id="notif-group" class="tabbed_notifications"></div>
             </div>
 
+            <script type="text/javascript">
+                $("#selectCategory").change(function () {
+                    var idCategory = $("option:selected", this).attr('value');
+                    var namefunction = 'getStatesUser';
+                    $.ajax({
+                        url: "../php/functions.php",
+                        type: "POST",
+                        data: {
+                            namefunction: namefunction,
+                            idCategory: idCategory
+                        },
+                        success: function (result) {
+                            $('#selectSubCategory').html(result);
+                        },
+                        error: function () {},
+                        complete: function () {},
+                        timeout: 10000
+                    });
+                });
+            </script>
             <script src="../js/bootstrap.min.js"></script>
 
             <script src="../js/custom.js"></script>   

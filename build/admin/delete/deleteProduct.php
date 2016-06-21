@@ -1,6 +1,8 @@
 <?php 
-include ("../login/security.php");
-require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
 
 $id_product = $_GET['id'];
 
@@ -18,7 +20,6 @@ $sql_product = "DELETE FROM Productos WHERE IdProducto = '".$id_product."'";
 
 echo"
 	<script type='text/javascript'>
-		alert('El producto se elimino correctamente..!');
 		window.location='../edit/editProducts.php';
 	</script>";
 

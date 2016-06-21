@@ -1,8 +1,7 @@
-<?php require_once 'login/control.php'; 
-$usuario = new usuario();
-if (isset($_POST['grabar']) and $_POST['grabar']=='si') {
-  $usuario->nueva_sesion();
-}
+<?php
+  session_start();
+  if(isset($_SESSION['idAdmin']))
+    header("Location: listProducts.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,14 +15,15 @@ if (isset($_POST['grabar']) and $_POST['grabar']=='si') {
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 
 	<link href="../css/animate.min.css" rel="stylesheet">
-  	<!-- Custom styling plus plugins -->
-  	<link href="../css/custom.css" rel="stylesheet">
+	<!-- Custom styling plus plugins -->
+	<link href="../css/custom.css" rel="stylesheet">
 	<!-- Bootstrap -->
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body style="background:#F7F7F7;">
@@ -34,47 +34,28 @@ if (isset($_POST['grabar']) and $_POST['grabar']=='si') {
     $host= $_SERVER["HTTP_HOST"];
   	$url= $_SERVER["REQUEST_URI"];
   	$base_url = "http://" . $host . $url;
-
-    /*$hash = password_hash("1qaz2wsx", PASSWORD_DEFAULT);
-    date_default_timezone_set('UTC');
-    date_default_timezone_set("America/Mexico_City");
-    $datatime = date("Y-m-d");
-
-    $query = "INSERT INTO Usuarios VALUES (null,'Admin','Administrador','ad@gmail.com','".$hash."','Administrador','".$datatime."')";
-    $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
-    var_dump($query);*/
-
-    /*if (password_verify('1qaz2wsx', $hash)) {
-        echo '¡La contraseña es válida!';
-    } else {
-        echo 'La contraseña no es válida.';
-    }*/
-
   	?>
     <div id="wrapper">
       <div id="login" class="animate form">
         <section class="login_content">
           <!--<form action="control.php" method="POST">-->
-          <form name="form" action="" method="POST">
+          <form id="loginAdmin">
             <h1 class="titleLogin">INICIA SESION</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" required="" name="username"/>
+              <input type="text" class="form-control" placeholder="Username" required="" name="username" id="username"/>
             </div>
             <div>
-              <input type="hidden" name="grabar" value="si">
-            </div>
-            <div>
-              <input type="password" class="form-control" placeholder="Password" required="" name="password"/>
+              <input type="password" class="form-control" placeholder="Password" required="" name="password" id="password"/>
             </div>
             <tr> 
               <td colspan="2" align="center"> 
-                <?php if (isset($_GET["usuario"])=="si") { ?> 
-                  <div class="alert alert-danger" role="alert">DATOS INCORRECTOS</div>
-                <?php } ?> 
+                <div class="alert alert-success welcome" role="alert" style="display:none">Bienvenido</div>
+                <div class="alert alert-danger not_pass" role="alert" style="display:none">Contraseña invalida.</div>
+                <div class="alert alert-danger not_name" role="alert" style="display:none">Usuario invalido.</div>
               </td> 
             </tr> 
             <div>
-              <input type="submit" class="btn btn-success" value="Inicia sesión" onClick="validar()"> 
+              <input type="submit" class="btn btn-success" value="Inicia sesión"> 
               <!--<button type="submit" class="btn btn-success submit">Entrar</button>-->
               <a class="" href="#">Olvidaste tu contraseña?</a>
             </div>
@@ -94,5 +75,6 @@ if (isset($_POST['grabar']) and $_POST['grabar']=='si') {
       </div>
     </div>
   </div>
+   <script src="js/login.js"></script>
 </body>
 </html>

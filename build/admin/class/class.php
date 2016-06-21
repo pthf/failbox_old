@@ -1,6 +1,8 @@
 <?php
-include ("../login/security.php");
+if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
 require_once("../db/conexion.php");
+
 class Products
 {
 /* Hacemos la inserción en la base de datos y nos redirecciona a la página llamada listProducts.php */
@@ -84,7 +86,6 @@ class Products
 
 			echo"
 			<script type='text/javascript'>
-				alert('El registro de la caracteristica se realizó correctamente');
 				window.location='../create/createCharacteristics.php?id=$id';
 			</script>";
 
@@ -92,7 +93,6 @@ class Products
 
 			echo"
 			<script type='text/javascript'>
-				alert('El registro ya existe con este tipo de caracteristica...');
 				window.location='../create/createCharacteristics.php?id=$id';
 			</script>";
 

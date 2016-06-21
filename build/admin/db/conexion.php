@@ -6,7 +6,7 @@ class Conectar
 	{
 		$conexion = mysql_connect("localhost","root","");
 		mysql_query("SET NAMES 'utf8'");
-		mysql_select_db("failbox_dev");
+		mysql_select_db("failbox");
 		return $conexion;
 	}
 }

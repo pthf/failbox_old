@@ -1,6 +1,10 @@
 <?php 
-    include ("login/security.php");
-    require_once("db/conexion.php");
+  session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("db/conexion.php");
+  /*if ($_SESSION['idPrivilegio'] > 1)
+    header("Location: proveedores/listProveedores.php");*/
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,21 +72,33 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
             <div class="menu_section">
-              <h3>Administrador</h3>
+              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="listProducts.php">Listar</a>
+                    <li><a href="listProducts.php">Productos</a>
                     </li>
                     <li><a href="create/createProducts.php">Crear</a>
                     </li>
                     <li><a href="edit/editProducts.php">Editar</a>
                     </li>
-                    <!--<li><a href="index3.html">Eliminar</a>
-                    </li>-->
                   </ul>
                 </li>
               </ul>
+              <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="proveedores/listProveedores.php">Proveedores</a>
+                    </li>
+                    <li><a href="#">Crear</a>
+                    </li>
+                    <li><a href="#">Editar</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <?php } ?>
             </div>
 
           </div>
@@ -102,7 +118,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/user.png" alt="">Administrador
+                  <img src="images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -157,7 +173,8 @@
                               <th>#</th>
                               <th>Nombre</th>
                               <th>Descripcion</th>
-                              <th>Categorias</th>
+                              <th>Categoria</th>
+                              <th>Subcategoria</th>
                               <th>Marca</th>
                               <th>Stocks</th>
                               <th>Precio Lista</th>
@@ -176,27 +193,37 @@
                             while($fila = mysql_fetch_array($resultado)) { ?>
                             <tr>
                               <td><?php echo $fila['IdProducto']?></td>
-                              <td><?php echo $fila['NombreProd']?></td>
+                              <td><a href="edit/editProduct.php?id=<?=$fila['IdProducto']?>"><?php echo $fila['NombreProd']?></a></td>
                               <td><?php echo $fila['Descripcion']?></td>
                               <td>
                               <?php 
-                                $query1 = "SELECT * FROM Productos_has_Categorias pc
-                                            INNER JOIN Categorias c
-                                            ON pc.Categorias_IdCategoria = c.IdCategoria
-                                            WHERE pc.Productos_IdProducto = ".$fila['IdProducto'];
+                                $query1 = "SELECT * FROM Categorias c
+                                            INNER JOIN Productos p
+                                            ON p.Categorias_IdCategoria = c.IdCategoria
+                                            WHERE p.IdProducto = ".$fila['IdProducto'];
                                 $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error()); 
                                 while($fila1 = mysql_fetch_array($resultado1)) { 
-                                  echo '- '.$fila1['Categoria'].'<br> ';
+                                  echo $fila1['Categoria'];
                                 }
                               ?>
                               </td>
                               <td>
                               <?php 
-                                $query2 = "SELECT * FROM Productos p 
-                                            INNER JOIN Productos_has_Marcas pm 
-                                              ON pm.Productos_IdProducto = p.IdProducto
-                                            INNER JOIN Marcas m 
-                                              ON m.IdMarca = pm.Marcas_IdMarca
+                                $query4 = "SELECT * FROM Subcategoria s
+                                            INNER JOIN Productos p
+                                            ON p.Subcategoria_IdSubcategoria = s.IdSubcategoria
+                                            WHERE p.IdProducto = ".$fila['IdProducto'];
+                                $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error()); 
+                                while($fila4 = mysql_fetch_array($resultado4)) { 
+                                  echo $fila4['Subcategoria'];
+                                }
+                              ?>
+                              </td>
+                              <td>
+                              <?php 
+                                $query2 = "SELECT * FROM Marcas m
+                                            INNER JOIN Productos p 
+                                              ON p.Marcas_IdMarca = m.IdMarca
                                             WHERE p.IdProducto = '".$fila['IdProducto']."'";
                                 $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error()); 
                                 $fila2 = mysql_fetch_array($resultado2);
