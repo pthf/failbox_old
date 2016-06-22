@@ -1,6 +1,8 @@
 <?php 
-include ("../login/security.php");
-require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
  
 //variables POST
 $category = $_POST['other_category'];
@@ -9,7 +11,7 @@ $capital_category = ucwords($lower_category);
 
 if ($capital_category == "" || $capital_category == NULL) {
 
-	echo "<span style='color:red'>Ingrese una categoria!!</span><br>";
+	echo "<span id='result_subcategory' style='color:red'>Ingrese una categoria!!</span><br>";
 
 } else {
 
@@ -19,7 +21,8 @@ if ($capital_category == "" || $capital_category == NULL) {
 
 	if ($row == 1) { 
 
-		echo "<span style='color:red'>Ya existe la categoria, intente de nuevo!!</span><br>";
+		echo "<span class='result_subcategory' style='color:red'>Ya existe la categoria, intente de nuevo!!</span><br>";
+
 
 	} else { 
 

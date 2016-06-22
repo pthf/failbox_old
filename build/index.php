@@ -21,9 +21,11 @@
 
 	<div class="contenedor">
 		<top-menu></top-menu>
+
 		<div class="loadedView" ng-view>
 
 		</div>
+
 		<bottom-site></bottom-site>
 	</div>
 

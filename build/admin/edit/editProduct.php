@@ -1,6 +1,8 @@
 <?php 
-    include ("../login/security.php");
-    require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,21 +65,33 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
             <div class="menu_section">
-              <h3>Administrador</h3>
+              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../listProducts.php">Listar Productos</a>
+                    <li><a href="../listProducts.php">Productos</a>
                     </li>
                     <li><a href="../create/createProducts.php">Crear</a>
                     </li>
-                    <li><a href="editProducts.php">Editar</a>
+                    <li><a href="../edit/editProducts.php">Editar</a>
                     </li>
-                    <!--<li><a href="index3.html">Eliminar</a>
-                    </li>-->
                   </ul>
                 </li>
               </ul>
+              <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                    </li>
+                    <li><a href="#">Crear</a>
+                    </li>
+                    <li><a href="#">Editar</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <?php } ?>
             </div>
 
           </div>
@@ -97,7 +111,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="../images/user.png" alt="">Administrador
+                  <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -169,24 +183,57 @@
                   <div class="col-md-8 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
                     <h3 class="prod_title">#ID Producto: <?php echo $_GET['id']?></h3>
-                    <!--<form class="form-horizontal form-label-left" action="saveChanges.php?id=<?php echo $id;?>&categoria=<?php echo $fila['IdCategoria'];?>&marca=<?php echo $fila['IdMarca'];?>" method="POST">-->
                     <form class="form-horizontal form-label-left" id="formEditProduct" name="formEditProductData" enctype="multipart/form-data">
                         <div class="col-sm-6">
                           <input type="text" name="id" value="<?php echo $fila['IdProducto'];?>" hidden>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Marca *
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoria
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12 ">
+                              <?php 
+                                $query3 = "SELECT * FROM Categorias c";
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+                                  echo "<select id='selectCategory' name='category' class='form-control' required>";
+                                while($row3 = mysql_fetch_array($resultado3)){
+                                  if ($fila['Categorias_IdCategoria'] == $row3['IdCategoria']) {
+                                    echo "<option selected value='".$row3['IdCategoria']."'>". $row3['Categoria']."</option>";
+                                  } else {
+                                    echo "<option value='".$row3['IdCategoria']."'>". $row3['Categoria']."</option>";
+                                  }
+                                }
+                                  echo "</select>";
+                                ?>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoria
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12" id="SubcategorySelected">
+                              <?php 
+                                $query3 = "SELECT * FROM Subcategoria s WHERE Categorias_IdCategoria = '".$fila['Categorias_IdCategoria']."'";
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+                                  echo "<select id='subcategory' name='subcategory' class='form-control' required>";
+                                while($row3 = mysql_fetch_array($resultado3)){
+                                  if ($fila['Subcategoria_IdSubcategoria'] == $row3['IdSubcategoria']) {
+                                    echo "<option selected value='".$row3['IdSubcategoria']."'>". $row3['Subcategoria']."</option>";
+                                  } else {
+                                    echo "<option value='".$row3['IdSubcategoria']."'>". $row3['Subcategoria']."</option>";
+                                  }
+                                }
+                                  echo "</select>";
+                                ?>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Marca
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
-                                $query1 = "SELECT * FROM Productos_has_Marcas WHERE Productos_IdProducto = '".$fila['IdProducto']."'";
-                                $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error()); 
-                                $row1 = mysql_fetch_array($resultado1);
-
-                                $query2 = "SELECT * FROM Marcas";
+                                $query2 = "SELECT * FROM Marcas m";
                                 $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
                                   echo "<select id='brand' name='brand' class='form-control' required>";
                                 while($row2 = mysql_fetch_array($resultado2)){
-                                  if ($row1['Marcas_IdMarca'] == $row2['IdMarca']) {
+                                  if ($fila['Marcas_IdMarca'] == $row2['IdMarca']) {
                                     echo "<option selected value='".$row2['IdMarca']."'>". $row2['Marca']."</option>";
                                   } else {
                                     echo "<option value='".$row2['IdMarca']."'>". $row2['Marca']."</option>";
@@ -194,28 +241,6 @@
                                 }
                                   echo "</select>";
                               ?>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoria
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <?php 
-                                $query3 = "SELECT * FROM Categorias";
-                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
-                                while ($row1 = mysql_fetch_array($resultado3)) {
-                                  $query4 = "SELECT * FROM Productos_has_Categorias WHERE Productos_IdProducto = $id AND Categorias_IdCategoria =".$row1['IdCategoria'];
-                                  $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
-                                  if (mysql_num_rows($resultado4)) { ?>
-                                  <label class="checkbox-inline">
-                                    <input type='checkbox' checked value="<?php echo $row1['IdCategoria'];?>" name='categorys[]'><?php echo $row1['Categoria'];?>
-                                  </label>
-                                  <?php } else { ?>
-                                  <label class="checkbox-inline">
-                                    <input type='checkbox' value="<?php echo $row1['IdCategoria'];?>" name='categorys[]'><?php echo $row1['Categoria'];?>
-                                  </label>
-                              <?php } 
-                                } ?>
                             </div>
                           </div>
                           <div class="form-group">
@@ -339,7 +364,30 @@
     <div class="clearfix"></div>
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
-
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("#selectCategory").change(function () {
+        var idCategory = $("option:selected", this).attr('value');
+        var namefunction = 'getEditProduct';
+        $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: {
+                namefunction: namefunction,
+                idCategory: idCategory
+            },
+            success: function (result) {
+                $('#SubcategorySelected select').html(result);
+            },
+            error: function () {},
+            complete: function () {},
+            timeout: 10000
+        });
+        
+    });
+  });
+  </script>
+  </script>
   <script src="../js/bootstrap.min.js"></script>
 
   <!-- bootstrap progress js -->

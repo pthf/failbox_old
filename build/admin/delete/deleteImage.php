@@ -1,6 +1,8 @@
 <?php 
-include ("../login/security.php");
-require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
 
 $id_product = $_GET['id'];
 $id_imagen = $_GET['imagen'];
@@ -11,7 +13,6 @@ $sql_charact = "DELETE FROM Productos_has_Imagenes WHERE IdImagen = '".$id_image
 
 echo"
 	<script type='text/javascript'>
-		alert('La imagen se elimino correctamente..!');
 		window.location='../create/createCharacteristics.php?id=$id_product';
 	</script>";
 

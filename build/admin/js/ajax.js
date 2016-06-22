@@ -20,34 +20,6 @@ if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
   return xmlhttp;
 }
 
-function sendBrand(){ 
-  //div donde se mostrará lo resultados
-  divResult = document.getElementById('result_brand');
-  //recogemos los valores de los inputs
-  brand = document.new_brand.other_brand.value;
- 
-  //instanciamos el objetoAjax
-  ajax=objetoAjax();
- 
-  //uso del medotod POST
-  //archivo que realizará la operacion
-  //registro.php
-  ajax.open("POST", "register_brand.php",true);
-  //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
-  ajax.onreadystatechange=function() {
-    //la función responseText tiene todos los datos pedidos al servidor
-    if (ajax.readyState==4) {
-      //mostrar resultados en esta capa
-    divResult.innerHTML = ajax.responseText
-      //llamar a funcion para limpiar los inputs
-    cleanBrand();
-  }
- }
-  ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-  //enviando los valores a registro.php para que inserte los datos
-  ajax.send("other_brand="+brand)
-}
-
 function sendCategory(){ 
   //div donde se mostrará lo resultados
   divResultCat = document.getElementById('result_category');
@@ -60,7 +32,7 @@ function sendCategory(){
   //uso del medotod POST
   //archivo que realizará la operacion
   //registro.php
-  ajax.open("POST", "register_category.php",true);
+  ajax.open("POST", "../create/register_category.php",true);
   //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
   ajax.onreadystatechange=function() {
     //la función responseText tiene todos los datos pedidos al servidor
@@ -76,6 +48,65 @@ function sendCategory(){
   ajax.send("other_category="+category)
 }
 
+function sendSubCategory(){ 
+  alert('Entramos');
+  exit();
+  //div donde se mostrará lo resultados
+  divResultCat = document.getElementById('result_subcategory');
+  //recogemos los valores de los inputs
+  category = document.new_subcategory.category.value;
+  subcategory = document.new_subcategory.other_subcategory.value;
+ 
+  //instanciamos el objetoAjax
+  ajax=objetoAjax();
+ 
+  //uso del medotod POST
+  //archivo que realizará la operacion
+  //registro.php
+  ajax.open("POST", "../create/register_subcategory.php",true);
+  //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+  ajax.onreadystatechange=function() {
+    //la función responseText tiene todos los datos pedidos al servidor
+    if (ajax.readyState==4) {
+      //mostrar resultados en esta capa
+    //divResultCat.innerHTML = ajax.responseText
+      //llamar a funcion para limpiar los inputs
+    cleanSubCategory();
+  }
+ }
+  ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  //enviando los valores a registro.php para que inserte los datos
+  ajax.send("category="+category+"&other_subcategory="+subcategory)
+}
+
+function sendBrand(){ 
+  //div donde se mostrará lo resultados
+  divResult = document.getElementById('result_brand');
+  //recogemos los valores de los inputs
+  brand = document.new_brand.other_brand.value;
+ 
+  //instanciamos el objetoAjax
+  ajax=objetoAjax();
+ 
+  //uso del medotod POST
+  //archivo que realizará la operacion
+  //registro.php
+  ajax.open("POST", "../create/register_brand.php",true);
+  //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+  ajax.onreadystatechange=function() {
+    //la función responseText tiene todos los datos pedidos al servidor
+    if (ajax.readyState==4) {
+      //mostrar resultados en esta capa
+    divResult.innerHTML = ajax.responseText
+      //llamar a funcion para limpiar los inputs
+    cleanBrand();
+  }
+ }
+  ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  //enviando los valores a registro.php para que inserte los datos
+  ajax.send("other_brand="+brand)
+}
+
 function sendCharacteristic(){ 
   //div donde se mostrará lo resultados
   divResultCat = document.getElementById('result_characteristic');
@@ -88,7 +119,7 @@ function sendCharacteristic(){
   //uso del medotod POST
   //archivo que realizará la operacion
   //registro.php
-  ajax.open("POST", "register_characteristic.php",true);
+  ajax.open("POST", "../create/register_characteristic.php",true);
   //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
   ajax.onreadystatechange=function() {
     //la función responseText tiene todos los datos pedidos al servidor
@@ -105,11 +136,14 @@ function sendCharacteristic(){
 }
 
 //función para limpiar los campos
-function cleanBrand(){
-  document.new_brand.other_brand.value="";
-}
 function cleanCategory(){
   document.new_category.other_category.value="";
+}
+function cleanSubCategory(){
+  document.new_subcategory.other_subcategory.value="";
+}
+function cleanBrand(){
+  document.new_brand.other_brand.value="";
 }
 function cleanCharacteristic(){
   document.new_characteristic.characteristic.value="";

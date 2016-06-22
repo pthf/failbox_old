@@ -1,6 +1,7 @@
 <?php
-	include ("../login/security.php");
-	require_once("../class/class.php");
+	if(!isset($_SESSION['idAdmin']))
+    	header("Location: index.php");
+  	require_once("../db/conexion.php");
 	//Creamos el objeto de la Clase Products
 	$insert_product = new Products();
 

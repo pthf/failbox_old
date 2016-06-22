@@ -1,6 +1,8 @@
 <?php 
-include ("../login/security.php");
-require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
 
 $id_product = $_GET['id'];
 $estatus = $_GET['estatus'];

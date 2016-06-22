@@ -1,6 +1,8 @@
 <?php 
-    include ("../login/security.php");
-    require_once("../db/conexion.php");
+session_start();
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
     $id_producto = $_GET['id'];
 ?> 
 <!DOCTYPE html>
@@ -118,21 +120,33 @@
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                                <h3>Administrador</h3>
-                                <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="../listProducts.php">Listar Productos</a>
-                                            </li>
-                                            <li><a href="createProducts.php">Crear</a>
-                                            </li>
-                                            <li><a href="../edit/editProducts.php">Editar</a>
-                                            </li>
-                                            <!--<li><a href="index3.html">Eliminar</a>
-                                            </li>-->
-                                        </ul>
+                              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu" style="display: none">
+                                    <li><a href="../listProducts.php">Productos</a>
                                     </li>
-                                </ul>
+                                    <li><a href="..create/createProducts.php">Crear</a>
+                                    </li>
+                                    <li><a href="../edit/editProducts.php">Editar</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu" style="display: none">
+                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    </li>
+                                    <li><a href="#">Crear</a>
+                                    </li>
+                                    <li><a href="#">Editar</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <?php } ?>
                             </div>
 
                         </div>
@@ -151,7 +165,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="../images/user.png" alt="">Administrador
+                                        <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">

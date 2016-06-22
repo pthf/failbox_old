@@ -1,8 +1,8 @@
 <?php 
-include ("../login/security.php");
-require_once("../db/conexion.php");
+  if(!isset($_SESSION['idAdmin']))
+    header("Location: index.php");
+  require_once("../db/conexion.php");
  
-//consulta todos los empleados
 $query = "SELECT * FROM Caracteristicas";
 $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
   echo "<select id='characteristic' name='type_characteristic' class='form-control'>";

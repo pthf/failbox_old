@@ -1,7 +1,7 @@
 <?php
 require_once("admin/db/conexion.php");
 
-$query = "SELECT * FROM Productos p INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca LIMIT 20";
+$query = "SELECT * FROM Productos p INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca WHERE Destacado = 'SI'";
 $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
 $productos = array();
@@ -20,8 +20,8 @@ while ($row = mysql_fetch_array($resultado)) {
                 "images_slider" => $array_images,
                 "paypal" => $row['urlPaypal'],
     );
-    array_push($productos, $producto);
     //$productos[] = $producto;
+    array_push($productos, $producto);
 }
 
 $arrayList = array();
@@ -57,5 +57,6 @@ for ($i=0; $i < count($arrayList); $i++) {
     
 }
 print_r(json_encode($item));
+
 
 ?>

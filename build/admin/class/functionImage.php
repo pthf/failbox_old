@@ -1,5 +1,7 @@
 <?php
-include ("../login/security.php");
+session_start();
+if(!isset($_SESSION['idAdmin']))
+	header("Location: index.php");
 require_once("../db/conexion.php");
 
 $id_producto = $_GET['id'];
