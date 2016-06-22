@@ -1,0 +1,13 @@
+<ul class="groupAllItems">
+  <li class="categoryList" ng-repeat="(key, data) in menuProductos.cat" >
+    <span class="category" style="cursor:pointer;" ng-click="openCategory(key)" name="{{key}}">{{key}}  <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto;"></span>
+    <ul class="subcategoryList">
+      <li ng-repeat="(key, subdata) in data">
+        <span class="subcategory" style="cursor:pointer;" ng-click="openSubCategory(key)" name="{{key}}">{{key}}  <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto;"></span>
+        <ul class="brandList">
+          <li ng-repeat="(key, brand) in subdata" load-group-products-items><span class="brand" style="cursor:pointer;"> {{key}} </span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

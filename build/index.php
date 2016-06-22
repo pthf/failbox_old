@@ -21,21 +21,20 @@
 
 	<div class="contenedor">
 		<top-menu></top-menu>
-		<div class="loadedView" ng-view></div>
-		<!--Llamadas a los archivos php para la obtencion del JSON de los productos-->
-		<?php //include 'php/new_products.php';?>
-		<?php //include 'php/items.php';?>
+		<div class="loadedView" ng-view>
+
+		</div>
 		<bottom-site></bottom-site>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="./js/lib/underscore-min.js"></script>
 	<script src="./js/lib/angular.min.js"></script>
-    <script src="./js/lib/angular-route.min.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/controllers.js"></script>
-    <script src="./js/directives.js"></script>
+  <script src="./js/lib/angular-route.min.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/controllers.js"></script>
+  <script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
-	
+
 </body>
 </html>

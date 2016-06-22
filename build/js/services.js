@@ -53,7 +53,7 @@
 				var deferred = $q.defer();
 
 				all().then(function (data) {
-					
+
 		        	var results = data.filter(function(item){
 		        		return item.id === id;
 		        	});
@@ -69,11 +69,23 @@
 		        return deferred.promise;
 			}
 
+			function productFiltered(){
+				var deferred = $q.defer();
+
+				$http.get('./data/filteredProducts.json')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
 				feactured_products: feactured_products,
-				byItem:byItem
+				byItem:byItem,
+				productFiltered: productFiltered
 			}
 
 		}]);

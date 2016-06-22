@@ -76,13 +76,21 @@
 		font-size: .9em;
 	}
 
-.botttomPrivacy{
-	font-size: .85em;
-}
+	.botttomPrivacy{
+		font-size: 1em;
+	}
 
-.contInformation .infoArticulo{
-	font-size: .9em;
-}
+	.contInformation .infoArticulo{
+		font-size: .9em;
+	}
+
+	.cont-search-product{
+		font-size: .8em;
+	}
+
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
 
 }
 
@@ -163,18 +171,41 @@
 		font-size: .8em;
 	}
 
-.botttomPrivacy{
-	font-size: .80em;
-}
+	.botttomPrivacy{
+		font-size: .9em;
+	}
 
-.contInformation .infoArticulo{
-	font-size: .8em;
-}
+	.contInformation .infoArticulo{
+		font-size: .8em;
+	}
 
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
+
+	.cont-search-product{
+		font-size: .7em;
+	}
+
+	.flex-aside-left-menu{
+		width: 30%;
+	}
+
+	.flex-asise-right-items{
+		width: 70%;
+	}
+
+	.groupAllItems{
+		width: 70%;
+	}
 
 }
 
 @media (max-width: 1024px){
+
+	.contElements{
+		left: 23.5%;
+	}
 
 	.contendItems .contItemsPosition{
 		font-size: .6em;
@@ -251,29 +282,49 @@
 		font-size: .7em;
 	}
 
-.botttomPrivacy{
-	font-size: .75em;
-}
+	.botttomPrivacy{
+		font-size: .95em;
+	}
 
-.contInformation .infoArticulo{
-	font-size: .7em;
-}
+	.contInformation .infoArticulo{
+		font-size: .7em;
+	}
 
-.descInfo{
-	width: 40%;
-	margin-left: 5%;
-	margin-right: 5%;
-}
+	.descInfo{
+		width: 40%;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
 
-.contInformation .infoArticulo{
-	width: 85%;
-}
+	.contInformation .infoArticulo{
+		width: 85%;
+	}
 
-.contInformation .paypal{
-	width: 30%;
-	height: auto;
-	margin-top: 5vw;
-}
+	.contInformation .paypal{
+		width: 30%;
+		height: auto;
+		margin-top: 5vw;
+	}
+
+	.cont-search-product{
+		font-size: .6em;
+	}
+
+	.flex-aside-left-menu{
+		width: 30%;
+	}
+
+	.flex-asise-right-items{
+		width: 70%;
+	}
+
+	.groupAllItems{
+		width: 80%;
+	}
+
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
 
 }
 
@@ -380,24 +431,44 @@
 		margin-top: 1vw;
 	}
 
-.botttomPrivacy{
-	font-size: .70em;
-}
+	.botttomPrivacy{
+		font-size: .85em;
+	}
 
-.contInformation .paypal{
-	width: 40% ;
-	height: auto;
-	margin-top: 5vw;
-}
+	.contInformation .paypal{
+		width: 40% ;
+		height: auto;
+		margin-top: 5vw;
+	}
 
-.contInformation .paypal img{
-	width: 100%;
-	height: auto;
-}
+	.contInformation .paypal img{
+		width: 100%;
+		height: auto;
+	}
 
-.contInformation .infoArticulo{
-	font-size: .6em;
-}
+	.contInformation .infoArticulo{
+		font-size: .6em;
+	}
+
+	.cont-search-product{
+		font-size: .6em;
+	}
+
+	.flex-aside-left-menu{
+		width: 40%;
+	}
+
+	.flex-asise-right-items{
+		width: 60%;
+	}
+
+	.groupAllItems{
+		width: 80%;
+	}
+
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
 
 }
 
@@ -438,31 +509,51 @@
 		font-size: .5em;
 	}
 
-.botttomPrivacy{
-	font-size: .65em;
-}
+	.botttomPrivacy{
+		font-size: .75em;
+	}
 
-.contInformation .paypal{
-	width: 50% ;
-	height: auto;
-	margin-top: 5vw;
-}
+	.contInformation .paypal{
+		width: 50% ;
+		height: auto;
+		margin-top: 5vw;
+	}
 
-.sliderStore{
-	width: 80% !important;
-	height: auto;
-	overflow: hidden;
-	margin-bottom: 3vw;
-}
+	.sliderStore{
+		width: 80% !important;
+		height: auto;
+		overflow: hidden;
+		margin-bottom: 3vw;
+	}
 
-.descInfo{
-	text-align: justify;
-	width: 90%;
-	margin-left: 5%;
-	margin-right: 5%;
-	height: auto;
-	font-family: 'Gotham-Light';
-}
+	.descInfo{
+		text-align: justify;
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+		height: auto;
+		font-family: 'Gotham-Light';
+	}
+
+	.cont-search-product{
+		font-size: .5em;
+	}
+
+	.flex-aside-left-menu{
+		width: 40%;
+	}
+
+	.flex-asise-right-items{
+		width: 60%;
+	}
+
+	.groupAllItems{
+		width: 90%;
+	}
+
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
 
 }
 
@@ -573,14 +664,35 @@
 		margin-top: .5vw;
 	}
 
-.botttomPrivacy{
-	font-size: .60em;
-}
+	.botttomPrivacy{
+		font-size: .70em;
+	}
 
-.contInformation .paypal{
-	width: 60% ;
-	height: auto;
-	margin-top: 5vw;
-}
+	.contInformation .paypal{
+		width: 60% ;
+		height: auto;
+		margin-top: 5vw;
+	}
+
+
+	.cont-search-product{
+		font-size: .4em;
+	}
+
+	.flex-aside-left-menu{
+		width: 50%;
+	}
+
+	.flex-asise-right-items{
+		width: 50%;
+	}
+
+	.groupAllItems{
+		width: 90%;
+	}
+
+	.contItemsPosition .groupItemsFilters{
+		font-size: 1.2em;
+	}
 
 }
