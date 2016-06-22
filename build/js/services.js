@@ -53,7 +53,7 @@
 				var deferred = $q.defer();
 
 				all().then(function (data) {
-					
+
 		        	var results = data.filter(function(item){
 		        		return item.id === id;
 		        	});
@@ -69,11 +69,51 @@
 		        return deferred.promise;
 			}
 
+			function productFilteredThree(category, subcategory, brand){
+				var deferred = $q.defer();
+				$http.get('./php/products_filters.php?nameCategory='+category+'&nameSubcategory='+subcategory+'&nameBrand='+brand)
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
+			function productFilteredTwo(category, subcategory){
+				var deferred = $q.defer();
+				$http.get('./php/products_filters.php?nameCategory='+category+'&nameSubcategory='+subcategory)
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
+			function productFilteredOne(category){
+				var deferred = $q.defer();
+				$http.get('./php/products_filters.php?nameCategory='+category)
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
+			function productFiltered(){
+				var deferred = $q.defer();
+				$http.get('./php/products_filters.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
 				feactured_products: feactured_products,
-				byItem:byItem
+				byItem:byItem,
+				productFilteredThree: productFilteredThree,
+				productFilteredTwo: productFilteredTwo,
+				productFilteredOne: productFilteredOne,
+				productFiltered: productFiltered
 			}
 
 		}]);

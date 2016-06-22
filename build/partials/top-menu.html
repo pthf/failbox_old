@@ -1,45 +1,89 @@
 <div class="topMenu" ng-controller="topMenuController">
 
 	<div class="logoFailBox">
-		
+
 		<div class="img">
 			<a href="#"><img src="src/images/failbox-04.png"></a>
 		</div>
-		
+
 		<div class="titleNav">
 			<span>¿Quiénes somos?</span>
-		</div> 
+		</div>
 	</div>
-	
-	<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">	
-		<!--<label>
-			
+
+	<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">
+		<label style="position: relative">
+
 			<div class="nav">
-				<span class="opctit" ng-click="tabs.selectTab(0); tabs.openMenu()">Productos <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+				<a href="#/productos"><span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)">Productos <img class="selectIndicator" src="src/images/indMostLess-02.png"></span></a>
 				<ul class="listNav" ng-show="tabs.menuProductos">
 					<li class="itemGroup" ng-repeat="(key, data) in menuProductos.cat"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
-						<span class="title" ng-mouseover="tabs.selectTab($index+1)" >
+						<a href="#/productos/{{key | lowercase }}"><span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
 							{{key}}
 							<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
-						</span>
+						</span></a>
 						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}">
-							<li class="" ng-repeat="(key, data) in data"><span>{{key}}</span></li>
+							<li class="" ng-repeat="(subkey, subdata) in data">
+								<a href="#/productos/{{key | lowercase }}/{{subkey | lowercase }}"><span ng-mouseover="tabs.selectBrand($index+1)"  >
+									{{subkey}}
+									<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
+								</span></a>
+								<ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
+									<li class="" ng-repeat="(brandkey, brand) in subdata"><a href="#/productos/{{key | lowercase }}/{{subkey | lowercase }}/{{brandkey | lowercase }}"><span>{{brandkey}}</span></a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 
-			<input class="barNav" type="text">
-			
+			<input class="barNav" ng-mouseover="tabs.closeMenuRestart()" type="text">
+
 			</input>
-			
+
 			<div class="search">
 				<img src="src/images/failbox-05.png">
 			</div>
 
-		</label>-->
+			<div class="contElements">
+				<a href="#">
+				<div class="itemSearched">
+					<img src="src/images/8.png">
+					<div>
+						<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Insignia - Pantalla de 40 - LED - 1080p HDTV - Negro</span>
+						<span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$5,900.00</span> - <span style="font-weight: bold; color: red;">$5,000.00</span></span>
+					</div>
+				</div>
+				</a>
+				<a href="#">
+				<div class="itemSearched">
+					<img src="src/images/8.png">
+					<div>
+						<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Insignia - Pantalla de 40 - LED - 1080p HDTV - Negro</span>
+						<span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$5,900.00</span> - <span style="font-weight: bold; color: red;">$5,000.00</span></span>
+					</div>
+				</div>
+				</a>
+				<a href="#">
+				<div class="itemSearched">
+					<img src="src/images/8.png">
+					<div>
+						<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Insignia - Pantalla de 40 - LED - 1080p HDTV - Negro</span>
+						<span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$5,900.00</span> - <span style="font-weight: bold; color: red;">$5,000.00</span></span>
+					</div>
+				</div>
+				</a>
+				<div class="itemSearched">
+					<div>
+						<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Ningún resultado encontrado.</span>
+					</div>
+				</div>
+			</div>
+
+		</label>
+
 	</div>
-	
+
 	<div class="countBar" ng-controller="tabShowMenuTopController as tabs">
 		<div class="nav">
 			<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
@@ -55,7 +99,7 @@
 
 		</div>
 	</div>
-	
+
 	<div class="cartBar">
 		<div class="nav">
 			<span class="cantidad">2</span>
@@ -63,70 +107,62 @@
 		</div>
 	</div>
 
-	<!-- Modal Iniciar Sesion -->
-	<div id="popup-login" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h1 style="color:black" class="modal-title">INICIAR SESION</h1>
-	      </div>
-	      <div class="modal-body">
-                  <form id="form-login" action="login.php" method="POST">
-                      <div class="form-group">
-                          <label style="color:black" for="inputEmail">Correo electronico</label>
-                          <input required="" type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
-                      </div>
-                      <div class="form-group">
-                          <label style="color:black" for="inputPassword">Contraseña</label>
-                          <input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
-                      </div>
-                      <button  id="login" type="submit" class="btn btn-primary boton">Enviar</button>
-                  </form>
-                  
-	      </div>
-	    </div>
-	  </div>
-	</div>
+</div>
+<!--
+<div id="popup-login" class="modal fade" role="dialog">
+<div class="modal-dialog">
 
-		<!-- Modal Registrate -->
-	<div id="popup-registrar" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h1 style="color:black" class="modal-title">REGISTRARSE</h1>
-	      </div>
-	      <div class="modal-body">
-	        <form id="form-registrate"> 
-			  <div class="form-group">
-			    <!--<label style="color:black" for="inputNombre">Nombre</label>-->
-                            <input required="" type="text" class="form-control" name="nombre" id="inputNombre" placeholder="Nombre">
-			  </div>
-			  <div class="form-group">
-			    <!--<label style="color:black" for="inputApellido">Apellido</label>-->
-                            <input required="" type="text" class="form-control" name="apellido" id="inputApellido" placeholder="Apellido">
-			  </div>
-			  <div class="form-group">
-			    <!--<label style="color:black" for="inputEmail">Correo Electronico</label>-->
-                            <input required="" type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
-			  </div>
-			  <div class="form-group">
-			    <!--<label style="color:black" for="inputPassword">Contraseña</label>-->
-			    <input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
-			  </div>
-			  <div class="form-group">
-			    <!--<label style="color:black" for="inputConfPassword">Confirmar Contraseña</label>-->
-                            <input required="" type="password" class="form-control" name="pass" id="inputConfPassword" placeholder="Comfirma Contraseña">
-			  </div>
-                        <button id="registrar" type="submit" class="btn btn-primary boton">Enviar</button>
-			</form>
-			
-	      </div>
-	    </div>
-	  </div>
-	</div>
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h1 style="color:black" class="modal-title">INICIAR SESION</h1>
+</div>
+<div class="modal-body">
+<form id="form-login" action="login.php" method="POST">
+<div class="form-group">
+<label style="color:black" for="inputEmail">Correo electronico</label>
+<input required="" type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+</div>
+<div class="form-group">
+<label style="color:black" for="inputPassword">Contraseña</label>
+<input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+</div>
+<button  id="login" type="submit" class="btn btn-primary boton">Enviar</button>
+</form>
 
 </div>
+</div>
+</div>
+</div>
+
+<div id="popup-registrar" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h1 style="color:black" class="modal-title">REGISTRARSE</h1>
+</div>
+<div class="modal-body">
+<form id="form-registrate">
+<div class="form-group">
+<input required="" type="text" class="form-control" name="nombre" id="inputNombre" placeholder="Nombre">
+</div>
+<div class="form-group">
+<input required="" type="text" class="form-control" name="apellido" id="inputApellido" placeholder="Apellido">
+</div>
+<div class="form-group">
+<input required="" type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+</div>
+<div class="form-group">
+<input required="" type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+</div>
+<div class="form-group">
+<input required="" type="password" class="form-control" name="pass" id="inputConfPassword" placeholder="Comfirma Contraseña">
+</div>
+<button id="registrar" type="submit" class="btn btn-primary boton">Enviar</button>
+</form>
+
+</div>
+</div>
+</div>
+</div> -->

@@ -8,10 +8,26 @@
   	]);
 
 	app.config(['$routeProvider', function ($routeProvider) {
-		
-		$routeProvider 
+
+		$routeProvider
 			.when('/', {
 				templateUrl: 'views/home.html',
+				controller: 'homeSliderController'
+			})
+			.when('/productos/', {
+				templateUrl: 'views/productos.html',
+				controller: 'homeSliderController'
+			})
+			.when('/productos/:category/:subcategory/:brand', {
+				templateUrl: 'views/productos.html',
+				controller: 'homeSliderController'
+			})
+			.when('/productos/:category/:subcategory', {
+				templateUrl: 'views/productos.html',
+				controller: 'homeSliderController'
+			})
+			.when('/productos/:category', {
+				templateUrl: 'views/productos.html',
 				controller: 'homeSliderController'
 			})
 			.when('/articulo/:id', {
@@ -20,8 +36,8 @@
 			})
 			.otherwise({
 				redirectTo: '/'
-			});	
-		
+			});
+
 	}]);
 
 })();

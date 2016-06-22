@@ -1,18 +1,18 @@
 <div class="contInformation">
-	
+
 	<div class="infoArticulo">
-		
+
 		<div class="sliderStore">
 
 			<ul class="sliderContenido">
-			
+
 				<li class="imageInfo" ng-repeat="image in item.images_slider" load-desc-gen-item>
 					<img src="./src/images/articulos/{{image}}">
 				</li>
 
 			</ul>
 
-			<div class="itemSliderConten">
+			<div class="itemSliderConten" style="margin-bottom: 2vw;">
 				<ul>
 					<li ng-repeat="image in item.images_slider" load-desc-gen-item>
 						<img ng-if="$index==0"  src="./src/images/seitem.png">
@@ -20,7 +20,7 @@
 					</li>
 				</ul>
 			</div>
-			
+
 		</div>
 		<!--Detalle del Producto-->
 		<div class="descInfo">
@@ -33,10 +33,10 @@
 
 	</div>
 
-	
+
 	<div class="paypal">
 		<a href="{{item.paypal}}" target="_blank"><img src="./src/images/buynow.es.png" style="width: 80%; height: auto; margin: 0 auto;"></a>
 	</div>
-	
+
 
 </div>
