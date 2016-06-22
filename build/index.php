@@ -26,7 +26,7 @@
 		<?php //include 'php/new_products.php';?>
 		<?php //include 'php/new_products_featured.php';?>
 		<?php //include 'php/items.php';?>
-		<?php //include 'php/menu.php';?>
+		<?php include 'php/menu.php';?>
 		<?php //include 'php/bannersHome.php';?>
 		<?php //include 'php/products_filters.php';?>
 		<?php //include 'php/additional_information.php';?>
