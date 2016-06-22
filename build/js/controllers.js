@@ -119,11 +119,39 @@
 		}])
 
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
-			$scope.loadingData = false;
-			failboxService.productFiltered().then(function(data){
-				$scope.itemsCart = data;
-				$scope.loadingData = true;
-			});
+			var category = $routeParams.category;
+			var subcategory = $routeParams.subcategory;
+			var brand = $routeParams.brand;
+
+			if(category != null && subcategory != null && brand != null){
+				$scope.loadingData = false;
+				failboxService.productFilteredThree(category, subcategory, brand).then(function(data){
+					$scope.itemsCart = data;
+					$scope.loadingData = true;
+				});
+			}else{
+				if(category != null && subcategory != null){
+					$scope.loadingData = false;
+					failboxService.productFilteredTwo(category, subcategory).then(function(data){
+						$scope.itemsCart = data;
+						$scope.loadingData = true;
+					});
+				}else{
+					if(category != null){
+						$scope.loadingData = false;
+						failboxService.productFilteredOne(category).then(function(data){
+							$scope.itemsCart = data;
+							$scope.loadingData = true;
+						});
+					}else{
+						$scope.loadingData = false;
+						failboxService.productFiltered().then(function(data){
+							$scope.itemsCart = data;
+							$scope.loadingData = true;
+						});
+					}
+				}
+			}
 		}])
 
 		.controller('itemController', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){

@@ -1144,10 +1144,11 @@ ul.groupAllItems span{
 	width: 40%;
 	height: 20vw;
 	overflow: auto;
-	z-index: 10;
+	z-index: -10;
 	position: absolute;
 	top: 105%;
 	left: 18.5%;
+	opacity: 0;
 }
 
 .itemSearched{
