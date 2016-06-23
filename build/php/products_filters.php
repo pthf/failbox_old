@@ -1,6 +1,6 @@
 <?php
 
-require_once("../admin/db/conexion.php");
+require_once("admin/db/conexion.php");
 
 if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_GET['nameBrand'])) {
 
@@ -8,7 +8,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
-                WHERE c.Categoria = '" . $_GET['nameCategory'] . "' AND s.Subcategoria = '" . $_GET['nameSubcategory'] . "' AND m.Marca = '" . $_GET['nameBrand'] . "'";
+                WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "' AND s.RouteSubcategoria = '" . $_GET['nameSubcategory'] . "' AND m.RouteMarca = '" . $_GET['nameBrand'] . "'";
     $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
     $productos = array();
@@ -18,7 +18,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
 
         $producto = array(
             "id" => $row['IdProducto'],
-            "name" => $row['NombreProd'],
+            "name" => $row['RouteProd'],
             "descripcion" => $row['Descripcion'],
             "marca" => $row['Marca'],
             "price" => $row['PrecioLista'],
@@ -67,7 +67,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
-                WHERE c.Categoria = '" . $_GET['nameCategory'] . "' AND s.Subcategoria = '" . $_GET['nameSubcategory'] . "'";
+                WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "' AND s.RouteSubcategoria = '" . $_GET['nameSubcategory'] . "'";
     $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
     $productos = array();
@@ -77,7 +77,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
 
         $producto = array(
             "id" => $row['IdProducto'],
-            "name" => $row['NombreProd'],
+            "name" => $row['RouteProd'],
             "descripcion" => $row['Descripcion'],
             "marca" => $row['Marca'],
             "price" => $row['PrecioLista'],
@@ -125,7 +125,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
-                WHERE c.Categoria = '" . $_GET['nameCategory'] . "'";
+                WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "'";
     $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
     $productos = array();
@@ -135,7 +135,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
 
         $producto = array(
             "id" => $row['IdProducto'],
-            "name" => $row['NombreProd'],
+            "name" => $row['RouteProd'],
             "descripcion" => $row['Descripcion'],
             "marca" => $row['Marca'],
             "price" => $row['PrecioLista'],
@@ -192,7 +192,7 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
 
         $producto = array(
             "id" => $row['IdProducto'],
-            "name" => $row['NombreProd'],
+            "name" => $row['RouteProd'],
             "descripcion" => $row['Descripcion'],
             "marca" => $row['Marca'],
             "price" => $row['PrecioLista'],

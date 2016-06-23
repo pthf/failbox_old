@@ -11,7 +11,7 @@ while ($row = mysql_fetch_array($resultado)) {
 
     $producto = array(
                 "id" => $row['IdProducto'],
-                "name" => $row['NombreProd'],
+                "name" => $row['RouteProd'],
                 "descripcion" => $row['Descripcion'],
                 "marca" => $row['Marca'],
                 "price" => $row['PrecioLista'],
@@ -46,16 +46,15 @@ if(count($arrayGroup)>0){
     $arrayGroup = array();
 }
 
+$items = array();
 for ($i=0; $i < count($arrayList); $i++) {
-    $item[] =
-    array(
-        array(
-            "group" => $i,
-            "data" => $arrayList[$i],
-        ),
+    $item = array(
+        "group" => $i,
+        "data" => $arrayList[$i],
     );
-
+    array_push($items, $item);
 }
-print_r(json_encode($item));
+print_r(json_encode($items));
+
 
 ?>

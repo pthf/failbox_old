@@ -128,9 +128,15 @@ require_once("../db/conexion.php");
 
 		$image = "null";
 
+		$convert_name = explode(' ', $formData['name_product']);
+		$convert_name = strtolower(implode('-', $convert_name));
+		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+		$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+		
 		$sql_products = "INSERT INTO Productos 
 							VALUES (null,'".$formData['name_product']."',
-								'".$formData['description']."','".$formData['stocks']."',
+								'".$formData['description']."','".$route_name."','".$formData['stocks']."',
 								'".$formData['pricelist']."','".$formData['pricefailbox']."',
 								'".$formData['model']."','".$formData['sku']."',
 								'".$formData['status']."','".$image."',
@@ -156,7 +162,13 @@ require_once("../db/conexion.php");
 
 		if ($row == 0) {
 
-			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$formData['category']."')";
+			$convert_name = explode(' ', $formData['other_subcategory']);
+			$convert_name = strtolower(implode('-', $convert_name));
+			$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+			$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+			$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, RouteSubcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$route_name."','".$formData['category']."')";
 			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 			$id = mysql_insert_id();
@@ -178,9 +190,15 @@ require_once("../db/conexion.php");
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
 
+	    $convert_name = explode(' ', $formData['name_product']);
+		$convert_name = strtolower(implode('-', $convert_name));
+		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+		$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
 	    //Realizamos los cambios de los datos a la tabla Productos
 	    $sql_changes_prod = "UPDATE Productos 
-	                            SET NombreProd='" . $formData['name_product'] . "', Descripcion='" . $formData['description'] . "', 
+	                            SET NombreProd='" . $formData['name_product'] . "', RouteProd='" .$route_name. "', Descripcion='" . $formData['description'] . "', 
 	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
 	                                PrecioFailbox='" . $formData['pricefailbox'] . "', Modelo='" . $formData['model'] . "',
 	                                SKU='" . $formData['sku'] . "', Estatus='" . $formData['estatus'] . "',
