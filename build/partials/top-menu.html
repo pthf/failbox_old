@@ -17,21 +17,39 @@
 			<div class="nav">
 				<a href="#/productos"><span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)">Productos <img class="selectIndicator" src="src/images/indMostLess-02.png"></span></a>
 				<ul class="listNav" ng-show="tabs.menuProductos">
-					<li class="itemGroup" ng-repeat="(key, data) in menuProductos.cat"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
-						<a href="#/productos/{{key | lowercase }}"><span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
-							{{key}}
-							<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
-						</span></a>
-						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}">
-							<li class="" ng-repeat="(subkey, subdata) in data">
-								<a href="#/productos/{{key | lowercase }}/{{subkey | lowercase }}"><span ng-mouseover="tabs.selectBrand($index+1)"  >
+					<li class="itemGroup" ng-repeat="(key, data) in menuProductos"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
+						<span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
+							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
+								<a href="#/productos/{{subkey | urlName }}" style="width: 100%; display: inline-block;">
 									{{subkey}}
 									<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
-								</span></a>
-								<ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
-									<li class="" ng-repeat="(brandkey, brand) in subdata"><a href="#/productos/{{key | lowercase }}/{{subkey | lowercase }}/{{brandkey | lowercase }}"><span>{{brandkey}}</span></a></li>
-								</ul>
-							</li>
+								</a>
+							</span>
+						</span>
+						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}">
+							<span ng-repeat="(subkey, subdata) in data">
+								<li class="" ng-repeat="(key, subDataKey) in subdata" ng-mouseover="tabs.selectBrand($index+1)">
+									<span ng-repeat="(keysubDataKey, datasubDataKey) in subDataKey" style="width: 100%; display: inline-block;">
+										<a href="#/productos/{{subkey | urlName }}/{{keysubDataKey | urlName }}" style="width: 100%; display: inline-block;">
+											{{keysubDataKey}}
+											<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
+										</a>
+									</span>
+									<ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
+										<span ng-repeat="(subkeysubDataKey, subdatasubDataKey) in subDataKey">
+											<li class="">
+												<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey2, datasubDataKey2) in subdatasubDataKey">
+													<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey3, datasubDataKey3) in datasubDataKey2">
+														<a href="#/productos/{{subkey | urlName }}/{{keysubDataKey | urlName }}{{keysubDataKey3 | urlName }}">
+															{{keysubDataKey3}}
+														</a>
+													</span>
+												</span>
+											</li>
+										</span>
+									</ul>
+								</li>
+							</span>
 						</ul>
 					</li>
 				</ul>

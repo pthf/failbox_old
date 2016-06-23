@@ -105,6 +105,15 @@
 				return deferred.promise;
 			}
 
+			function showMenuCategories(){
+				var deferred = $q.defer();
+				$http.get('./php/menu.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
@@ -113,7 +122,8 @@
 				productFilteredThree: productFilteredThree,
 				productFilteredTwo: productFilteredTwo,
 				productFilteredOne: productFilteredOne,
-				productFiltered: productFiltered
+				productFiltered: productFiltered,
+				showMenuCategories: showMenuCategories
 			}
 
 		}]);
