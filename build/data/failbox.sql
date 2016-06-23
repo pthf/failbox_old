@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-06-2016 a las 00:30:05
+-- Tiempo de generación: 23-06-2016 a las 18:10:22
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -70,20 +70,21 @@ INSERT INTO `Caracteristicas` (`IdCaracteristica`, `NombreCaracteristica`) VALUE
 
 CREATE TABLE `Categorias` (
   `IdCategoria` int(11) NOT NULL,
-  `Categoria` varchar(45) NOT NULL
+  `Categoria` varchar(45) NOT NULL,
+  `RouteCategoria` varchar(450) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Categorias`
 --
 
-INSERT INTO `Categorias` (`IdCategoria`, `Categoria`) VALUES
-(31, 'Electrónica'),
-(32, 'Línea Blanca'),
-(33, 'Electrodomésticos'),
-(34, 'Hola'),
-(35, 'Bebe'),
-(36, 'Video Juegos ');
+INSERT INTO `Categorias` (`IdCategoria`, `Categoria`, `RouteCategoria`) VALUES
+(31, 'Electrónica', 'electronica'),
+(32, 'Línea Blanca', 'linea-blanca'),
+(33, 'Electrodomésticos', 'electrodomesticos'),
+(34, 'Hola', 'hola'),
+(35, 'Bebe', 'bebe'),
+(36, 'Video Juegos', 'video-juegos');
 
 -- --------------------------------------------------------
 
@@ -150,19 +151,20 @@ CREATE TABLE `Estados` (
 
 CREATE TABLE `Marcas` (
   `IdMarca` int(11) NOT NULL,
-  `Marca` varchar(45) NOT NULL
+  `Marca` varchar(45) NOT NULL,
+  `RouteMarca` varchar(450) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Marcas`
 --
 
-INSERT INTO `Marcas` (`IdMarca`, `Marca`) VALUES
-(1, 'Sony'),
-(2, 'Panasonic'),
-(3, 'Pioneer'),
-(4, 'Samsung'),
-(5, 'Xbox');
+INSERT INTO `Marcas` (`IdMarca`, `Marca`, `RouteMarca`) VALUES
+(1, 'Sony', 'sony'),
+(2, 'Panasonic', 'panasonic'),
+(3, 'Pioneer', 'pioneer'),
+(4, 'Samsung', 'samsung'),
+(5, 'Xbox', 'xbox');
 
 -- --------------------------------------------------------
 
@@ -187,6 +189,7 @@ CREATE TABLE `Productos` (
   `IdProducto` int(11) NOT NULL,
   `NombreProd` varchar(45) NOT NULL,
   `Descripcion` varchar(300) NOT NULL,
+  `RouteProd` varchar(450) NOT NULL,
   `Stock` int(11) NOT NULL,
   `PrecioLista` float NOT NULL,
   `PrecioFailbox` float NOT NULL,
@@ -206,11 +209,12 @@ CREATE TABLE `Productos` (
 -- Volcado de datos para la tabla `Productos`
 --
 
-INSERT INTO `Productos` (`IdProducto`, `NombreProd`, `Descripcion`, `Stock`, `PrecioLista`, `PrecioFailbox`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`) VALUES
-(2, 'INSIGNIA PANTALLA DE 40', 'test', 21, 21321, 20000, 'SDFASDF-DASF', '1000188883213', 'Inactivo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-16 17:48:32', 1, 33, 5),
-(3, 'Lavadora Prueba', 'Prueba de desc.', 6, 7800, 7500, 'LAV3424A', '1000188883', 'Activo', 'imagen4.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-17 17:19:54', 4, 32, 2),
-(4, 'Microondas Samsung', 'Prueba de Descripcion', 3, 4600, 4300, 'MICRO-SDSDF', '2342434234', 'Activo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'NO', '2016-06-20 12:22:00', 4, 33, 4),
-(5, 'Xbox 360 Slim', 'Prueba', 2, 8000, 7600, 'XBOX-DSF', '324234234234', 'Activo', 'imagen2.jpg,imagen1.png,xbox.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-21 10:49:27', 5, 36, 9);
+INSERT INTO `Productos` (`IdProducto`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`) VALUES
+(2, 'INSIGNIA PANTALLA DE 40', 'test', 'insignia-pantalla-de-40', 21, 21321, 20000, 'SDFASDF-DASF', '1000188883213', 'Inactivo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-16 17:48:32', 1, 33, 5),
+(3, 'Lavadora Prueba', 'Prueba de desc.', 'lavadora-prueba', 6, 7800, 7500, 'LAV3424A', '1000188883', 'Activo', 'imagen4.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-17 17:19:54', 4, 32, 2),
+(4, 'Microondas Samsung', 'Prueba de Descripcion', 'microondas-samsung', 3, 4600, 4300, 'MICRO-SDSDF', '2342434234', 'Activo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'NO', '2016-06-20 12:22:00', 4, 33, 4),
+(5, 'Xbox 360 Slim', 'Prueba', 'xbox-360-slim', 2, 8000, 7600, 'XBOX-DSF', '324234234234', 'Activo', 'imagen2.jpg,imagen1.png,xbox.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-21 10:49:27', 5, 36, 9),
+(7, 'BÓCINAS BS', 'Descripcion de prueba de bocinas Pioneer', 'bocinas-bs', 3, 2700, 2100, 'BOCSDAS-3242', '112121212121', 'Activo', 'imagen2.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'NO', '2016-06-22 14:14:02', 3, 31, 6);
 
 -- --------------------------------------------------------
 
@@ -234,7 +238,8 @@ INSERT INTO `Productos_has_Caracteristicas` (`Productos_IdProducto`, `Caracteris
 (3, 1, 'Blanca'),
 (3, 3, '16 Kg'),
 (4, 1, 'Negro'),
-(5, 1, 'Blanco');
+(5, 1, 'Blanco'),
+(7, 1, 'Negro');
 
 -- --------------------------------------------------------
 
@@ -260,7 +265,8 @@ INSERT INTO `Productos_has_Imagenes` (`Productos_IdProducto`, `IdImagen`, `Nombr
 (3, 5, 'imagen4.png'),
 (4, 6, 'imagen1.png'),
 (5, 7, 'imagen2.jpg'),
-(5, 8, 'imagen1.png');
+(5, 8, 'imagen1.png'),
+(7, 11, 'imagen2.jpg');
 
 -- --------------------------------------------------------
 
@@ -286,6 +292,7 @@ CREATE TABLE `Productos_has_Pedidos` (
 CREATE TABLE `Subcategoria` (
   `IdSubcategoria` int(11) NOT NULL,
   `Subcategoria` varchar(45) NOT NULL,
+  `RouteSubcategoria` varchar(450) NOT NULL,
   `Categorias_IdCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -293,15 +300,16 @@ CREATE TABLE `Subcategoria` (
 -- Volcado de datos para la tabla `Subcategoria`
 --
 
-INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `Categorias_IdCategoria`) VALUES
-(1, 'Televisores', 31),
-(2, 'Lavadoras', 32),
-(4, 'Microondas', 33),
-(5, 'Licuadora', 33),
-(6, 'Bocinas', 31),
-(7, 'Cables', 31),
-(8, 'Smartphone ', 31),
-(9, 'Xbox', 36);
+INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `RouteSubcategoria`, `Categorias_IdCategoria`) VALUES
+(1, 'Televisores', 'televisores', 31),
+(2, 'Lavadoras', 'lavadoras', 32),
+(4, 'Microondas', 'microondas', 33),
+(5, 'Licuadora', 'licuadora', 33),
+(6, 'Bocinas', 'bocinas', 31),
+(7, 'Cables', 'cables', 31),
+(8, 'Smartphone ', 'smartphone', 31),
+(9, 'Xbox', 'xbox', 36),
+(10, 'Mouse Inalámbrico', 'mouse-inalambrico', 31);
 
 -- --------------------------------------------------------
 
@@ -326,7 +334,7 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `NombreUser`, `Nombre`, `Apellido`, `Email`, `Password`, `TipoPerfil`, `Privilegios`, `UltimaConexion`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-06-21 10:48:31'),
+(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-06-22 13:35:50'),
 (2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-17 10:54:41'),
 (3, 'Proveedor2', 'Proveedor_Dos', 'Proveedor2', 'prov2@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 3, '2016-06-16 16:53:26'),
 (4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00');
@@ -491,17 +499,17 @@ ALTER TABLE `Pedidos`
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Productos_has_Imagenes`
 --
 ALTER TABLE `Productos_has_Imagenes`
-  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `Subcategoria`
 --
 ALTER TABLE `Subcategoria`
-  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
