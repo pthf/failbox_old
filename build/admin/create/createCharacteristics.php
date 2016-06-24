@@ -3,7 +3,15 @@ session_start();
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("../db/conexion.php");
+  if (isset($_GET['id'])) {
+    $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
+    $result = mysql_query($sql, Conectar::con()) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
+      header("Location: ../listProducts .php");
+    }
+  }
     $id_producto = $_GET['id'];
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +134,7 @@ session_start();
                                   <ul class="nav child_menu" style="display: none">
                                     <li><a href="../listProducts.php">Productos</a>
                                     </li>
-                                    <li><a href="..create/createProducts.php">Crear</a>
+                                    <li><a href="createProducts.php">Crear</a>
                                     </li>
                                     <li><a href="../edit/editProducts.php">Editar</a>
                                     </li>
@@ -139,9 +147,17 @@ session_start();
                                   <ul class="nav child_menu" style="display: none">
                                     <li><a href="../proveedores/listProveedores.php">Proveedores</a>
                                     </li>
-                                    <li><a href="#">Crear</a>
+                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
                                     </li>
                                     <li><a href="#">Editar</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu" style="display: none">
+                                    <li><a href="#">Banners Principal</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -212,7 +228,7 @@ session_start();
                                                         <p class="help-block"> Subir imagenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <button class="btn btn-info" type="button" id="btn">Subir imágenes</button>
+                                                        <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
                                                     </div> 
                                                 </form>
                                                 <div id="vista-previa"></div>
@@ -277,7 +293,7 @@ session_start();
                                                                 <p class="help-block"> Ejemplo: color, tamaño, peso, etc.</p>
                                                             </div>
                                                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                                                <button type="submit" value"Grabar" class="btn btn-info">Añadir Caracteristica</button>
+                                                                <button type="submit" value"Grabar" class="btn btn-primary">Añadir Caracteristica</button>
                                                             </div>
                                                         </form>
                                                     </div>

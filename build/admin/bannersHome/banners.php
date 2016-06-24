@@ -3,13 +3,6 @@
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("../db/conexion.php");
-  if (isset($_GET['id'])) {
-    $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
-    $result = mysql_query($sql, Conectar::con()) or die(mysql_error());
-    if (mysql_num_rows($result) == 0) {
-      header("Location: createProducts.php");
-    }
-  }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,60 +30,6 @@
         <script src="../js/jquery.min.js"></script>
         <script src="../js/fileinput.js"></script>
         <script src="../js/ajax.js"></script>
-        <script>
-         $(function(){   
-           $("#image").on("change", function(){
-               /* Limpiar vista previa */
-               $("#vista-previa").html('');
-               var archivos = document.getElementById('image').files;
-               var navegador = window.URL || window.webkitURL;
-               /* Recorrer los archivos */
-               for(x=0; x<archivos.length; x++)
-               {
-                   /* Validar tamaño y tipo de archivo */
-                   var size = archivos[x].size;
-                   var type = archivos[x].type;
-                   var name = archivos[x].name;
-                   if (size > 1024*1024)
-                   {
-                       $("#vista-previa").append("<p style='color: red'>El archivo "+name+" supera el máximo permitido 1MB</p>");
-                       $('#vista-previa').hide(8000);
-                   }
-                   else if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png' && type != 'image/gif')
-                   {
-                       $("#vista-previa").append("<p style='color: red'>El archivo "+name+" no es del tipo de imagen permitida.</p>");
-                       $('#vista-previa').hide(8000);
-                   }
-                   else
-                   {
-                     var objeto_url = navegador.createObjectURL(archivos[x])
-                     $("#vista-previa").append("<img src="+objeto_url+" width='250px' height='250px'>");
-                   }
-               }
-           });
-           
-           $("#btn").on("click", function(){
-                var formData = new FormData($("#formulario")[0]);
-                var ruta = "../class/functionImage.php";
-                var id = "<?php echo (isset($_GET['id'])) ?  $_GET['id'] : ''; ?>";
-                $.ajax({
-                    url: ruta+"?id="+id,
-                    type: "POST",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(datos)
-                    {
-                        $("#respuesta").html(datos);
-                        $('#respuesta').show();
-                        $('#respuesta').hide(8000);
-                        //location.reload();
-                    }
-                });
-               });
-           
-         });
-        </script>
     </head>
 
 
@@ -146,7 +85,7 @@
                                   <ul class="nav child_menu" style="display: none">
                                     <li><a href="../proveedores/listProveedores.php">Proveedores</a>
                                     </li>
-                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                                    <li><a href="#">Crear</a>
                                     </li>
                                     <li><a href="#">Editar</a>
                                     </li>
@@ -204,9 +143,9 @@
                         <div class="page-title">
                             <div class="title_left">
                                 <h3>
-                                    Crear Producto
+                                    Crear Proveedor
                                     <small>
-                                        Crea un nuevo producto con sus caracteristicas.
+                                        Crea un nuevo proveedor.
                                     </small>
                                 </h3>
                             </div>
