@@ -20,6 +20,7 @@
 			return function(){
 
 				var tam_items = $('.slider .contenedor li').length-1;
+
         if(tam_items==0){
         	$('.itemsSelecteds').css({
         		'display' : 'none'

@@ -7,7 +7,6 @@
 				$scope.menuProductos = data;
 			});
 
-
 			var activeCategory = false;
 			$scope.openCategory = function(categoryName){
 				if(!activeCategory){

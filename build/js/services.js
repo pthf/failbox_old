@@ -7,7 +7,7 @@
 			function sliderHome(){
 				var deferred = $q.defer();
 
-				$http.get('./data/bannersHome.json')
+				$http.get('./php/bannersHome.php')
 					.success(function (data) {
 						deferred.resolve(data);
 					});
@@ -18,7 +18,7 @@
 			function new_products(){
 				var deferred = $q.defer();
 
-				$http.get('./data/new_products.json')
+				$http.get('./php/new_products.php')
 					.success(function (data) {
 						deferred.resolve(data);
 					});
@@ -29,7 +29,7 @@
 			function feactured_products(){
 				var deferred = $q.defer();
 
-				$http.get('./data/feactured_products.json')
+				$http.get('./php/new_products_featured.php')
 					.success(function (data) {
 						deferred.resolve(data);
 					});
@@ -40,10 +40,10 @@
 			function all(){
 				var deferred = $q.defer();
 
-				$http.get('./data/items.json')
+				$http.get('./php/items.php')
 					.success(function (data) {
-			        	deferred.resolve(data);
-			        });
+			      deferred.resolve(data);
+			    });
 
 			    return deferred.promise;
 			}

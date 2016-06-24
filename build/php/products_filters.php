@@ -1,6 +1,6 @@
 <?php
 
-require_once("admin/db/conexion.php");
+require_once("../admin/db/conexion.php");
 
 if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_GET['nameBrand'])) {
 

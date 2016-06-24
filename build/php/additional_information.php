@@ -1,5 +1,5 @@
 <?php
-require_once("admin/db/conexion.php");
+require_once("../admin/db/conexion.php");
 
 if (isset($_POST['id'])) {
 
@@ -8,7 +8,7 @@ if (isset($_POST['id'])) {
 
 	$productos = array();
 	while ($row = mysql_fetch_array($resultado)) {
-	    $producto = 
+	    $producto =
 	        array(
 	            "sku" => $row['SKU'],
 	            "marca" => $row['Marca'],

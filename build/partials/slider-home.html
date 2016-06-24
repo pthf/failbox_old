@@ -1,9 +1,11 @@
 <div class="slider">
 
 	<ul class="contenedor">
+
 		<li class="itemBanner" ng-repeat="(key, data) in bannerMenu"  load-home-slider>
-			<img src="./src/images/{{data.image}}">
+			<a href="{{data.link}}" target="_blank"><img src="./src/images/{{data.image}}"></a>
 		</li>
+
 	</ul>
 
 	<ul class="itemsSelecteds">

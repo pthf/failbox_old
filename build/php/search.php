@@ -1,5 +1,5 @@
-<?php 
-require_once("admin/db/conexion.php");
+<?php
+require_once("../admin/db/conexion.php");
 
 
 if (isset($_GET['search'])) {
@@ -7,7 +7,7 @@ if (isset($_GET['search'])) {
 	$texto = explode(' ', $_GET['search']);
 
 	$productos = array();
-	for ($i=0; $i < count($texto); $i++) { 
+	for ($i=0; $i < count($texto); $i++) {
 
 		$query = "SELECT * FROM Productos p
 					INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
@@ -26,19 +26,19 @@ if (isset($_GET['search'])) {
 			array_push($productos, $row['IdProducto']);
 
 		}
-			
+
 	}
 
 }
 if (isset($productos)) {
 	$items = array();
-	for ($i=0; $i < count($productos); $i++) { 
+	for ($i=0; $i < count($productos); $i++) {
 		$item = array(
 			"id" => $productos[$i],
 		);
 		array_push($items, $item);
 	}
 	print_r(json_encode($items));
-} 
+}
 
 ?>
