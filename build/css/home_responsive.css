@@ -326,6 +326,11 @@
 		font-size: 1.2em;
 	}
 
+	.sliderStore .sliderContenido .imageInfo img{
+		width: 18vw;
+		height: 18vw;
+	}
+
 }
 
 @media (max-width: 768px){
@@ -468,6 +473,16 @@
 
 	.contItemsPosition .groupItemsFilters{
 		font-size: 1.2em;
+	}
+
+	div.item .imgBox img{
+		width: 15vw;
+		height: 15vw;
+	}
+
+	.sliderStore .sliderContenido .imageInfo img{
+		width: 20vw;
+		height: 20vw;
 	}
 
 }

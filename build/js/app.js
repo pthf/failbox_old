@@ -31,7 +31,7 @@
 				templateUrl: 'views/productos.html',
 				controller: 'homeSliderController'
 			})
-			.when('/articulo/:id', {
+			.when('/articulo/:url', {
 				templateUrl: 'views/articulo.html',
 				controller: 'itemController'
 			})

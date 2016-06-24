@@ -166,17 +166,17 @@ div.item .imgBox{
 }
 
 div.item .imgBox img{
-	width: 90%;
-	height: auto;
+	width: 10vw;
+	height: 10vw;
 	margin-top: 1vw;
 	margin-bottom: .5vw;
 }
 
 div.item .imgBox img.imgInfo{
 	position: absolute;
-	top: 25%;
-	left: 40%;
-	width: 20% !important;
+	top: 27%;
+	left: 35%;
+	width: 30% !important;
 	height: auto;
 	opacity: 0;
 	transition: 1s;
@@ -953,11 +953,13 @@ ul.listNav li.itemGroup ul.subItems li{
 .sliderStore .sliderContenido .imageInfo{
 	width: 25%;
 	height: auto;
+	text-align: center;
 }
 
 .sliderStore .sliderContenido .imageInfo img{
-	width: 100%;
-	height: auto;
+	width: 15vw;
+	height: 15vw;
+	margin: 0 auto;
 }
 
 .sliderStore .contenedor li{

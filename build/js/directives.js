@@ -65,14 +65,14 @@
 
           $(document).on('mouseover', '.contItemsPosition .item .imgBox', function(){
             $(this).css({ 'cursor' : 'pointer' });
-            $(this).css({ 'background' : 'rgba(88,89,91,.2)' });
             $('.imgInfo', this).css({ 'opacity' : '1' });
+						$('.divCapa', this).css({ 'opacity' : '1' });
           });
 
           $(document).on('mouseout', '.contItemsPosition .item .imgBox', function(){
             $(this).css({ 'cursor' : 'normal' });
-            $(this).css({ 'background' : '#FFF' });
             $('.imgInfo', this).css({ 'opacity' : '0' });
+						$('.divCapa', this).css({ 'opacity' : '0' });
           });
 
           $(document).on('mouseover', '.buttonAddCart', function(){
@@ -142,14 +142,14 @@
 
           $(document).on('mouseover', '.contItemsPosition .item .imgBox', function(){
             $(this).css({ 'cursor' : 'pointer' });
-            $(this).css({ 'background' : 'rgba(88,89,91,.2)' });
             $('.imgInfo', this).css({ 'opacity' : '1' });
+						$('.divCapa', this).css({ 'opacity' : '1' });
           });
 
           $(document).on('mouseout', '.contItemsPosition .item .imgBox', function(){
             $(this).css({ 'cursor' : 'normal' });
-            $(this).css({ 'background' : '#FFF' });
             $('.imgInfo', this).css({ 'opacity' : '0' });
+						$('.divCapa', this).css({ 'opacity' : '0' });
           });
 
           $(document).on('mouseover', '.buttonAddCart', function(){
@@ -220,14 +220,14 @@
 					//Funcionalidad hover y unhover.
 					$(document).on('mouseover', '.contItemsPosition .item .imgBox', function(){
 						$(this).css({ 'cursor' : 'pointer' });
-						$(this).css({ 'background' : 'rgba(88,89,91,.2)' });
 						$('.imgInfo', this).css({ 'opacity' : '1' });
+						$('.divCapa', this).css({ 'opacity' : '1' });
 					});
 
 					$(document).on('mouseout', '.contItemsPosition .item .imgBox', function(){
 						$(this).css({ 'cursor' : 'normal' });
-						$(this).css({ 'background' : '#FFF' });
 						$('.imgInfo', this).css({ 'opacity' : '0' });
+						$('.divCapa', this).css({ 'opacity' : '0' });
 					});
 
 					$(document).on('mouseover', '.buttonAddCart', function(){
@@ -420,7 +420,7 @@
 				templateUrl: './partials/form-contacto-failbox.html',
 				controller: function($document){
 
-					
+
 
 
 
