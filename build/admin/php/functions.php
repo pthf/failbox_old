@@ -11,6 +11,9 @@ require_once("../db/conexion.php");
 			case 'addNewAdminUser':
 				addNewAdminUser();
 				break;
+			case 'addNewCharacteristics':
+				addNewCharacteristics();
+				break;
 			case 'changePassword':
 				changePassword();
 				break;
@@ -149,6 +152,35 @@ require_once("../db/conexion.php");
 		$id_producto = mysql_insert_id();
 
 		echo $id_producto;
+		
+	}
+
+	function addNewCharacteristics() {
+
+		parse_str($_POST['action'],$formData);
+		
+	    date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+
+	    $query = "SELECT * FROM Productos_has_Caracteristicas WHERE Productos_IdProducto = '".$formData['idProducto']."' AND Caracteristicas_IdCaracteristica = '".$formData['type_characteristic']."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row_type = mysql_num_rows($result);
+
+		//Si el resultado de $row_type es igual a "0" es porque no existe en la tabla, pero si es "1", ya se tiene ese tipo de caracteristica registrada
+		//Entonces continuamos con la validacion
+		if ($row_type == 0) {
+
+			$sql = "INSERT INTO Productos_has_Caracteristicas VALUES ('".$formData['idProducto']."','".$formData['type_characteristic']."','".$formData['characteristic']."')";
+			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
+
+			echo $formData['idProducto'];
+
+		} else {
+
+			echo $formData['idProducto'];
+
+		}
 		
 	}
 

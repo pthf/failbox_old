@@ -11,7 +11,8 @@ while ($row = mysql_fetch_array($resultado)) {
 
     $producto = array(
                 "id" => $row['IdProducto'],
-                "name" => $row['RouteProd'],
+                "name" => $row['NombreProd'],
+                "url" => $row['RouteProd'],
                 "descripcion" => $row['Descripcion'],
                 "marca" => $row['Marca'],
                 "price" => $row['PrecioLista'],

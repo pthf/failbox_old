@@ -18,7 +18,8 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
 
         $producto = array(
             "id" => $row['IdProducto'],
-            "name" => $row['RouteProd'],
+            "name" => $row['NombreProd'],
+            "url" => $row['RouteProd'],
             "descripcion" => $row['Descripcion'],
             "marca" => $row['Marca'],
             "price" => $row['PrecioLista'],

@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  var_dump($_SESSION);
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("db/conexion.php");
@@ -74,7 +75,7 @@
             <div class="menu_section">
               <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="listProducts.php">Productos</a>
                     </li>
@@ -87,13 +88,21 @@
               </ul>
               <?php if($_SESSION['idPrivilegio'] == 1) { ?>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="proveedores/listProveedores.php">Proveedores</a>
                     </li>
-                    <li><a href="#">Crear</a>
+                    <li><a href="proveedores/create_proveedor.php">Crear</a>
                     </li>
                     <li><a href="#">Editar</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="#">Banners Principal</a>
                     </li>
                   </ul>
                 </li>

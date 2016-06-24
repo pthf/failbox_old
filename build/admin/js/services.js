@@ -16,8 +16,33 @@
 			contentType: false,
 			success: function(result){
 				//alert(result);
-				var id = result;
-				window.location.href = "../create/createCharacteristics.php?id="+id;
+				 var id = result;
+				 window.location.href = "../create/createProducts.php?id="+id;
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	})
+
+	$("#formCharacteristics").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "addNewCharacteristics");
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				//alert(result);
+				 var id = result;
+				 window.location.href = "../create/createProducts.php?id="+id;
 			},
 			error: function(error){
 				alert(error);

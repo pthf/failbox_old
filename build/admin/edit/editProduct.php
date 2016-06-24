@@ -3,6 +3,13 @@ session_start();
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("../db/conexion.php");
+    if (isset($_GET['id'])) {
+    $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
+    $result = mysql_query($sql, Conectar::con()) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
+      header("Location: editProducts.php");
+    }
+  }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +74,7 @@ session_start();
             <div class="menu_section">
               <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="../listProducts.php">Productos</a>
                     </li>
@@ -80,13 +87,21 @@ session_start();
               </ul>
               <?php if($_SESSION['idPrivilegio'] == 1) { ?>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="../proveedores/listProveedores.php">Proveedores</a>
                     </li>
-                    <li><a href="#">Crear</a>
+                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
                     </li>
                     <li><a href="#">Editar</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="#">Banners Principal</a>
                     </li>
                   </ul>
                 </li>
@@ -332,8 +347,8 @@ session_start();
                           </div>
                           <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                              <a href="editProducts.php" class="btn btn-primary">Cancelar</a>
-                              <button type="submit" class="btn btn-success">Siguiente</button>
+                              <a href="editProducts.php" class="btn btn-danger">Cancelar</a>
+                              <button type="submit" class="btn btn-primary">Siguiente</button>
                             </div>
                           </div>
                         </div>

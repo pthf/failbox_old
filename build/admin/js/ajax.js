@@ -146,5 +146,5 @@ function cleanBrand(){
   document.new_brand.other_brand.value="";
 }
 function cleanCharacteristic(){
-  document.new_characteristic.characteristic.value="";
+  document.new_characteristic.new_characteristic.value="";
 }
