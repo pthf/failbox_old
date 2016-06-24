@@ -196,7 +196,7 @@ session_start();
                       //Si hay registros
                       if ($num_total_registros > 0) {
                         //Limito la busqueda
-                        $TAMANO_PAGINA = 9;
+                        $TAMANO_PAGINA = 5;
                               $pagina = false;
 
                         //examino la pagina a mostrar y el inicio del registro a mostrar
