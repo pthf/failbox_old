@@ -27,7 +27,13 @@
 		</div>
 
 		<bottom-site></bottom-site>
+
+		<show-modal-video></show-modal-video>
+
 	</div>
+
+
+
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="./js/lib/underscore-min.js"></script>
@@ -38,6 +44,9 @@
   <script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
+
+
+
 
 </body>
 </html>

@@ -9,6 +9,29 @@
 			};
 		})
 
+		.directive('showModalVideo', function(){
+			return {
+        restrict: 'E',
+        templateUrl: './partials/show-modal-video.html',
+				controller: function($document){
+					$( ".titleNav" ).click(function() {
+						$('.background-blur').css('z-index','10');
+						$('.background-blur').css('opacity','.6');
+						$('.video-modal').css('z-index','10');
+						$('.video-modal').css('opacity','1');
+					});
+
+					$( ".close-blur" ).click(function() {
+						$('.background-blur').css('z-index','-10');
+						$('.background-blur').css('opacity','0');
+						$('.video-modal').css('z-index','-10');
+						$('.video-modal').css('opacity','0');
+					});
+
+				}
+			};
+		})
+
 		.directive('sliderHome', function(){
 			return{
         restrict: 'E',
@@ -411,6 +434,40 @@
 				// 	$(this).siblings('ul.brandList').slideDown();
 				// });
 
+			}
+		})
+
+		.directive('formContactoFailbox', function(){
+			return{
+				restrict: 'E',
+				templateUrl: './partials/form-contacto-failbox.html',
+				controller: function($document){
+
+						$('#formContact').submit(function(e){
+							var data = $(this).serialize();
+							$.ajax({
+								type: 'POST',
+								url: 'php/sendEmail.php',
+								data: data,
+								success : function(result){
+
+									$('#successMail').css('display', 'block');
+									setTimeout(function(){
+									  $('#formContact')[0].reset();
+									}, 500);
+
+								},
+								error: function(){
+									alert('error');
+								},
+								timeout: 10000
+							});
+							e.preventDefault();
+						});
+
+
+
+				}
 			}
 		})
 
