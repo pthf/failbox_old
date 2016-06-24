@@ -1331,6 +1331,58 @@ span#successMail {
 		        transition: .5s;
 }
 
+.titleNav{
+	cursor: pointer;
+}
+
+.background-blur {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    z-index: -1;
+		transition: 1s;
+}
+
+.video-modal{
+		position: fixed;
+		top: 5%;
+		left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+		z-index: -10;
+		opacity: 0;
+}
+
+iframe {
+    width: 640px;
+    height: 480px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+		top: 35%;
+}
+
+.close-blur{
+		padding: 1vw;
+		background-color: green;
+		float: right;
+		color: white;
+		cursor: pointer;
+		margin-right: 1.5%;
+		margin-top: 1.5%;
+}
+
+.close-blur:hover{
+		opacity: .7;
+		color: black;
+}
+
 @media (max-width: 1024px){
 	.contact-wrapper{
 		width: 80%
@@ -1357,5 +1409,18 @@ span#successMail {
 		    -ms-flex: 0 0 100%;
 		        flex: 0 0 100%;
 		margin: 1vw 0;
+	}
+
+	iframe {
+	    width: 320px;
+	    height: 240px;
+	}
+}
+
+@media (max-width: 320px) {
+
+	iframe {
+	    width: 240px;
+	    height: 120px;
 	}
 }
