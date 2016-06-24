@@ -414,4 +414,18 @@
 			}
 		})
 
+		.directive('formContactoFailbox', function(){
+			return{
+				restrict: 'E',
+				templateUrl: './partials/form-contacto-failbox.html',
+				controller: function($document){
+
+					
+
+
+
+				}
+			}
+		})
+
 })();
