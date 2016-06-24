@@ -1,6 +1,5 @@
 <?php 
   session_start();
-  var_dump($_SESSION);
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("db/conexion.php");
@@ -180,6 +179,7 @@
                           <thead>
                             <tr>
                               <th>#</th>
+                              <th>Tipo</th>
                               <th>Nombre</th>
                               <th>Descripcion</th>
                               <th>Categoria</th>
@@ -190,8 +190,9 @@
                               <th>Precio Failbox</th>
                               <th>Modelo</th>
                               <th>SKU</th>
-                              <th>Estatus</th>
                               <th>Caracteristicas</th>
+                              <th>Estatus</th>
+                              <th>Destacado</th>
                             </tr>
                           </thead>
                           <tbody> 
@@ -202,6 +203,7 @@
                             while($fila = mysql_fetch_array($resultado)) { ?>
                             <tr>
                               <td><?php echo $fila['IdProducto']?></td>
+                              <td><?php echo ($fila['IdPrivilegio'] == 1) ? 'Administrador' : 'Proveedor'?></td>
                               <td><a href="edit/editProduct.php?id=<?=$fila['IdProducto']?>"><?php echo $fila['NombreProd']?></a></td>
                               <td><?php echo $fila['Descripcion']?></td>
                               <td>
@@ -244,7 +246,6 @@
                               <td><?php echo '$ '.$fila['PrecioFailbox'].'.00'?></td>
                               <td><?php echo $fila['Modelo']?></td>
                               <td><?php echo $fila['SKU']?></td>
-                              <td><?php echo $fila['Estatus']?></td>
                               <td>
                               <?php 
                                 $query3 = "SELECT * FROM Productos_has_Caracteristicas phc
@@ -257,6 +258,8 @@
                                 }
                               ?>
                               </td>
+                              <td><?php echo $fila['Estatus']?></td>
+                              <td><?php echo $fila['Destacado'] ?></td>
                             </tr>
                             <?php } ?>
                           </tbody>

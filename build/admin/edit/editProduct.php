@@ -269,7 +269,7 @@ session_start();
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <textarea required="" rows="5" name="description" class="form-control col-md-7 col-xs-12" placeholder="Escribe la descripcion del producto"><?php echo $fila['Descripcion'];?></textarea>
+                              <textarea required="" rows="5" name="description" class="form-control col-md-7 col-xs-12" placeholder="Escribe la descripcion del producto"><?php echo $fila["Descripcion"];?></textarea>
                             </div>
                           </div>
                           <div class="form-group">
@@ -277,6 +277,36 @@ session_start();
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input id="stocks" class="form-control col-md-7 col-xs-12" name="stocks" placeholder="Nombre del producto" required="" type="text" value="<?php echo $fila['Stock'];?>">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warranty">Garantía 
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select required class="form-control" name="warranty">
+                                <option selected disabled>Selecciona..</option>
+                                <?php if($fila['Garantia'] == '1') { ?>
+                                <option value="1" selected>6 meses</option>
+                                <option value="2">1 año</option>
+                                <option value="3">2 años</option>
+                                <option value="4">3 años</option>
+                                <?php } else if($fila['Garantia'] == '2') { ?>
+                                <option value="1">6 meses</option>
+                                <option value="2" selected>1 año</option>
+                                <option value="3">2 años</option>
+                                <option value="4">3 años</option>
+                                <?php } else if($fila['Garantia'] == '3') { ?>
+                                <option value="1">6 meses</option>
+                                <option value="2">1 año</option>
+                                <option value="3" selected>2 años</option>
+                                <option value="4">3 años</option>
+                                <?php } else if($fila['Garantia'] == '4') { ?>
+                                <option value="1">6 meses</option>
+                                <option value="2">1 año</option>
+                                <option value="3">2 años</option>
+                                <option value="4" selected>3 años</option>
+                                <?php } ?>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -343,6 +373,7 @@ session_start();
                               <label for="url_paypal" class="control-label col-md-3">URL Paypal </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="url_paypal" type="text" name="url_paypal" class="form-control col-md-7 col-xs-12" required="" placeholder="URL Paypal" value="<?php echo $fila['urlPaypal'];?>">
+                                <input hidden type="text" name="idPrivilegio" value="<?php echo $_SESSION['idPrivilegio'];?>">
                               </div>
                           </div>
                           <div class="form-group">

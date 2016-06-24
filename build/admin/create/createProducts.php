@@ -9,6 +9,7 @@
     if (mysql_num_rows($result) == 0) {
       header("Location: createProducts.php");
     }
+    $id_producto = $_GET['id'];
   }
 ?> 
 <!DOCTYPE html>
@@ -51,28 +52,23 @@
                    var size = archivos[x].size;
                    var type = archivos[x].type;
                    var name = archivos[x].name;
-                   if (size > 1024*1024)
-                   {
-                       $("#vista-previa").append("<p style='color: red'>El archivo "+name+" supera el máximo permitido 1MB</p>");
-                       $('#vista-previa').hide(8000);
-                   }
-                   else if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png' && type != 'image/gif')
+                   if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png' && type != 'image/gif')
                    {
                        $("#vista-previa").append("<p style='color: red'>El archivo "+name+" no es del tipo de imagen permitida.</p>");
                        $('#vista-previa').hide(8000);
                    }
-                   else
-                   {
-                     var objeto_url = navegador.createObjectURL(archivos[x])
-                     $("#vista-previa").append("<img src="+objeto_url+" width='250px' height='250px'>");
-                   }
+                   // else
+                   // {
+                   //   var objeto_url = navegador.createObjectURL(archivos[x])
+                   //   $("#vista-previa").append("<img src="+objeto_url+" width='250px' height='250px'>");
+                   // }
                }
            });
            
            $("#btn").on("click", function(){
                 var formData = new FormData($("#formulario")[0]);
                 var ruta = "../class/functionImage.php";
-                var id = "<?php echo (isset($_GET['id'])) ?  $_GET['id'] : ''; ?>";
+                var id = "<?php echo $id_producto?>";
                 $.ajax({
                     url: ruta+"?id="+id,
                     type: "POST",
@@ -81,6 +77,7 @@
                     processData: false,
                     success: function(datos)
                     {
+                        // alert(datos);
                         $("#respuesta").html(datos);
                         $('#respuesta').show();
                         $('#respuesta').hide(8000);
@@ -273,19 +270,19 @@
                                                         <input type="number" min="0" id="stocks" name="stocks" required="" class="form-control col-md-7 col-xs-12" placeholder="Cantidad de productos">
                                                     </div>
                                                 </div>
-                                                <!--<div class="form-group">
+                                                <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warranty">Garantía 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <select required class="form-control" name="warranty">
                                                             <option selected disabled>Selecciona..</option>
-                                                            <option>6 meses</option>
-                                                            <option>1 año</option>
-                                                            <option>2 año</option>
-                                                            <option>3 año</option>
+                                                            <option value="1">6 meses</option>
+                                                            <option value="2">1 años</option>
+                                                            <option value="3">2 años</option>
+                                                            <option value="4">3 años</option>
                                                         </select>
                                                     </div>
-                                                </div>-->
+                                                </div>
                                             </div>
                                             <div class="col-sm-5"><br>
                                                 <div class=" form-group">
@@ -341,6 +338,7 @@
                                                     <label for="url_paypal" class="control-label col-md-3">URL Paypal </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input id="url_paypal" type="text" name="url_paypal" class="form-control col-md-7 col-xs-12" required="" placeholder="URL Paypal">
+                                                        <input hidden type="text" name="idPrivilegio" value="<?php echo $_SESSION['idPrivilegio'];?>">
                                                     </div>
                                                 </div>
                                                 <!--<div class="form-group">
@@ -408,11 +406,11 @@
                                                     <div class="col-md-6 col-md-offset-3">
                                                         <a href="../listProducts.php" class="btn btn-danger">Cancelar </a>
                                                         <?php if (!isset($_GET['id'])) { ?>  
-                                                        <button type="submit" class="btn btn-primary" disabled >Siguiente</button>
+                                                        <button type="submit" class="btn btn-primary" disabled >Guardar</button>
                                                         <p class="help-block"> "Para continuar necesitas crear un producto en la pestaña Productos".</p>
                                                         <?php } else { ?>
-                                                        <button type="submit" class="btn btn-primary">Siguiente</button>
-                                                        <p class="help-block"> "Click en el botón Siguiente y continua en la pestaña Imágenes".</p>
+                                                        <button type="submit" class="btn btn-primary">Guadar</button>
+                                                        <p class="help-block"> "Si ya terminaste de agregar las características, continua en la pestaña Imágenes".</p>
                                                         <?php } ?>
                                                         
                                                         <!-- <a href="../listProducts.php" class="btn btn-warning">Finalizar</a>   -->
@@ -458,16 +456,15 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Subir imagen: 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <?php if (!isset($_GET['id'])) { ?> 
-                                                        <input type="file" id="image" name="image[]" multiple required disabled>
-                                                        <?php } else { ?>
                                                         <input type="file" id="image" name="image[]" multiple required>
-                                                        <?php } ?>
                                                         <p class="help-block"> Subir imagenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                    <div class="col-md-6 col-md-offset-3">
                                                         <a href="../listProducts.php" class="btn btn-danger">Finalizar</a>
                                                         <?php if (!isset($_GET['id'])) { ?> 
@@ -479,7 +476,7 @@
                                                         <?php } ?>
                                                         
                                                     </div> 
-                                                </div>
+                                                </div> -->
                                             </form>
                                         </div>
                                         <div class="col-sm-5"><br>

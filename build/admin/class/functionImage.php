@@ -17,6 +17,7 @@ $id_producto = $_GET['id'];
 		    $tipo = $image["type"][$x];
 		    $ruta_provisional = $image["tmp_name"][$x];
 		    $size = $image["size"][$x];
+
 		    if ($ruta_provisional) {
 			    $dimensiones = getimagesize($ruta_provisional);
 			    $width = $dimensiones[0];
@@ -28,22 +29,10 @@ $id_producto = $_GET['id'];
 		    {
 		        $reporte .= "<p style='color: red'>ERROR $nombre, el archivo no es una imagen.</p>";
 		    }
-		    else if($size > 1024*1024)
-		    {
-		        $reporte .= "<p style='color: red'>ERROR $nombre, el tamaño máximo permitido es 1mb</p>";
-		    }
-		    else if($width >= 500 || $height >= 500)
-		    {
-		        $reporte .= "<p style='color: red'>ERROR $nombre, la anchura y la altura máxima permitida es de 500px</p>";
-		    }
-		    else if($width <= 60 || $height <= 60)
-		    {
-		        $reporte .= "<p style='color: red'>ERROR $nombre, la anchura y la altura mínima permitida es de 60px</p>";
-		    }
 		    else
 		    {
-		    	$array_images = implode(",", $_FILES["image"]["name"]);
-				
+		    	// $array_images = implode(",", $_FILES["image"]["name"]);
+
 				$src = $carpeta.$nombre;
 		        move_uploaded_file($ruta_provisional, $src);
 
@@ -55,11 +44,21 @@ $id_producto = $_GET['id'];
 
 					$query2 = "INSERT INTO Productos_has_Imagenes VALUES ('".$id_producto."',null,'".$nombre."')";
 					$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
-
+					// echo $query2;
 			        echo "<p style='color: blue'>La imagen $nombre ha sido subida con éxito</p>";
 
-			        $query3 = "UPDATE Productos SET Image = '".$array_images."' WHERE IdProducto = '".$id_producto."'";
-			        $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+			        $query = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id_producto."'";
+					$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+					$array_images = array();
+					while ($row = mysql_fetch_array($resultado)) {
+						array_push($array_images, $row['NombreImagen']);
+					}
+
+					$imagenes = implode(',', $array_images);
+					$query3 = "UPDATE Productos SET Image = '".$imagenes."' WHERE IdProducto = '".$id_producto."'";
+				    $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+			        // echo $query3;
 
 				} else {
 
