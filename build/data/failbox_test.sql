@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-06-2016 a las 23:46:30
+-- Tiempo de generación: 23-06-2016 a las 18:10:22
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -58,11 +58,9 @@ CREATE TABLE `Caracteristicas` (
 --
 
 INSERT INTO `Caracteristicas` (`IdCaracteristica`, `NombreCaracteristica`) VALUES
-(8, 'Color'),
-(9, 'Procesador'),
-(10, 'Memoria Ram'),
-(11, 'Disco Duro'),
-(12, 'Sistema Operativo');
+(1, 'Color'),
+(2, 'Tecnologia'),
+(3, 'Kilos');
 
 -- --------------------------------------------------------
 
@@ -81,11 +79,12 @@ CREATE TABLE `Categorias` (
 --
 
 INSERT INTO `Categorias` (`IdCategoria`, `Categoria`, `RouteCategoria`) VALUES
-(38, 'Cómputo y Eletrónica', 'computo-y-eletronica'),
-(39, 'Telefonía', 'telefonia'),
-(40, 'Videojuegos', 'videojuegos'),
-(41, 'Línea Blanca', 'linea-blanca'),
-(42, 'Hogar', 'hogar');
+(31, 'Electrónica', 'electronica'),
+(32, 'Línea Blanca', 'linea-blanca'),
+(33, 'Electrodomésticos', 'electrodomesticos'),
+(34, 'Hola', 'hola'),
+(35, 'Bebe', 'bebe'),
+(36, 'Video Juegos', 'video-juegos');
 
 -- --------------------------------------------------------
 
@@ -161,21 +160,11 @@ CREATE TABLE `Marcas` (
 --
 
 INSERT INTO `Marcas` (`IdMarca`, `Marca`, `RouteMarca`) VALUES
-(6, 'Osx', 'osx'),
-(7, 'Windows', 'windows'),
-(8, 'Lg', 'lg'),
-(9, 'Samsung', 'samsung'),
-(10, 'Motorola', 'motorola'),
-(11, 'Iphone', 'iphone'),
-(12, 'Xbox 360', 'xbox-360'),
-(13, 'Xbox One', 'xbox-one'),
-(14, 'Ps4', 'ps4'),
-(15, 'Ps3', 'ps3'),
-(16, 'Mabe', 'mabe'),
-(17, 'Phillips', 'phillips'),
-(18, 'Apple', 'apple'),
-(19, 'Toshiba', 'toshiba'),
-(20, 'Dell', 'dell');
+(1, 'Sony', 'sony'),
+(2, 'Panasonic', 'panasonic'),
+(3, 'Pioneer', 'pioneer'),
+(4, 'Samsung', 'samsung'),
+(5, 'Xbox', 'xbox');
 
 -- --------------------------------------------------------
 
@@ -199,12 +188,11 @@ CREATE TABLE `Pedidos` (
 CREATE TABLE `Productos` (
   `IdProducto` int(11) NOT NULL,
   `NombreProd` varchar(45) NOT NULL,
-  `Descripcion` varchar(2000) NOT NULL,
+  `Descripcion` varchar(300) NOT NULL,
   `RouteProd` varchar(450) NOT NULL,
   `Stock` int(11) NOT NULL,
   `PrecioLista` float NOT NULL,
   `PrecioFailbox` float NOT NULL,
-  `Garantia` varchar(45) NOT NULL,
   `Modelo` varchar(45) NOT NULL,
   `SKU` varchar(50) NOT NULL,
   `Estatus` varchar(45) NOT NULL,
@@ -212,7 +200,6 @@ CREATE TABLE `Productos` (
   `urlPaypal` varchar(2000) NOT NULL,
   `Destacado` varchar(45) NOT NULL,
   `FechaAlta` datetime NOT NULL,
-  `IdPrivilegio` int(11) NOT NULL,
   `Marcas_IdMarca` int(11) NOT NULL,
   `Categorias_IdCategoria` int(11) NOT NULL,
   `Subcategoria_IdSubcategoria` int(11) NOT NULL
@@ -222,10 +209,12 @@ CREATE TABLE `Productos` (
 -- Volcado de datos para la tabla `Productos`
 --
 
-INSERT INTO `Productos` (`IdProducto`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `Garantia`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `IdPrivilegio`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`) VALUES
-(9, 'COMPUTADORA DE ESCRITORIO IMAC', 'Apple MK482E/A 27 Pulgadas Computadora de Escritorio iMac', 'computadora-de-escritorio-imac', 5, 49900, 47500, '1', 'MK482E/A', '00001', 'Activo', 'mac_02.jpg,mac_01.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-24 12:06:37', 1, 18, 38, 11),
-(10, 'DELL INSPIRON ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consequat suscipit dolor aliquam congue. Aenean posuere, metus non sollicitudin suscipit, ipsum massa egestas sapien, ut sollicitudin dui sem finibus mauris. Proin consequat metus sed urna tempor vestibulum. Sed purus ex, faucibus sed nis', 'dell-inspiron-', 3, 18500, 16649, '3', 'I5559_I781TGSLW10S_1', '00002', 'Activo', 'dell_01.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-24 12:06:16', 1, 20, 38, 12),
-(11, 'SAMSUNG GALAXY S7 EDGE DORADO ', 'Duis ut leo sapien. Ut eget velit sed eros viverra elementum. Aliquam non erat sed ante facilisis rutrum nec id diam. Sed ac augue semper, porttitor metus et, pharetra mauris. Nulla placerat, sapien vel accumsan hendrerit, ante tellus porta ex, ac sollicitudin eros ex ut purus.', 'samsung-galaxy-s7-edge-dorado-', 5, 17959, 17500, '4', 'SM-G935F', '00003', 'Activo', 'sam_04.jpg,sam_03.jpeg,sam_02.jpg,sam_07.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-24 14:36:40', 1, 9, 39, 13);
+INSERT INTO `Productos` (`IdProducto`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`) VALUES
+(2, 'INSIGNIA PANTALLA DE 40', 'test', 'insignia-pantalla-de-40', 21, 21321, 20000, 'SDFASDF-DASF', '1000188883213', 'Inactivo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-16 17:48:32', 1, 33, 5),
+(3, 'Lavadora Prueba', 'Prueba de desc.', 'lavadora-prueba', 6, 7800, 7500, 'LAV3424A', '1000188883', 'Activo', 'imagen4.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-17 17:19:54', 4, 32, 2),
+(4, 'Microondas Samsung', 'Prueba de Descripcion', 'microondas-samsung', 3, 4600, 4300, 'MICRO-SDSDF', '2342434234', 'Activo', 'imagen1.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'NO', '2016-06-20 12:22:00', 4, 33, 4),
+(5, 'Xbox 360 Slim', 'Prueba', 'xbox-360-slim', 2, 8000, 7600, 'XBOX-DSF', '324234234234', 'Activo', 'imagen2.jpg,imagen1.png,xbox.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-06-21 10:49:27', 5, 36, 9),
+(7, 'BÓCINAS BS', 'Descripcion de prueba de bocinas Pioneer', 'bocinas-bs', 3, 2700, 2100, 'BOCSDAS-3242', '112121212121', 'Activo', 'imagen2.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'NO', '2016-06-22 14:14:02', 3, 31, 6);
 
 -- --------------------------------------------------------
 
@@ -244,16 +233,13 @@ CREATE TABLE `Productos_has_Caracteristicas` (
 --
 
 INSERT INTO `Productos_has_Caracteristicas` (`Productos_IdProducto`, `Caracteristicas_IdCaracteristica`, `DetalleCaracteristica`) VALUES
-(9, 8, 'Plata'),
-(9, 9, 'Quad Core de 3.3 GHz'),
-(9, 10, '8 GB'),
-(9, 11, 'Fusion Drive de 2 TB'),
-(10, 8, 'Azul'),
-(10, 9, 'Core i7-6500U'),
-(10, 10, '8 GB DDR3L 1600 MHz'),
-(10, 11, '1 TB 5400 RPM'),
-(11, 8, 'Dorado'),
-(11, 12, 'Android');
+(2, 1, 'Negra'),
+(2, 2, 'LED'),
+(3, 1, 'Blanca'),
+(3, 3, '16 Kg'),
+(4, 1, 'Negro'),
+(5, 1, 'Blanco'),
+(7, 1, 'Negro');
 
 -- --------------------------------------------------------
 
@@ -272,14 +258,15 @@ CREATE TABLE `Productos_has_Imagenes` (
 --
 
 INSERT INTO `Productos_has_Imagenes` (`Productos_IdProducto`, `IdImagen`, `NombreImagen`) VALUES
-(9, 16, 'mac_02.jpg'),
-(9, 17, 'mac_01.jpg'),
-(10, 18, 'dell_02.jpg'),
-(10, 19, 'dell_01.jpg'),
-(11, 36, 'sam_04.jpg'),
-(11, 42, 'sam_03.jpeg'),
-(11, 44, 'sam_02.jpg'),
-(11, 45, 'sam_07.png');
+(2, 1, 'imagen4.png'),
+(2, 2, 'imagen3.png'),
+(2, 3, 'imagen1.png'),
+(3, 4, 'imagen2.jpg'),
+(3, 5, 'imagen4.png'),
+(4, 6, 'imagen1.png'),
+(5, 7, 'imagen2.jpg'),
+(5, 8, 'imagen1.png'),
+(7, 11, 'imagen2.jpg');
 
 -- --------------------------------------------------------
 
@@ -314,17 +301,15 @@ CREATE TABLE `Subcategoria` (
 --
 
 INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `RouteSubcategoria`, `Categorias_IdCategoria`) VALUES
-(11, 'Computadoras de Escritorio', 'computadoras-de-escritorio', 38),
-(12, 'Laptops', 'laptops', 38),
-(13, 'Celulares', 'celulares', 39),
-(14, 'Cargadores', 'cargadores', 39),
-(15, 'Baterías', 'baterias', 39),
-(16, 'Consolas', 'consolas', 40),
-(17, 'Accesorios', 'accesorios', 40),
-(18, 'Refrigeradores', 'refrigeradores', 41),
-(19, 'Hornos', 'hornos', 41),
-(20, 'Licuadoras', 'licuadoras', 41),
-(21, 'Planchas', 'planchas', 41);
+(1, 'Televisores', 'televisores', 31),
+(2, 'Lavadoras', 'lavadoras', 32),
+(4, 'Microondas', 'microondas', 33),
+(5, 'Licuadora', 'licuadora', 33),
+(6, 'Bocinas', 'bocinas', 31),
+(7, 'Cables', 'cables', 31),
+(8, 'Smartphone ', 'smartphone', 31),
+(9, 'Xbox', 'xbox', 36),
+(10, 'Mouse Inalámbrico', 'mouse-inalambrico', 31);
 
 -- --------------------------------------------------------
 
@@ -349,8 +334,8 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `NombreUser`, `Nombre`, `Apellido`, `Email`, `Password`, `TipoPerfil`, `Privilegios`, `UltimaConexion`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-06-23 19:17:33'),
-(2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-23 19:16:31'),
+(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-06-22 13:35:50'),
+(2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-17 10:54:41'),
 (3, 'Proveedor2', 'Proveedor_Dos', 'Proveedor2', 'prov2@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 3, '2016-06-16 16:53:26'),
 (4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00');
 
@@ -474,12 +459,12 @@ ALTER TABLE `BannersHome`
 -- AUTO_INCREMENT de la tabla `Caracteristicas`
 --
 ALTER TABLE `Caracteristicas`
-  MODIFY `IdCaracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IdCaracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT de la tabla `Ciudades`
 --
@@ -504,7 +489,7 @@ ALTER TABLE `Estados`
 -- AUTO_INCREMENT de la tabla `Marcas`
 --
 ALTER TABLE `Marcas`
-  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `Pedidos`
 --
@@ -514,17 +499,17 @@ ALTER TABLE `Pedidos`
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Productos_has_Imagenes`
 --
 ALTER TABLE `Productos_has_Imagenes`
-  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `Subcategoria`
 --
 ALTER TABLE `Subcategoria`
-  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
