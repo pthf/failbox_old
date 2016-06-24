@@ -1,43 +1,41 @@
 <?php
-require_once("admin/db/conexion.php");
-
-$query = "SELECT * FROM Categorias c INNER JOIN Productos p ON p.Categorias_IdCategoria = c.IdCategoria GROUP BY Categoria";
-$resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
-
-$menuGeneral = array();
-while($fila = mysql_fetch_array($resultado)) { 
-    
-    $query1 = "SELECT * FROM Subcategoria s WHERE Categorias_IdCategoria = '".$fila['IdCategoria']."'";
-    $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error()); 
-
-    $subcategorias = array();
-    while($fila1 = mysql_fetch_array($resultado1)) { 
-
-        $query2 = "SELECT * FROM Marcas m INNER JOIN Productos p ON p.Marcas_IdMarca = m.IdMarca WHERE IdMarca = '".$fila['Marcas_IdMarca']."'";
-        $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
-
-        $marcas = array();
-        while($fila2 = mysql_fetch_array($resultado2)) { 
-            $marca = $fila2['Marca'];
-            array_push($marcas, $marca);
+  require_once("../admin/db/conexion.php");
+  $queryCat = "SELECT * FROM categorias";
+  $resultCat = mysql_query($queryCat, Conectar::con()) or die(mysql_error());
+  $arrayDataCat = array();
+  $arrayDataSubCat = array();
+  $arrayDataBrand = array();
+  while($lineCat = mysql_fetch_array($resultCat)){
+    $querySubCat = "SELECT * FROM subcategoria WHERE Categorias_IdCategoria = ".$lineCat['IdCategoria'];
+    $resultSubCat = mysql_query($querySubCat, Conectar::con()) or die(mysql_error());
+    while($lineSubCat = mysql_fetch_array($resultSubCat)){
+      $queryBrand = "SELECT * FROM productos INNER JOIN marcas ON marcas.IdMarca = productos.Marcas_IdMarca WHERE productos.Categorias_IdCategoria = ".$lineCat['IdCategoria']." AND productos.Subcategoria_IdSubcategoria = ".$lineSubCat['IdSubcategoria'];
+      $resultBrand = mysql_query($queryBrand, Conectar::con()) or die(mysql_error());
+      $arrayBrandRegister = array();
+      while($lineBrand = mysql_fetch_array($resultBrand)){
+        $register = false;
+        foreach ($arrayBrandRegister as $key => $value) {
+          if($lineBrand['Marca'] == $value)
+            $register = true;
         }
-
-        $subcategoria = 
-            array(
-                $fila1['Subcategoria'] =>
-                    $marcas,
-            );
-        array_push($subcategorias, $subcategoria);
+        if(!$register){
+          $dataAuxBrand = array($lineBrand['Marca']  => $lineBrand['IdMarca']);
+          array_push($arrayDataBrand, $dataAuxBrand);
+          unset($dataAuxBrand);
+          array_push($arrayBrandRegister, $lineBrand['Marca']);
+        }
+      }
+      $dataAuxSubCat = array($lineSubCat['Subcategoria'] => $arrayDataBrand);
+      array_push($arrayDataSubCat, $dataAuxSubCat);
+      unset($dataAuxSubCat);
+      unset($arrayDataBrand);
+      $arrayDataBrand = array();
     }
-
-    $menu = 
-        array(
-            $fila['Categoria'] =>  
-                $subcategorias,
-        );
-    array_push($menuGeneral, $menu);
-}
-    echo "<pre>";
-    var_dump($menuGeneral);
-    echo "</pre>";
-    print_r(json_encode($menuGeneral));
+    $dataAuxCat = array($lineCat['Categoria']  => $arrayDataSubCat);
+    array_push($arrayDataCat, $dataAuxCat);
+    unset($dataAuxCat);
+    unset($arrayDataSubCat);
+    $arrayDataSubCat = array();
+  }
+  print_r(json_encode($arrayDataCat));
+?>

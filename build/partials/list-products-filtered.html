@@ -1,13 +1,31 @@
 <ul class="groupAllItems">
-  <li class="categoryList" ng-repeat="(key, data) in menuProductos.cat" >
-    <span class="category" style="cursor:pointer;" ng-click="openCategory(key)" name="{{key}}">{{key}}  <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto;"></span>
-    <ul class="subcategoryList">
-      <li ng-repeat="(key, subdata) in data">
-        <span class="subcategory" style="cursor:pointer;" ng-click="openSubCategory(key)" name="{{key}}">{{key}}  <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto;"></span>
-        <ul class="brandList">
-          <li ng-repeat="(key, brand) in subdata" load-group-products-items><span class="brand" style="cursor:pointer;"> {{key}} </span></li>
-        </ul>
-      </li>
-    </ul>
+  <li class="categoryList" ng-repeat="(key, data) in menuProductos" >
+    <span ng-repeat="(key, data) in data">
+      <span class="category" style="cursor:pointer;" ng-mouseover="openCategory(key)" ng-mouseleave="closeactiveCategory()" name="{{key}}">
+        <a href="#/productos/{{key | urlName }}" style="color:#FFF">
+          {{key}}  <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto;">
+        </a>
+      </span>
+      <ul class="subcategoryList">
+        <span ng-repeat="(key2, data2) in data">
+          <li ng-repeat="(key3, subdata3) in data2">
+            <span class="subcategory" style="cursor:pointer;" ng-mouseover="openSubCategory(key3)" ng-mouseleave="closeactiveSubCategory()" name="{{key3}}">
+              <a href="#/productos/{{key | urlName }}/{{key3 | urlName }}" style="color:#FFF">
+                {{key3}}  <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto;">
+              </a>
+            </span>
+            <ul class="brandList">
+              <span ng-repeat="(key4, data4) in subdata3">
+                <li ng-repeat="(key5, brand5) in data4" load-group-products-items>
+                  <span class="brand" style="cursor:pointer;">
+                    <a href="#/productos/{{key | urlName }}/{{key3 | urlName }}/{{key5 | urlName }}" style="color:#FFF">{{key5}}</a>
+                  </span>
+                </li>
+              </span>
+            </ul>
+          </li>
+        </span>
+      </ul>
+    </span>
   </li>
 </ul>

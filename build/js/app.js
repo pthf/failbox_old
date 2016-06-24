@@ -4,7 +4,8 @@
     	'ngRoute',
     	'failboxStore.controllers',
     	'failboxStore.services',
-    	'failboxStore.directives'
+    	'failboxStore.directives',
+			'failboxStore.filters'
   	]);
 
 	app.config(['$routeProvider', function ($routeProvider) {
