@@ -5,7 +5,56 @@
 		.directive('topMenu', function(){
 			return {
         restrict: 'E',
-        templateUrl: './partials/top-menu.html'
+        templateUrl: './partials/top-menu.html',
+				controller: function($document){
+					$('input.barNav').keyup(function(){
+						var textKey = $(this).val();
+						if(textKey.length>1){
+							$.ajax({
+								type: 'GET',
+								url: './php/search.php',
+								data: {
+									search : textKey
+								},
+								success : function(result){
+									result = jQuery.parseJSON(result);
+									$.each(result, function(key, data){
+											console.log(data);
+											// console.log(data.name);
+									});
+								},
+								error : function(){
+									alert('Error');
+								},
+								timeout: 10000
+							});
+						}else{
+							$('.contElements').html('ok');
+						}
+
+
+
+
+
+
+						// <a href="#">
+						// 	<div class="itemSearched">
+						// 		<img src="src/images/8.png">
+						// 		<div>
+						// 			<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Insignia - Pantalla de 40 - LED - 1080p HDTV - Negro</span>
+						// 			<span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$5,900.00</span> - <span style="font-weight: bold; color: red;">$5,000.00</span></span>
+						// 		</div>
+						// 	</div>
+						// </a>
+						// <div class="itemSearched">
+						// 	<div>
+						// 		<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Ningún resultado encontrado.</span>
+						// 	</div>
+						// </div>
+
+
+					});
+				}
 			};
 		})
 
@@ -419,11 +468,26 @@
 				restrict: 'E',
 				templateUrl: './partials/form-contacto-failbox.html',
 				controller: function($document){
-
-
-
-
-
+						$('#formContact').submit(function(e){
+							var data = $(this).serialize();
+							$.ajax({
+								type: 'POST',
+								url: 'php/sendEmail.php',
+								data: data,
+								success : function(result){
+									$('#successMail').css('display', 'block');
+									setTimeout(function(){
+									  $('#formContact')[0].reset();
+											$('#successMail').css('display', 'none');
+									}, 1500);
+								},
+								error: function(){
+									alert('error');
+								},
+								timeout: 10000
+							});
+							e.preventDefault();
+						});
 				}
 			}
 		})

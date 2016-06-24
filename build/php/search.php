@@ -9,23 +9,27 @@ if (isset($_GET['search'])) {
 	$productos = array();
 	for ($i=0; $i < count($texto); $i++) {
 
-		$query = "SELECT * FROM Productos p
-					INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
-					INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
-					INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
-					WHERE p.NombreProd LIKE '" . $texto[$i] . "%'
-		            OR p.RouteProd LIKE '" . $texto[$i] . "%'
-		            OR c.Categoria LIKE '" . $texto[$i] . "%'
-		            OR s.Subcategoria LIKE '" . $texto[$i] . "%'
-		            OR m.Marca LIKE '" . $texto[$i] . "%'";
+		if(strlen($texto[$i])>1){
+			$query = "SELECT * FROM Productos p
+						INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
+						INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
+						INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
+						WHERE p.NombreProd LIKE '" . $texto[$i] . "%'
+			            OR p.RouteProd LIKE '" . $texto[$i] . "%'
+			            OR c.Categoria LIKE '" . $texto[$i] . "%'
+			            OR s.Subcategoria LIKE '" . $texto[$i] . "%'
+			            OR m.Marca LIKE '" . $texto[$i] . "%'";
 
-		$resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
+			$resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
-		while ($row = mysql_fetch_array($resultado)) {
+			while ($row = mysql_fetch_array($resultado)) {
 
-			array_push($productos, $row['IdProducto']);
+				array_push($productos, $row['IdProducto']);
 
+			}
 		}
+
+
 
 	}
 
