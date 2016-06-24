@@ -9,28 +9,28 @@
 
 			var activeCategory = false;
 			$scope.openCategory = function(categoryName){
-				if(!activeCategory){
+				//if(!activeCategory){
 					activeCategory = true;
 					$('ul.subcategoryList').slideUp();
 					$('span[name="'+categoryName+'"]').siblings('ul.subcategoryList').slideDown();
-				}
+				//}else{
+					//activeCategory = false;
+					//$('ul.subcategoryList').slideUp();
+					//$('span[name="'+categoryName+'"]').siblings('ul.subcategoryList').slideUp();
+				//}
 			};
 
 			var activeSubCategory = false;
 			$scope.openSubCategory = function(categoryName){
-				if(!activeSubCategory){
+				//if(!activeSubCategory){
 					activeSubCategory = true;
 					$('ul.brandList').slideUp();
 					$('span[name="'+categoryName+'"]').siblings('ul.brandList').slideDown();
-				}
-			};
-
-			$scope.closeactiveCategory = function(){
-				activeCategory = false;
-			};
-
-			$scope.closeactiveSubCategory = function(){
-				activeSubCategory = false;
+				//}else{
+					//activeSubCategory = false;
+					//$('ul.brandList').slideUp();
+					//$('span[name="'+categoryName+'"]').siblings('ul.brandList').slideUp();
+				//}
 			};
 
 		}])

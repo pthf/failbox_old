@@ -53,12 +53,8 @@ session_start();
                    var size = archivos[x].size;
                    var type = archivos[x].type;
                    var name = archivos[x].name;
-                   if (size > 1024*1024)
-                   {
-                       $("#vista-previa").append("<p style='color: red'>El archivo "+name+" supera el máximo permitido 1MB</p>");
-                       $('#vista-previa').hide(8000);
-                   }
-                   else if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png' && type != 'image/gif')
+                   
+                   if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png' && type != 'image/gif')
                    {
                        $("#vista-previa").append("<p style='color: red'>El archivo "+name+" no es del tipo de imagen permitida.</p>");
                        $('#vista-previa').hide(8000);
@@ -83,6 +79,7 @@ session_start();
                     processData: false,
                     success: function(datos)
                     {
+                        // alert(datos);
                         $("#respuesta").html(datos);
                         $('#respuesta').show();
                         $('#respuesta').hide(8000);

@@ -18,10 +18,19 @@
 								},
 								success : function(result){
 									result = jQuery.parseJSON(result);
+									var resultElemets = "";
+									$('.contElements').html('');
 									$.each(result, function(key, data){
-											console.log(data);
-											// console.log(data.name);
+										var price = parseInt(data.price);
+										var not_price = parseInt(data.not_price);
+										resultElemets += '<a href="#/articulo/'+data.url+'"><div class="itemSearched"><img style="width: 4vw; height: 4vw; " src="./admin/images/products/'+data.image+'"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">'+data.name+'</span><span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$'+price.toFixed(2)+'</span> - <span style="font-weight: bold; color: red;">$'+not_price.toFixed(2)+'</span></span></div></div></a>';
 									});
+									if(resultElemets.length>0){
+										$('.contElements').html(resultElemets);
+									}else{
+										$('.contElements').html('<div class="itemSearched"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Ningún resultado encontrado.</span></div></div>')
+									}
+
 								},
 								error : function(){
 									alert('Error');
@@ -29,7 +38,7 @@
 								timeout: 10000
 							});
 						}else{
-							$('.contElements').html('ok');
+							$('.contElements').html('');
 						}
 
 
@@ -46,14 +55,40 @@
 						// 		</div>
 						// 	</div>
 						// </a>
-						// <div class="itemSearched">
-						// 	<div>
-						// 		<span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Ningún resultado encontrado.</span>
-						// 	</div>
-						// </div>
+						//
 
 
 					});
+
+					$(document).on('click', '.itemSearched', function(){
+						$('input.barNav').val('');
+						$('input.barNav').keyup();
+					});
+
+
+				}
+			};
+		})
+
+		.directive('showModalVideo', function(){
+			return {
+        restrict: 'E',
+        templateUrl: './partials/show-modal-video.html',
+				controller: function($document){
+					$( ".titleNav" ).click(function() {
+						$('.background-blur').css('z-index','10');
+						$('.background-blur').css('opacity','.6');
+						$('.video-modal').css('z-index','10');
+						$('.video-modal').css('opacity','1');
+					});
+
+					$( ".close-blur" ).click(function() {
+						$('.background-blur').css('z-index','-10');
+						$('.background-blur').css('opacity','0');
+						$('.video-modal').css('z-index','-10');
+						$('.video-modal').css('opacity','0');
+					});
+
 				}
 			};
 		})
@@ -369,6 +404,10 @@
 						$('#slide2 .contendItems .contItemsPosition').css({
 							'margin-left' : '-'+(item_selected*100)+'%'
 						});
+					}
+
+					if(tam_items==0){
+						$('.first, .before, .next, .last').css({'display':'none'});
 					}
 
 				};

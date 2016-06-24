@@ -1,18 +1,20 @@
 <ul class="groupAllItems">
-  <li class="categoryList" ng-repeat="(key, data) in menuProductos" >
+  <li class="categoryList" ng-repeat="(key, data) in menuProductos" load-group-products-items>
     <span ng-repeat="(key, data) in data">
-      <span class="category" style="cursor:pointer;" ng-mouseover="openCategory(key)" ng-mouseleave="closeactiveCategory()" name="{{key}}">
+      <span class="category" style="cursor:pointer;" name="{{key}}">
         <a href="#/productos/{{key | urlName }}" style="color:#FFF">
-          {{key}}  <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto;">
+          {{key}}
         </a>
+        <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto; margin-left: 1vw;" ng-click="openCategory(key)">
       </span>
       <ul class="subcategoryList">
         <span ng-repeat="(key2, data2) in data">
-          <li ng-repeat="(key3, subdata3) in data2">
-            <span class="subcategory" style="cursor:pointer;" ng-mouseover="openSubCategory(key3)" ng-mouseleave="closeactiveSubCategory()" name="{{key3}}">
+          <li ng-repeat="(key3, subdata3) in data2" load-group-products-items>
+            <span class="subcategory" style="cursor:pointer;" name="{{key3}}">
               <a href="#/productos/{{key | urlName }}/{{key3 | urlName }}" style="color:#FFF">
-                {{key3}}  <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto;">
+                {{key3}}
               </a>
+              <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto; margin-left: 1vw;"  ng-click="openSubCategory(key3)">
             </span>
             <ul class="brandList">
               <span ng-repeat="(key4, data4) in subdata3">

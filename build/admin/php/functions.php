@@ -139,12 +139,13 @@ require_once("../db/conexion.php");
 		
 		$sql_products = "INSERT INTO Productos 
 							VALUES (null,'".$formData['name_product']."',
-								'".$formData['description']."','".$route_name."','".$formData['stocks']."',
-								'".$formData['pricelist']."','".$formData['pricefailbox']."',
+								'".$formData["description"]."','".$route_name."','".$formData['stocks']."',
+								'".$formData['pricelist']."','".$formData['pricefailbox']."','".$formData['warranty']."',
 								'".$formData['model']."','".$formData['sku']."',
 								'".$formData['status']."','".$image."',
 								'".$formData['url_paypal']."','".$formData['outstanding']."',
-								'".$datatime."','".$formData['brand']."','".$formData['category']."',
+								'".$datatime."','".$formData['idPrivilegio']."',
+								'".$formData['brand']."','".$formData['category']."',
 								'".$formData['subcategory']."')";
 		$res = mysql_query($sql_products,Conectar::con()) or die(mysql_error());
 
@@ -230,12 +231,12 @@ require_once("../db/conexion.php");
 
 	    //Realizamos los cambios de los datos a la tabla Productos
 	    $sql_changes_prod = "UPDATE Productos 
-	                            SET NombreProd='" . $formData['name_product'] . "', RouteProd='" .$route_name. "', Descripcion='" . $formData['description'] . "', 
+	                            SET NombreProd='" . $formData['name_product'] . "', RouteProd='" .$route_name. "', Descripcion='" . $formData["description"] . "', 
 	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
-	                                PrecioFailbox='" . $formData['pricefailbox'] . "', Modelo='" . $formData['model'] . "',
+	                                PrecioFailbox='" . $formData['pricefailbox'] . "', Garantia='" . $formData['warranty'] . "', Modelo='" . $formData['model'] . "',
 	                                SKU='" . $formData['sku'] . "', Estatus='" . $formData['estatus'] . "',
 	                                urlPaypal='" . $formData['url_paypal'] . "',Destacado='" . $formData['outstanding'] . "',
-	                                FechaAlta='".$datatime."', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."', 
+	                                FechaAlta='".$datatime."', IdPrivilegio='" . $formData['idPrivilegio'] . "', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."', 
 	                                Subcategoria_IdSubcategoria='".$formData['subcategory']."'
 								WHERE IdProducto = '" . $formData['id'] . "'";
 	    $res = mysql_query($sql_changes_prod, Conectar::con()) or die(mysql_error());

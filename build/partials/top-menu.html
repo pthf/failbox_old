@@ -15,12 +15,10 @@
 		<label style="position: relative">
 
 			<div class="nav" ng-mouseleave="tabs.closeMenuRestart()">
-				<a href="#/productos" style="width: 100%; display: inline-block;">
-					<span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)" style="width: 100%; display: inline-block;">
-						Productos
-						<img class="selectIndicator" src="src/images/indMostLess-02.png">
-					</span>
-				</a>
+				<span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)" style="width: 100%; display: inline-block;">
+					Productos
+					<img class="selectIndicator" src="src/images/indMostLess-02.png">
+				</span>
 				<ul class="listNav" ng-show="tabs.menuProductos">
 					<li class="itemGroup" ng-repeat="(key, data) in menuProductos"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
 						<span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
@@ -31,6 +29,15 @@
 								</a>
 							</span>
 						</span>
+
+						<span ng-show="$last"  class="title" >
+							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
+								<a href="#/productos" style="width: 100%; display: inline-block;">
+									Todos los productos
+								</a>
+							</span>
+						</span>
+
 						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}" style="margin-top: -1vw;">
 							<span ng-repeat="(subkey, subdata) in data">
 								<li class="" ng-repeat="(key, subDataKey) in subdata" ng-mouseover="tabs.selectBrand($index+1)">
@@ -78,7 +85,7 @@
 			</div>
 
 			<div class="contElements">
-			
+
 			</div>
 
 		</label>

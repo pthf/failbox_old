@@ -24,7 +24,7 @@ if (isset($_GET['search'])) {
 
 			while ($row = mysql_fetch_array($resultado)) {
 
-				array_push($productos, $row['IdProducto']);
+			array_push($productos, $row);
 
 			}
 		}
@@ -34,11 +34,23 @@ if (isset($_GET['search'])) {
 	}
 
 }
+
 if (isset($productos)) {
 	$items = array();
 	for ($i=0; $i < count($productos); $i++) {
+
+		$array_images = explode(',', $productos[$i]['Image']);
+
 		$item = array(
-			"id" => $productos[$i],
+			"id" => $productos[$i]['IdProducto'],
+            "name" => $productos[$i]['NombreProd'],
+            "url" => $productos[$i]['RouteProd'],
+            "descripcion" => $productos[$i]['Descripcion'],
+            "marca" => $productos[$i]['Marca'],
+            "price" => $productos[$i]['PrecioLista'],
+            "not_price" => $productos[$i]['PrecioFailbox'],
+            "image" => $array_images[0],
+            "paypal" => $productos[$i]['urlPaypal'],
 		);
 		array_push($items, $item);
 	}
