@@ -40,27 +40,27 @@
         <section class="login_content">
           <!--<form action="control.php" method="POST">-->
           <form id="loginAdmin">
-            <h1 class="titleLogin">INICIA SESION</h1>
-            <div>
+            <h1 class="titleLogin" style="margin: 0px 95px 29px;">INICIA SESION</h1>
+            <div style="display: block; width: 80%; margin: 0 auto;">
               <input type="text" class="form-control" placeholder="Username" required="" name="username" id="username"/>
             </div>
-            <div>
+            <div style="display: block; width: 80%; margin: 0 auto;">
               <input type="password" class="form-control" placeholder="Password" required="" name="password" id="password"/>
             </div>
             <tr> 
               <td colspan="2" align="center"> 
-                <div class="alert alert-success welcome" role="alert" style="display:none">Bienvenido</div>
-                <div class="alert alert-danger not_pass" role="alert" style="display:none">Contraseña invalida.</div>
-                <div class="alert alert-danger not_name" role="alert" style="display:none">Usuario invalido.</div>
+                <div class="alert alert-success welcome" role="alert" style="display:none;width:80%; margin: 0 auto;">Bienvenido</div>
+                <div class="alert alert-danger not_pass" role="alert" style="display:none;width:80%; margin: 0 auto;">Contraseña invalida.</div>
+                <div class="alert alert-danger not_name" role="alert" style="display:none;width:80%; margin: 0 auto;">Usuario invalido.</div>
               </td> 
             </tr> 
-            <div>
+            <div style="display: block; width:93%; margin: 0 auto;">
               <input type="submit" class="btn btn-success" value="Inicia sesión"> 
               <!--<button type="submit" class="btn btn-success submit">Entrar</button>-->
               <a class="" href="#">Olvidaste tu contraseña?</a>
             </div>
             <div class="clearfix"></div>
-            <div class="separator">
+            <div class="separator" style="margin: 25px 62px 0px;">
               <div class="clearfix"></div>
               <br />
               <div>
