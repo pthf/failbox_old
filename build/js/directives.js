@@ -325,7 +325,7 @@
 					});
 
 					//Se genera los items de navegacion del contenido.
-					var tam_items = $('#slide2 .contItemsPosition div.groupItems').length-1;
+					var tam_items = $('#slide2 .contItemsPosition div.groupItems').length;
 
 					var itemSelecteds = '<span class="first" style="display:none; z-index: -10;"><img src="./src/images/first.png" style="width: .9em;"></span>';
 					itemSelecteds+= '<span class="before" style="display:none; z-index: -10;"><img src="./src/images/before.png" style="width: .9em;"></span>';
