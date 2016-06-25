@@ -406,7 +406,7 @@
 						});
 					}
 
-					if(tam_items==0){
+					if(tam_items==1){
 						$('.first, .before, .next, .last').css({'display':'none'});
 					}
 
