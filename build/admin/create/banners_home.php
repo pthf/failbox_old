@@ -173,7 +173,9 @@
                               </tr>
                             </thead>
                             <tbody>
+
                             <?php
+
                             $query = "SELECT * FROM BannersHome";
                             $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                             while ($row = mysql_fetch_array($resultado)) {
