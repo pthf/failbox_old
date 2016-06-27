@@ -75,18 +75,21 @@
         restrict: 'E',
         templateUrl: './partials/show-modal-video.html',
 				controller: function($document){
+
 					$( ".titleNav" ).click(function() {
-						$('.background-blur').css('z-index','10');
+						 $(".video-modal-wrapper").append( '<iframe id="player" type="text/html" src="https://www.youtube.com/embed/-I1F5zo8csU?version=3&enablejsapi=1&controls=0&&showinfo=0"> </iframe>' );
+						$('.background-blur').css('z-index','8');
 						$('.background-blur').css('opacity','.6');
-						$('.video-modal').css('z-index','10');
+						$('.video-modal').css('z-index','8');
 						$('.video-modal').css('opacity','1');
 					});
 
-					$( ".close-blur" ).click(function() {
+					$( ".close-blur,.background-blur,.video-modal" ).click(function() {
 						$('.background-blur').css('z-index','-10');
 						$('.background-blur').css('opacity','0');
 						$('.video-modal').css('z-index','-10');
 						$('.video-modal').css('opacity','0');
+						$('iframe').get(0).remove();
 					});
 
 				}
