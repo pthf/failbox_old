@@ -63,7 +63,6 @@
 				this.menuBrand = 0;
 				this.tab_selected = 0;
 			};
-
 		})
 
 		.controller('homeSliderController', ['$scope', 'failboxService', function($scope, failboxService){
