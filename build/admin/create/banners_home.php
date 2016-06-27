@@ -101,7 +101,7 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../create/banners_home.php">Banners Principal</a>
+                    <li><a href="banners_home.php">Banners Principal</a>
                     </li>
                   </ul>
                 </li>
@@ -150,9 +150,9 @@
           <div class="page-title">
             <div class="title_left">
               <h3>
-                    Administrador
+                    Imagenes Banners Inicio
                     <small>
-                        Listado de proveedores
+                        Listado de las imágenes de la página principal.
                     </small>
                 </h3>
             </div>
@@ -161,50 +161,50 @@
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
-                      <div class="x_title">
-                        <?php 
-                          $sql = "SELECT * FROM Productos";
-                          $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error()); 
-                          $num_total_products = mysql_num_rows($res_sql);
-                        ?>
-                        <h2>Total de proveedores: <?php echo $num_total_products;?></h2>
-                        <div class="clearfix"></div>
-                      </div>
                       <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Nombre</th>
-                              <th>Descripcion</th>
-                              <th>Categoria</th>
-                              <th>Subcategoria</th>
-                              <th>Marca</th>
-                              <th>Stocks</th>
-                              <th>Precio Lista</th>
-                              <th>Modelo</th>
-                              <th>SKU</th>
-                              <th>Estatus</th>
-                              <th>Caracteristicas</th>
-                            </tr>
-                          </thead>
-                          <tbody> 
-                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
+                        <div class="table-responsive ">
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>URL</th>
+                                <th>Imágenes</th>
+                                <th>Opciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <?php 
+                            $query = "SELECT * FROM bannersHome";
+                            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                            while ($row = mysql_fetch_array($resultado)) {
+                              ?>
+                              <tr>
+                                <td><?php echo $row['idBannersHome'];?></td>
+                                <td><?php echo $row['BannersHomeUrl'];?></td>
+                                <td><img src="../images/bannersHome/<?php echo $row['BannersHomeImage'];?>" style="width:30%" title="<?php echo $row['BannersHomeName'];?>"></td>
+                                <td><div class="btn btn-danger btn-xs bannerhome" id="<?php echo $row['idBannersHome'];?>" data-function="deleteBannerHome" data-banner="<?php echo $row['idBannersHome'];?>">Eliminar</div></td>
+                              </tr>
+                            <?php } ?>
+                            </tbody>
+                          </table>
+
+                          <div class="col-md-5">
+                            <form class="form-horizontal ng-pristine ng-valid ng-hide" enctype="multipart/form-data" id="insertBannerImage">
+                              <div class="form-group">
+                                <div class="col-sm-12">
+                                  <label for="banner-name" class="col-sm-12 control-label" style="text-align: left;">Nombre Banner</label>
+                                  <input required="" type="text" class="form-control" id="banner-name" name="bannerName" placeholder="Inserta nombre al banner.">
+                                  <label for="banner-url" class="col-sm-12 control-label" style="text-align: left;">URL Banner</label>
+                                  <input required="" type="text" class="form-control" id="banner-url" name="bannerUrl" placeholder="Inserta una URL al banner.">
+                                  <label for="banner-home" class="col-sm-12 control-label" style="text-align: left;">Imagen Banner (Requerido: 2133×547px) *</label>
+                                  <input required="" type="file" class="form-control" id="banner-home" name="bannerImage[]">
+                                  <input type="submit" class="btn btn-primary addBanner" value="Agregar Imagen" name="" style="margin-top: 10px;">
+                                </div>
+                              </div>
+                            </form>
+                            <div class="alert alert-success welcome" role="alert" style="display:none;width:100%; margin: 0 auto;">Imagen súbida correctamente..!</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -235,6 +235,8 @@
 
         <script src="../js/custom.js"></script>
 
+        <script src="../js/services.js"></script>
+
         <!-- Datatables-->
         <script src="../js/datatables/jquery.dataTables.min.js"></script>
         <script src="../js/datatables/dataTables.bootstrap.js"></script>
@@ -257,6 +259,30 @@
             $('#datatable-responsive').DataTable();
             var table = $('#datatable-fixed-header').DataTable({
               fixedHeader: true
+            });
+          });
+
+          $(".bannerhome").on('click', function () {
+
+            var dataBanner = $(this).attr('data-banner');
+            var namefunction = $(this).attr('data-function');
+            $.ajax({
+                beforeSend: function () {
+                },
+                url: "../php/functions.php",
+                type: "POST",
+                data: {
+                    namefunction : namefunction,
+                    dataBanner : dataBanner
+                },
+                success: function (result) {
+                    location.reload();
+                },
+                error: function (error) {
+                },
+                complete: function () {
+                },
+                timeout: 10000
             });
           });
         </script>

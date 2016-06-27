@@ -101,3 +101,32 @@
 			}
 		})
 	})
+
+	$("#insertBannerImage").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "addImageBanner");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('failboxBannerImage['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	});

@@ -101,7 +101,7 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="#">Banners Principal</a>
+                    <li><a href="create/banners_home.php">Banners Principal</a>
                     </li>
                   </ul>
                 </li>

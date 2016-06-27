@@ -3,7 +3,7 @@
     header("Location: index.php");
   require_once("../db/conexion.php");
  
-$query = "SELECT * FROM Caracteristicas";
+$query = "SELECT * FROM Caracteristicas ORDER BY NombreCaracteristica ASC";
 $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
   echo "<select id='characteristic' name='type_characteristic' class='form-control'>";
 //echo "<option>Selecciona..</option>";

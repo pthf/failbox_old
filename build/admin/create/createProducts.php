@@ -153,7 +153,7 @@
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="#">Banners Principal</a>
+                                    <li><a href="banners_home.php">Banners Principal</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -435,7 +435,7 @@
                                                                 ON phc.Productos_IdProducto = p.IdProducto
                                                             INNER JOIN Caracteristicas ca 
                                                                 ON ca.IdCaracteristica = phc.Caracteristicas_IdCaracteristica
-                                                            WHERE p.IdProducto = '".$_GET['id']."'";
+                                                            WHERE p.IdProducto = '".$_GET['id']."' ORDER BY ca.NombreCaracteristica ASC";
                                                 $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                 while($fila=mysql_fetch_array($resultado)) { ?>
                                                   <tr>
@@ -538,7 +538,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php 
-                                                        $query2 = "SELECT * FROM Categorias";
+                                                        $query2 = "SELECT * FROM Categorias ORDER BY Categoria ASC";
                                                         $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 
                                                         while($fila1 = mysql_fetch_array($resultado2)) { ?>
@@ -564,7 +564,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <?php
-                                                        $query = "SELECT * FROM Categorias";
+                                                        $query = "SELECT * FROM Categorias ORDER BY Categoria ASC";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                             echo "<select id='category' name='category' class='form-control' required>";
                                                             echo "<option disabled selected>Selecciona..</option>";
@@ -598,7 +598,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php 
-                                                        $query2 = "SELECT * FROM Subcategoria s";
+                                                        $query2 = "SELECT * FROM Subcategoria s ORDER BY Subcategoria ASC";
                                                         $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 
                                                         while($fila1 = mysql_fetch_array($resultado2)) { ?>
@@ -646,7 +646,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php 
-                                                        $query2 = "SELECT * FROM Marcas s";
+                                                        $query2 = "SELECT * FROM Marcas s ORDER BY Marca ASC";
                                                         $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 
                                                         while($fila1 = mysql_fetch_array($resultado2)) { ?>
