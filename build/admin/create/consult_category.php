@@ -3,7 +3,7 @@
     header("Location: index.php");
   require_once("../db/conexion.php");
 
-$query = "SELECT * FROM Categorias";
+$query = "SELECT * FROM Categorias ORDER BY Categoria ASC";
 $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
  	echo "<select id='selectCategory' name='category' class='form-control' required>";
 	echo "<option disabled selected>Selecciona..</option>";

@@ -4,7 +4,7 @@ if(!isset($_SESSION['idAdmin']))
 require_once("../db/conexion.php");
  
 //consulta todos los empleados
-$query = "SELECT * FROM Marcas";
+$query = "SELECT * FROM Marcas ORDER BY Marca ASC";
 $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
  	echo "<select id='brand' name='brand' class='form-control' required>";
 	echo "<option disabled selected>Selecciona..</option>";

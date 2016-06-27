@@ -309,7 +309,7 @@ session_start();
                                                                         ON phc.Productos_IdProducto = p.IdProducto
                                                                     INNER JOIN Caracteristicas ca 
                                                                         ON ca.IdCaracteristica = phc.Caracteristicas_IdCaracteristica
-                                                                    WHERE p.IdProducto = '".$id_producto."'";
+                                                                    WHERE p.IdProducto = '".$id_producto."' ORDER BY ca.NombreCaracteristica ASC";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                         while($fila=mysql_fetch_array($resultado)) { ?>
                                                           <tr>

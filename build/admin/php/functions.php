@@ -35,6 +35,12 @@ require_once("../db/conexion.php");
 			case 'getEditProduct':
 				getEditProduct($_POST['idCategory']);
 				break;
+			case 'addImageBanner':
+				addImageBanner();
+				break;
+			case 'deleteBannerHome':
+				deleteBannerHome($_POST['dataBanner']);
+				break;
 		}
 	}
 
@@ -243,6 +249,34 @@ require_once("../db/conexion.php");
 	    
 	    $id_product = $formData['id'];
 	    echo $id_product;
+	}
+
+	function addImageBanner () {
+
+		parse_str($_POST['action'], $formData);
+		
+		$fileNames = []; 
+		$indice = 0;
+		foreach ($_FILES['failboxBannerImage']["error"]  as $key => $value) {
+			$fileName = $_FILES["failboxBannerImage"]["name"][$key];
+			$fileName = date("YmdHis").pathinfo($_FILES["failboxBannerImage"]["type"][$key], PATHINFO_EXTENSION);
+			array_push($fileNames, $fileName);
+			$fileType = $_FILES["failboxBannerImage"]["type"][$key];
+			$fileTemp = $_FILES["failboxBannerImage"]["tmp_name"][$key];
+			if($indice==0)
+				move_uploaded_file($fileTemp, "../images/bannersHome/".$fileName);
+			$indice++;
+		}
+		$query = "INSERT INTO BannersHome VALUES(null,'".$fileName."','".$formData['bannerUrl']."','".$formData['bannerName']."')";
+		$result = mysql_query($query) or die(mysql_error());
+
+	}
+
+	function deleteBannerHome ($dataBanner) {
+		
+		$query = "DELETE FROM BannersHome WHERE idBannersHome = $dataBanner";
+		$result = mysql_query($query) or die(mysql_error());
+
 	}
 
 	
