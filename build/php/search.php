@@ -5,6 +5,7 @@ require_once("../admin/db/conexion.php");
 if (isset($_GET['search'])) {
 
 	$texto = explode(' ', $_GET['search']);
+	$texto = array_unique($texto);
 
 	$productos = array();
 	for ($i=0; $i < count($texto); $i++) {
@@ -19,7 +20,6 @@ if (isset($_GET['search'])) {
 			            OR c.Categoria LIKE '%" . $texto[$i] . "%'
 			            OR s.Subcategoria LIKE '%" . $texto[$i] . "%'
 			            OR m.Marca LIKE '%" . $texto[$i] . "%'";
-
 			$resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
 			while ($row = mysql_fetch_array($resultado)) {
@@ -28,7 +28,6 @@ if (isset($_GET['search'])) {
 
 			}
 		}
-
 
 
 	}
