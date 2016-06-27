@@ -1,9 +1,9 @@
 <?php
 
-	// $mysql_host = "mysql.thebeerfans.com";
-	// $mysql_user = "tbf1495";
-	// $mysql_password = "tbf1495tbf";
-	// $mysql_database = "beerfans_social";
+	// $mysql_host = "localhost";
+	// $mysql_user = "failboxtest";
+	// $mysql_password = "failboxtest";
+	// $mysql_database = "failbox";
 	// $link = "";
 
 	$mysql_host = "localhost";

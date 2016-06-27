@@ -192,6 +192,11 @@ div.item .imgBox img.imgInfo{
 	margin: 0 auto;
 	margin-bottom: .5vw;
 	margin-top: .5vw;
+
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .item .price_not, .item .price_yes{
@@ -764,6 +769,7 @@ ul.listNav li.itemGroup ul.subItems li{
 
 .newsletter form .checkb2{
 	margin-top: .5vw;
+	display: inline-block;
 }
 
 .contInformation{
@@ -967,7 +973,7 @@ ul.listNav li.itemGroup ul.subItems li{
 }
 
 .descInfo{
-	text-align: justify;
+	text-align: left;
 	width: 30%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -1433,4 +1439,8 @@ a{
 
 a:hover{
 	text-decoration: none !important;
+}
+
+.returnSpan:hover{
+	cursor: pointer;
 }

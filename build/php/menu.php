@@ -1,15 +1,15 @@
 <?php
   require_once("../admin/db/conexion.php");
-  $queryCat = "SELECT * FROM categorias";
+  $queryCat = "SELECT * FROM Categorias";
   $resultCat = mysql_query($queryCat, Conectar::con()) or die(mysql_error());
   $arrayDataCat = array();
   $arrayDataSubCat = array();
   $arrayDataBrand = array();
   while($lineCat = mysql_fetch_array($resultCat)){
-    $querySubCat = "SELECT * FROM subcategoria WHERE Categorias_IdCategoria = ".$lineCat['IdCategoria'];
+    $querySubCat = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = ".$lineCat['IdCategoria'];
     $resultSubCat = mysql_query($querySubCat, Conectar::con()) or die(mysql_error());
     while($lineSubCat = mysql_fetch_array($resultSubCat)){
-      $queryBrand = "SELECT * FROM productos INNER JOIN marcas ON marcas.IdMarca = productos.Marcas_IdMarca WHERE productos.Categorias_IdCategoria = ".$lineCat['IdCategoria']." AND productos.Subcategoria_IdSubcategoria = ".$lineSubCat['IdSubcategoria'];
+      $queryBrand = "SELECT * FROM Productos INNER JOIN Marcas ON Marcas.IdMarca = Productos.Marcas_IdMarca WHERE Productos.Categorias_IdCategoria = ".$lineCat['IdCategoria']." AND Productos.Subcategoria_IdSubcategoria = ".$lineSubCat['IdSubcategoria'];
       $resultBrand = mysql_query($queryBrand, Conectar::con()) or die(mysql_error());
       $arrayBrandRegister = array();
       while($lineBrand = mysql_fetch_array($resultBrand)){
