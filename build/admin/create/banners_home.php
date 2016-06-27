@@ -1,11 +1,11 @@
-<?php 
+<?php
   session_start();
   if(!isset($_SESSION['idAdmin']))
     header("Location: index.php");
   require_once("../db/conexion.php");
   if ($_SESSION['idPrivilegio'] > 1)
      header("Location: ../listProducts.php");
-?> 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -173,8 +173,8 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <?php 
-                            $query = "SELECT * FROM bannersHome";
+                            <?php
+                            $query = "SELECT * FROM BannersHome";
                             $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                             while ($row = mysql_fetch_array($resultado)) {
                               ?>
@@ -253,7 +253,7 @@
         <script src="../js/datatables/responsive.bootstrap.min.js"></script>
         <script src="../js/datatables/dataTables.scroller.min.js"></script>
 
-        
+
         <script type="text/javascript">
           $(document).ready(function() {
             $('#datatable-responsive').DataTable();
