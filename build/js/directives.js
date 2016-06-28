@@ -97,7 +97,7 @@
 						});
 						$('.itemsSelecteds li img').attr("src", "./src/images/notselected.png");
 						$('.itemsSelecteds li:nth-child('+(item_selected+1)+') img').attr("src", "./src/images/selected.png");
-					}, 4000);
+					}, 5000);
 				}
 			};
 		})
