@@ -3,7 +3,7 @@ require_once("../admin/db/conexion.php");
 
 if (isset($_POST['id'])) {
 
-	$query = "SELECT * FROM Productos p INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca WHERE IdProducto = '".$_POST['id']."'";
+	$query = "SELECT * FROM Productos p INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca WHERE IdProducto = '".$_POST['id']."' AND Estatus = 'Activo'";
 	$resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
 	$productos = array();

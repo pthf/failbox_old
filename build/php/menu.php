@@ -9,7 +9,7 @@
     $querySubCat = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = ".$lineCat['IdCategoria'];
     $resultSubCat = mysql_query($querySubCat, Conectar::con()) or die(mysql_error());
     while($lineSubCat = mysql_fetch_array($resultSubCat)){
-      $queryBrand = "SELECT * FROM Productos INNER JOIN Marcas ON Marcas.IdMarca = Productos.Marcas_IdMarca WHERE Productos.Categorias_IdCategoria = ".$lineCat['IdCategoria']." AND Productos.Subcategoria_IdSubcategoria = ".$lineSubCat['IdSubcategoria'];
+      $queryBrand = "SELECT * FROM Productos INNER JOIN Marcas ON Marcas.IdMarca = Productos.Marcas_IdMarca WHERE Productos.Categorias_IdCategoria = ".$lineCat['IdCategoria']." AND Productos.Subcategoria_IdSubcategoria = ".$lineSubCat['IdSubcategoria']." AND Estatus = 'Activo'";
       $resultBrand = mysql_query($queryBrand, Conectar::con()) or die(mysql_error());
       $arrayBrandRegister = array();
       while($lineBrand = mysql_fetch_array($resultBrand)){

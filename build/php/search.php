@@ -15,6 +15,7 @@ if (isset($_GET['search'])) {
 						INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
 						INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
 						INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
+						AND p.Estatus = 'Activo'
 						WHERE p.NombreProd LIKE '%" . $texto[$i] . "%'
 			            OR p.RouteProd LIKE '%" . $texto[$i] . "%'
 			            OR c.Categoria LIKE '%" . $texto[$i] . "%'
