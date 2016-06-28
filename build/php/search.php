@@ -5,7 +5,7 @@ require_once("../admin/db/conexion.php");
 if (isset($_GET['search'])) {
 
 	$texto = explode(' ', $_GET['search']);
-	$texto = array_unique($texto);
+	// $texto = array_unique($texto);
 
 	$productos = array();
 	for ($i=0; $i < count($texto); $i++) {
@@ -20,15 +20,15 @@ if (isset($_GET['search'])) {
 			            OR c.Categoria LIKE '%" . $texto[$i] . "%'
 			            OR s.Subcategoria LIKE '%" . $texto[$i] . "%'
 			            OR m.Marca LIKE '%" . $texto[$i] . "%'";
+
 			$resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
 
 			while ($row = mysql_fetch_array($resultado)) {
 
-			array_push($productos, $row);
+				array_push($productos, $row);
 
 			}
 		}
-
 
 	}
 
@@ -51,9 +51,13 @@ if (isset($productos)) {
             "image" => $array_images[0],
             "paypal" => $productos[$i]['urlPaypal'],
 		);
+
 		array_push($items, $item);
 	}
-	print_r(json_encode($items));
+		
+	$products = array_map("unserialize", array_unique(array_map("serialize", $items)));
+
+	print_r(json_encode($products));
 }
 
 ?>
