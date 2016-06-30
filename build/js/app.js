@@ -39,6 +39,10 @@
 				templateUrl: 'views/contacto.html',
 				controller: 'homeSliderController'
 			})
+			.when('/faq', {
+				templateUrl: 'views/faq.html',
+				controller: 'homeSliderController'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

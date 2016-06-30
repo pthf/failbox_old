@@ -200,11 +200,6 @@ div.item .imgBox img.imgInfo{
 	margin: 0 auto;
 	margin-bottom: .5vw;
 	margin-top: .5vw;
-
-
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .item .price_not, .item .price_yes{
@@ -492,13 +487,12 @@ div.item .imgBox img.imgInfo{
 }
 
 ul.listNav{
-	width: 110%;
+	width: 120% !important;
 	height: auto;
 	position: absolute;
 	top: 100%;
 	left: 0%;
 	z-index: 10;
-
 }
 
 ul.listNav li.itemGroup{
@@ -525,7 +519,7 @@ ul.listNav li.itemGroup{
 }
 
 ul.listNav li.itemGroup ul.subItems{
-	width: 80%;
+	width: 100%;
 	height: auto;
 	position: absolute;
 	top: 1vw;
@@ -1045,25 +1039,21 @@ ul.listNav li.itemGroup ul.subItems li{
 
 /* This is for the sesion products */
 .cont-search-product{
-	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-flex-direction: row;
-	-ms-flex-direction: row;
 	flex-direction: row;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	-webkit-justify-content: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-align-content: center;
-	-ms-flex-line-pack: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	align-content: center;
-	font-size: 1em;
+
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: flex-start;
+	-webkit-align-items: flex-start;
+	-webkit-align-content: center;
+
+	font-size: .8em;
 	background: #58595B;
 }
 
@@ -1079,7 +1069,7 @@ ul.listNav li.itemGroup ul.subItems li{
 	height: auto;
 	padding: 5vw 0 0 0 !important;
 	margin: 0 !important;
-	background: #FFF;;
+	background: #FFF;
 }
 
 .groupAllItems{
@@ -1158,7 +1148,8 @@ ul.groupAllItems span{
 
 .contElements{
 	width: 40%;
-	height: 20vw;
+	height: auto;
+	max-height: 20vw;
 	overflow: auto;
 	z-index: 5;
 	position: absolute;
@@ -1488,6 +1479,79 @@ iframe {
 	}
 }
 
+span.returnSpan{
+	font-family: 'Gotham-Light' !important;
+}
+
 .returnSpan:hover{
 	cursor: pointer;
+}
+
+.faqs{
+	width: 70%;
+	height: auto;
+	margin: 0 auto;
+	font-size: 1.5em;
+	font-family: 'Gotham-Bold';
+	margin-bottom: 4vw;
+}
+
+.faqs span{
+	display: block;
+}
+
+.faqs ul{
+	width: 70%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.faqs span.title{
+	font-size: 2.5em;
+	color: #6EB153;
+	width: 90%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+
+.faqs span.subtitle{
+	font-size: 2em;
+	color: #6EB153;
+	width: 90%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+
+.faqs ul, .faqs li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+.faqs li{
+	margin-bottom: 1vw;
+}
+
+.faqs li div.question{
+	background: #58595B;
+	padding-left: .5vw;
+	cursor: pointer;
+	color: #FFF;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+	font-size: 1.5em;
+	transition: 1s;
+}
+
+.faqs li div.question:hover{
+	background: #6EB153;
+}
+
+.faqs li div.questionSelected{
+	background: #6EB153;
+}
+
+.faqs li div.answer{
+	color: #58595B;
 }
