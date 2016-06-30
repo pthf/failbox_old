@@ -1,45 +1,5 @@
 <?php 
   require_once("../db/conexion.php");
-
-  error_reporting(0);
-  if(isset($_POST['submit'])){
-        
-    echo "<pre>";
-    $fname = $_FILES['sel_file']['name'];
-    echo 'Cargando nombre del archivo: '.$fname.' ';
-    $chk_ext = explode(".",$fname);
-    if(strtolower(end($chk_ext)) == "csv")
-    { 
-            
-      //si es correcto, entonces damos permisos de lectura para subir
-      $filename = $_FILES['sel_file']['tmp_name'];
-      $handle = fopen($filename, "r"); 
-      $array_products = array();
-      while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-      {
-        array_push($array_products, $data);
-        // if(strtoupper($data[0]) != "NOMBRES"){
-        //     //Insertamos los datos con los valores...
-        //   // $sql = "insert into cliente (Nombres,Apellidos,Direccion,Telefono,Movil,Cedula,TipoDocumento)";
-        //   // $sql .= " values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]')";
-
-        //   mysql_query($sql) or die(mysql_error());
-          
-        // }
-      }
-      for($i=1; $i < count($array_products); $i++){
-        var_dump($array_products[$i]);
-      }
-      //  //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
-      //  fclose($handle);
-      echo "<br>";
-      echo "Importación exitosa!";
-    } else {
-        echo '<br> Formato de archivo incorrecto';    
-    }
-    echo "</pre>";
-  }
-  
 ?>
 
 <?php 
@@ -211,6 +171,58 @@
                                                     <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>
                                                 </div>
                                             </form> 
+                                            <?php 
+                                              error_reporting(0);
+                                              if(isset($_POST['submit'])){
+                                                    
+                                                echo "<pre>";
+                                                $fname = $_FILES['sel_file']['name'];
+                                                echo 'Cargando nombre del archivo: '.$fname.' <br>';
+                                                $chk_ext = explode(".",$fname);
+                                                if(strtolower(end($chk_ext)) == "csv")
+                                                { 
+                                                        
+                                                  //si es correcto, entonces damos permisos de lectura para subir
+                                                  $filename = $_FILES['sel_file']['tmp_name'];
+                                                  $handle = fopen($filename, "r"); 
+                                                  $array_products = array();
+                                                  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+                                                  {
+                                                    array_push($array_products, $data);
+                                                    // if(strtoupper($data[0]) != "NOMBRES"){
+                                                    //     //Insertamos los datos con los valores...
+                                                    //   // $sql = "insert into cliente (Nombres,Apellidos,Direccion,Telefono,Movil,Cedula,TipoDocumento)";
+                                                    //   // $sql .= " values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]')";
+
+                                                    //   mysql_query($sql) or die(mysql_error());
+                                                      
+                                                    // }
+                                                  }
+                                                  for($i=1; $i < count($array_products); $i++){
+                                                    $query = "INSERT INTO Productos VALUES(
+                                                                null,'".$array_products[$i][1]."',
+                                                                '".$array_products[$i][2]."','".$array_products[$i][3]."',
+                                                                '".$array_products[$i][4]."','".$array_products[$i][5]."',
+                                                                '".$array_products[$i][6]."','".$array_products[$i][7]."',
+                                                                '".$array_products[$i][8]."','".$array_products[$i][9]."',
+                                                                '".$array_products[$i][10]."','".$array_products[$i][11]."',
+                                                                '".$array_products[$i][12]."','".$array_products[$i][13]."',
+                                                                '".$array_products[$i][14]."','".$array_products[$i][15]."',
+                                                                '".$array_products[$i][16]."','".$array_products[$i][17]."',
+                                                                '".$array_products[$i][18]."','".$array_products[$i][19]."')";
+                                                    // echo $query;
+                                                    $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+                                                  }
+                                                  //  //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
+                                                  fclose($handle);
+                                                  echo "<br>";
+                                                  echo "Importación exitosa!";
+                                                } else {
+                                                    echo '<br> Formato de archivo incorrecto';    
+                                                }
+                                                echo "</pre>";
+                                              }
+                                            ?>
                                           </div>
                                         </div>
                                       </div>
