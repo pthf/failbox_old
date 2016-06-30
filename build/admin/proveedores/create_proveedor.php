@@ -43,20 +43,14 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="../listProducts.php" class="site_title"><i class="fa fa-send"></i> <span>Failbox</span></a>
-                            <!--<a href="index3.html"><img src="images/failbox-04.svg"></a>-->
+                            <!-- <img src="../../src/images/failbox-04.png" alt="" style="width: 80%;"> -->
                         </div>
                         <div class="clearfix"></div>
 
 
                         <!-- menu prile quick info -->
                         <div class="profile">
-                            <div class="profile_pic">
-                                <img src="../images/user.png" alt="" class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                <span>Bienvenido</span>
-                            </div>
+                            <a href="../listProducts.php"><img src="../../src/images/failbox-04.png" alt="" style="width: 90%;padding: 0 0% 10% 10%;"></a>
                         </div>
                         <!-- /menu prile quick info -->
 
@@ -66,7 +60,7 @@
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+                              <h3 style="padding: 0 27% !important"><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
@@ -75,6 +69,8 @@
                                     <li><a href="../create/createProducts.php">Crear</a>
                                     </li>
                                     <li><a href="../edit/editProducts.php">Editar</a>
+                                    </li>
+                                    <li><a href="../create/carga_masiva.php">Carga Masiva</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -158,98 +154,126 @@
 
                                     <div class="tab-content">
                                       <div id="home" class="tab-pane fade in active">
-                                        <form class="form-horizontal form-label-left" id="formProduct" name="formProductData" enctype="multipart/form-data">
+                                        <form class="form-horizontal form-label-left" id="formNewTypeProvider" name="formNewProviderData" enctype="multipart/form-data">
                                             <div class="col-sm-5"><br>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoría   
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Agregar Tipo
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="selectSubCategory" required name="subcategory">
+                                                        <input class='form-control' type="text" name="other_provider" placeholder="Agrega un tipo de proveedor">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <button type="submit" class="btn btn-success">Agregar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="form-horizontal form-label-left" id="formProvider" name="formProviderData" enctype="multipart/form-data">
+                                            <div class="col-sm-5"><br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reason_social">Razón Social 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="reason_social" class="form-control col-md-7 col-xs-12" name="reason_social" placeholder="Nombre del proveedor" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Dirección 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="address" class="form-control col-md-7 col-xs-12" name="address" placeholder="Calle y número" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="colony">Colonia 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="colony" class="form-control col-md-7 col-xs-12" name="colony" placeholder="Colonia" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cp">C.P. 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="cp" class="form-control col-md-7 col-xs-12" name="cp" placeholder="Código Postal" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel">Tel. 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="tel" class="form-control col-md-7 col-xs-12" name="tel" placeholder="Número de teléfono" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">Estado 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class='form-control' id="state" required name="state">
                                                             <option disabled selected>Selecciona..</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_product">Nombre Producto 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" required="" type="text">
-                                                    </div>
-                                                </div>
                                                 <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripción 
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">Ciudad 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <textarea id="description" required="" rows="5" name="description" class="form-control col-md-7 col-xs-12" placeholder="Escribe la descripcion del producto" ></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stocks">Stocks 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="number" min="0" id="stocks" name="stocks" required="" class="form-control col-md-7 col-xs-12" placeholder="Cantidad de productos">
+                                                        <select class='form-control' id="city" required name="city">
+                                                            <option disabled selected>Selecciona..</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5"><br>
                                                 <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pricelist">Precio lista $ 
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="providerType">Tipo de Proveedor   
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="number" id="pricelist" name="pricelist" required="" min="0" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12" placeholder="Precio lista MXN">
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pricefailbox">Precio failbox $ 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="number" id="pricefailbox" name="pricefailbox" required="" min="0" data-validate-minmax="10,100" placeholder="Precio failbox MXN" class="form-control col-md-7 col-xs-12">
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Modelo 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="model" type="text" name="model" required="" placeholder="Codigo de producto" class="form-control col-md-7 col-xs-12">
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label for="sku" class="control-label col-md-3">SKU </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="sku" type="text" name="sku" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="" placeholder="No. REF. (SKU)">
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select required class="form-control" name="status">
+                                                        <select class='form-control' id="providerType" required name="providerType">
                                                             <option disabled selected>Selecciona..</option>
-                                                            <option>Activo</option>
-                                                            <option>Inactivo</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">¿Producto destacado?
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">¿Costo de envío?
                                                     </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
                                                         <select required class="form-control" name="outstanding">
                                                             <option disabled selected>Selecciona..</option>
-                                                            <option>SI</option>
-                                                            <option>NO</option>
+                                                            <option value="1">Sí</option>
+                                                            <option value="2">No</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
-                                                    <label for="url_paypal" class="control-label col-md-3">URL Paypal </label>
+                                                    <label for="sku" class="control-label col-md-3">Precio por paquete $</label>
+                                                    <div class="col-md-2 col-sm-6 col-xs-12">
+                                                        <input id="priceSmall" type="number" name="priceSmall" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Chico">
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-6 col-xs-12">
+                                                        <input id="priceMedium" type="number" name="priceMedium" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Mediano">
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-6 col-xs-12">
+                                                        <input id="priceBig" type="number" name="priceBig" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Grande">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Código proveedor
+                                                    </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="url_paypal" type="text" name="url_paypal" class="form-control col-md-7 col-xs-12" required="" placeholder="URL Paypal">
+                                                        <?php 
+                                                        $query = "SELECT MAX(idProveedor) as idProveedor FROM Proveedores";
+                                                        $resultado = mysql_query($query,Conectar::con()) or die (mysql_error());
+                                                        $row = mysql_fetch_array($resultado);
+                                                        ?>
+                                                        <input id="model" type="text" name="model" required="" disabled placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $row['idProveedor']+1?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-3">
-                                                        <a href="../listProducts.php" class="btn btn-danger">Cancelar</a>
+                                                        <a href="listProveedores.php" class="btn btn-danger">Cancelar</a>
                                                         <button type="submit" class="btn btn-primary">Siguiente</button>
                                                     </div>
                                                 </div>

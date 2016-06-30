@@ -101,20 +101,14 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="../listProducts.php" class="site_title"><i class="fa fa-send"></i> <span>Failbox</span></a>
-                            <!--<a href="index3.html"><img src="images/failbox-04.svg"></a>-->
+                            <!-- <img src="../../src/images/failbox-04.png" alt="" style="width: 80%;"> -->
                         </div>
                         <div class="clearfix"></div>
 
 
                         <!-- menu prile quick info -->
                         <div class="profile">
-                            <div class="profile_pic">
-                                <img src="../images/user.png" alt="" class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                <span>Bienvenido</span>
-                            </div>
+                            <a href="../listProducts.php"><img src="../../src/images/failbox-04.png" alt="" style="width: 90%;padding: 0 0% 10% 10%;"></a>
                         </div>
                         <!-- /menu prile quick info -->
 
@@ -124,7 +118,7 @@
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+                              <h3 style="padding: 0 27% !important"><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
@@ -133,6 +127,8 @@
                                     <li><a href="createProducts.php">Crear</a>
                                     </li>
                                     <li><a href="../edit/editProducts.php">Editar</a>
+                                    </li>
+                                    <li><a href="carga_masiva.php">Carga Masiva</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -298,6 +294,19 @@
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input type="number" id="pricefailbox" name="pricefailbox" required="" min="0" data-validate-minmax="10,100" placeholder="Precio failbox MXN" class="form-control col-md-7 col-xs-12">
                                                     </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cost_shipping">Costo de envío 
+                                                  </label>
+                                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                                      <select required class="form-control" name="cost_shipping">
+                                                          <option selected disabled>Selecciona..</option>
+                                                          <option value="0">Envio Gratis</option>
+                                                          <option value="90">Paquete Chico $90.00</option>
+                                                          <option value="100">Paquete Mediano $100.00</option>
+                                                          <option value="110">Paquete Grande $110.00</option>
+                                                      </select>
+                                                  </div>
                                                 </div>
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Modelo 

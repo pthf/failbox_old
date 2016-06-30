@@ -50,19 +50,14 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="../listProducts.php" class="site_title"><i class="fa fa-send"></i> <span>Failbox</span></a>
+              <!-- <img src="../../src/images/failbox-04.png" alt="" style="width: 80%;"> -->
           </div>
           <div class="clearfix"></div>
 
 
           <!-- menu prile quick info -->
           <div class="profile">
-            <div class="profile_pic">
-              <img src="../images/user.png" alt="" class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-              <span>Bienvenido</span>
-            </div>
+              <a href="../listProducts.php"><img src="../../src/images/failbox-04.png" alt="" style="width: 90%;padding: 0 0% 10% 10%;"></a>
           </div>
           <!-- /menu prile quick info -->
 
@@ -72,7 +67,7 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
             <div class="menu_section">
-              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+              <h3 style="padding: 0 27% !important"><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
@@ -91,7 +86,7 @@
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="../proveedores/listProveedores.php">Proveedores</a>
                     </li>
-                    <li><a href="create_proveedor.php">Crear</a>
+                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
                     </li>
                     <li><a href="#">Editar</a>
                     </li>
