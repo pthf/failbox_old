@@ -200,11 +200,6 @@ div.item .imgBox img.imgInfo{
 	margin: 0 auto;
 	margin-bottom: .5vw;
 	margin-top: .5vw;
-
-
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .item .price_not, .item .price_yes{
@@ -492,13 +487,12 @@ div.item .imgBox img.imgInfo{
 }
 
 ul.listNav{
-	width: 110%;
+	width: 120% !important;
 	height: auto;
 	position: absolute;
 	top: 100%;
 	left: 0%;
 	z-index: 10;
-
 }
 
 ul.listNav li.itemGroup{
@@ -525,7 +519,7 @@ ul.listNav li.itemGroup{
 }
 
 ul.listNav li.itemGroup ul.subItems{
-	width: 80%;
+	width: 100%;
 	height: auto;
 	position: absolute;
 	top: 1vw;
@@ -1045,25 +1039,21 @@ ul.listNav li.itemGroup ul.subItems li{
 
 /* This is for the sesion products */
 .cont-search-product{
-	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-flex-direction: row;
-	-ms-flex-direction: row;
 	flex-direction: row;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	-webkit-justify-content: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-align-content: center;
-	-ms-flex-line-pack: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	align-content: center;
-	font-size: 1em;
+
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: flex-start;
+	-webkit-align-items: flex-start;
+	-webkit-align-content: center;
+
+	font-size: .8em;
 	background: #58595B;
 }
 
@@ -1079,7 +1069,7 @@ ul.listNav li.itemGroup ul.subItems li{
 	height: auto;
 	padding: 5vw 0 0 0 !important;
 	margin: 0 !important;
-	background: #FFF;;
+	background: #FFF;
 }
 
 .groupAllItems{
@@ -1158,7 +1148,8 @@ ul.groupAllItems span{
 
 .contElements{
 	width: 40%;
-	height: 20vw;
+	height: auto;
+	max-height: 20vw;
 	overflow: auto;
 	z-index: 5;
 	position: absolute;
@@ -1486,6 +1477,10 @@ iframe {
 	    width: 270px;
 	    height: 240px;
 	}
+}
+
+span.returnSpan{
+	font-family: 'Gotham-Light' !important;
 }
 
 .returnSpan:hover{

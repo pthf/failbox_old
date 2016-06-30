@@ -5,7 +5,7 @@
         <a href="#/productos/{{key | urlName }}" style="color:#FFF">
           {{key}}
         </a>
-        <img src="./src/images/viewmore.png" style="width: 0.4em; height: auto; margin-left: 1vw;" ng-click="openCategory(key)">
+        <img src="./src/images/viewmore.png" style="width: 0.6em; height: auto; margin-left: 1vw;" ng-click="openCategory(key)">
       </span>
       <ul class="subcategoryList">
         <span ng-repeat="(key2, data2) in data">
@@ -14,7 +14,7 @@
               <a href="#/productos/{{key | urlName }}/{{key3 | urlName }}" style="color:#FFF">
                 {{key3}}
               </a>
-              <img src="./src/images/viewmore.png" style="width: 0.5em; height: auto; margin-left: 1vw;"  ng-click="openSubCategory(key3)">
+              <img src="./src/images/viewmore.png" style="width: 0.7em; height: auto; margin-left: 1vw;"  ng-click="openSubCategory(key3)">
             </span>
             <ul class="brandList">
               <span ng-repeat="(key4, data4) in subdata3">
