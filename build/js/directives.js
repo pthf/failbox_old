@@ -48,6 +48,22 @@
 			};
 		})
 
+		.directive('questionsList', function(){
+				return{
+					restrict: 'E',
+					templateUrl: './partials/questions-list.html',
+					controller: function($document){
+						$('.faqs li div.answer').slideUp(0);
+						$('.faqs li div.question').click(function(){
+							$('.faqs li div.answer').slideUp(250);
+							$(this).siblings('div.answer').slideDown(250);
+							$('.faqs li div.question').removeClass('questionSelected');
+							$(this).addClass('questionSelected');
+						});
+					}
+				}
+		})
+
 		.directive('showModalVideo', function(){
 			return {
         restrict: 'E',
@@ -55,7 +71,7 @@
 				controller: function($document){
 
 					$( ".titleNav" ).click(function() {
-						$(".video-modal-wrapper").append( '<iframe id="player" type="text/html" src="https://www.youtube.com/embed/-I1F5zo8csU?version=3&enablejsapi=1&controls=0&&showinfo=0"> </iframe>' );
+						$(".video-modal-wrapper").append( '<iframe id="player" type="text/html" src="https://www.youtube.com/embed/MNwd2aQlXUA?version=3&enablejsapi=1&controls=0&&showinfo=0&rel=0&amp"> </iframe>' );
 						$('.background-blur').css('z-index','8');
 						$('.background-blur').css('opacity','.6');
 						$('.video-modal').css('z-index','8');
@@ -492,6 +508,10 @@
         restrict: 'E',
         templateUrl: './partials/list-products-filtered.html',
 				controller: function($document){
+					$(document).on('click', '.groupAllItems img', function(){
+						$('.groupAllItems img').attr('src','./src/images/viewmore-aside.png');
+						$(this).attr('src','./src/images/viewmore.png');
+					});
 					// //$(document).on('click', 'span.category', function(){
 					// $('span.category').click(function(){
 					// 	$('ul.subcategoryList').slideUp();

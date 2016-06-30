@@ -101,9 +101,17 @@
 		width: 140% !important;
 	}
 
+	.faqs{
+		font-size: 1.3em;
+	}
+
 }
 
 @media (max-width: 1366px){
+
+	.faqs{
+		width: 80%;
+	}
 
 	.contendItems .contItemsPosition{
 		font-size: .8em;
@@ -215,6 +223,10 @@
 
 	ul.listNav{
 		width: 180% !important;
+	}
+
+	.faqs{
+		font-size: 1.1em;
 	}
 
 }
@@ -362,9 +374,17 @@
 		width: 210% !important;
 	}
 
+	.faqs{
+		font-size: 1em;
+	}
+
 }
 
 @media (max-width: 768px){
+
+	.faqs{
+		width: 90%;
+	}
 
 	.leftItem img{
 		width: 15%;
@@ -525,10 +545,17 @@
 		width: 220% !important;
 	}
 
+	.faqs{
+		font-size: .8em;
+	}
 
 }
 
 @media (max-width: 640px){
+
+	.faqs{
+		width: 95%;
+	}
 
 	.leftItem img{
 		width: 20%;
@@ -614,6 +641,10 @@
 
 	.contItemsPosition .groupItemsFilters{
 		font-size: 1.2em;
+	}
+
+	.faqs{
+		font-size: .6em;
 	}
 
 }
@@ -754,6 +785,10 @@
 
 	.contItemsPosition .groupItemsFilters{
 		font-size: 1.2em;
+	}
+
+	.faqs{
+		font-size: .4em;
 	}
 
 }

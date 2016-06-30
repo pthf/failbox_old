@@ -1486,3 +1486,72 @@ span.returnSpan{
 .returnSpan:hover{
 	cursor: pointer;
 }
+
+.faqs{
+	width: 70%;
+	height: auto;
+	margin: 0 auto;
+	font-size: 1.5em;
+	font-family: 'Gotham-Bold';
+	margin-bottom: 4vw;
+}
+
+.faqs span{
+	display: block;
+}
+
+.faqs ul{
+	width: 70%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.faqs span.title{
+	font-size: 2.5em;
+	color: #6EB153;
+	width: 90%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+
+.faqs span.subtitle{
+	font-size: 2em;
+	color: #6EB153;
+	width: 90%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+
+.faqs ul, .faqs li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+.faqs li{
+	margin-bottom: 1vw;
+}
+
+.faqs li div.question{
+	background: #58595B;
+	padding-left: .5vw;
+	cursor: pointer;
+	color: #FFF;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+	font-size: 1.5em;
+	transition: 1s;
+}
+
+.faqs li div.question:hover{
+	background: #6EB153;
+}
+
+.faqs li div.questionSelected{
+	background: #6EB153;
+}
+
+.faqs li div.answer{
+	color: #58595B;
+}
