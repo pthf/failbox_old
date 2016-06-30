@@ -88,6 +88,7 @@
            
          });
         </script>
+
     </head>
 
 
@@ -249,9 +250,10 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_product">Nombre Producto 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" required="" type="text">
+                                                        <input id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" type="text">
+                                                        <div class="result"></div>
                                                     </div>
-                                                </div>
+                                                </div>    
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripción 
                                                     </label>
@@ -350,14 +352,6 @@
                                                         <input hidden type="text" name="idPrivilegio" value="<?php echo $_SESSION['idPrivilegio'];?>">
                                                     </div>
                                                 </div>
-                                                <!--<div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Subir Imagen 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="file" id="image" name="image[]" value="" required multiple>
-                                                        <p class="help-block">Subir unicamente imagenes .jpg, .jpeg, png.</p>
-                                                    </div>
-                                                </div>-->
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-3">
                                                         <a href="../listProducts.php" class="btn btn-danger">Cancelar</a>

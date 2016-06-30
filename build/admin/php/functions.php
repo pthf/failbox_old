@@ -130,7 +130,7 @@ require_once("../db/conexion.php");
 	function addNewProduct() {
 	
 		parse_str($_POST['action'],$formData);
-		
+
 	    date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
