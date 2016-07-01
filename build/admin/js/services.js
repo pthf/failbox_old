@@ -155,3 +155,67 @@
 			}
 		})
 	});
+
+	$("#formCargaProductos").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "cargaMasivaProductos");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('upload_products['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				$('.result_products').html(result);
+				$('.result_products').hide(6000);
+				$('#formCargaProductos')[0].reset();
+				// location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	});
+
+	$("#formCargaCaracteristicas").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "cargaMasivaCaracteristicas");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('upload_char['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				$('.result_chars').html(result);
+				$('.result_chars').hide(6000);
+				$('#formCargaCaracteristicas')[0].reset();
+				// location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	});

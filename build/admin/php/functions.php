@@ -41,6 +41,12 @@ require_once("../db/conexion.php");
 			case 'deleteBannerHome':
 				deleteBannerHome($_POST['dataBanner']);
 				break;
+			case 'cargaMasivaProductos':
+				cargaMasivaProductos();
+				break;
+			case 'cargaMasivaCaracteristicas':
+				cargaMasivaCaracteristicas();
+				break;
 		}
 	}
 
@@ -278,6 +284,73 @@ require_once("../db/conexion.php");
 		
 		$query = "DELETE FROM BannersHome WHERE idBannersHome = $dataBanner";
 		$result = mysql_query($query) or die(mysql_error());
+
+	}
+
+	function cargaMasivaProductos () {
+
+		$fname = $_FILES['upload_products']['name'];
+        // echo 'Cargando nombre del archivo: '.$fname[0].' <br>';
+        $chk_ext = explode(".",$fname[0]);
+        if(strtolower(end($chk_ext)) == "csv")
+        {    
+          //si es correcto, entonces damos permisos de lectura para subir
+          $filename = $_FILES['upload_products']['tmp_name'];
+          $handle = fopen($filename[0], "r"); 
+          $array_products = array();
+          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+          {
+            array_push($array_products, $data);
+          }
+          for($i=1; $i < count($array_products); $i++){
+            $query = "INSERT INTO Productos VALUES(
+                    null,'".$array_products[$i][1]."',
+                    '".$array_products[$i][2]."','".$array_products[$i][3]."',
+                    '".$array_products[$i][4]."','".$array_products[$i][5]."',
+                    '".$array_products[$i][6]."','".$array_products[$i][7]."',
+                    '".$array_products[$i][8]."','".$array_products[$i][9]."',
+                    '".$array_products[$i][10]."','".$array_products[$i][11]."',
+                    '".$array_products[$i][12]."','".$array_products[$i][13]."',
+                    '".$array_products[$i][14]."','".$array_products[$i][15]."',
+                    '".$array_products[$i][16]."','".$array_products[$i][17]."',
+                    '".$array_products[$i][18]."','".$array_products[$i][19]."')";
+	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+          }
+           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
+          fclose($handle);
+          echo "<span style='color:red'>Importación exitosa!</span>";
+        } else {
+          echo '<span style="color:red">Formato de archivo incorrecto</span>';    
+        }
+
+	}
+
+	function cargaMasivaCaracteristicas () {
+
+		$fname = $_FILES['upload_char']['name'];
+        // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
+        $chk_ext = explode(".",$fname[1]);
+        if(strtolower(end($chk_ext)) == "csv")
+        {    
+          //si es correcto, entonces damos permisos de lectura para subir
+          $filename = $_FILES['upload_char']['tmp_name'];
+          $handle = fopen($filename[1], "r"); 
+          $array_products = array();
+          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+          {
+            array_push($array_products, $data);
+          }
+          for($i=1; $i < count($array_products); $i++){
+            $query = "INSERT INTO Productos_has_Caracteristicas VALUES('".$array_products[$i][0]."','".$array_products[$i][1]."','".$array_products[$i][2]."')";
+            // echo $query;
+            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+          }
+           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
+          fclose($handle);
+          echo "<span style='color:red'>Importación exitosa!</span>";
+        } else {
+          echo '<span style="color:red">Formato de archivo incorrecto</span>';     
+        }
 
 	}
 
