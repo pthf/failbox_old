@@ -8,19 +8,19 @@ $id_product = $_GET['id'];
 $id_imagen = $_GET['imagen'];
 
 $sql_charact = "DELETE FROM Productos_has_Imagenes WHERE IdImagen = '".$id_imagen."'";
-	$res_charact = mysql_query($sql_charact,Conectar::con()) or die(mysql_error());
+	$res_charact = mysqli_query(Conectar::con(),$sql_charact) or die(mysqli_error());
 
 $query = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id_product."'";
-$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
 $array_images = array();
-while ($row = mysql_fetch_array($resultado)) {
+while ($row = mysqli_fetch_array($resultado)) {
 	array_push($array_images, $row['NombreImagen']);
 }
 
 $imagenes = implode(',', $array_images);
 $query3 = "UPDATE Productos SET Image = '".$imagenes."' WHERE IdProducto = '".$id_product."'";
-    $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+    $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
 
 echo"
 	<script type='text/javascript'>

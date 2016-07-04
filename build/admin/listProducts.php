@@ -161,8 +161,8 @@
                       <div class="x_title">
                         <?php 
                           $sql = "SELECT * FROM Productos";
-                          $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error()); 
-                          $num_total_products = mysql_num_rows($res_sql);
+                          $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error()); 
+                          $num_total_products = mysqli_num_rows($res_sql);
                         ?>
                         <h2>Total de productos: <?php echo $num_total_products;?></h2>
                         <ul class="nav navbar-right panel_toolbox">
@@ -196,8 +196,8 @@
                             <?php
                             //Consultamos los registros almacenados en la base de datos
                             $query = "SELECT * FROM Productos ORDER BY IdProducto DESC";
-                            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-                            while($fila = mysql_fetch_array($resultado)) { ?>
+                            $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+                            while($fila = mysqli_fetch_array($resultado)) { ?>
                             <tr>
                               <td><?php echo $fila['IdProducto']?></td>
                               <td><?php echo ($fila['IdPrivilegio'] == 1) ? 'Administrador' : 'Proveedor'?></td>
@@ -209,8 +209,8 @@
                                             INNER JOIN Productos p
                                             ON p.Categorias_IdCategoria = c.IdCategoria
                                             WHERE p.IdProducto = ".$fila['IdProducto'];
-                                $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error()); 
-                                while($fila1 = mysql_fetch_array($resultado1)) { 
+                                $resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error()); 
+                                while($fila1 = mysqli_fetch_array($resultado1)) { 
                                   echo $fila1['Categoria'];
                                 }
                               ?>
@@ -221,8 +221,8 @@
                                             INNER JOIN Productos p
                                             ON p.Subcategoria_IdSubcategoria = s.IdSubcategoria
                                             WHERE p.IdProducto = ".$fila['IdProducto'];
-                                $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error()); 
-                                while($fila4 = mysql_fetch_array($resultado4)) { 
+                                $resultado4 = mysqli_query(Conectar::con(),$query4) or die(mysqli_error()); 
+                                while($fila4 = mysqli_fetch_array($resultado4)) { 
                                   echo $fila4['Subcategoria'];
                                 }
                               ?>
@@ -233,8 +233,8 @@
                                             INNER JOIN Productos p 
                                               ON p.Marcas_IdMarca = m.IdMarca
                                             WHERE p.IdProducto = '".$fila['IdProducto']."'";
-                                $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error()); 
-                                $fila2 = mysql_fetch_array($resultado2);
+                                $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error()); 
+                                $fila2 = mysqli_fetch_array($resultado2);
                                 echo $fila2['Marca'];
                               ?>
                               </td>
@@ -249,8 +249,8 @@
                                             INNER JOIN Caracteristicas ca
                                             ON phc.Caracteristicas_IdCaracteristica = ca.IdCaracteristica
                                             WHERE phc.Productos_IdProducto = ".$fila['IdProducto'];
-                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error()); 
-                                while($fila3 = mysql_fetch_array($resultado3)) { 
+                                $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error()); 
+                                while($fila3 = mysqli_fetch_array($resultado3)) { 
                                   echo '- '.$fila3['NombreCaracteristica'].' : '.$fila3['DetalleCaracteristica'].'<br> ';
                                 }
                               ?>

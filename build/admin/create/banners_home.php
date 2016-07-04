@@ -172,8 +172,8 @@
                             <?php
 
                             $query = "SELECT * FROM BannersHome";
-                            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-                            while ($row = mysql_fetch_array($resultado)) {
+                            $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+                            while ($row = mysqli_fetch_array($resultado)) {
                               ?>
                               <tr>
                                 <td><?php echo $row['idBannersHome'];?></td>

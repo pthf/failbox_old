@@ -1,8 +1,8 @@
 <?php
 require_once("../db/conexion.php");
 	if(isset($_POST['namefunction'])){
-		include("connect_db.php");
-		connect_base_de_datos();
+		//include("connect_db.php");
+		//connect_base_de_datos();
 		$namefunction = $_POST['namefunction'];
 		switch ($namefunction) {
 			case 'verifyPasswordLogin':
@@ -47,6 +47,9 @@ require_once("../db/conexion.php");
 			case 'cargaMasivaCaracteristicas':
 				cargaMasivaCaracteristicas();
 				break;
+			case 'cargaMasivaImages':
+				cargaMasivaImages();
+				break;
 		}
 	}
 
@@ -56,13 +59,13 @@ require_once("../db/conexion.php");
 		$passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
 		$query = "UPDATE Usuarios SET Password = '$passwordhash' WHERE IdUsuario = $idAdmin";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 	}
 
 	function deleteAdmin(){
 			$idAdmin = $_POST['id'];
 			$query = "DELETE FROM Usuarios WHERE IdUsuario = $idAdmin";
-			$result = mysql_query($query) or die(mysql_error());
+			$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 	}
 
 	function addNewAdminUser(){
@@ -76,7 +79,7 @@ require_once("../db/conexion.php");
 
 		$query = "INSERT INTO Usuarios (Nombre, Apellido, Email, Password, TipoPerfil, Privilegios, adminLastConnection) VALUES
 																		('$name', '$lastname', '$email', '$passwordhash', '$typePerfil','$userPrivileges', '0000-00-00 00:00:00')";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 	}
 
 	function verifyPasswordLogin(){
@@ -85,16 +88,16 @@ require_once("../db/conexion.php");
 		$password = $_POST['password'];
 
 		$query = "SELECT * FROM Usuarios WHERE NombreUser = '$username'";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 		if(mysql_num_rows($result) > 0){
 			$find = false;
-			while($line = mysql_fetch_array($result)){
+			while($line = mysqli_fetch_array($result)){
 				if(password_verify($password, $line['Password'])){
 					$find = true;
 					date_default_timezone_set('America/Mexico_City');
 					$lastDate = date("Y-m-d H:i:s");
 					$query2 = "UPDATE Usuarios SET UltimaConexion = '$lastDate' WHERE IdUsuario = ".$line['IdUsuario'];
-					$result2 = mysql_query($query2) or die(mysql_error());
+					$result2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
 					session_start();
 					$_SESSION['idAdmin'] = $line['IdUsuario'];
 					$_SESSION['Usuario'] = $line['NombreUser'];
@@ -114,9 +117,9 @@ require_once("../db/conexion.php");
 	function getStatesUser($id){
 
 		$query = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = $id ORDER BY Subcategoria ASC";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 		echo '<option disabled selected value="">Selecciona..</option>';
-		while ($line = mysql_fetch_array($result)) {
+		while ($line = mysqli_fetch_array($result)) {
 			echo '<option value="'.$line["IdSubcategoria"].'" name="'.$line["IdSubcategoria"].'">'.$line["Subcategoria"].'</option>';
 		}
 
@@ -125,9 +128,9 @@ require_once("../db/conexion.php");
 	function getEditProduct($id){
 
 		$query = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = $id ORDER BY Subcategoria ASC";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 			echo '<option disabled selected value="">Selecciona..</option>';
-		while ($line = mysql_fetch_array($result)) {
+		while ($line = mysqli_fetch_array($result)) {
 			echo '<option value="'.$line["IdSubcategoria"].'" name="'.$line["IdSubcategoria"].'">'.$line["Subcategoria"].'</option>';
 		}
 
@@ -160,10 +163,10 @@ require_once("../db/conexion.php");
 								'".$datatime."','".$formData['idPrivilegio']."',
 								'".$formData['brand']."','".$formData['category']."',
 								'".$formData['subcategory']."')";
-		$res = mysql_query($sql_products,Conectar::con()) or die(mysql_error());
+		$res = mysqli_query(Conectar::con(),$sql_products) or die(mysqli_error());
 
 		//Obtenemos el ultimo id añadido en la tabla Productos
-		$id_producto = mysql_insert_id();
+		$id_producto = mysqli_insert_id();
 
 		echo $id_producto;
 		
@@ -178,15 +181,15 @@ require_once("../db/conexion.php");
 	    $datatime = date("Y-m-d H:i:s");
 
 	    $query = "SELECT * FROM Productos_has_Caracteristicas WHERE Productos_IdProducto = '".$formData['idProducto']."' AND Caracteristicas_IdCaracteristica = '".$formData['type_characteristic']."'";
-		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$row_type = mysql_num_rows($result);
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+		$row_type = mysqli_num_rows($result);
 
 		//Si el resultado de $row_type es igual a "0" es porque no existe en la tabla, pero si es "1", ya se tiene ese tipo de caracteristica registrada
 		//Entonces continuamos con la validacion
 		if ($row_type == 0) {
 
 			$sql = "INSERT INTO Productos_has_Caracteristicas VALUES ('".$formData['idProducto']."','".$formData['type_characteristic']."','".$formData['characteristic']."')";
-			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
+			$res = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
 
 			echo $formData['idProducto'];
 
@@ -203,8 +206,8 @@ require_once("../db/conexion.php");
 		parse_str($_POST['action'],$formData);
 
 		$query = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = '".$formData['category']."' AND Subcategoria = '".$formData['other_subcategory']."'";
-		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
-		$row = mysql_num_rows($resultado);
+		$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
+		$row = mysqli_num_rows($resultado);
 
 		if ($row == 0) {
 
@@ -215,9 +218,9 @@ require_once("../db/conexion.php");
 			$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
 			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, RouteSubcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$route_name."','".$formData['category']."')";
-			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
+			$res = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
 
-			$id = mysql_insert_id();
+			$id = mysqli_insert_id();
 			echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
 
 		} else {
@@ -253,7 +256,7 @@ require_once("../db/conexion.php");
 	                                FechaAlta='".$datatime."', IdPrivilegio='" . $formData['idPrivilegio'] . "', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."', 
 	                                Subcategoria_IdSubcategoria='".$formData['subcategory']."'
 								WHERE IdProducto = '" . $formData['id'] . "'";
-	    $res = mysql_query($sql_changes_prod, Conectar::con()) or die(mysql_error());
+	    $res = mysqli_query(Conectar::con(),$sql_changes_prod) or die(mysqli_error());
 	    
 	    $id_product = $formData['id'];
 	    echo $id_product;
@@ -276,14 +279,14 @@ require_once("../db/conexion.php");
 			$indice++;
 		}
 		$query = "INSERT INTO BannersHome VALUES(null,'".$fileName."','".$formData['bannerUrl']."','".$formData['bannerName']."')";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
 	}
 
 	function deleteBannerHome ($dataBanner) {
 		
 		$query = "DELETE FROM BannersHome WHERE idBannersHome = $dataBanner";
-		$result = mysql_query($query) or die(mysql_error());
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
 	}
 
@@ -314,11 +317,11 @@ require_once("../db/conexion.php");
                     '".$array_products[$i][14]."','".$array_products[$i][15]."',
                     '".$array_products[$i][16]."','".$array_products[$i][17]."',
                     '".$array_products[$i][18]."','".$array_products[$i][19]."')";
-	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+	        $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
           }
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
-          echo "<span style='color:red'>Importación exitosa!</span>";
+          echo "<span style='color:blue'>Importación exitosa!</span>";
         } else {
           echo '<span style="color:red">Formato de archivo incorrecto</span>';    
         }
@@ -343,15 +346,56 @@ require_once("../db/conexion.php");
           for($i=1; $i < count($array_products); $i++){
             $query = "INSERT INTO Productos_has_Caracteristicas VALUES('".$array_products[$i][0]."','".$array_products[$i][1]."','".$array_products[$i][2]."')";
             // echo $query;
-            $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+            $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
           }
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
-          echo "<span style='color:red'>Importación exitosa!</span>";
+          echo "<span style='color:blue'>Importación exitosa!</span>";
         } else {
           echo '<span style="color:red">Formato de archivo incorrecto</span>';     
         }
 
 	}
 
-	
+	function cargaMasivaImages () {
+
+		$fname = $_FILES['upload_images']['name'];
+        // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
+        $chk_ext = explode(".",$fname[2]);
+        if(strtolower(end($chk_ext)) == "csv")
+        {    
+          //si es correcto, entonces damos permisos de lectura para subir
+          $filename = $_FILES['upload_images']['tmp_name'];
+          $handle = fopen($filename[2], "r"); 
+          $array_products = array();
+          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+          {
+            array_push($array_products, $data);
+          }
+          for($i=1; $i < count($array_products); $i++){
+           	$images = explode(';', $array_products[$i][0]);
+           	$query = "INSERT INTO Productos_has_Imagenes VALUES('".$images[0]."','".$images[1]."','".$images[2]."')";
+            //$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+            $query1 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$images[0]."'";
+			$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
+			$array_images = array();
+			while ($row = mysqli_fetch_array($resultado1)) {
+				array_push($array_images, $row['NombreImagen']);
+			}
+			unset($array_images[0]);
+			print_r($array_images);
+			$imagenes = implode(',', $array_images);
+			$res = array_unique($imagenes);
+			$query3 = "UPDATE Productos SET Image = '".$res."' WHERE IdProducto = '".$images[0]."'";
+		    $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
+          }
+          	
+          
+           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
+          fclose($handle);
+          echo "<span style='color:blue'>Importación exitosa!</span>";
+        } else {
+          echo '<span style="color:red">Formato de archivo incorrecto</span>';     
+        }
+
+	}

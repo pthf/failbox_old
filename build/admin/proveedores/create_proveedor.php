@@ -265,8 +265,8 @@
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <?php 
                                                         $query = "SELECT MAX(idProveedor) as idProveedor FROM Proveedores";
-                                                        $resultado = mysql_query($query,Conectar::con()) or die (mysql_error());
-                                                        $row = mysql_fetch_array($resultado);
+                                                        $resultado = mysqli_query(Conectar::con(),$query) or die (mysqli_error());
+                                                        $row = mysqli_fetch_array($resultado);
                                                         ?>
                                                         <input id="model" type="text" name="model" required="" disabled placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $row['idProveedor']+1?>">
                                                     </div>

@@ -74,15 +74,15 @@ class Products
 	public function save_characteristics($id,$type_characteristic,$characteristic){
 
 		$query = "SELECT * FROM Productos_has_Caracteristicas WHERE Productos_IdProducto = '".$id."' AND Caracteristicas_IdCaracteristica = '".$type_characteristic."'";
-		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$row_type = mysql_num_rows($result);
+		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+		$row_type = mysqli_num_rows($result);
 
 		//Si el resultado de $row_type es igual a "0" es porque no existe en la tabla, pero si es "1", ya se tiene ese tipo de caracteristica registrada
 		//Entonces continuamos con la validacion
 		if ($row_type == 0) {
 
 			$sql = "INSERT INTO Productos_has_Caracteristicas VALUES ('".$id."','".$type_characteristic."','".$characteristic."')";
-			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
+			$res = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
 
 			echo"
 			<script type='text/javascript'>

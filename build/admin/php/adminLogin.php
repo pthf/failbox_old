@@ -6,7 +6,7 @@
 	$password = $_POST['password'];
 
 	$query = "SELECT * FROM adminuser WHERE adminName = '$username'";
-	echo $query;
+	//echo $query;
 	$result = mysql_query($query) or die(mysql_error());
 	if(mysql_num_rows($result) > 0){
 		$find = false;

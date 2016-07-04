@@ -158,7 +158,7 @@
 
                                     <div class="tab-content">
                                       <div id="home" class="tab-pane fade in active">
-                                        <div class="col-sm-7"><br>
+                                        <div class="col-sm-9"><br>
                                           <div class="form-group">
                                              <form class="form-horizontal form-label-left" id="formCargaProductos" enctype="multipart/form-data">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Carga Productos:
@@ -188,8 +188,9 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Carga Imagenes:
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                  <input required="" type="file" class="form-control" name="sel_file" size="20">
+                                                  <input required="" type="file" class="form-control" name="upload_images" size="20">
                                                     <p class="help-block"> Subir únicamente archivos csv.</p>
+                                                    <div class="result_images"></div>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                                     <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>

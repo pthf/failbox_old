@@ -89,7 +89,7 @@
 				processData: false,
 				contentType: false,
 				success: function(result){
-					// alert(result);
+					 //alert(result);
 					var id = result;
 					window.location.href = "../create/createCharacteristics.php?id="+id;
 				},
@@ -212,6 +212,39 @@
 				$('.result_chars').html(result);
 				$('.result_chars').hide(6000);
 				$('#formCargaCaracteristicas')[0].reset();
+				// location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	});
+
+	$("#formCargaImagenes").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "cargaMasivaImages");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('upload_images['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				alert(result);
+				//$('.result_images').html(result);
+				//$('.result_images').hide(6000);
+				//$('#formCargaImagenes')[0].reset();
 				// location.reload();
 			},
 			error: function(error){
