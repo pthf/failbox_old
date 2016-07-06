@@ -89,7 +89,7 @@ require_once("../db/conexion.php");
 
 		$query = "SELECT * FROM Usuarios WHERE NombreUser = '$username'";
 		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-		if(mysql_num_rows($result) > 0){
+		if(mysqli_num_rows($result) > 0){
 			$find = false;
 			while($line = mysqli_fetch_array($result)){
 				if(password_verify($password, $line['Password'])){
@@ -166,9 +166,12 @@ require_once("../db/conexion.php");
 		$res = mysqli_query(Conectar::con(),$sql_products) or die(mysqli_error());
 
 		//Obtenemos el ultimo id añadido en la tabla Productos
-		$id_producto = mysqli_insert_id();
+		$rs = mysqli_query(Conectar::con(),"SELECT MAX(IdProducto) AS id FROM Productos");
+		if ($row = mysqli_fetch_row($rs)) {
+			$id = trim($row[0]);
+			echo $id;
+		}
 
-		echo $id_producto;
 		
 	}
 
@@ -220,7 +223,11 @@ require_once("../db/conexion.php");
 			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, RouteSubcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$route_name."','".$formData['category']."')";
 			$res = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
 
-			$id = mysqli_insert_id();
+			// $id = mysqli_insert_id();
+			$rs = mysqli_query(Conectar::con(),"SELECT MAX(IdSubcategoria) AS id FROM Subcategoria");
+			if ($row = mysqli_fetch_row($rs)) {
+				$id = trim($row[0]);
+			}
 			echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
 
 		} else {
@@ -293,7 +300,7 @@ require_once("../db/conexion.php");
 	function cargaMasivaProductos () {
 
 		$fname = $_FILES['upload_products']['name'];
-        // echo 'Cargando nombre del archivo: '.$fname[0].' <br>';
+
         $chk_ext = explode(".",$fname[0]);
         if(strtolower(end($chk_ext)) == "csv")
         {    
@@ -305,25 +312,128 @@ require_once("../db/conexion.php");
           {
             array_push($array_products, $data);
           }
+          date_default_timezone_set('UTC');
+		  date_default_timezone_set("America/Mexico_City");
+		  $datatime = date("Y-m-d H:i:s");
+
+		  $array_id = array();
           for($i=1; $i < count($array_products); $i++){
-            $query = "INSERT INTO Productos VALUES(
-                    null,'".$array_products[$i][1]."',
-                    '".$array_products[$i][2]."','".$array_products[$i][3]."',
-                    '".$array_products[$i][4]."','".$array_products[$i][5]."',
-                    '".$array_products[$i][6]."','".$array_products[$i][7]."',
-                    '".$array_products[$i][8]."','".$array_products[$i][9]."',
-                    '".$array_products[$i][10]."','".$array_products[$i][11]."',
-                    '".$array_products[$i][12]."','".$array_products[$i][13]."',
-                    '".$array_products[$i][14]."','".$array_products[$i][15]."',
-                    '".$array_products[$i][16]."','".$array_products[$i][17]."',
-                    '".$array_products[$i][18]."','".$array_products[$i][19]."')";
+
+          	$convert_name = explode(' ', $array_products[$i][0]);
+			$convert_name = strtolower(implode('-', $convert_name));
+			$no_permitidas= array("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+			$permitidas= array("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+			$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+			$query1 = "SELECT * FROM Categorias WHERE Categoria = '".$array_products[$i][14]."'";
+			$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
+			$num_row_cat = mysqli_num_rows($resultado1);
+			if ($num_row_cat == 0) {
+
+				$category = $array_products[$i][14];
+				$lower_category = strtolower($category);
+				$capital_category = ucwords($lower_category);
+
+				$convert_name = explode(' ', $capital_category);
+				$convert_name = strtolower(implode('-', $convert_name));
+				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+				$sql = "INSERT INTO Categorias VALUES('', '".$capital_category."', '".$route_name."')";
+				$res = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
+
+			} 
+
+			$query6 = "SELECT * FROM Categorias WHERE Categoria = '".$array_products[$i][14]."'";
+			$resultado6 = mysqli_query(Conectar::con(),$query6) or die(mysqli_error(Conectar::con()));
+			$fila = mysqli_fetch_array($resultado6);
+
+			$query2 = "SELECT * FROM Subcategoria WHERE Subcategoria = '".$array_products[$i][15]."' AND Categorias_IdCategoria = '".$fila[0]."'";
+			$resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error(Conectar::con()));
+			$num_row_sub = mysqli_num_rows($resultado2);
+
+			if ($num_row_sub == 0) {
+
+				$subcategory = $array_products[$i][15];
+				$lower_subcategory = strtolower($subcategory);
+				$capital_subcategory = ucwords($lower_subcategory);
+
+				$convert_name = explode(' ', $capital_subcategory);
+				$convert_name = strtolower(implode('-', $convert_name));
+				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+				$sql2 = "INSERT INTO Subcategoria VALUES('','".$capital_subcategory."','".$route_name."','".$fila[0]."')";
+				$res2 = mysqli_query(Conectar::con(),$sql2) or die(mysqli_error());
+
+			} 
+
+			$query3 = "SELECT * FROM Marcas WHERE Marca = '".$array_products[$i][13]."'";
+			$resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error(Conectar::con()));
+			$num_row_brand = mysqli_num_rows($resultado3);
+			if ($num_row_brand == 0) {
+
+				$brand = $array_products[$i][13];
+				$lower_brand = strtolower($brand);
+				$capital_brand = ucwords($lower_brand);
+
+				$convert_name = explode(' ', $capital_brand);
+				$convert_name = strtolower(implode('-', $convert_name));
+				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+				$sql3 = "INSERT INTO Marcas VALUES('', '".$capital_brand."', '".$route_name."')";
+				$res3 = mysqli_query(Conectar::con(),$sql3) or die(mysqli_error());
+
+			}
+
+			$sql4 = "SELECT * FROM Categorias WHERE Categoria = '".$array_products[$i][14]."'";
+			$res4 = mysqli_query(Conectar::con(),$sql4) or die(mysqli_error());
+			$row1 = mysqli_fetch_array($res4);
+
+			$sql5 = "SELECT * FROM Subcategoria WHERE Subcategoria = '".$array_products[$i][15]."' AND Categorias_IdCategoria = '".$fila[0]."'";
+			$res5 = mysqli_query(Conectar::con(),$sql5) or die(mysqli_error(Conectar::con()));
+			$row2 = mysqli_fetch_array($res5);
+
+			$sql6 = "SELECT * FROM Marcas WHERE Marca = '".$array_products[$i][13]."'";
+			$res5 = mysqli_query(Conectar::con(),$sql6) or die(mysqli_error(Conectar::con()));
+			$row3 = mysqli_fetch_array($res5);
+
+			$array_images = explode('-', $array_products[$i][10]);
+			$images = implode(',', $array_images);
+
+            $query = "INSERT INTO Productos VALUES(null,'".$array_products[$i][0]."','".$array_products[$i][1]."','".$route_name."',
+                    '".$array_products[$i][2]."','".$array_products[$i][3]."','".$array_products[$i][4]."','".$array_products[$i][5]."',
+                    '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".$array_products[$i][9]."',
+                    '".$images."','".$array_products[$i][11]."','".$array_products[$i][12]."','".$datatime."',
+                    '1','".$row3['IdMarca']."','".$row1['IdCategoria']."','".$row2['IdSubcategoria']."')";
 	        $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
+
+	        $rs = mysqli_query(Conectar::con(),"SELECT MAX(IdProducto) AS id FROM Productos");
+			if ($row = mysqli_fetch_row($rs)) {
+				$id = trim($row[0]);
+				array_push($array_id, $id);
+
+				$query4 = "SELECT IdProducto,Image FROM Productos WHERE IdProducto = '".$id."'";
+	           	$resultado4 = mysqli_query(Conectar::con(),$query4) or die(mysqli_error());
+				while ($row4 = mysqli_fetch_array($resultado4)) {
+	           		$imagenes_prod = explode(',', $row4['Image']);
+	           		for ($x=0; $x < count($imagenes_prod); $x++) { 
+	           			$query5 = "INSERT INTO Productos_has_Imagenes VALUES('".$row4['IdProducto']."','','".$imagenes_prod[$x]."')";
+	           			$resultado5 = mysqli_query(Conectar::con(),$query5) or die(mysqli_error());
+	           		}
+	           	}
+			}
           }
-           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
+          	// var_dump($array_id);
+          echo count($array_id);
+          //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
-          echo "<span style='color:blue'>Importación exitosa!</span>";
         } else {
-          echo '<span style="color:red">Formato de archivo incorrecto</span>';    
+          echo 0;   
         }
 
 	}
@@ -337,60 +447,38 @@ require_once("../db/conexion.php");
         {    
           //si es correcto, entonces damos permisos de lectura para subir
           $filename = $_FILES['upload_char']['tmp_name'];
-          $handle = fopen($filename[1], "r"); 
+          $handle = fopen($filename[1], "r");
           $array_products = array();
           while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
           {
             array_push($array_products, $data);
           }
           for($i=1; $i < count($array_products); $i++){
-            $query = "INSERT INTO Productos_has_Caracteristicas VALUES('".$array_products[$i][0]."','".$array_products[$i][1]."','".$array_products[$i][2]."')";
-            // echo $query;
-            $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
-          }
-           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
-          fclose($handle);
-          echo "<span style='color:blue'>Importación exitosa!</span>";
-        } else {
-          echo '<span style="color:red">Formato de archivo incorrecto</span>';     
-        }
 
-	}
+          	$query1 = "SELECT * FROM Caracteristicas WHERE NombreCaracteristica = '".$array_products[$i][1]."'";
+          	$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
+          	$row = mysqli_num_rows($resultado1);
 
-	function cargaMasivaImages () {
+          	if ($row == 0) {
+          		$query2 = "INSERT INTO Caracteristicas VALUES ('','".$array_products[$i][1]."')";
+          		$resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
+          		$query5 = "SELECT * FROM Caracteristicas WHERE NombreCaracteristica = '".$array_products[$i][1]."'";
+          		$resultado5 = mysqli_query(Conectar::con(),$query5) or die(mysqli_error());
+          		$row5 = mysqli_fetch_array($resultado5);
+	            $query = "INSERT INTO Productos_has_Caracteristicas VALUES('".$array_products[$i][0]."','".$row5[0]."','".$array_products[$i][2]."')";
+	            $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
+          	} else {
+          		$row2 = mysqli_fetch_array($resultado1);
+          		$query3 = "SELECT * FROM Productos_has_Caracteristicas WHERE Productos_IdProducto = '".$array_products[$i][0]."' AND Caracteristicas_IdCaracteristica = '".$row2[0]."' AND DetalleCaracteristica = '".$array_products[$i][2]."'";
+          		$resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
+          		$row3 = mysqli_num_rows($resultado3);
+          		if ($row3 == 0) {
+          			$query4 = "INSERT INTO Productos_has_Caracteristicas VALUES('".$array_products[$i][0]."','".$row2[0]."','".$array_products[$i][2]."')";
+	            	$resultado = mysqli_query(Conectar::con(),$query4) or die(mysqli_error()); 
+          		}
+          	}
 
-		$fname = $_FILES['upload_images']['name'];
-        // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
-        $chk_ext = explode(".",$fname[2]);
-        if(strtolower(end($chk_ext)) == "csv")
-        {    
-          //si es correcto, entonces damos permisos de lectura para subir
-          $filename = $_FILES['upload_images']['tmp_name'];
-          $handle = fopen($filename[2], "r"); 
-          $array_products = array();
-          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-          {
-            array_push($array_products, $data);
           }
-          for($i=1; $i < count($array_products); $i++){
-           	$images = explode(';', $array_products[$i][0]);
-           	$query = "INSERT INTO Productos_has_Imagenes VALUES('".$images[0]."','".$images[1]."','".$images[2]."')";
-            //$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-            $query1 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$images[0]."'";
-			$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
-			$array_images = array();
-			while ($row = mysqli_fetch_array($resultado1)) {
-				array_push($array_images, $row['NombreImagen']);
-			}
-			unset($array_images[0]);
-			print_r($array_images);
-			$imagenes = implode(',', $array_images);
-			$res = array_unique($imagenes);
-			$query3 = "UPDATE Productos SET Image = '".$res."' WHERE IdProducto = '".$images[0]."'";
-		    $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
-          }
-          	
-          
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
           echo "<span style='color:blue'>Importación exitosa!</span>";

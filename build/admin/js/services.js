@@ -177,10 +177,17 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
-				$('.result_products').html(result);
-				$('.result_products').hide(6000);
-				$('#formCargaProductos')[0].reset();
-				// location.reload();
+				// alert(result);
+				if (result == 0) {
+					$('.result_products').html('<span style="color:red">Formato de archivo incorrecto</span>');
+					$('.result_products').hide(6000);
+					$('#formCargaProductos')[0].reset();
+				} else {
+					$('.result_products').html('<span style"color:blue;">Importacón exitosa!</span>');
+					$('.result_products').hide(6000);
+					$('#formCargaProductos')[0].reset();
+					window.location.href = "../create/carga_masiva.php?total_ids="+result;
+				};
 			},
 			error: function(error){
 				alert(error);
@@ -209,43 +216,10 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
+				// alert(result);
 				$('.result_chars').html(result);
 				$('.result_chars').hide(6000);
 				$('#formCargaCaracteristicas')[0].reset();
-				// location.reload();
-			},
-			error: function(error){
-				alert(error);
-			}
-		})
-	});
-
-	$("#formCargaImagenes").submit(function(e){
-
-		e.preventDefault();
-
-		var ajaxData = new FormData();
-		ajaxData.append("action", $(this).serialize());
-		ajaxData.append("namefunction", "cargaMasivaImages");
-
-		$.each($("input[type=file]"), function(i, obj) {
-			$.each(obj.files, function(j,file) {
-				ajaxData.append('upload_images['+i+']', file);
-			})
-		});
-
-		$.ajax({
-			url: "../php/functions.php",
-			type: "POST",
-			data: ajaxData,
-			processData: false,
-			contentType: false,
-			success: function(result){
-				alert(result);
-				//$('.result_images').html(result);
-				//$('.result_images').hide(6000);
-				//$('#formCargaImagenes')[0].reset();
-				// location.reload();
 			},
 			error: function(error){
 				alert(error);

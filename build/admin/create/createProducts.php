@@ -275,7 +275,7 @@
                                                         <select required class="form-control" name="warranty">
                                                             <option selected disabled>Selecciona..</option>
                                                             <option value="1">6 meses</option>
-                                                            <option value="2">1 años</option>
+                                                            <option value="2">1 año</option>
                                                             <option value="3">2 años</option>
                                                             <option value="4">3 años</option>
                                                         </select>

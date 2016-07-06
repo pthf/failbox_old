@@ -77,6 +77,8 @@
                     </li>
                     <li><a href="../edit/editProducts.php">Editar</a>
                     </li>
+                    <li><a href="../create/carga_masiva.php">Carga Masiva</a>
+                    </li>
                   </ul>
                 </li>
               </ul>

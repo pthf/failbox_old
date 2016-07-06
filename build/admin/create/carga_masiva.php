@@ -85,7 +85,7 @@
                                   <ul class="nav child_menu" style="display: none">
                                     <li><a href="../proveedores/listProveedores.php">Proveedores</a>
                                     </li>
-                                    <li><a href="create_proveedor.php">Crear</a>
+                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
                                     </li>
                                     <li><a href="#">Editar</a>
                                     </li>
@@ -184,18 +184,23 @@
                                                     <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>
                                                 </div>
                                             </form>
-                                            <form class="form-horizontal form-label-left" id="formCargaImagenes" enctype="multipart/form-data">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Carga Imagenes:
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                  <input required="" type="file" class="form-control" name="upload_images" size="20">
-                                                    <p class="help-block"> Subir únicamente archivos csv.</p>
-                                                    <div class="result_images"></div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                                    <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>
-                                                </div>
-                                            </form>
+                                          </div>
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">
+                                            </label>
+                                                <?php if (isset($_GET['total_ids'])) { ?>
+                                                <a href="createExcelProducts.php?total_ids=<?php echo $_GET['total_ids']?>"><button type="submit" name='submit' value='submit' class="btn btn-success"><i class="fa fa-download"></i> Productos</button></a>
+                                                <?php } ?>
+                                                <a href="createExcelCatSub.php"><button type="submit" name='submit' value='submit' class="btn btn-warning"><i class="fa fa-download"></i> Categorías y Subcategorías</button></a>
+                                                <a href="createExcelBrand.php"><button type="submit" name='submit' value='submit' class="btn btn-warning"><i class="fa fa-download"></i> Marcas</button></a>
+                                                <a href="createExcelChar.php"><button type="submit" name='submit' value='submit' class="btn btn-warning"><i class="fa fa-download"></i> Características</button></a>
+                                          </div>
+                                          <div>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">
+                                            </label>
+                                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                                <p class="help-block">Para crear la carga de los productos, necesitas descargar los archivos en excel con las categorías y características.</p>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
