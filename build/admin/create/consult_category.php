@@ -4,10 +4,10 @@
   require_once("../db/conexion.php");
 
 $query = "SELECT * FROM Categorias ORDER BY Categoria ASC";
-$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
  	echo "<select id='selectCategory' name='category' class='form-control' required>";
 	echo "<option disabled selected>Selecciona..</option>";
-while($row=mysqli_fetch_array($resultado)){
+while($row=mysql_fetch_array($resultado)){
  	echo "<option value='".$row['IdCategoria']."' name='".$row['Categoria']."'>".$row['Categoria']."</option>";
 }
   	echo "</select>";

@@ -16,8 +16,8 @@ if ($capital_category == "" || $capital_category == NULL) {
 } else {
 
 	$query = "SELECT Categoria FROM Categorias WHERE Categoria = '".$capital_category."'"; 
-	$result_query = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-	$row = mysqli_num_rows($result_query);
+	$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
+	$row = mysql_num_rows($result_query);
 
 	if ($row == 1) { 
 
@@ -33,7 +33,7 @@ if ($capital_category == "" || $capital_category == NULL) {
 
 		//registra las categorias de los productos
 		$sql = "INSERT INTO Categorias (IdCategoria, Categoria, RouteCategoria) VALUES ('', '".$capital_category."', '".$route_name."')";
-		$resultado_consulta_mysql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
+		$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
 		
 	}
 

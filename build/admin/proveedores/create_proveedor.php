@@ -172,6 +172,18 @@
                                         </form>
                                         <form class="form-horizontal form-label-left" id="formProvider" name="formProviderData" enctype="multipart/form-data">
                                             <div class="col-sm-5"><br>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Código proveedor
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <?php 
+                                                        $query = "SELECT MAX(idProveedor) as idProveedor FROM Proveedores";
+                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                        $row = mysql_fetch_array($resultado);
+                                                        ?>
+                                                        <input id="model" type="text" name="model" required="" disabled placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $row['idProveedor']+1?>">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reason_social">Razón Social 
                                                     </label>
@@ -207,6 +219,8 @@
                                                         <input id="tel" class="form-control col-md-7 col-xs-12" name="tel" placeholder="Número de teléfono" required="" type="text">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-5"><br>
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">Estado 
                                                     </label>
@@ -225,8 +239,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-5"><br>
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="providerType">Tipo de Proveedor   
                                                     </label>
@@ -257,18 +269,6 @@
                                                     </div>
                                                     <div class="col-md-2 col-sm-6 col-xs-12">
                                                         <input id="priceBig" type="number" name="priceBig" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Grande">
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Código proveedor
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <?php 
-                                                        $query = "SELECT MAX(idProveedor) as idProveedor FROM Proveedores";
-                                                        $resultado = mysqli_query(Conectar::con(),$query) or die (mysqli_error());
-                                                        $row = mysqli_fetch_array($resultado);
-                                                        ?>
-                                                        <input id="model" type="text" name="model" required="" disabled placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $row['idProveedor']+1?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

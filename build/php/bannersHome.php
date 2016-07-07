@@ -2,10 +2,10 @@
 require_once("../admin/db/conexion.php");
 
 $query = "SELECT * FROM BannersHome";
-$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 $banners = array();
-while ($row = mysqli_fetch_array($resultado)) {
+while ($row = mysql_fetch_array($resultado)) {
     $banner =
         array(
             "id" => $row['idBannersHome'],

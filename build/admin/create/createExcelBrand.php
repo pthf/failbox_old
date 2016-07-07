@@ -36,11 +36,11 @@
 
 		//Se agregan los datos de las Subcategorias
 		$query = "SELECT * FROM Marcas";
-	    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+	    $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 	    // $row = mysqli_num_rows($resultado);
 
 		$i = 4;
-		while ($fila = mysqli_fetch_array($resultado)) {
+		while ($fila = mysql_fetch_array($resultado)) {
 			$objPHPExcel->setActiveSheetIndex(0)
         		    ->setCellValue('D'.$i, $fila['IdMarca'])
             		->setCellValue('E'.$i, $fila['Marca'])

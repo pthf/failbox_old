@@ -16,8 +16,8 @@ if ($capital_characteristic == "" || $capital_characteristic == NULL) {
 } else {
 
 	$query = "SELECT NombreCaracteristica FROM Caracteristicas WHERE NombreCaracteristica = '".$capital_characteristic."'"; 
-	$result_query = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-	$row = mysqli_num_rows($result_query);
+	$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
+	$row = mysql_num_rows($result_query);
 
 	if ($row == 1) { 
 
@@ -27,7 +27,7 @@ if ($capital_characteristic == "" || $capital_characteristic == NULL) {
 
 		//registra las caracteristicas de los productos
 		$sql = "INSERT INTO Caracteristicas (IdCaracteristica, NombreCaracteristica) VALUES ('', '".$capital_characteristic."')";
-		$resultado_consulta_mysql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
+		$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 	} 
 

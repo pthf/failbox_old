@@ -4,12 +4,12 @@
 	$email = $_POST['email'];
   
 	$query = "SELECT * FROM Newsletter WHERE Email = '".$email."'";
-	$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-	$row = mysqli_num_rows($resultado);
+	$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+	$row = mysql_num_rows($resultado);
 
 	if ($row == 0) {
 		$query1 = "INSERT INTO Newsletter VALUES(null,'".$email."')";
-		$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
+		$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 	} else {
 		echo -1;
 	}

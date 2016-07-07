@@ -161,8 +161,8 @@
                       <div class="x_title">
                         <?php 
                           $sql = "SELECT * FROM Productos";
-                          $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error()); 
-                          $num_total_products = mysqli_num_rows($res_sql);
+                          $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                          $num_total_products = mysql_num_rows($res_sql);
                         ?>
                         <h2>Total de proveedores: <?php echo $num_total_products;?></h2>
                         <div class="clearfix"></div>

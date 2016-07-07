@@ -16,8 +16,8 @@ if ($capital_brand == "" || $capital_brand == NULL) {
 } else {
 
 	$query = "SELECT Marca FROM Marcas WHERE Marca = '".$capital_brand."'"; 
-	$result_query = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-	$row = mysqli_num_rows($result_query);
+	$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
+	$row = mysql_num_rows($result_query);
 
 	if ($row == 1) { 
 
@@ -32,7 +32,7 @@ if ($capital_brand == "" || $capital_brand == NULL) {
 
 		//registra los categorias de los productos
 		$sql = "INSERT INTO Marcas (IdMarca, Marca, RouteMarca) VALUES ('', '".$capital_brand."', '".$route_name."')";
-		$resultado_consulta_mysql = mysqli_query(Conectar::con(),$sql);
+		$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 	} 
 

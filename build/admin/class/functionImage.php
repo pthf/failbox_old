@@ -37,27 +37,27 @@ $id_producto = $_GET['id'];
 		        move_uploaded_file($ruta_provisional, $src);
 
 		        $query1 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto='".$id_producto."' AND NombreImagen='".$nombre."'";
-				$resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error());
-				$row = mysqli_num_rows($resultado1);
+				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+				$row = mysql_num_rows($resultado1);
 
 				if ($row == 0) { 
 
 					$query2 = "INSERT INTO Productos_has_Imagenes VALUES ('".$id_producto."',null,'".$nombre."')";
-					$resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
+					$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 					// echo $query2;
 			        echo "<p style='color: blue'>La imagen $nombre ha sido subida con éxito</p>";
 
 			        $query = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id_producto."'";
-					$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+					$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 					$array_images = array();
-					while ($row = mysqli_fetch_array($resultado)) {
+					while ($row = mysql_fetch_array($resultado)) {
 						array_push($array_images, $row['NombreImagen']);
 					}
 
 					$imagenes = implode(',', $array_images);
 					$query3 = "UPDATE Productos SET Image = '".$imagenes."' WHERE IdProducto = '".$id_producto."'";
-				    $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
+				    $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
 			        // echo $query3;
 
 				} else {

@@ -38,11 +38,11 @@
 		//Se agregan los datos de las Subcategorias
 		$query = "SELECT c.IdCategoria,c.Categoria,s.IdSubcategoria,s.Subcategoria FROM Subcategoria s
 					INNER JOIN Categorias c ON c.IdCategoria = s.Categorias_IdCategoria";
-	    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+	    $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 	    // $row = mysqli_num_rows($resultado);
 
 		$i = 4;
-		while ($fila = mysqli_fetch_array($resultado)) {
+		while ($fila = mysql_fetch_array($resultado)) {
 			$objPHPExcel->setActiveSheetIndex(0)
         		    ->setCellValue('D'.$i, $fila['IdCategoria'])
             		->setCellValue('E'.$i, $fila['Categoria'])

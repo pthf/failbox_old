@@ -187,8 +187,8 @@ session_start();
                     <?php 
 
                       $query4 = "SELECT * FROM Productos";
-                      $resultado4 = mysqli_query(Conectar::con(),$query4) or die(mysqli_error()); 
-                      $num_total_registros = mysqli_num_rows($resultado4);
+                      $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
+                      $num_total_registros = mysql_num_rows($resultado4);
                       //Si hay registros
                       if ($num_total_registros > 0) {
                         //Limito la busqueda
@@ -211,8 +211,8 @@ session_start();
 
                         //echo '<h3>Numero de articulos: '.$num_total_registros .'</h3>';
                         $query5 = "SELECT * FROM Productos p ORDER BY p.IdProducto ASC LIMIT ".$inicio."," . $TAMANO_PAGINA;
-                        $resultado5 = mysqli_query(Conectar::con(),$query5) or die(mysqli_error()); 
-                        while ($fila = mysqli_fetch_array($resultado5)) { ?>
+                        $resultado5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
+                        while ($fila = mysql_fetch_array($resultado5)) { ?>
                         <div class="col-xs-4 products">
                         <div class="well profile_view">
                           <div class="col-sm-12 details_prod">
@@ -235,8 +235,8 @@ session_start();
                                                   INNER JOIN Productos p
                                                   ON p.Marcas_IdMarca = m.IdMarca
                                                   WHERE p.IdProducto = '".$fila['IdProducto']."'";
-                                      $resultado1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error()); 
-                                      $fila1 = mysqli_fetch_array($resultado1);
+                                      $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+                                      $fila1 = mysql_fetch_array($resultado1);
                                       echo $fila1['Marca']; 
                                     ?>
                                   </div>
@@ -250,8 +250,8 @@ session_start();
                                                   INNER JOIN Productos p
                                                   ON p.Categorias_IdCategoria = c.IdCategoria
                                                   WHERE p.IdProducto = ".$fila['IdProducto'];
-                                      $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error()); 
-                                      while($fila2 = mysqli_fetch_array($resultado2)) { 
+                                      $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                      while($fila2 = mysql_fetch_array($resultado2)) { 
                                         echo $fila2['Categoria'];
                                       }
                                     ?>
@@ -264,8 +264,8 @@ session_start();
                                                   INNER JOIN Productos p
                                                   ON p.Subcategoria_IdSubcategoria = s.IdSubcategoria
                                                   WHERE p.IdProducto = ".$fila['IdProducto'];
-                                      $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error()); 
-                                      while($fila2 = mysqli_fetch_array($resultado2)) { 
+                                      $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                      while($fila2 = mysql_fetch_array($resultado2)) { 
                                         echo $fila2['Subcategoria'];
                                       }
                                     ?>
@@ -276,8 +276,8 @@ session_start();
                             <div class="col-xs-4 text-center">
                               <?php 
                                 $query3 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$fila['IdProducto']."'";
-                                $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error()); 
-                                $fila3 = mysqli_fetch_array($resultado3);
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+                                $fila3 = mysql_fetch_array($resultado3);
                               ?>
                               <a href="editProduct.php?id=<?php echo $fila['IdProducto'];?>"><img src="../images/products/<?php echo $fila3['NombreImagen']; ?>" alt="" class="img-rounded img-responsive img_details"></a>
                             </div>

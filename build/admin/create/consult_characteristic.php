@@ -4,10 +4,10 @@
   require_once("../db/conexion.php");
  
 $query = "SELECT * FROM Caracteristicas ORDER BY NombreCaracteristica ASC";
-$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
   echo "<select id='characteristic' name='type_characteristic' class='form-control'>";
 //echo "<option>Selecciona..</option>";
-while($fila=mysqli_fetch_array($resultado)){ 
+while($fila=mysql_fetch_array($resultado)){ 
   echo "<option value='".$fila['IdCaracteristica']."'>".$fila['NombreCaracteristica']."</option>";
 }
   echo "</select>";

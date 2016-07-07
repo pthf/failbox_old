@@ -36,9 +36,9 @@
 	    //Se agregan los datos de los Productos
 	    $limite_id = $_GET['total_ids'];
 	    $query6 = "SELECT * FROM Productos ORDER BY IdProducto DESC LIMIT $limite_id";
-	    $resultado6 = mysqli_query(Conectar::con(),$query6) or die(mysqli_error());
+	    $resultado6 = mysql_query($query6,Conectar::con()) or die(mysql_error());
 	    $i = 4;
-	    while ($fila = mysqli_fetch_array($resultado6)) {
+	    while ($fila = mysql_fetch_array($resultado6)) {
 	        $objPHPExcel->setActiveSheetIndex(0)
 	                ->setCellValue('D'.$i, $fila['IdProducto'])
 	                ->setCellValue('E'.$i, $fila['NombreProd']);

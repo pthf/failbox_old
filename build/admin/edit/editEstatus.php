@@ -8,7 +8,7 @@ $id_product = $_GET['id'];
 $estatus = $_GET['estatus'];
 
 $query = "UPDATE Productos SET Estatus = '".$estatus."' WHERE IdProducto = '".$id_product."'";
-	$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+	$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 echo"
 	<script type='text/javascript'>

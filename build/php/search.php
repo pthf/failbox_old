@@ -22,9 +22,9 @@ if (isset($_GET['search'])) {
 			            OR s.Subcategoria LIKE '%" . $texto[$i] . "%'
 			            OR m.Marca LIKE '%" . $texto[$i] . "%'";
 
-			$resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+			$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
-			while ($row = mysqli_fetch_array($resultado)) {
+			while ($row = mysql_fetch_array($resultado)) {
 
 				array_push($productos, $row);
 

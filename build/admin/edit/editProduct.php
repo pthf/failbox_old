@@ -5,8 +5,8 @@ session_start();
   require_once("../db/conexion.php");
     if (isset($_GET['id'])) {
     $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
-    $result = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
-    if (mysqli_num_rows($result) == 0) {
+    $result = mysql_query($sql,Conectar::con()) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
       header("Location: editProducts.php");
     }
   }
@@ -171,20 +171,20 @@ session_start();
                     <?php
                       $id = $_GET['id'];
                       $query = "SELECT * FROM Productos WHERE IdProducto = '".$id."'";
-                      $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error()); 
-                      $fila = mysqli_fetch_array($resultado);
+                      $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                      $fila = mysql_fetch_array($resultado);
                     ?>
                   <div class="col-md-4 col-sm-7 col-xs-12 text-center" style="padding-top: 2%;">
                     <?php 
                       $query2 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id."'";
-                      $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error()); 
-                      $fila1 = mysqli_fetch_array($resultado2);
+                      $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                      $fila1 = mysql_fetch_array($resultado2);
                     ?>
                     <div class="product-image">
                       <img src="../images/products/<?php echo $fila1['NombreImagen']; ?>" alt="..." />
                     </div>
                     <div class="product_gallery">
-                    <?php while($fila1 = mysqli_fetch_array($resultado2)) { ?>
+                    <?php while($fila1 = mysql_fetch_array($resultado2)) { ?>
                       <a>
                         <img src="../images/products/<?php echo $fila1['NombreImagen']; ?>" alt="..." />
                       </a>
@@ -204,9 +204,9 @@ session_start();
                             <div class="col-md-6 col-sm-6 col-xs-12 ">
                               <?php 
                                 $query3 = "SELECT * FROM Categorias c";
-                                $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
                                   echo "<select id='selectCategory' name='category' class='form-control' required>";
-                                while($row3 = mysqli_fetch_array($resultado3)){
+                                while($row3 = mysql_fetch_array($resultado3)){
                                   if ($fila['Categorias_IdCategoria'] == $row3['IdCategoria']) {
                                     echo "<option selected value='".$row3['IdCategoria']."'>". $row3['Categoria']."</option>";
                                   } else {
@@ -223,9 +223,9 @@ session_start();
                             <div class="col-md-6 col-sm-6 col-xs-12" id="SubcategorySelected">
                               <?php 
                                 $query3 = "SELECT * FROM Subcategoria s WHERE Categorias_IdCategoria = '".$fila['Categorias_IdCategoria']."'";
-                                $resultado3 = mysqli_query(Conectar::con(),$query3) or die(mysqli_error());
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
                                   echo "<select id='subcategory' name='subcategory' class='form-control' required>";
-                                while($row3 = mysqli_fetch_array($resultado3)){
+                                while($row3 = mysql_fetch_array($resultado3)){
                                   if ($fila['Subcategoria_IdSubcategoria'] == $row3['IdSubcategoria']) {
                                     echo "<option selected value='".$row3['IdSubcategoria']."'>". $row3['Subcategoria']."</option>";
                                   } else {
@@ -242,9 +242,9 @@ session_start();
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
                                 $query2 = "SELECT * FROM Marcas m";
-                                $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
+                                $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
                                   echo "<select id='brand' name='brand' class='form-control' required>";
-                                while($row2 = mysqli_fetch_array($resultado2)){
+                                while($row2 = mysql_fetch_array($resultado2)){
                                   if ($fila['Marcas_IdMarca'] == $row2['IdMarca']) {
                                     echo "<option selected value='".$row2['IdMarca']."'>". $row2['Marca']."</option>";
                                   } else {

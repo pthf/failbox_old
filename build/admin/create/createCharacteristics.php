@@ -5,8 +5,8 @@ session_start();
   require_once("../db/conexion.php");
   if (isset($_GET['id'])) {
     $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
-    $result = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
-    if (mysqli_num_rows($result) == 0) {
+    $result = mysql_query($sql,Conectar::con()) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
       header("Location: ../listProducts .php");
     }
   }
@@ -242,9 +242,9 @@ session_start();
                                                     <tbody>
                                                         <?php 
                                                         $query2 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id_producto."'";
-                                                        $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
+                                                        $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 
-                                                        while($fila1 = mysqli_fetch_array($resultado2)) { ?>
+                                                        while($fila1 = mysql_fetch_array($resultado2)) { ?>
                                                         <tr>
                                                             <td><?php echo $fila1['NombreImagen']; ?></td>
                                                             <td>
@@ -309,8 +309,8 @@ session_start();
                                                                     INNER JOIN Caracteristicas ca 
                                                                         ON ca.IdCaracteristica = phc.Caracteristicas_IdCaracteristica
                                                                     WHERE p.IdProducto = '".$id_producto."' ORDER BY ca.NombreCaracteristica ASC";
-                                                        $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-                                                        while($fila=mysqli_fetch_array($resultado)) { ?>
+                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                        while($fila=mysql_fetch_array($resultado)) { ?>
                                                           <tr>
                                                             <td><?php echo $fila['NombreCaracteristica']; ?></td>
                                                             <td><?php echo $fila['DetalleCaracteristica']; ?></td>

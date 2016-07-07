@@ -17,7 +17,7 @@ if ($capital_subcategory == "" || $capital_subcategory == NULL) {
 
 } else {
 	$query = "SELECT Subcategoria FROM Subcategorias WHERE Subcategoria = '".$capital_subcategory."'"; 
-	$result_query = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+	$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
 	$row = mysqli_num_rows($result_query);
 
 	if ($row == 1) { 
@@ -28,7 +28,7 @@ if ($capital_subcategory == "" || $capital_subcategory == NULL) {
 
 		//registra las categorias de los productos
 		$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, Categorias_IdCategoria) VALUES ('','".$capital_subcategory."','".$category."')";
-		$resultado = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
+		$resultado = mysql_query($sql,Conectar::con()) or die(mysql_error());
 		
 	}
 
