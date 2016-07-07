@@ -9,10 +9,10 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
                 WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "' AND s.RouteSubcategoria = '" . $_GET['nameSubcategory'] . "' AND m.RouteMarca = '" . $_GET['nameBrand'] . "' AND Estatus = 'Activo'";
-    $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
+    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
     $productos = array();
-    while ($row = mysql_fetch_array($resultado)) {
+    while ($row = mysqli_fetch_array($resultado)) {
 
         $array_images = explode(',', $row['Image']);
 
@@ -69,10 +69,10 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
                 WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "' AND s.RouteSubcategoria = '" . $_GET['nameSubcategory'] . "' AND Estatus = 'Activo'";
-    $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
+    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
     $productos = array();
-    while ($row = mysql_fetch_array($resultado)) {
+    while ($row = mysqli_fetch_array($resultado)) {
 
         $array_images = explode(',', $row['Image']);
 
@@ -128,10 +128,10 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria
                 WHERE c.RouteCategoria = '" . $_GET['nameCategory'] . "' AND Estatus = 'Activo'";
-    $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
+    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
     $productos = array();
-    while ($row = mysql_fetch_array($resultado)) {
+    while ($row = mysqli_fetch_array($resultado)) {
 
         $array_images = explode(',', $row['Image']);
 
@@ -186,10 +186,10 @@ if (isset($_GET['nameCategory']) && isset($_GET['nameSubcategory']) && isset($_G
                 INNER JOIN Marcas m ON m.IdMarca = p.Marcas_IdMarca
                 INNER JOIN Categorias c ON c.IdCategoria = p.Categorias_IdCategoria
                 INNER JOIN Subcategoria s ON s.IdSubcategoria = p.Subcategoria_IdSubcategoria WHERE Estatus = 'Activo'";
-    $resultado = mysql_query($query, Conectar::con()) or die(mysql_error());
+    $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
 
     $productos = array();
-    while ($row = mysql_fetch_array($resultado)) {
+    while ($row = mysqli_fetch_array($resultado)) {
 
         $array_images = explode(',', $row['Image']);
 

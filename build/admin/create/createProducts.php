@@ -5,8 +5,8 @@
   require_once("../db/conexion.php");
   if (isset($_GET['id'])) {
     $sql = "SELECT * FROM Productos WHERE IdProducto = '".$_GET['id']."'";
-    $result = mysql_query($sql, Conectar::con()) or die(mysql_error());
-    if (mysql_num_rows($result) == 0) {
+    $result = mysqli_query(Conectar::con(),$sql) or die(mysqli_error());
+    if (mysqli_num_rows($result) == 0) {
       header("Location: createProducts.php");
     }
     $id_producto = $_GET['id'];
@@ -275,7 +275,7 @@
                                                         <select required class="form-control" name="warranty">
                                                             <option selected disabled>Selecciona..</option>
                                                             <option value="1">6 meses</option>
-                                                            <option value="2">1 años</option>
+                                                            <option value="2">1 año</option>
                                                             <option value="3">2 años</option>
                                                             <option value="4">3 años</option>
                                                         </select>
@@ -439,8 +439,8 @@
                                                             INNER JOIN Caracteristicas ca 
                                                                 ON ca.IdCaracteristica = phc.Caracteristicas_IdCaracteristica
                                                             WHERE p.IdProducto = '".$_GET['id']."' ORDER BY ca.NombreCaracteristica ASC";
-                                                $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-                                                while($fila=mysql_fetch_array($resultado)) { ?>
+                                                $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
+                                                while($fila=mysqli_fetch_array($resultado)) { ?>
                                                   <tr>
                                                     <td><?php echo $fila['NombreCaracteristica']; ?></td>
                                                     <td><?php echo $fila['DetalleCaracteristica']; ?></td>
@@ -495,9 +495,9 @@
                                                 <tbody>
                                                     <?php 
                                                     $query2 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$_GET['id']."'";
-                                                    $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                    $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
 
-                                                    while($fila1 = mysql_fetch_array($resultado2)) { ?>
+                                                    while($fila1 = mysqli_fetch_array($resultado2)) { ?>
                                                     <tr>
                                                         <td><?php echo $fila1['NombreImagen']; ?></td>
                                                         <td>
@@ -542,9 +542,9 @@
                                                     <tbody>
                                                         <?php 
                                                         $query2 = "SELECT * FROM Categorias ORDER BY Categoria ASC";
-                                                        $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                        $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
 
-                                                        while($fila1 = mysql_fetch_array($resultado2)) { ?>
+                                                        while($fila1 = mysqli_fetch_array($resultado2)) { ?>
                                                         <tr>
                                                             <td>
                                                                 <?php echo $fila1['IdCategoria']; ?>
@@ -568,10 +568,10 @@
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <?php
                                                         $query = "SELECT * FROM Categorias ORDER BY Categoria ASC";
-                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                        $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
                                                             echo "<select id='category' name='category' class='form-control' required>";
                                                             echo "<option disabled selected>Selecciona..</option>";
-                                                        while($row2 = mysql_fetch_array($resultado)){
+                                                        while($row2 = mysqli_fetch_array($resultado)){
                                                             echo "<option value='".$row2['IdCategoria']."'>". $row2['Categoria']."</option>";
                                                         }
                                                             echo "</select>";
@@ -602,9 +602,9 @@
                                                     <tbody>
                                                         <?php 
                                                         $query2 = "SELECT * FROM Subcategoria s ORDER BY Subcategoria ASC";
-                                                        $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                        $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
 
-                                                        while($fila1 = mysql_fetch_array($resultado2)) { ?>
+                                                        while($fila1 = mysqli_fetch_array($resultado2)) { ?>
                                                         <tr>
                                                             <td>
                                                                 <?php echo $fila1['IdSubcategoria']; ?>
@@ -650,9 +650,9 @@
                                                     <tbody>
                                                         <?php 
                                                         $query2 = "SELECT * FROM Marcas s ORDER BY Marca ASC";
-                                                        $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                        $resultado2 = mysqli_query(Conectar::con(),$query2) or die(mysqli_error());
 
-                                                        while($fila1 = mysql_fetch_array($resultado2)) { ?>
+                                                        while($fila1 = mysqli_fetch_array($resultado2)) { ?>
                                                         <tr>
                                                             <td>
                                                                 <?php echo $fila1['IdMarca']; ?>

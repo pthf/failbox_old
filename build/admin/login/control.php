@@ -12,8 +12,8 @@ class usuario
 		//colocamos script_tags para eliminar las etiquetas html y php, de alguno que tenga
 	    $query = "SELECT * FROM Usuarios WHERE Nombre='".strip_tags($nombre)."' AND Password='".strip_tags($password)."';";
 		//ejecutamos la consulta y guardamos el resultado en la variable resultado
-		$resultado = mysql_query($query,Conectar::con());
-		if ($reg=mysql_num_rows($resultado) == 1) {
+		$resultado = mysqli_query(Conectar::con(),$query);
+		if ($reg=mysqli_num_rows($resultado) == 1) {
 			//defino una sesion y guardo datos 
 			$_SESSION["autentificado"] = "SI"; 
    			header ("Location: listProducts.php");
