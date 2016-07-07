@@ -1,9 +1,9 @@
-<div class="topMenu" ng-controller="topMenuController">
+<div class="topMenu" ng-controller="topMenuController" id="top">
 
 	<div class="logoFailBox">
 
 		<div class="img">
-			<a href="#"><img src="src/images/failbox-04.png"></a>
+			<a href="home/"><img src="src/images/failbox-04.png"></a>
 		</div>
 
 		<div class="titleNav">
@@ -23,7 +23,7 @@
 					<li class="itemGroup" ng-repeat="(key, data) in menuProductos"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
 						<span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
 							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
-								<a href="#/productos/{{subkey | urlName}}" style="width: 100%; display: inline-block;">
+								<a href="productos/{{subkey | urlName}}" style="width: 100%; display: inline-block;">
 									{{subkey}}
 									<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
 								</a>
@@ -32,7 +32,7 @@
 
 						<span ng-show="$last"  class="title" >
 							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
-								<a href="#/productos" style="width: 100%; display: inline-block;">
+								<a href="productos" style="width: 100%; display: inline-block;">
 									Todos los productos
 								</a>
 							</span>
@@ -42,7 +42,7 @@
 							<span ng-repeat="(subkey, subdata) in data">
 								<li class="" ng-repeat="(key, subDataKey) in subdata" ng-mouseover="tabs.selectBrand($index+1)">
 									<span ng-repeat="(keysubDataKey, datasubDataKey) in subDataKey" style="width: 100%; display: inline-block;" >
-										<a href="#/productos/{{subkey | urlName}}/{{keysubDataKey | urlName}}" style="width: 100%; display: inline-block;">
+										<a href="productos/{{subkey | urlName}}/{{keysubDataKey | urlName}}" style="width: 100%; display: inline-block;">
 											{{keysubDataKey}}
 											<!-- <img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}"> -->
 										</a>
@@ -61,7 +61,7 @@
 											<li class="">
 												<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey2, datasubDataKey2) in subdatasubDataKey">
 													<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey3, datasubDataKey3) in datasubDataKey2">
-														<a href="#/productos/{{subkey | urlName}}/{{keysubDataKey3 | urlName}}/{{keysubDataKey3 | urlName}}" style="width: 100%; display: inline-block;">
+														<a href="productos/{{subkey | urlName}}/{{keysubDataKey3 | urlName}}/{{keysubDataKey3 | urlName}}" style="width: 100%; display: inline-block;">
 															{{keysubDataKey3}}
 														</a>
 													</span>
