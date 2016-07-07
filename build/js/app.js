@@ -8,7 +8,7 @@
 			'failboxStore.filters'
   	]);
 
-	app.config(['$routeProvider', function ($routeProvider) {
+	app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
 		$routeProvider
 			.when('/', {
@@ -47,6 +47,10 @@
 				redirectTo: '/'
 			});
 
+			$locationProvider.html5Mode(true);
+
 	}]);
+
+
 
 })();

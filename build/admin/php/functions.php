@@ -441,6 +441,7 @@ require_once("../db/conexion.php");
 	function cargaMasivaCaracteristicas () {
 
 		$fname = $_FILES['upload_char']['name'];
+		
         // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
         $chk_ext = explode(".",$fname[1]);
         if(strtolower(end($chk_ext)) == "csv")

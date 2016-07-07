@@ -23,7 +23,7 @@
 									$.each(result, function(key, data){
 										var price = parseInt(data.price);
 										var not_price = parseInt(data.not_price);
-										resultElemets += '<a href="#/articulo/'+data.url+'"><div class="itemSearched"><img style="width: 4vw; height: 4vw; " src="./admin/images/products/'+data.image+'"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">'+data.name+'</span><span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$'+price.toFixed(2)+'</span> - <span style="font-weight: bold; color: red;">$'+not_price.toFixed(2)+'</span></span></div></div></a>';
+										resultElemets += '<a href="articulo/'+data.url+'"><div class="itemSearched"><img style="width: 4vw; height: 4vw; " src="./admin/images/products/'+data.image+'"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">'+data.name+'</span><span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$'+price.toFixed(2)+'</span> - <span style="font-weight: bold; color: red;">$'+not_price.toFixed(2)+'</span></span></div></div></a>';
 									});
 									if(resultElemets.length>0){
 										$('.contElements div').html(resultElemets);
@@ -453,6 +453,15 @@
 										timeout: 10000
 								});
 							});
+
+							$('a.ancla').click(function(e){
+								e.preventDefault();
+								enlace  = $(this).attr('href');
+								$('html, body').animate({
+								    scrollTop: $(enlace).offset().top-160
+								}, 1000);
+							});
+
 						}
         };
     })

@@ -1248,7 +1248,7 @@ ul.groupAllItems span{
 	width: 85%;
 	margin-left: auto;
 	height: auto;
-	padding: 3vw 0;
+	padding: 1vw 0 3vw 0vw;
 }
 
 .form-contact-wrapper,form{
@@ -1480,6 +1480,7 @@ iframe {
 }
 
 span.returnSpan{
+	font-family: 1em !important;
 	font-family: 'Gotham-Light' !important;
 }
 
@@ -1554,4 +1555,22 @@ span.returnSpan{
 
 .faqs li div.answer{
 	color: #58595B;
+}
+
+.goTop{
+	position: absolute;
+	top: 30%;
+	right: 5%;
+	width: 2vw;
+	height: 2vw;
+}
+
+.goTop:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+.goTop img{
+	width: 100%;
+	height: auto;
 }
