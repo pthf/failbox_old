@@ -480,7 +480,6 @@ require_once("../db/conexion.php");
           	}
 
           }
-          
           echo "<span style='color:blue'>Importación exitosa!</span>";
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
