@@ -216,7 +216,6 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
-				// alert(result);
 				$('.result_chars').html(result);
 				$('.result_chars').hide(6000);
 				$('#formCargaCaracteristicas')[0].reset();

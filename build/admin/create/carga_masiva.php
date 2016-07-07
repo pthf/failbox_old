@@ -172,6 +172,7 @@
                                                     <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>
                                                 </div>
                                             </form> 
+                                            <?php if(isset($_GET['total_ids'])) { ?>
                                             <form class="form-horizontal form-label-left" id="formCargaCaracteristicas" enctype="multipart/form-data">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Carga Caracteristicas:
                                                 </label>
@@ -184,6 +185,7 @@
                                                     <button type="submit" name='submit' value='submit' class="btn btn-info">Enviar</button>
                                                 </div>
                                             </form>
+                                            <?php } ?>
                                           </div>
                                           <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">
