@@ -1,8 +1,6 @@
 <?php
 require_once("../db/conexion.php");
 	if(isset($_POST['namefunction'])){
-		//include("connect_db.php");
-		//connect_base_de_datos();
 		$namefunction = $_POST['namefunction'];
 		switch ($namefunction) {
 			case 'verifyPasswordLogin':
@@ -49,6 +47,9 @@ require_once("../db/conexion.php");
 				break;
 			case 'cargaMasivaImages':
 				cargaMasivaImages();
+				break;
+			case 'addNewTypeProvider':
+				addNewTypeProvider();
 				break;
 		}
 	}
@@ -97,7 +98,7 @@ require_once("../db/conexion.php");
 					date_default_timezone_set('America/Mexico_City');
 					$lastDate = date("Y-m-d H:i:s");
 					$query2 = "UPDATE Usuarios SET UltimaConexion = '$lastDate' WHERE IdUsuario = ".$line['IdUsuario'];
-					$result2 = mysql_query(Conectar::con(),$query2) or die(mysql_error());
+					$result2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 					session_start();
 					$_SESSION['idAdmin'] = $line['IdUsuario'];
 					$_SESSION['Usuario'] = $line['NombreUser'];
@@ -487,4 +488,18 @@ require_once("../db/conexion.php");
           echo '<span style="color:red">Formato de archivo incorrecto</span>';     
         }
 
+	}
+
+	function addNewTypeProvider () {
+
+		parse_str($_POST['action'],$formData);
+
+		$query = "SELECT * FROM TipoProveedor WHERE TipoProveedor = '".$formData['other_provider']."'";
+		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_num_rows($resultado);
+		if ($row == 0) {
+			$query1 = "INSERT INTO TipoProveedor VALUES('','".$formData['other_provider']."')";
+			$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+			echo "Se agrego correctamente!";
+		}
 	}

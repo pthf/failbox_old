@@ -225,3 +225,30 @@
 			}
 		})
 	});
+
+	$("#formNewTypeProvider").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "addNewTypeProvider");
+
+		$.ajax({
+			//url: "../class/functions.php",
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				alert(result);
+				// $('.result_subcategory').html(result);
+				// $('.result_subcategory').hide(4000);
+				// $('#formNewSubcategory')[0].reset();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	})
