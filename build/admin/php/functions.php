@@ -441,6 +441,7 @@ require_once("../db/conexion.php");
 	function cargaMasivaCaracteristicas () {
 
 		$fname = $_FILES['upload_char']['name'];
+		
         // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
         $chk_ext = explode(".",$fname[1]);
         if(strtolower(end($chk_ext)) == "csv")
@@ -479,9 +480,10 @@ require_once("../db/conexion.php");
           	}
 
           }
+          
+          echo "<span style='color:blue'>Importación exitosa!</span>";
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
-          echo "<span style='color:blue'>Importación exitosa!</span>";
         } else {
           echo '<span style="color:red">Formato de archivo incorrecto</span>';     
         }
