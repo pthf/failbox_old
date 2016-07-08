@@ -330,24 +330,24 @@ session_start();
                                 <option selected disabled>Selecciona..</option>
                                 <?php if ($fila['CostoEnvio'] == 0) { ?>
                                 <option value="0" selected>Envio Gratis</option>
-                                <option value="90">Paquete Chico $90.00</option>
-                                <option value="100">Paquete Mediano $100.00</option>
-                                <option value="110">Paquete Grande $110.00</option>
+                                <option value="99">5 Kg $98.79</option>
+                                <option value="120">10 Kg $120.00</option>
+                                <option value="135">15 Kg $134.98</option>
                                 <?php } else if ($fila['CostoEnvio'] == 90) { ?>
                                 <option value="0">Envio Gratis</option>
-                                <option value="90" selected>Paquete Chico $90.00</option>
-                                <option value="100">Paquete Mediano $100.00</option>
-                                <option value="110">Paquete Grande $110.00</option>
+                                <option value="99" selected>5 Kg $98.79</option>
+                                <option value="120">10 Kg $120.00</option>
+                                <option value="135">15 Kg $134.98</option>
                                 <?php } else if ($fila['CostoEnvio'] == 100) { ?>
                                 <option value="0">Envio Gratis</option>
-                                <option value="90">Paquete Chico $90.00</option>
-                                <option value="100" selected>Paquete Mediano $100.00</option>
-                                <option value="110">Paquete Grande $110.00</option>
+                                <option value="99">5 Kg $98.79</option>
+                                <option value="120" selected>10 Kg $120.00</option>
+                                <option value="135">15 Kg $134.98</option>
                                 <?php } else if ($fila['CostoEnvio'] == 110) { ?>
                                 <option value="0">Envio Gratis</option>
-                                <option value="90">Paquete Chico $90.00</option>
-                                <option value="100">Paquete Mediano $100.00</option>
-                                <option value="110" selected>Paquete Grande $110.00</option>
+                                <option value="99">5 Kg $98.79</option>
+                                <option value="120">10 Kg $120.00</option>
+                                <option value="135" selected>15 Kg $134.98</option>
                                 <?php } ?>
                               </select>
                             </div>

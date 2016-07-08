@@ -243,9 +243,16 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="providerType">Tipo de Proveedor   
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="providerType" required name="providerType">
-                                                            <option disabled selected>Selecciona..</option>
-                                                        </select>
+                                                        <?php 
+                                                        $query = "SELECT * FROM TipoProveedor ORDER BY TipoProveedor ASC";
+                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                            echo "<select id='type_provider' name='type_provider' class='form-control' required>";
+                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                        while($row2 = mysql_fetch_array($resultado)){
+                                                            echo "<option value='".$row2['idTipoProveedor']."'>". $row2['TipoProveedor']."</option>";
+                                                        }
+                                                            echo "</select>";
+                                                        ?>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">

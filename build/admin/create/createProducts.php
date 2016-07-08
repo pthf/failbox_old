@@ -304,9 +304,9 @@
                                                       <select required class="form-control" name="cost_shipping">
                                                           <option selected disabled>Selecciona..</option>
                                                           <option value="0">Envio Gratis</option>
-                                                          <option value="90">Paquete Chico $90.00</option>
-                                                          <option value="100">Paquete Mediano $100.00</option>
-                                                          <option value="110">Paquete Grande $110.00</option>
+                                                          <option value="99">5 Kg $98.79</option>
+                                                          <option value="120">10 Kg $120.00</option>
+                                                          <option value="135">15 Kg $134.98</option>
                                                       </select>
                                                   </div>
                                                 </div>

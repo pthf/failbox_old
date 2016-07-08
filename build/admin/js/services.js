@@ -243,9 +243,8 @@
 			contentType: false,
 			success: function(result){
 				alert(result);
-				// $('.result_subcategory').html(result);
-				// $('.result_subcategory').hide(4000);
-				// $('#formNewSubcategory')[0].reset();
+				$('#formNewTypeProvider')[0].reset();
+				location.reload();
 			},
 			error: function(error){
 				alert(error);
