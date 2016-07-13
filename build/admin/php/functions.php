@@ -21,6 +21,9 @@ require_once("../db/conexion.php");
 			case 'getStatesUser':
 				getStatesUser($_POST['idCategory']);
 				break;
+			case 'getStatesProvider':
+				getStatesProvider($_POST['idState']);
+				break;
 			case 'addNewProduct':
 				addNewProduct();
 				break;
@@ -50,6 +53,9 @@ require_once("../db/conexion.php");
 				break;
 			case 'addNewTypeProvider':
 				addNewTypeProvider();
+				break;
+			case 'addNewProvider':
+				addNewProvider();
 				break;
 		}
 	}
@@ -126,6 +132,17 @@ require_once("../db/conexion.php");
 
 	}
 
+	function getStatesProvider($id){
+
+		$query = "SELECT * FROM Ciudades WHERE IdEstado = $id ORDER BY Ciudad ASC";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		echo '<option disabled selected value="">Selecciona..</option>';
+		while ($line = mysql_fetch_array($result)) {
+			echo '<option value="'.$line["IdCiudad"].'" name="'.$line["IdCiudad"].'">'.$line["Ciudad"].'</option>';
+		}
+
+	}
+
 	function getEditProduct($id){
 
 		$query = "SELECT * FROM Subcategoria WHERE Categorias_IdCategoria = $id ORDER BY Subcategoria ASC";
@@ -154,7 +171,7 @@ require_once("../db/conexion.php");
 		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 		
 		$sql_products = "INSERT INTO Productos 
-							VALUES (null,'".$formData['name_product']."',
+							VALUES (null,'".$formData['name_provider']."','".$formData['name_product']."',
 								'".$formData["description"]."','".$route_name."','".$formData['stocks']."',
 								'".$formData['pricelist']."','".$formData['pricefailbox']."',
 								'".$formData['cost_shipping']."','".$formData['warranty']."',
@@ -255,7 +272,8 @@ require_once("../db/conexion.php");
 
 	    //Realizamos los cambios de los datos a la tabla Productos
 	    $sql_changes_prod = "UPDATE Productos 
-	                            SET NombreProd='" . $formData['name_product'] . "', RouteProd='" .$route_name. "', Descripcion='" . $formData["description"] . "', 
+	                            SET NombreProveedor='".$formData['name_provider']."', NombreProd='" . $formData['name_product'] . "', 
+	                            	RouteProd='" .$route_name. "', Descripcion='" . $formData["description"] . "', 
 	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
 	                                PrecioFailbox='" . $formData['pricefailbox'] . "', CostoEnvio='".$formData['cost_shipping']."',
 	                                Garantia='" . $formData['warranty'] . "', Modelo='" . $formData['model'] . "',
@@ -406,7 +424,7 @@ require_once("../db/conexion.php");
 			$array_images = explode('-', $array_products[$i][10]);
 			$images = implode(',', $array_images);
 
-            $query = "INSERT INTO Productos VALUES(null,'".$array_products[$i][0]."','".$array_products[$i][1]."','".$route_name."',
+            $query = "INSERT INTO Productos VALUES(null,'".$array_products[$i][16]."','".$array_products[$i][0]."','".$array_products[$i][1]."','".$route_name."',
                     '".$array_products[$i][2]."','".$array_products[$i][3]."','".$array_products[$i][4]."','".$array_products[$i][5]."',
                     '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".$array_products[$i][9]."',
                     '".$images."','".$array_products[$i][11]."','".$array_products[$i][12]."','".$datatime."',
@@ -488,6 +506,54 @@ require_once("../db/conexion.php");
           echo '<span style="color:red">Formato de archivo incorrecto</span>';     
         }
 
+	}
+
+	function addNewProvider () {
+
+		parse_str($_POST['action'],$formData);
+
+		$fileNames = []; 
+		$indice = 0;
+		foreach ($_FILES['profileImage']["error"]  as $key => $value) {
+			$fileName = $_FILES["profileImage"]["name"][$key];
+			$fileName = date("YmdHis").pathinfo($_FILES["profileImage"]["type"][$key], PATHINFO_EXTENSION);
+			array_push($fileNames, $fileName);
+			$fileType = $_FILES["profileImage"]["type"][$key];
+			$fileTemp = $_FILES["profileImage"]["tmp_name"][$key];
+			if($indice==0)
+				move_uploaded_file($fileTemp, "../images/profileProvider/".$fileName);
+			$indice++;
+		}
+
+		if ($formData['outstanding'] == 2) {
+
+			date_default_timezone_set('UTC');
+		  	date_default_timezone_set("America/Mexico_City");
+		  	$datatime = date("Y-m-d H:i:s");
+
+			$query = "INSERT INTO Proveedores 
+					VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
+					'".$formData['tel']."','".$formData['outstanding']."','0','0','0','".$formData['code']."','".$datatime."','2',
+					'".$fileName."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+			$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			echo "<span style='color:blue'>Proveedor Agregado.</span>";
+		}else if ($formData['outstanding'] == 1) {
+
+			date_default_timezone_set('UTC');
+		  	date_default_timezone_set("America/Mexico_City");
+		  	$datatime = date("Y-m-d H:i:s");
+
+			$query = "INSERT INTO Proveedores 
+					VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
+					'".$formData['tel']."','".$formData['outstanding']."','".$formData['priceSmall']."','".$formData['priceMedium']."',
+					'".$formData['priceBig']."','".$formData['code']."','".$datatime."','2','".$fileName."',
+					'".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+			$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			echo "<span style='color:blue'>Proveedor Agregado.</span>";
+
+		}
 	}
 
 	function addNewTypeProvider () {

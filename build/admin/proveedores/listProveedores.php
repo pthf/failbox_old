@@ -160,7 +160,7 @@
                     <div class="x_panel">
                       <div class="x_title">
                         <?php 
-                          $sql = "SELECT * FROM Productos";
+                          $sql = "SELECT * FROM Proveedores";
                           $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
                           $num_total_products = mysql_num_rows($res_sql);
                         ?>
@@ -172,34 +172,32 @@
                           <thead>
                             <tr>
                               <th>#</th>
-                              <th>Nombre</th>
-                              <th>Descripcion</th>
-                              <th>Categoria</th>
-                              <th>Subcategoria</th>
-                              <th>Marca</th>
-                              <th>Stocks</th>
-                              <th>Precio Lista</th>
-                              <th>Modelo</th>
-                              <th>SKU</th>
-                              <th>Estatus</th>
-                              <th>Caracteristicas</th>
+                              <th>Razón Social</th>
+                              <th>Dirección</th>
+                              <th>Teléfono</th>
+                              <th>Código Proveedor</th>
+                              <th>Tipo Proveedor</th>
+                              <th>Estado</th>
+                              <th>Ciudad</th>
                             </tr>
                           </thead>
-                          <tbody> 
+                          <tbody>
+                          <?php 
+                          $query = "SELECT * FROM Proveedores ORDER BY idProveedor DESC";
+                          $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                          while($fila = mysql_fetch_array($resultado)) { ?> 
                             <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td><?php echo $fila['idProveedor']?></td>
+                              <td><?php echo $fila['RazonSocial']?></td>
+                              <td><?php echo $fila['Direccion']?></td>
+                              <td><?php echo $fila['Telefono']?></td>
+                              <td><?php echo $fila['CodigoProveedor']?></td>
+                              <!-- <?php $query1 = "SELECT * FROM Proveedores p"?> -->
+                              <td><?php echo $fila['TipoProveedor_idTipoProveedor']?></td>
+                              <td><?php echo $fila['Estados_IdEstado']?></td>
+                              <td><?php echo $fila['Ciudades_IdCiudad']?></td>
                             </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>

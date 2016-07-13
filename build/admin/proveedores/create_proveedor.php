@@ -170,9 +170,9 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <form class="form-horizontal form-label-left" id="formProvider" name="formProviderData" enctype="multipart/form-data">
+                                        <form class="form-horizontal form-label-left" id="formNewProvider" name="formProviderData" enctype="multipart/form-data">
                                             <div class="col-sm-5"><br>
-                                                <div class=" form-group">
+                                                <div class="form-group code_provider">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="modelo">Código proveedor
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -180,8 +180,12 @@
                                                         $query = "SELECT MAX(idProveedor) as idProveedor FROM Proveedores";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                         $row = mysql_fetch_array($resultado);
+                                                        date_default_timezone_set('UTC');
+                                                        date_default_timezone_set("America/Mexico_City");
+                                                        $datatime = date("Y-m-d");
+                                                        $code = 'PROV-'.$datatime.$row['idProveedor'];
                                                         ?>
-                                                        <input id="model" type="text" name="model" required="" disabled placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $row['idProveedor']+1?>">
+                                                        <input id="model" type="text" name="code" required="" placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $code; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -225,16 +229,23 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">Estado 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="state" required name="state">
-                                                            <option disabled selected>Selecciona..</option>
-                                                        </select>
+                                                        <?php 
+                                                        $query = "SELECT * FROM Estados ORDER BY Estado ASC";
+                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                            echo "<select id='selectState' name='state' class='form-control' required>";
+                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                        while($row2 = mysql_fetch_array($resultado)){
+                                                            echo "<option value='".$row2['IdEstado']."'>". $row2['Estado']."</option>";
+                                                        }
+                                                            echo "</select>";
+                                                        ?>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">Ciudad 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="city" required name="city">
+                                                        <select class='form-control' id="selectCity" required name="city">
                                                             <option disabled selected>Selecciona..</option>
                                                         </select>
                                                     </div>
@@ -256,26 +267,35 @@
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">¿Costo de envío?
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">Costo de envío
                                                     </label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <select required class="form-control" name="outstanding">
+                                                        <select id="selectOutstanding" required class="form-control" name="outstanding">
                                                             <option disabled selected>Selecciona..</option>
                                                             <option value="1">Sí</option>
                                                             <option value="2">No</option>
                                                         </select>
                                                     </div>
+                                                        <p class="help-block"> ¿Incluye costo de envío?</p>
                                                 </div>
-                                                <div class=" form-group">
+                                                <div class="form-group price_outstanding">
                                                     <label for="sku" class="control-label col-md-3">Precio por paquete $</label>
                                                     <div class="col-md-2 col-sm-6 col-xs-12">
-                                                        <input id="priceSmall" type="number" name="priceSmall" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Chico">
+                                                        <input id="small" type="number" name="priceSmall" min="0" class="form-control col-md-7 col-xs-12" placeholder="Chico">
                                                     </div>
                                                     <div class="col-md-2 col-sm-6 col-xs-12">
-                                                        <input id="priceMedium" type="number" name="priceMedium" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Mediano">
+                                                        <input id="medium" type="number" name="priceMedium" min="0" class="form-control col-md-7 col-xs-12" placeholder="Mediano">
                                                     </div>
                                                     <div class="col-md-2 col-sm-6 col-xs-12">
-                                                        <input id="priceBig" type="number" name="priceBig" min="0" class="form-control col-md-7 col-xs-12" required="" placeholder="Grande">
+                                                        <input id="big" type="number" name="priceBig" min="0" class="form-control col-md-7 col-xs-12" placeholder="Grande">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="profile-home" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen Perfil</label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input required="" type="file" class="form-control" id="profile-home" name="profileImage[]">
+                                                        <p class="help-block"> (Requerido: 2133×547px)</p>
+                                                        <div class="result_provider"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -322,18 +342,41 @@
             </div>
 
             <script type="text/javascript">
-                $("#selectCategory").change(function () {
-                    var idCategory = $("option:selected", this).attr('value');
-                    var namefunction = 'getStatesUser';
+                $(".code_provider").hide();
+                $(".price_outstanding").hide();
+                $("#selectOutstanding").change(function () {
+                    var value = $("option:selected", this).attr('value');
+                    if (value == 1) {
+                        $(".price_outstanding").show();
+                        $("#small").prop( "disabled", false );
+                        $("#small").prop( "required", true );
+                        $("#medium").prop('disabled',false);
+                        $("#medium").prop('required',true);
+                        $("#big").prop('disabled',false);
+                        $("#big").prop('required',true);
+                    } else {
+                        $(".price_outstanding").hide();
+                        $("#small").prop( "disabled", true );
+                        $("#medium").prop('disabled',true);
+                        $("#big").prop('disabled',true);
+                    }; 
+                });
+            </script>
+
+            <script type="text/javascript">
+                $("#selectState").change(function () {
+                    var idState = $("option:selected", this).attr('value');
+                    var namefunction = 'getStatesProvider';
                     $.ajax({
                         url: "../php/functions.php",
                         type: "POST",
                         data: {
                             namefunction: namefunction,
-                            idCategory: idCategory
+                            idState: idState
                         },
                         success: function (result) {
-                            $('#selectSubCategory').html(result);
+                            // alert(result);
+                            $('#selectCity').html(result);
                         },
                         error: function () {},
                         complete: function () {},
@@ -341,6 +384,7 @@
                     });
                 });
             </script>
+
             <script src="../js/bootstrap.min.js"></script>
 
             <script src="../js/custom.js"></script>   

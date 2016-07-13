@@ -6,7 +6,7 @@
           	alert("El nombre es obligatorio");
           return false;
         }
-        if($("#name_product").val().length < 30) {
+        if($("#name_product").val().length < 10) {
           alert("El nombre debe tener como mínimo 30 caracteres");
           return false;
         }
@@ -226,6 +226,39 @@
 		})
 	});
 
+	$("#formNewProvider").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "addNewProvider");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('profileImage['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				// alert(result);
+				$('.result_provider').html(result);
+				$('.result_provider').hide(6000);
+				$('#formNewProvider')[0].reset();
+				// location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	})
+
 	$("#formNewTypeProvider").submit(function(e){
 
 		e.preventDefault();
@@ -235,7 +268,6 @@
 		ajaxData.append("namefunction", "addNewTypeProvider");
 
 		$.ajax({
-			//url: "../class/functions.php",
 			url: "../php/functions.php",
 			type: "POST",
 			data: ajaxData,

@@ -256,6 +256,13 @@ session_start();
                             </div>
                           </div>
                           <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Nombre
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input class="form-control col-md-7 col-xs-12" id="name_provider" name="name_provider" placeholder="Nombre del proveedor" type="text" value="<?php echo $fila['NombreProveedor'];?>">
+                            </div>
+                          </div>
+                          <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_product">Nombre
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -333,17 +340,17 @@ session_start();
                                 <option value="99">5 Kg $98.79</option>
                                 <option value="120">10 Kg $120.00</option>
                                 <option value="135">15 Kg $134.98</option>
-                                <?php } else if ($fila['CostoEnvio'] == 90) { ?>
+                                <?php } else if ($fila['CostoEnvio'] == 99) { ?>
                                 <option value="0">Envio Gratis</option>
                                 <option value="99" selected>5 Kg $98.79</option>
                                 <option value="120">10 Kg $120.00</option>
                                 <option value="135">15 Kg $134.98</option>
-                                <?php } else if ($fila['CostoEnvio'] == 100) { ?>
+                                <?php } else if ($fila['CostoEnvio'] == 120) { ?>
                                 <option value="0">Envio Gratis</option>
                                 <option value="99">5 Kg $98.79</option>
                                 <option value="120" selected>10 Kg $120.00</option>
                                 <option value="135">15 Kg $134.98</option>
-                                <?php } else if ($fila['CostoEnvio'] == 110) { ?>
+                                <?php } else if ($fila['CostoEnvio'] == 135) { ?>
                                 <option value="0">Envio Gratis</option>
                                 <option value="99">5 Kg $98.79</option>
                                 <option value="120">10 Kg $120.00</option>
