@@ -83,11 +83,11 @@
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                                     </li>
-                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                                    <li><a href="../proveedores/create_provider.php">Crear</a>
                                     </li>
-                                    <li><a href="#">Editar</a>
+                                    <li><a href="../edit_providers.php">Editar</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -118,13 +118,26 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                                         <span class=" fa fa-angle-down"></span>
-                                    </a>
+                                      </a>
+                                    <?php } else { 
+                                      $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                                      $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                                      $row = mysql_fetch_array($res_sql);
+                                      ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                                        <span class=" fa fa-angle-down"></span>
+                                      </a>
+                                    <?php } ?>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="#">  Perfil</a>
-                                        </li>
+                                        <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                                            <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                                            </li>
+                                        <?php } ?>
                                         <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                                         </li>
                                     </ul>

@@ -93,11 +93,11 @@ session_start();
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                     </li>
-                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                    <li><a href="../proveedores/create_provider.php">Crear</a>
                     </li>
-                    <li><a href="#">Editar</a>
+                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                     </li>
                   </ul>
                 </li>
@@ -129,14 +129,26 @@ session_start();
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
-                  <span class=" fa fa-angle-down"></span>
-                </a>
+                <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } else { 
+                  $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
+                  ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } ?>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="#">  Perfil</a>
-                  </li>
-                  <li>
+                  <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                    <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                    </li>
+                  <?php } ?>
                   <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                   </li>
                 </ul>
@@ -184,9 +196,9 @@ session_start();
                       </ul>
                       <div class="clearfix"></div>
                     </div>
-                    <?php 
-
-                      $query4 = "SELECT * FROM Productos";
+                    <?php
+                    if($_SESSION['idPrivilegio'] == 1) {  
+                      $query4 = "SELECT * FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor";
                       $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
                       $num_total_registros = mysql_num_rows($resultado4);
                       //Si hay registros
@@ -210,7 +222,7 @@ session_start();
                         $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
 
                         //echo '<h3>Numero de articulos: '.$num_total_registros .'</h3>';
-                        $query5 = "SELECT * FROM Productos p ORDER BY p.IdProducto ASC LIMIT ".$inicio."," . $TAMANO_PAGINA;
+                        $query5 = "SELECT * FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor ORDER BY p.IdProducto ASC LIMIT ".$inicio."," . $TAMANO_PAGINA;
                         $resultado5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
                         while ($fila = mysql_fetch_array($resultado5)) { ?>
                         <div class="col-xs-4 products">
@@ -340,8 +352,163 @@ session_start();
                           echo "</nav>";
                         echo "</div>";
                       }
-                    ?>
+                    } else {
+                      $query4 = "SELECT * FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                      $resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
+                      $num_total_registros = mysql_num_rows($resultado4);
+                      //Si hay registros
+                      if ($num_total_registros > 0) {
+                        //Limito la busqueda
+                        $TAMANO_PAGINA = 5;
+                              $pagina = false;
 
+                        //examino la pagina a mostrar y el inicio del registro a mostrar
+                              if (isset($_GET["pagina"]))
+                                  $pagina = $_GET["pagina"];
+                              
+                        if (!$pagina) {
+                          $inicio = 0;
+                          $pagina = 1;
+                        }
+                        else {
+                          $inicio = ($pagina - 1) * $TAMANO_PAGINA;
+                        }
+                        //calculo el total de paginas
+                        $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
+
+                        //echo '<h3>Numero de articulos: '.$num_total_registros .'</h3>';
+                        $query5 = "SELECT * FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."' ORDER BY p.IdProducto ASC LIMIT ".$inicio."," . $TAMANO_PAGINA;
+                        $resultado5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
+                        while ($fila = mysql_fetch_array($resultado5)) { ?>
+                        <div class="col-xs-4 products">
+                        <div class="well profile_view">
+                          <div class="col-sm-12 details_prod">
+                            <h4 class="brief"><i>ID: <?php echo $fila['IdProducto']?></i></h4>
+                            <div class="left col-xs-8">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <span><strong>Nombre:</strong> <?php echo $fila['NombreProd']?></span>
+                                </div>
+                                <div class="col-md-6">
+                                  <ul class="list-unstyled">
+                                  <p><strong>SKU:</strong> <?php echo $fila['SKU']?></p>
+                                </div>
+                              </div>
+                                <div class="row">
+                                  <div class="col-md-6"><strong>Stocks:</strong> <?php echo $fila['Stock']?></div>
+                                  <div class="col-md-6"><strong>Marca:</strong>
+                                    <?php 
+                                      $query1 = "SELECT * FROM Marcas m 
+                                                  INNER JOIN Productos p
+                                                  ON p.Marcas_IdMarca = m.IdMarca
+                                                  WHERE p.IdProducto = '".$fila['IdProducto']."'";
+                                      $resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+                                      $fila1 = mysql_fetch_array($resultado1);
+                                      echo $fila1['Marca']; 
+                                    ?>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6"><strong>Categoria:</strong>
+                                    <?php 
+                                      $query2 = "SELECT * FROM Categorias c
+                                                  INNER JOIN Productos p
+                                                  ON p.Categorias_IdCategoria = c.IdCategoria
+                                                  WHERE p.IdProducto = ".$fila['IdProducto'];
+                                      $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                      while($fila2 = mysql_fetch_array($resultado2)) { 
+                                        echo $fila2['Categoria'];
+                                      }
+                                    ?>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6"><strong>Subcategoria:</strong>
+                                    <?php 
+                                      $query2 = "SELECT * FROM Subcategoria s
+                                                  INNER JOIN Productos p
+                                                  ON p.Subcategoria_IdSubcategoria = s.IdSubcategoria
+                                                  WHERE p.IdProducto = ".$fila['IdProducto'];
+                                      $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                      while($fila2 = mysql_fetch_array($resultado2)) { 
+                                        echo $fila2['Subcategoria'];
+                                      }
+                                    ?>
+                                  </div>
+                                </div>
+                              </ul>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                              <?php 
+                                $query3 = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$fila['IdProducto']."'";
+                                $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+                                $fila3 = mysql_fetch_array($resultado3);
+                              ?>
+                              <a href="editProduct.php?id=<?php echo $fila['IdProducto'];?>"><img src="../images/products/<?php echo $fila3['NombreImagen']; ?>" alt="" class="img-rounded img-responsive img_details"></a>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 bottom text-center">
+                            <div class="col-xs-12 col-sm-8 emphasis">
+                              <p class="ratings">
+                                Lista: <strike><?php echo '$ '.$fila['PrecioLista'].'.00'?></strike>
+                                Failbox: <?php echo '$ '.$fila['PrecioFailbox'].'.00'?>
+                              </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 emphasis text-right">
+                              <?php if ($fila['Estatus'] == 'Activo') { ?>
+                                <a href="editEstatus.php?id=<?php echo $fila['IdProducto'];?>&estatus=Inactivo" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="¿Desactivar?">
+                                  <?php echo $fila['Estatus'];?>
+                                </a>
+                              <?php } else { ?>
+                                <a href="editEstatus.php?id=<?php echo $fila['IdProducto'];?>&estatus=Activo" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Activar?">
+                                  <?php echo $fila['Estatus'];?>
+                                </a>
+                              <?php } ?>
+                              <a href="editProduct.php?id=<?php echo $fila['IdProducto'];?>" class="btn btn-info btn-xs"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                              <a href="../delete/deleteProduct.php?id=<?php echo $fila['IdProducto']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <?php } 
+                        echo "<div class='col-md-12 col-sm-12 col-xs-12' style='text-align:center;''>";
+                          echo "<nav>";
+                            echo "<ul class='pagination pagination-split'>";
+                              if ($total_paginas > 1) {
+                                if ($pagina != 1) {
+                                    echo "<li>";
+                                      echo '<a href="editProducts.php?pagina='.($pagina-1).'"><span title="Primer Pagina"aria-hidden="true">&laquo;</span></a>';
+                                    echo "</li>";
+                                } 
+                                  for ($i=1;$i<=$total_paginas;$i++) {
+                                    if ($pagina == $i) {
+                                      //si muestro el indice de la pagina actual, no coloco enlace
+                                      echo "<li><a style='background:#A5A9AC; color:#FFFFFF;'>";
+                                        echo $pagina;
+                                      echo "</a></li>";
+                                    } else {
+                                      //si el indice no corresponde con la pagina mostrada actualmente,
+                                      //coloco el enlace para ir a esa pagina
+                                        echo "<li>";
+                                          echo '<a href="editProducts.php?pagina='.$i.'">'.$i.'</a>';
+                                        echo "</li>";
+                                    }
+                                  }
+                                  if ($pagina != $total_paginas) { 
+                                    echo "<li>";
+                                      echo '<a href="editProducts.php?pagina='.($pagina+1).'"><span title="Ultima Pagina" aria-hidden="true">&raquo;</span></a>';
+                                    echo "</li>";
+                                  }
+                                }
+                              echo "</li>";
+                            echo "</ul>";
+                          echo "</nav>";
+                        echo "</div>";
+                      }
+
+                    } ?>
                   </div>
                 </div>
               </div>

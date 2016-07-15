@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-07-2016 a las 17:32:38
+-- Tiempo de generación: 15-07-2016 a las 23:15:19
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -65,6 +65,13 @@ CREATE TABLE `Categorias` (
   `Categoria` varchar(45) NOT NULL,
   `RouteCategoria` varchar(450) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `Categorias`
+--
+
+INSERT INTO `Categorias` (`IdCategoria`, `Categoria`, `RouteCategoria`) VALUES
+(1, 'Electrónica', 'electronica');
 
 -- --------------------------------------------------------
 
@@ -2640,6 +2647,13 @@ CREATE TABLE `Marcas` (
   `RouteMarca` varchar(450) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `Marcas`
+--
+
+INSERT INTO `Marcas` (`IdMarca`, `Marca`, `RouteMarca`) VALUES
+(1, 'Panasonic', 'panasonic');
+
 -- --------------------------------------------------------
 
 --
@@ -2700,8 +2714,18 @@ CREATE TABLE `Productos` (
   `IdPrivilegio` int(11) NOT NULL,
   `Marcas_IdMarca` int(11) NOT NULL,
   `Categorias_IdCategoria` int(11) NOT NULL,
-  `Subcategoria_IdSubcategoria` int(11) NOT NULL
+  `Subcategoria_IdSubcategoria` int(11) NOT NULL,
+  `Proveedores_idProveedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Productos`
+--
+
+INSERT INTO `Productos` (`IdProducto`, `NombreProveedor`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `CostoEnvio`, `Garantia`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `IdPrivilegio`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`, `Proveedores_idProveedor`) VALUES
+(5, '2', 'PANTALLA DE 40"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'pantalla-de-40"', 4, 2900, 2800, 0, '1', 'SDFASDF-DASF', '1000188883213', 'Activo', 'sam_03.jpeg,sam_02.jpg,sam_01.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 14:19:58', 1, 1, 1, 1, 2),
+(6, '3', 'BOCINAS BS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'bocinas-bs', 3, 3000, 2800, 99, '2', 'DSFAS-2123', '23894728347', 'Activo', 'gelato_cafe_baileys.png,gelato_chocolate_amargo.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 14:23:33', 1, 1, 1, 1, 3),
+(7, '7', 'BOCINAS BS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'bocinas-bs', 2, 3000, 1500, 120, '3', 'BOCSDAS-3242', '23894728347', 'Activo', 'gelato_avellana_piemonte.png,gelato_amaretto01.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 16:28:43', 2, 1, 1, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -2726,6 +2750,19 @@ CREATE TABLE `Productos_has_Imagenes` (
   `IdImagen` int(11) NOT NULL,
   `NombreImagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Productos_has_Imagenes`
+--
+
+INSERT INTO `Productos_has_Imagenes` (`Productos_IdProducto`, `IdImagen`, `NombreImagen`) VALUES
+(5, 1, 'sam_03.jpeg'),
+(5, 2, 'sam_02.jpg'),
+(5, 3, 'sam_01.jpg'),
+(6, 4, 'gelato_cafe_baileys.png'),
+(6, 5, 'gelato_chocolate_amargo.png'),
+(7, 6, 'gelato_avellana_piemonte.png'),
+(7, 7, 'gelato_amaretto01.png');
 
 -- --------------------------------------------------------
 
@@ -2754,7 +2791,8 @@ CREATE TABLE `Proveedores` (
   `Direccion` varchar(100) NOT NULL,
   `Colonia` varchar(45) NOT NULL,
   `CP` int(11) NOT NULL,
-  `Telefono` int(11) NOT NULL,
+  `Telefono` varchar(50) NOT NULL,
+  `Email` varchar(100) NOT NULL,
   `CostoEnvio` float NOT NULL,
   `PaqChico` float NOT NULL,
   `PaqMediano` float NOT NULL,
@@ -2763,6 +2801,9 @@ CREATE TABLE `Proveedores` (
   `FechaAlta` datetime NOT NULL,
   `IdPrivilegio` int(11) NOT NULL,
   `ImageProfile` varchar(100) NOT NULL,
+  `User` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `EstatusProv` varchar(45) NOT NULL,
   `TipoProveedor_idTipoProveedor` int(11) NOT NULL,
   `Estados_IdEstado` int(11) NOT NULL,
   `Ciudades_IdCiudad` int(11) NOT NULL
@@ -2772,11 +2813,13 @@ CREATE TABLE `Proveedores` (
 -- Volcado de datos para la tabla `Proveedores`
 --
 
-INSERT INTO `Proveedores` (`idProveedor`, `RazonSocial`, `Direccion`, `Colonia`, `CP`, `Telefono`, `CostoEnvio`, `PaqChico`, `PaqMediano`, `PaqGrande`, `CodigoProveedor`, `FechaAlta`, `IdPrivilegio`, `ImageProfile`, `TipoProveedor_idTipoProveedor`, `Estados_IdEstado`, `Ciudades_IdCiudad`) VALUES
-(2, 'Mi PC Comunicaciones  S.A. De C.V.', '18 de Marzo 2124 y 2126', 'Col. Aguilas', 45080, 33, 2, 0, 0, 0, 'PROV-2016-07-121', '2016-07-12 17:24:17', 2, '20160713002417', 2, 15, 692),
-(3, 'VORAGO', 'Calle Francisco Villa No.3', 'San Agustín', 45645, 3044, 1, 90, 100, 110, 'PROV-2016-07-122', '2016-07-12 17:38:16', 2, '20160713003816', 1, 15, 750),
-(4, 'SUMITEL', '16 de Septiembre #130, Local 68 y 92,', 'Centro', 45070, 0, 2, 0, 0, 0, 'PROV-2016-07-123', '2016-07-12 17:45:46', 2, '20160713004546', 1, 15, 692),
-(5, 'test', 'test', 'test', 44700, 33333333, 2, 0, 0, 0, 'PROV-2016-07-124', '2016-07-12 18:01:34', 2, '20160713010134', 3, 4, 44);
+INSERT INTO `Proveedores` (`idProveedor`, `RazonSocial`, `Direccion`, `Colonia`, `CP`, `Telefono`, `Email`, `CostoEnvio`, `PaqChico`, `PaqMediano`, `PaqGrande`, `CodigoProveedor`, `FechaAlta`, `IdPrivilegio`, `ImageProfile`, `User`, `Password`, `EstatusProv`, `TipoProveedor_idTipoProveedor`, `Estados_IdEstado`, `Ciudades_IdCiudad`) VALUES
+(2, 'Mi PC Comunicaciones  S.A. De C.V.', '18 de Marzo 2124 y 2126', 'Col. Aguilas', 45080, '33', 'mipc@mipc.com', 2, 0, 0, 0, 'PROV-2016-07-121', '2016-07-14 17:29:50', 2, 'img_perfil07.png', 'Mipc', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '0', 2, 15, 692),
+(3, 'VORAGO', 'Calle Francisco Villa No.3', 'San Agustín', 45645, '3044', 'vorago@example.com', 1, 90, 100, 110, 'PROV-2016-07-122', '2016-07-14 17:23:52', 2, 'img_perfil04.png', 'Vorago', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '0', 1, 15, 750),
+(4, 'SUMITEL', '16 de Septiembre #130, Local 68 y 92,', 'Centro', 45070, '33333333', 'sumitel@gmail.com', 2, 0, 0, 0, 'PROV-2016-07-123', '2016-07-14 17:30:50', 2, 'logo_sumitel.png', 'Sumitel01', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '1', 1, 15, 692),
+(5, 'Ejemplo', 'test', 'test', 44700, '33333333', 'test@example.com', 2, 0, 0, 0, 'PROV-2016-07-124', '2016-07-14 17:25:48', 2, 'img_perfil05.jpg', 'Ejemplo', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '0', 3, 4, 44),
+(6, 'Mi PC Comunicaciones  S.A. De C.V.', 'México, D.F. 91 38 9990', 'Col. Aguilas', 45080, '33', 'pthf@example.com', 2, 0, 0, 0, 'PROV-2016-07-135', '2016-07-14 17:26:27', 2, 'img_perfil06.png', 'pthf', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '1', 3, 2, 25),
+(7, 'SUMITEL', 'Lerdo de Tejada', 'Centro', 45070, '01800 (holabebe)', 'example@example.com', 2, 0, 0, 0, 'PROV-2016-07-136', '2016-07-14 17:16:53', 2, 'img_perfil01.png', 'Sumitel', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', '0', 2, 8, 261);
 
 -- --------------------------------------------------------
 
@@ -2790,6 +2833,13 @@ CREATE TABLE `Subcategoria` (
   `RouteSubcategoria` varchar(450) NOT NULL,
   `Categorias_IdCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Subcategoria`
+--
+
+INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `RouteSubcategoria`, `Categorias_IdCategoria`) VALUES
+(1, 'Televisiones', 'televisiones', 1);
 
 -- --------------------------------------------------------
 
@@ -2834,10 +2884,11 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `NombreUser`, `Nombre`, `Apellido`, `Email`, `Password`, `TipoPerfil`, `Privilegios`, `UltimaConexion`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-07-07 17:34:35'),
+(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-07-15 16:08:23'),
 (2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-30 12:35:09'),
 (3, 'Proveedor2', 'Proveedor_Dos', 'Proveedor2', 'prov2@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 3, '2016-06-16 16:53:26'),
-(4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00');
+(4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00'),
+(5, 'Sumitel', 'SUMITEL', '', 'example@example.com', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', 'Proveedor', 2, '2016-07-15 16:07:30');
 
 --
 -- Índices para tablas volcadas
@@ -2911,10 +2962,11 @@ ALTER TABLE `Pedidos`
 -- Indices de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  ADD PRIMARY KEY (`IdProducto`,`Marcas_IdMarca`,`Categorias_IdCategoria`,`Subcategoria_IdSubcategoria`),
+  ADD PRIMARY KEY (`IdProducto`,`Marcas_IdMarca`,`Categorias_IdCategoria`,`Subcategoria_IdSubcategoria`,`Proveedores_idProveedor`),
   ADD KEY `fk_Productos_Marcas1_idx` (`Marcas_IdMarca`),
   ADD KEY `fk_Productos_Categorias1_idx` (`Categorias_IdCategoria`),
-  ADD KEY `fk_Productos_Subcategoria1_idx` (`Subcategoria_IdSubcategoria`);
+  ADD KEY `fk_Productos_Subcategoria1_idx` (`Subcategoria_IdSubcategoria`),
+  ADD KEY `fk_Productos_Proveedores1_idx` (`Proveedores_idProveedor`);
 
 --
 -- Indices de la tabla `Productos_has_Caracteristicas`
@@ -2985,7 +3037,7 @@ ALTER TABLE `Caracteristicas`
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Ciudades`
 --
@@ -3010,7 +3062,7 @@ ALTER TABLE `Estados`
 -- AUTO_INCREMENT de la tabla `Marcas`
 --
 ALTER TABLE `Marcas`
-  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Newsletter`
 --
@@ -3025,22 +3077,22 @@ ALTER TABLE `Pedidos`
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Productos_has_Imagenes`
 --
 ALTER TABLE `Productos_has_Imagenes`
-  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
 ALTER TABLE `Proveedores`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Subcategoria`
 --
 ALTER TABLE `Subcategoria`
-  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `TipoProveedor`
 --
@@ -3050,7 +3102,7 @@ ALTER TABLE `TipoProveedor`
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
@@ -3079,6 +3131,7 @@ ALTER TABLE `Pedidos`
 ALTER TABLE `Productos`
   ADD CONSTRAINT `fk_Productos_Categorias1` FOREIGN KEY (`Categorias_IdCategoria`) REFERENCES `Categorias` (`IdCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Productos_Marcas1` FOREIGN KEY (`Marcas_IdMarca`) REFERENCES `Marcas` (`IdMarca`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Productos_Proveedores1` FOREIGN KEY (`Proveedores_idProveedor`) REFERENCES `Proveedores` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Productos_Subcategoria1` FOREIGN KEY (`Subcategoria_IdSubcategoria`) REFERENCES `Subcategoria` (`IdSubcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

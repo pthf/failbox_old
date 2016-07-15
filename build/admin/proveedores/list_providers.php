@@ -86,11 +86,11 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                    <li><a href="list_providers.php">Proveedores</a>
                     </li>
-                    <li><a href="create_proveedor.php">Crear</a>
+                    <li><a href="create_provider.php">Crear</a>
                     </li>
-                    <li><a href="#">Editar</a>
+                    <li><a href="edit_providers.php">Editar</a>
                     </li>
                   </ul>
                 </li>
@@ -127,8 +127,6 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="#">  Perfil</a>
-                  </li>
                   <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                   </li>
                 </ul>
@@ -179,23 +177,27 @@
                               <th>Tipo Proveedor</th>
                               <th>Estado</th>
                               <th>Ciudad</th>
+                              <th>Estatus</th>
                             </tr>
                           </thead>
                           <tbody>
                           <?php 
-                          $query = "SELECT * FROM Proveedores ORDER BY idProveedor DESC";
+                          $query = "SELECT * FROM Proveedores p 
+                                      INNER JOIN TipoProveedor tp ON tp.idTipoProveedor = p.TipoProveedor_idTipoProveedor 
+                                      INNER JOIN Estados e ON e.IdEstado = p.Estados_IdEstado 
+                                      INNER JOIN Ciudades c ON c.IdCiudad = p.Ciudades_IdCiudad ORDER BY idProveedor DESC";
                           $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                           while($fila = mysql_fetch_array($resultado)) { ?> 
                             <tr>
                               <td><?php echo $fila['idProveedor']?></td>
-                              <td><?php echo $fila['RazonSocial']?></td>
+                              <td><a href="edit_provider.php?idProvider=<?=$fila['idProveedor']?>"><?php echo $fila['RazonSocial']?></a></td>
                               <td><?php echo $fila['Direccion']?></td>
                               <td><?php echo $fila['Telefono']?></td>
                               <td><?php echo $fila['CodigoProveedor']?></td>
-                              <!-- <?php $query1 = "SELECT * FROM Proveedores p"?> -->
-                              <td><?php echo $fila['TipoProveedor_idTipoProveedor']?></td>
-                              <td><?php echo $fila['Estados_IdEstado']?></td>
-                              <td><?php echo $fila['Ciudades_IdCiudad']?></td>
+                              <td><?php echo $fila['TipoProveedor']?></td>
+                              <td><?php echo $fila['Estado']?></td>
+                              <td><?php echo $fila['Ciudad']?></td>
+                              <td><?php echo ($fila['EstatusProv'] == 0) ? 'Inactivo' : 'Activo'?></td>
                             </tr>
                           <?php } ?>
                           </tbody>

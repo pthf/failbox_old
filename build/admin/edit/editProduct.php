@@ -86,11 +86,11 @@ session_start();
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                     </li>
-                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                    <li><a href="../proveedores/create_provider.php">Crear</a>
                     </li>
-                    <li><a href="#">Editar</a>
+                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                     </li>
                   </ul>
                 </li>
@@ -122,14 +122,26 @@ session_start();
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
-                  <span class=" fa fa-angle-down"></span>
-                </a>
+                <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } else { 
+                  $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
+                  ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } ?>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="#">  Perfil</a>
-                  </li>
-                  <li>
+                  <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                    <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                    </li>
+                  <?php } ?>
                   <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                   </li>
                 </ul>
@@ -199,7 +211,7 @@ session_start();
                         <div class="col-sm-6">
                           <input type="text" name="id" value="<?php echo $fila['IdProducto'];?>" hidden>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoria
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoría
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12 ">
                               <?php 
@@ -218,7 +230,7 @@ session_start();
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoria
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoría
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12" id="SubcategorySelected">
                               <?php 
@@ -256,10 +268,30 @@ session_start();
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Nombre
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input class="form-control col-md-7 col-xs-12" id="name_provider" name="name_provider" placeholder="Nombre del proveedor" type="text" value="<?php echo $fila['NombreProveedor'];?>">
+                              <?php if($_SESSION['idPrivilegio'] == 1) { 
+                                  $query2 = "SELECT * FROM Proveedores pr";
+                                  $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                    echo "<select id='name_provider' name='name_provider' class='form-control' required>";
+                                  while($row2 = mysql_fetch_array($resultado2)) {
+                                    if ($fila['Proveedores_idProveedor'] == $row2['idProveedor']) {
+                                      echo "<option selected value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
+                                    } else { 
+                                      echo "<option value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
+                                    }
+                                  }
+                                  echo "</select>"; 
+                                } else {
+                                  $query2 = "SELECT * FROM Proveedores pr WHERE User = '".$_SESSION['Usuario']."'";
+                                  $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                    echo "<select id='name_provider' name='name_provider' class='form-control' required>";
+                                  while($row2 = mysql_fetch_array($resultado2)) {
+                                    echo "<option value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
+                                  }
+                                  echo "</select>";
+                              } ?>
                             </div>
                           </div>
                           <div class="form-group">
@@ -270,7 +302,7 @@ session_start();
                             </div>
                           </div>
                           <div class=" form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripcion
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripción
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <textarea required="" rows="5" name="description" class="form-control col-md-7 col-xs-12" placeholder="Escribe la descripcion del producto"><?php echo $fila["Descripcion"];?></textarea>

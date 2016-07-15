@@ -86,11 +86,11 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                     </li>
-                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                    <li><a href="../proveedores/create_provider.php">Crear</a>
                     </li>
-                    <li><a href="#">Editar</a>
+                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                     </li>
                   </ul>
                 </li>
@@ -127,8 +127,6 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="#">  Perfil</a>
-                  </li>
                   <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                   </li>
                 </ul>

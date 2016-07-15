@@ -79,11 +79,11 @@
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    <li><a href="list_providers.php">Proveedores</a>
                                     </li>
-                                    <li><a href="create_proveedor.php">Crear</a>
+                                    <li><a href="create_provider.php">Crear</a>
                                     </li>
-                                    <li><a href="#">Editar</a>
+                                    <li><a href="edit_providers.php">Editar</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -119,8 +119,6 @@
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="#">  Perfil</a>
-                                        </li>
                                         <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                                         </li>
                                     </ul>
@@ -185,7 +183,7 @@
                                                         $datatime = date("Y-m-d");
                                                         $code = 'PROV-'.$datatime.$row['idProveedor'];
                                                         ?>
-                                                        <input id="model" type="text" name="code" required="" placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $code; ?>">
+                                                        <input id="code" type="text" name="code" required="" placeholder="" class="form-control col-md-7 col-xs-12" value="<?php echo $code; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -193,6 +191,31 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input id="reason_social" class="form-control col-md-7 col-xs-12" name="reason_social" placeholder="Nombre del proveedor" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">Estado 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <?php 
+                                                        $query = "SELECT * FROM Estados ORDER BY Estado ASC";
+                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                                                            echo "<select id='selectState' name='state' class='form-control' required>";
+                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                        while($row2 = mysql_fetch_array($resultado)){
+                                                            echo "<option value='".$row2['IdEstado']."'>". $row2['Estado']."</option>";
+                                                        }
+                                                            echo "</select>";
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">Ciudad 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class='form-control' id="selectCity" required name="city">
+                                                            <option disabled selected>Selecciona..</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
@@ -223,33 +246,15 @@
                                                         <input id="tel" class="form-control col-md-7 col-xs-12" name="tel" placeholder="Número de teléfono" required="" type="text">
                                                     </div>
                                                 </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="email" class="form-control col-md-7 col-xs-12" name="email" placeholder="Correo Electónico" required="" type="email">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-sm-5"><br>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">Estado 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <?php 
-                                                        $query = "SELECT * FROM Estados ORDER BY Estado ASC";
-                                                        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-                                                            echo "<select id='selectState' name='state' class='form-control' required>";
-                                                            echo "<option disabled selected>Selecciona..</option>";
-                                                        while($row2 = mysql_fetch_array($resultado)){
-                                                            echo "<option value='".$row2['IdEstado']."'>". $row2['Estado']."</option>";
-                                                        }
-                                                            echo "</select>";
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">Ciudad 
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="selectCity" required name="city">
-                                                            <option disabled selected>Selecciona..</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="providerType">Tipo de Proveedor   
                                                     </label>
@@ -290,6 +295,27 @@
                                                         <input id="big" type="number" name="priceBig" min="0" class="form-control col-md-7 col-xs-12" placeholder="Grande">
                                                     </div>
                                                 </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user">Usuario 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="user" class="form-control col-md-7 col-xs-12" name="user" placeholder="Nombre de Usuario" required="" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Contraseña
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="password" class="form-control col-md-7 col-xs-12" name="password" placeholder="Contraseña" required="" type="password">
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="repeat_password">Repetir Contraseña
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="repeat_password" class="form-control col-md-7 col-xs-12" name="repeat_password" placeholder="Contraseña" required="" type="password">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="profile-home" class="control-label col-md-3 col-sm-3 col-xs-12">Imagen Perfil</label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -300,7 +326,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-3">
-                                                        <a href="listProveedores.php" class="btn btn-danger">Cancelar</a>
+                                                        <a href="list_providers.php" class="btn btn-danger">Cancelar</a>
                                                         <button type="submit" class="btn btn-primary">Siguiente</button>
                                                     </div>
                                                 </div>

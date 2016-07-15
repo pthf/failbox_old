@@ -70,7 +70,7 @@
           	alert("El nombre es obligatorio");
           return false;
         }
-        if($("#name_product").val().length < 30) {
+        if($("#name_product").val().length < 10) {
           alert("El nombre debe tener como mínimo 30 caracteres");
           return false;
         }
@@ -247,11 +247,13 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
-				// alert(result);
-				$('.result_provider').html(result);
-				$('.result_provider').hide(6000);
-				$('#formNewProvider')[0].reset();
-				// location.reload();
+				if (result == 1) {
+					alert('Las contraseñas no coinciden.');
+				} else {
+					$('.result_provider').html(result);
+					$('.result_provider').hide(6000);
+					$('#formNewProvider')[0].reset();
+				};
 			},
 			error: function(error){
 				alert(error);
@@ -274,9 +276,75 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
-				alert(result);
+				// alert(result);
 				$('#formNewTypeProvider')[0].reset();
 				location.reload();
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	})
+
+	$("#formEditProvider").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "editProvider");
+
+		$.each($("input[type=file]"), function(i, obj) {
+			$.each(obj.files, function(j,file) {
+				ajaxData.append('profileImage['+i+']', file);
+			})
+		});
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				// alert(result);
+				window.location.href = "../proveedores/list_providers.php";
+			},
+			error: function(error){
+				alert(error);
+			}
+		})
+	})
+
+	$("#formChangePassProvider").submit(function(e){
+
+		e.preventDefault();
+
+		var ajaxData = new FormData();
+		ajaxData.append("action", $(this).serialize());
+		ajaxData.append("namefunction", "changePassProvider");
+
+		$.ajax({
+			url: "../php/functions.php",
+			type: "POST",
+			data: ajaxData,
+			processData: false,
+			contentType: false,
+			success: function(result){
+				if (result == -1) {
+					// $('.result_change_pass').html("<span style='color:red'>La contraseña anterior es incorrecta.</span>");
+					// $('.result_change_pass').hide(6000);
+					alert("La contraseña anterior es incorrecta.");
+					$('#formChangePassProvider')[0].reset();
+				} else if (result == 0) {
+					// $('.result_change_pass').html("<span style='color:red'>No coinciden las contraseñas, repitelas de nuevo.</span>");
+					// $('.result_change_pass').hide(6000);
+					alert("No coinciden las contraseñas, repitelas de nuevo");
+					$('#formChangePassProvider')[0].reset();
+				} else if (result == 1) {
+					alert("Contraseña modificada correctamente.");
+					location.reload();
+				};
 			},
 			error: function(error){
 				alert(error);

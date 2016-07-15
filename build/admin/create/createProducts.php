@@ -11,6 +11,7 @@
     }
     $id_producto = $_GET['id'];
   }
+  // print_r($_SESSION);
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,11 +139,11 @@
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                                     </li>
-                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                                    <li><a href="../proveedores/create_provider.php">Crear</a>
                                     </li>
-                                    <li><a href="#">Editar</a>
+                                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -173,13 +174,26 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                                         <span class=" fa fa-angle-down"></span>
-                                    </a>
+                                      </a>
+                                    <?php } else { 
+                                      $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                                      $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                                      $row = mysql_fetch_array($res_sql);
+                                      ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                                        <span class=" fa fa-angle-down"></span>
+                                      </a>
+                                    <?php } ?>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="#">  Perfil</a>
-                                        </li>
+                                        <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                                          <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                                          </li>
+                                        <?php } ?>
                                         <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                                         </li>
                                     </ul>
@@ -250,8 +264,24 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="name_provider" class="form-control col-md-7 col-xs-12" name="name_provider" placeholder="Nombre del proveedor" type="text">
-                                                        <div class="result"></div>
+                                                      <?php if($_SESSION['idPrivilegio'] == 1) { 
+                                                          $query2 = "SELECT * FROM Proveedores pr";
+                                                          $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                            echo "<select id='name_provider' name='name_provider' class='form-control' required>";
+                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                          while($row2 = mysql_fetch_array($resultado2)) {
+                                                            echo "<option value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
+                                                          }
+                                                          echo "</select>"; 
+                                                        } else {
+                                                          $query2 = "SELECT * FROM Proveedores pr WHERE User = '".$_SESSION['Usuario']."'";
+                                                          $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                                                            echo "<select id='name_provider' name='name_provider' class='form-control' required>";
+                                                          while($row2 = mysql_fetch_array($resultado2)) {
+                                                            echo "<option value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
+                                                          }
+                                                          echo "</select>"; 
+                                                        } ?>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -259,7 +289,6 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" type="text">
-                                                        <div class="result"></div>
                                                     </div>
                                                 </div>    
                                                 <div class=" form-group">
@@ -335,11 +364,17 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
+                                                      <?php if ($_SESSION['idPrivilegio'] == 1) { ?>
                                                         <select required class="form-control" name="status">
                                                             <option disabled selected>Selecciona..</option>
                                                             <option>Activo</option>
                                                             <option>Inactivo</option>
                                                         </select>
+                                                      <?php } else { ?>
+                                                        <select required class="form-control" name="status">
+                                                            <option>Inactivo</option>
+                                                        </select>
+                                                      <?php } ?>
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
@@ -474,20 +509,6 @@
                                                         <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
                                                     </div>
                                                 </div>
-                                                
-                                                <!-- <div class="form-group">
-                                                   <div class="col-md-6 col-md-offset-3">
-                                                        <a href="../listProducts.php" class="btn btn-danger">Finalizar</a>
-                                                        <?php if (!isset($_GET['id'])) { ?> 
-                                                        <button class="btn btn-info" type="button" id="btn" disabled >Subir imágenes</button>
-                                                        <p class="help-block"> "Para subir las imagenes, necesitas crear un nuevo producto".</p>
-                                                        <?php } else { ?>
-                                                        <button class="btn btn-info" type="button" id="btn">Subir imágenes</button>
-                                                        <p class="help-block"> "Al terminar de subir las imagenes click en el botón Finalizar".</p>
-                                                        <?php } ?>
-                                                        
-                                                    </div> 
-                                                </div> -->
                                             </form>
                                         </div>
                                         <div class="col-sm-5"><br>

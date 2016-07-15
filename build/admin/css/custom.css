@@ -4375,7 +4375,8 @@ ul.project_files li a i {
   font-weight: 400;
 }
 .product-image img {
-  width: 90%;
+  width: 50%;
+  margin-top: 5%;
 }
 .prod_color li {
   margin: 0 10px;

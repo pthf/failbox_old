@@ -57,6 +57,15 @@ require_once("../db/conexion.php");
 			case 'addNewProvider':
 				addNewProvider();
 				break;
+			case 'getChangeCity':
+				getChangeCity($_POST['idState']);
+				break;
+			case 'editProvider':
+				editProvider();
+				break;
+			case 'changePassProvider':
+				changePassProvider();
+				break;
 		}
 	}
 
@@ -164,6 +173,10 @@ require_once("../db/conexion.php");
 
 		$image = "null";
 
+		$query = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['name_provider']."'";
+		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row1 = mysql_fetch_array($resultado);
+
 		$convert_name = explode(' ', $formData['name_product']);
 		$convert_name = strtolower(implode('-', $convert_name));
 		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
@@ -180,7 +193,7 @@ require_once("../db/conexion.php");
 								'".$formData['url_paypal']."','".$formData['outstanding']."',
 								'".$datatime."','".$formData['idPrivilegio']."',
 								'".$formData['brand']."','".$formData['category']."',
-								'".$formData['subcategory']."')";
+								'".$formData['subcategory']."','".$row1['idProveedor']."')";
 		$res = mysql_query($sql_products,Conectar::con()) or die(mysql_error());
 
 		//Obtenemos el ultimo id añadido en la tabla Productos
@@ -512,48 +525,70 @@ require_once("../db/conexion.php");
 
 		parse_str($_POST['action'],$formData);
 
-		$fileNames = []; 
-		$indice = 0;
-		foreach ($_FILES['profileImage']["error"]  as $key => $value) {
-			$fileName = $_FILES["profileImage"]["name"][$key];
-			$fileName = date("YmdHis").pathinfo($_FILES["profileImage"]["type"][$key], PATHINFO_EXTENSION);
-			array_push($fileNames, $fileName);
-			$fileType = $_FILES["profileImage"]["type"][$key];
-			$fileTemp = $_FILES["profileImage"]["tmp_name"][$key];
-			if($indice==0)
-				move_uploaded_file($fileTemp, "../images/profileProvider/".$fileName);
-			$indice++;
+		$password = $formData['password'];
+		$passwordhash = password_hash($password, PASSWORD_DEFAULT);
+
+		if (password_verify($formData['repeat_password'], $passwordhash)) {
+		    // echo '¡La contraseña es válida!';
+
+		    $fileNames = []; 
+			$indice = 0;
+			foreach ($_FILES['profileImage']["error"]  as $key => $value) {
+				$fileName = $_FILES["profileImage"]["name"][$key];
+				$fileName = date("YmdHis").pathinfo($_FILES["profileImage"]["type"][$key], PATHINFO_EXTENSION);
+				array_push($fileNames, $fileName);
+				$fileType = $_FILES["profileImage"]["type"][$key];
+				$fileTemp = $_FILES["profileImage"]["tmp_name"][$key];
+				if($indice==0)
+					move_uploaded_file($fileTemp, "../images/profileProvider/".$fileName);
+				$indice++;
+			}
+
+			if ($formData['outstanding'] == 2) {
+
+				date_default_timezone_set('UTC');
+			  	date_default_timezone_set("America/Mexico_City");
+			  	$datatime = date("Y-m-d H:i:s");
+
+				$query = "INSERT INTO Proveedores 
+						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
+						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','0','0','0','".$formData['code']."','".$datatime."','2',
+						'".$fileName."','".$formData['user']."','".$passwordhash."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+				$query1 = "INSERT INTO Usuarios 
+						VALUES('','".$formData['user']."','".$formData['reason_social']."','','".$formData['email']."','".$passwordhash."','Proveedor','2','')";
+				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+
+				echo "<span style='color:blue'>Proveedor Agregado.</span>";
+
+			}else if ($formData['outstanding'] == 1) {
+
+				date_default_timezone_set('UTC');
+			  	date_default_timezone_set("America/Mexico_City");
+			  	$datatime = date("Y-m-d H:i:s");
+
+				$query = "INSERT INTO Proveedores 
+						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
+						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','".$formData['priceSmall']."','".$formData['priceMedium']."',
+						'".$formData['priceBig']."','".$formData['code']."','".$datatime."','2','".$fileName."',
+						'".$formData['user']."','".$passwordhash."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+				$query1 = "INSERT INTO Usuarios 
+						VALUES('','".$formData['user']."','".$formData['reason_social']."','','".$formData['email']."','".$passwordhash."','Proveedor','2','')";
+				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+
+				echo "<span style='color:blue'>Proveedor Agregado.</span>";
+
+			}
+
+		} else {
+
+		    echo 1;
+
 		}
-
-		if ($formData['outstanding'] == 2) {
-
-			date_default_timezone_set('UTC');
-		  	date_default_timezone_set("America/Mexico_City");
-		  	$datatime = date("Y-m-d H:i:s");
-
-			$query = "INSERT INTO Proveedores 
-					VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
-					'".$formData['tel']."','".$formData['outstanding']."','0','0','0','".$formData['code']."','".$datatime."','2',
-					'".$fileName."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
-			$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-
-			echo "<span style='color:blue'>Proveedor Agregado.</span>";
-		}else if ($formData['outstanding'] == 1) {
-
-			date_default_timezone_set('UTC');
-		  	date_default_timezone_set("America/Mexico_City");
-		  	$datatime = date("Y-m-d H:i:s");
-
-			$query = "INSERT INTO Proveedores 
-					VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
-					'".$formData['tel']."','".$formData['outstanding']."','".$formData['priceSmall']."','".$formData['priceMedium']."',
-					'".$formData['priceBig']."','".$formData['code']."','".$datatime."','2','".$fileName."',
-					'".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
-			$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-
-			echo "<span style='color:blue'>Proveedor Agregado.</span>";
-
-		}
+		
 	}
 
 	function addNewTypeProvider () {
@@ -570,4 +605,138 @@ require_once("../db/conexion.php");
 		} else {
 			echo "Tipo de proveedor ya existente!";
 		}
+	}
+
+	function getChangeCity($idState){
+
+		$query = "SELECT * FROM Ciudades WHERE IdEstado = $idState ORDER BY Ciudad ASC";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+			echo '<option disabled selected value="">Selecciona..</option>';
+		while ($line = mysql_fetch_array($result)) {
+			echo '<option value="'.$line["IdCiudad"].'" name="'.$line["IdCiudad"].'">'.$line["Ciudad"].'</option>';
+		}
+
+	}
+
+	function editProvider () {
+
+		parse_str($_POST['action'],$formData);
+
+		    $fileNames = []; 
+			$indice = 0;
+			foreach ($_FILES['profileImage']["error"]  as $key => $value) {
+				$fileName = $_FILES["profileImage"]["name"][$key];
+				// $fileName = date("YmdHis").pathinfo($_FILES["profileImage"]["type"][$key], PATHINFO_EXTENSION);
+				array_push($fileNames, $fileName);
+				$fileType = $_FILES["profileImage"]["type"][$key];
+				$fileTemp = $_FILES["profileImage"]["tmp_name"][$key];
+				if($indice==0)
+					move_uploaded_file($fileTemp, "../images/profileProvider/".$fileName);
+				$indice++;
+			}
+
+			if ($formData['outstanding'] == 2) {
+
+				date_default_timezone_set('UTC');
+			  	date_default_timezone_set("America/Mexico_City");
+			  	$datatime = date("Y-m-d H:i:s");
+
+			  	$query2 = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['idProveedor']."' AND ImageProfile = '".$fileName."'";
+			  	$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+			  	$row2 = mysql_num_rows($resultado2);
+
+			  	if ($row2 == 0) {
+
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
+			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', 
+			  					ImageProfile='".$fileName."', User='".$formData['user']."',TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					WHERE idProveedor = '".$formData['idProveedor']."'";
+			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			  		echo "<span style='color:blue'>Proveedor Actualizado.</span>";
+
+			  	} else {
+
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
+			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."',
+			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					WHERE idProveedor = '".$formData['idProveedor']."'";
+			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			  		echo "<span style='color:blue'>Proveedor Actualizado.</span>";
+			  	}
+
+
+			} else if ($formData['outstanding'] == 1) {
+
+				date_default_timezone_set('UTC');
+			  	date_default_timezone_set("America/Mexico_City");
+			  	$datatime = date("Y-m-d H:i:s");
+
+			  	$query2 = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['idProveedor']."' AND ImageProfile = '".$fileName."'";
+			  	$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+			  	$row2 = mysql_num_rows($resultado2);
+
+			  	if ($row2 == 0) {
+
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
+			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2',  
+			  					ImageProfile='".$fileName."', User='".$formData['user']."', TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					WHERE idProveedor = '".$formData['idProveedor']."'";
+			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			  		echo "<span style='color:blue'>Proveedor Actualizado.</span>";
+
+			  	} else {
+
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
+			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."',
+			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					WHERE idProveedor = '".$formData['idProveedor']."'";
+			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+			  		echo "<span style='color:blue'>Proveedor Agregado.</span>";
+			  	}
+
+			}
+
+	}
+
+	function changePassProvider () {
+
+		parse_str($_POST['action'],$formData);
+
+		$query = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['idProveedor']."'";
+		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_fetch_array($resultado);
+
+		if (password_verify($formData['past_password'], $row['Password'])) {
+
+			$new_passwordhash = password_hash($formData['new_password'], PASSWORD_DEFAULT);
+
+			if (password_verify($formData['repeat_password'], $new_passwordhash)) {
+
+				$query1 = "UPDATE Proveedores SET Password = '".$new_passwordhash."' WHERE idProveedor = '".$formData['idProveedor']."'";
+				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+
+				$query2 = "UPDATE Usuarios SET Password = '".$new_passwordhash."' WHERE Nombre = '".$row['RazonSocial']."' AND NombreUser = '".$row['User']."'";
+				$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+
+				echo 1;
+
+			} else {
+
+				echo 0;
+
+			}
+
+		} else {
+
+			echo -1;
+		}
+
 	}
