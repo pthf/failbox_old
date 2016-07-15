@@ -291,6 +291,21 @@ session_start();
                                 ?>
                             </div>
                           </div>
+                          <div class=" form-group">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12" for="status">Estatus
+                            </label>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <select id="status" required class="form-control" name="status">
+                                <?php if ($fila['EstatusProv'] == 1) { ?>
+                                <option selected value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                                <?php } else if ($fila['EstatusProv'] == 0) { ?>
+                                <option value="1">Activo</option>
+                                <option selected value="0">Inactivo</option>
+                                <?php } ?>
+                              </select>
+                            </div>
+                          </div>
                           <div class="form-group">
                             <label class="control-label col-md-4 col-sm-3 col-xs-12" for="pricefailbox">Costo de envío
                             </label>

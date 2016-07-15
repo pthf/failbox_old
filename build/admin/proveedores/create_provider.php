@@ -272,6 +272,17 @@
                                                     </div>
                                                 </div>
                                                 <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus
+                                                    </label>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <select id="status" required class="form-control" name="status">
+                                                            <option disabled selected>Selecciona..</option>
+                                                            <option value="1">Activo</option>
+                                                            <option value="0">Inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">Costo de envío
                                                     </label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">

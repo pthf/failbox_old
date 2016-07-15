@@ -553,7 +553,7 @@ require_once("../db/conexion.php");
 				$query = "INSERT INTO Proveedores 
 						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
 						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','0','0','0','".$formData['code']."','".$datatime."','2',
-						'".$fileName."','".$formData['user']."','".$passwordhash."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+						'".$fileName."','".$formData['user']."','".$passwordhash."','".$formData['status']."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
 				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 				$query1 = "INSERT INTO Usuarios 
@@ -572,7 +572,7 @@ require_once("../db/conexion.php");
 						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
 						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','".$formData['priceSmall']."','".$formData['priceMedium']."',
 						'".$formData['priceBig']."','".$formData['code']."','".$datatime."','2','".$fileName."',
-						'".$formData['user']."','".$passwordhash."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
+						'".$formData['user']."','".$passwordhash."','".$formData['status']."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
 				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 				$query1 = "INSERT INTO Usuarios 
@@ -649,8 +649,8 @@ require_once("../db/conexion.php");
 
 			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
 			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
-			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', 
-			  					ImageProfile='".$fileName."', User='".$formData['user']."',TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', ImageProfile='".$fileName."', User='".$formData['user']."', EstatusProv='".$formData['status']."',
+			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
 			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
@@ -660,7 +660,7 @@ require_once("../db/conexion.php");
 
 			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
 			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
-			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."',
+			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
 			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -684,7 +684,8 @@ require_once("../db/conexion.php");
 			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
 			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
 			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2',  
-			  					ImageProfile='".$fileName."', User='".$formData['user']."', TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
+			  					ImageProfile='".$fileName."', User='".$formData['user']."', EstatusProv='".$formData['status']."',
+			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
 			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
@@ -694,7 +695,7 @@ require_once("../db/conexion.php");
 
 			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
 			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
-			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."',
+			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
 			  		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
