@@ -1522,7 +1522,28 @@ span.returnSpan{
 	margin-top: 2vw;
 	margin-bottom: 2vw;
 }
-
+.faqs div.g-subs{
+	font-size: 1.5em;
+	display: flex;
+	padding-bottom:35px;
+}
+.faqs span.slash{
+	color: #6EB153;
+}
+.faqs div.sub{
+	padding:0 10px;
+	color: #6EB153;
+	cursor: pointer;
+}
+.faqs ul{
+	display:none;
+}
+.faqs ul.show{
+	display:block;
+}
+.faqs ul.hide{
+	display:none;
+}
 .faqs ul, .faqs li{
 	padding: 0;
 	margin: 0;

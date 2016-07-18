@@ -60,6 +60,16 @@
 							$('.faqs li div.question').removeClass('questionSelected');
 							$(this).addClass('questionSelected');
 						});
+
+						$('.faqs .g-subs .sub').click(function(e){
+							var id = $(e.currentTarget).attr('id');
+							var change = $('.faqs').find('ul.'+id)
+							var $ul = $('.faqs').find('ul');
+							$ul.addClass('hide');
+							$ul.removeClass('show');
+							change.removeClass('hide');
+							change.addClass('show');
+						})
 					}
 				}
 		})
