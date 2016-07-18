@@ -17,6 +17,7 @@ while ($row = mysql_fetch_array($resultado)) {
                 "marca" => $row['Marca'],
                 "price" => $row['PrecioLista'],
                 "not_price" => $row['PrecioFailbox'],
+                "sku"=> $row['SKU'],
                 "cost_shipping" => $row['CostoEnvio'],
                 "image" => $array_images[0],
                 "images_slider" => $array_images,

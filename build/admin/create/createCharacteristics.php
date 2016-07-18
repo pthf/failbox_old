@@ -78,10 +78,19 @@ session_start();
                     processData: false,
                     success: function(datos)
                     {
-                        // alert(datos);
-                        $("#respuesta").html(datos);
-                        $('#respuesta').show();
-                        $('#respuesta').hide(8000);
+                        if (datos == 0) {
+                            alert('Error, tipo de archivo no es una imagen o no has cargado ningun archivo.');
+                            $('#formulario')[0].reset();
+                        } else if (datos == 1) {
+                            alert('La imagen ha sido guardada con éxito.');
+                            location.reload();
+                        } else if (datos == -1) {
+                            alert('Error, la imagen ya existe.');
+                            $('#formulario')[0].reset();
+                        };
+                        // $("#respuesta").html(datos);
+                        // $('#respuesta').show();
+                        // $('#respuesta').hide(8000);
                     }
                 });
                });
@@ -101,7 +110,6 @@ session_start();
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="../listProducts.php" class="site_title"><i class="fa fa-send"></i> <span>Failbox</span></a>
                             <!--<a href="index3.html"><img src="images/failbox-04.svg"></a>-->
                         </div>
                         <div class="clearfix"></div>
@@ -109,12 +117,7 @@ session_start();
 
                         <!-- menu prile quick info -->
                         <div class="profile">
-                            <div class="profile_pic">
-                                <img src="../images/user.png" alt="" class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                <span>Bienvenido</span>
-                            </div>
+                            <a href="../listProducts.php"><img src="../../src/images/failbox-04.png" alt="" style="width: 90%;padding: 0 0% 10% 10%;"></a>
                         </div>
                         <!-- /menu prile quick info -->
 
@@ -124,9 +127,9 @@ session_start();
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                             <div class="menu_section">
-                              <h3><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
+                              <h3 style="padding: 0 27% !important"><?php echo ($_SESSION['idPrivilegio'] == 1) ? 'Administrador' : 'Proveedor' ?></h3>
                               <ul class="nav side-menu">
-                                <li><a><i class="fa fa-home"></i> Productos <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-suitcase"></i> Productos <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
                                     <li><a href="../listProducts.php">Productos</a>
                                     </li>
@@ -134,18 +137,20 @@ session_start();
                                     </li>
                                     <li><a href="../edit/editProducts.php">Editar</a>
                                     </li>
+                                    <li><a href="carga_masiva.php">Carga Masiva</a>
+                                    </li>
                                   </ul>
                                 </li>
                               </ul>
                               <?php if($_SESSION['idPrivilegio'] == 1) { ?>
                               <ul class="nav side-menu">
-                                <li><a><i class="fa fa-home"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="../proveedores/listProveedores.php">Proveedores</a>
+                                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                                     </li>
-                                    <li><a href="../proveedores/create_proveedor.php">Crear</a>
+                                    <li><a href="../proveedores/create_provider.php">Crear</a>
                                     </li>
-                                    <li><a href="#">Editar</a>
+                                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -153,7 +158,7 @@ session_start();
                               <ul class="nav side-menu">
                                 <li><a><i class="fa fa-picture-o"></i> Banners <span class="fa fa-chevron-down"></span></a>
                                   <ul class="nav child_menu" style="display: none">
-                                    <li><a href="#">Banners Principal</a>
+                                    <li><a href="banners_home.php">Banners Principal</a>
                                     </li>
                                   </ul>
                                 </li>
@@ -176,13 +181,26 @@ session_start();
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
                                         <span class=" fa fa-angle-down"></span>
-                                    </a>
+                                      </a>
+                                    <?php } else { 
+                                      $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                                      $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                                      $row = mysql_fetch_array($res_sql);
+                                      ?>
+                                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                                        <span class=" fa fa-angle-down"></span>
+                                      </a>
+                                    <?php } ?>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="#">  Perfil</a>
-                                        </li>
+                                        <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                                          <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                                          </li>
+                                        <?php } ?>
                                         <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                                         </li>
                                     </ul>
@@ -215,22 +233,22 @@ session_start();
                                 <div class="x_panel">
                                     <div class="x_content"> 
                                         <div class="tab-content"> 
-                                            <div class="col-sm-5"><br>
-                                                <form method="post" id="formulario" enctype="multipart/form-data">
+                                            <form method="post" id="formulario" enctype="multipart/form-data">
+                                                <div class="col-sm-8"><br>
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Subir imagen: 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input type="file" id="image" name="image[]" multiple required>
                                                         <p class="help-block"> Subir imagenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
                                                     </div>
+                                                    <div id="respuesta"></div>
+                                                    <div id="vista-previa"></div>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                                         <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
                                                     </div> 
-                                                </form>
-                                                <div id="vista-previa"></div>
-                                                <div id="respuesta"></div>
-                                             </div> 
-                                            <div class="col-sm-5">
+                                                </div> 
+                                            </form>
+                                            <div class="col-sm-6">
                                                 <table class="table table-striped text-center">
                                                     <thead>
                                                         <tr>
@@ -289,7 +307,7 @@ session_start();
                                                                 <p class="help-block"> Ejemplo: color, tamaño, peso, etc.</p>
                                                             </div>
                                                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                                                <button type="submit" value"Grabar" class="btn btn-primary">Añadir Caracteristica</button>
+                                                                <button type="submit" value"Grabar" class="btn btn-primary">Agregar</button>
                                                             </div>
                                                         </form>
                                                     </div>

@@ -27,9 +27,10 @@ $id_producto = $_GET['id'];
 
 		    if ($tipo != 'image/jpeg' && $tipo != 'image/jpg' && $tipo != 'image/png' && $tipo != 'image/gif')
 		    {
-		        $reporte .= "<p style='color: red'>ERROR $nombre, el archivo no es una imagen.</p>";
+		        // $reporte .= "<p style='color: red'>ERROR $nombre, el archivo no es una imagen.</p>";
+		        $reporte .= 0;
 		    }
-		    else
+		    else 
 		    {
 		    	// $array_images = implode(",", $_FILES["image"]["name"]);
 
@@ -45,7 +46,8 @@ $id_producto = $_GET['id'];
 					$query2 = "INSERT INTO Productos_has_Imagenes VALUES ('".$id_producto."',null,'".$nombre."')";
 					$resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
 					// echo $query2;
-			        echo "<p style='color: blue'>La imagen $nombre ha sido subida con éxito</p>";
+			        // echo "<p style='color: blue'>La imagen $nombre ha sido subida con éxito</p>";
+			        echo 1;
 
 			        $query = "SELECT * FROM Productos_has_Imagenes WHERE Productos_IdProducto = '".$id_producto."'";
 					$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -62,7 +64,8 @@ $id_producto = $_GET['id'];
 
 				} else {
 
-					echo "<p style='color: red'>Error $nombre, ya existe</p>";
+					// echo "<p style='color: red'>Error $nombre, ya existe</p>";
+					echo -1;
 
 				}
 
