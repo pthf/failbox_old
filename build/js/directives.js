@@ -65,9 +65,12 @@
 							var id = $(e.currentTarget).attr('id');
 							var change = $('.faqs').find('ul.'+id)
 							var $ul = $('.faqs').find('ul');
+							$ul.fadeOut('slow');
 							$ul.addClass('hide');
 							$ul.removeClass('show');
+
 							change.removeClass('hide');
+							change.fadeIn('slow');
 							change.addClass('show');
 						})
 					}
