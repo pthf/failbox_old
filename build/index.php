@@ -11,11 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/home_responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<!-- Bootstrap -->
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="./js/lib/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="contenedor">
@@ -25,13 +25,13 @@
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
 	</div>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
 	<script src="./js/lib/underscore-min.js"></script>
 	<script src="./js/lib/angular.min.js"></script>
-  <script src="./js/lib/angular-route.min.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/controllers.js"></script>
-  <script src="./js/directives.js"></script>
+	<script src="./js/lib/angular-route.min.js"></script>
+	<script src="./js/app.js"></script>
+	<script src="./js/controllers.js"></script>
+	<script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
 </body>
