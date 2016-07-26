@@ -108,15 +108,18 @@
 			restrict: 'E',
 			templateUrl: './partials/slider-home.html',
 			controller: function($document){
-				var item_selected = 0;
-				$(document).on('click', '.itemsSelecteds li', function(){
-					$('.itemsSelecteds li img').attr("src", "./src/images/notselected.png");
-					$('img', this).attr("src", "./src/images/selected.png");
-					item_selected = $(this).index();
-					$('.slider .contenedor').css({
-						'margin-left' : '-'+(item_selected*100)+'%'
-					});
-				});
+
+				setTimeout(function(){
+					var mySwiper = new Swiper('.swiper-container',{
+						pagination: '.pagination',
+						loop:true,
+						grabCursor: false,
+						paginationClickable: true,
+						autoplay:false,
+						speed:1000
+				  	})
+				})
+
 				setInterval(function(){
 					if(($('.itemsSelecteds li').length-1) == item_selected )
 					item_selected = 0;

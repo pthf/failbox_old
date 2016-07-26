@@ -34,5 +34,9 @@
 	<script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
+	<script src="./js/lib/slider.js">
+
+	</script>
+	
 </body>
 </html>
