@@ -116,9 +116,12 @@
 						grabCursor: false,
 						paginationClickable: true,
 						autoplay:5500,
-						speed:1000
-				  	}, 800)
+						speed:1000,
+						calculateHeight:true,
+						debugger: false
+				  	})
 				})
+		
 
 			}
 		};
