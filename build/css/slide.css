@@ -1,12 +1,12 @@
 section.slider-wrapper {
 	width: 100%;
-	height: 500px;
+	max-height: 500px;
 	position: relative;
 }
 
 .touch-slider {
 	width: 100%;
-	height: auto;
+	max-height: 500px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -33,7 +33,7 @@ section.slider-wrapper {
 }
 
 .swiper-container {
-	height: 500px;
+	max-height: 500px;
 	width: 100%;
 }
 
@@ -48,7 +48,7 @@ section.slider-wrapper {
 
 .swiper-slide img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 }
 
 .pagination {
@@ -74,6 +74,8 @@ section.slider-wrapper {
 }
 
 .swiper-container {
+	width: 100%;
+    height: 100%;
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -144,8 +146,8 @@ section.slider-wrapper {
 
 @media (max-width: 768px) {
 	.swiper-pagination-switch {
-		width: 8px;
-		height: 8px;
+		width: 12px;
+		height: 12px;
 	}
 
 	.pagination {
@@ -154,23 +156,7 @@ section.slider-wrapper {
 
 	.touch-slider {
 		width: 100%;
-	}
-
-	.touch-slider .arrow-left,
-  .touch-slider .arrow-right {
-		width: 75px;
-		height: 100%;
-		font-size: 23px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.arrow-left,
-  .arrow-right {
-		font-size: 25px;
-		top: 60%;
+		height: 250px;
 	}
 }
 
