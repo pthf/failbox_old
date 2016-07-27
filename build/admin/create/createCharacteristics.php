@@ -242,7 +242,7 @@ session_start();
                                                         <p class="help-block"> Subir imagenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
                                                     </div>
                                                     <div id="respuesta"></div>
-                                                    <div id="vista-previa"></div>
+                                                    <!-- <div id="vista-previa"></div> -->
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                                         <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
                                                     </div> 

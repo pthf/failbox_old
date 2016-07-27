@@ -78,11 +78,16 @@
                     processData: false,
                     success: function(datos)
                     {
-                        // alert(datos);
-                        $("#respuesta").html(datos);
-                        $('#respuesta').show();
-                        $('#respuesta').hide(8000);
-                        //location.reload();
+                      if (datos == 0) {
+                          alert('Error, tipo de archivo no es una imagen o no has cargado ningun archivo.');
+                          $('#formulario')[0].reset();
+                      } else if (datos == 1) {
+                          alert('La imagen ha sido guardada con éxito.');
+                          location.reload();
+                      } else if (datos == -1) {
+                          alert('Error, la imagen ya existe.');
+                          $('#formulario')[0].reset();
+                      };
                     }
                 });
                });
@@ -237,29 +242,6 @@
                                       <div id="home" class="tab-pane fade in active">
                                         <form class="form-horizontal form-label-left" id="formProduct" name="formProductData" enctype="multipart/form-data">
                                             <div class="col-sm-5"><br>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoría   
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <div id="result_category"><?php include('consult_category.php');?></div>
-                                                    </div>
-                                                </div>
-                                                <div class=" form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoría   
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <select class='form-control' id="selectSubCategory" required name="subcategory">
-                                                            <option disabled selected>Selecciona..</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Marca  
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                      <div id="result_brand"><?php include('consult_brand.php');?></div>
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor 
                                                     </label>
@@ -268,7 +250,7 @@
                                                           $query2 = "SELECT * FROM Proveedores pr";
                                                           $resultado2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
                                                             echo "<select id='name_provider' name='name_provider' class='form-control' required>";
-                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                            echo "<option disabled selected value=''>Selecciona..</option>";
                                                           while($row2 = mysql_fetch_array($resultado2)) {
                                                             echo "<option value='".$row2['idProveedor']."'>". $row2['RazonSocial']."</option>";
                                                           }
@@ -284,11 +266,34 @@
                                                         } ?>
                                                     </div>
                                                 </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoría   
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <div id="result_category"><?php include('consult_category.php');?></div>
+                                                    </div>
+                                                </div>
+                                                <div class=" form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Subcategoría   
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class='form-control' id="selectSubCategory" required name="subcategory">
+                                                            <option disabled selected value=''>Selecciona..</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Marca  
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                      <div id="result_brand"><?php include('consult_brand.php');?></div>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_product">Nombre Producto 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" type="text">
+                                                        <input required id="name_product" class="form-control col-md-7 col-xs-12" name="name_product" placeholder="Nombre del producto" type="text">
                                                     </div>
                                                 </div>    
                                                 <div class=" form-group">
@@ -310,7 +315,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <select required class="form-control" name="warranty">
-                                                            <option selected disabled>Selecciona..</option>
+                                                            <option selected disabled value=''>Selecciona..</option>
                                                             <option value="1">6 meses</option>
                                                             <option value="2">1 año</option>
                                                             <option value="3">2 años</option>
@@ -338,13 +343,35 @@
                                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cost_shipping">Costo de envío 
                                                   </label>
                                                   <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <?php if($_SESSION['idPrivilegio'] == 1) { ?>
                                                       <select required class="form-control" name="cost_shipping">
-                                                          <option selected disabled>Selecciona..</option>
+                                                          <option selected disabled value=''>Selecciona..</option>
                                                           <option value="0">Envio Gratis</option>
                                                           <option value="99">5 Kg $98.79</option>
                                                           <option value="120">10 Kg $120.00</option>
                                                           <option value="135">15 Kg $134.98</option>
                                                       </select>
+                                                    <?php } else { 
+                                                      $query3 = "SELECT pr.CostoEnvio,pr.PaqChico,pr.PaqMediano,pr.PaqGrande FROM Proveedores pr WHERE User = '".$_SESSION['Usuario']."'";
+                                                      $resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+                                                      $row3 = mysql_fetch_array($resultado3);
+                                                      $arrayName = array($row3['PaqChico'],$row3['PaqMediano'],$row3['PaqGrande']);
+
+                                                      if ($row3['CostoEnvio'] == 2) {
+                                                        echo "<select id='cost_shipping' name='cost_shipping' class='form-control' required>";
+                                                        echo "<option value='0'>Envio Gratis</option>";
+                                                        echo "</select>"; 
+                                                      } else if ($row3['CostoEnvio'] == 1){
+                                                          echo "<select id='cost_shipping' name='cost_shipping' class='form-control' required>";
+                                                          echo "<option disabled selected>Selecciona..</option>";
+                                                          echo "<option value='0'>Envio Gratis</option>";
+                                                        for($i=0; $i<count($arrayName); $i++) {
+                                                          echo "<option value='".$arrayName[$i]."'>".'$ '.$arrayName[$i].'.00'."</option>";
+                                                        }
+                                                        echo "</select>"; 
+                                                      }
+
+                                                    } ?>
                                                   </div>
                                                 </div>
                                                 <div class=" form-group">
@@ -366,9 +393,9 @@
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                       <?php if ($_SESSION['idPrivilegio'] == 1) { ?>
                                                         <select required class="form-control" name="status">
-                                                            <option disabled selected>Selecciona..</option>
+                                                            <!-- <option disabled selected value=''>Selecciona..</option> -->
                                                             <option>Activo</option>
-                                                            <option>Inactivo</option>
+                                                            <!-- <option>Inactivo</option> -->
                                                         </select>
                                                       <?php } else { ?>
                                                         <select required class="form-control" name="status">
@@ -382,7 +409,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <select required class="form-control" name="outstanding">
-                                                            <option disabled selected>Selecciona..</option>
+                                                            <option disabled selected value=''>Selecciona..</option>
                                                             <option>SI</option>
                                                             <option>NO</option>
                                                         </select>
@@ -424,7 +451,7 @@
                                                         <p class="help-block"> Ejemplo: color, tamaño, peso, etc.</p>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <button type="submit" value"Grabar" class="btn btn-info">Añadir Característica</button>
+                                                        <button type="submit" value"Grabar" class="btn btn-info">Agregar</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -496,22 +523,24 @@
                                         </div>
                                       </div>
                                       <div id="menu2" class="tab-pane fade">
-                                        <div class="col-sm-5"><br>
+                                        <div class="col-sm-8"><br>
                                             <form class="form-horizontal form-label-left" method="post" id="formulario" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Subir imagen: 
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_characteristic">Subir imágen: 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="file" id="image" name="image[]" multiple required>
-                                                        <p class="help-block"> Subir imagenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
+                                                        <input class="form-control" type="file" id="image" name="image[]" multiple required>
+                                                        <p class="help-block"> Subir imágenes de tipo jpeg, jpg, png y tamaño minimo de 60 x 500 pixels.</p>
                                                     </div>
+                                                    <!-- <div id="vista-previa"></div> -->
+                                                    <div id="respuesta"></div>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <button class="btn btn-primary" type="button" id="btn">Subir imágenes</button>
+                                                        <button class="btn btn-primary" type="submit" id="btn">Subir imágenes</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="col-sm-5"><br>
+                                        <div class="col-sm-6"><br>
                                             <?php if(isset($_GET['id'])) { ?> 
                                             <table class="table table-striped text-center">
                                                 <thead>
@@ -540,8 +569,6 @@
                                             <?php } ?>
                                         </div>
 
-                                        <div id="vista-previa"></div>
-                                        <div id="respuesta"></div>
                                       </div>
                                       <div id="menu3" class="tab-pane fade">
                                         <form class="form-horizontal form-label-left" name="new_category" action="" onsubmit="sendCategory(); return false">
@@ -599,7 +626,7 @@
                                                         $query = "SELECT * FROM Categorias ORDER BY Categoria ASC";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                             echo "<select id='category' name='category' class='form-control' required>";
-                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                            echo "<option disabled selected value=''>Selecciona..</option>";
                                                         while($row2 = mysql_fetch_array($resultado)){
                                                             echo "<option value='".$row2['IdCategoria']."'>". $row2['Categoria']."</option>";
                                                         }

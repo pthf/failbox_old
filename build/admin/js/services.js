@@ -276,9 +276,13 @@
 			processData: false,
 			contentType: false,
 			success: function(result){
-				// alert(result);
-				$('#formNewTypeProvider')[0].reset();
-				location.reload();
+				if (result == -1) {
+					alert('El tipo de proveedor ya existe.');
+					$('#formNewTypeProvider')[0].reset();
+				} else if (result == -1) {
+					alert('Tipo de proveedor agregado.');
+					location.reload();
+				};
 			},
 			error: function(error){
 				alert(error);

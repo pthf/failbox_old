@@ -601,9 +601,9 @@ require_once("../db/conexion.php");
 		if ($row == 0) {
 			$query1 = "INSERT INTO TipoProveedor VALUES('','".$formData['other_provider']."')";
 			$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
-			echo "Se agrego correctamente!";
+			echo 1;
 		} else {
-			echo "Tipo de proveedor ya existente!";
+			echo -1;
 		}
 	}
 

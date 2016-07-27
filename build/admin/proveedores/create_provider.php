@@ -158,7 +158,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Agregar Tipo
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input class='form-control' type="text" name="other_provider" placeholder="Agrega un tipo de proveedor">
+                                                        <input required class='form-control' type="text" name="other_provider" placeholder="Agrega un tipo de proveedor">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -201,7 +201,7 @@
                                                         $query = "SELECT * FROM Estados ORDER BY Estado ASC";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                             echo "<select id='selectState' name='state' class='form-control' required>";
-                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                            echo "<option disabled selected value=''>Selecciona..</option>";
                                                         while($row2 = mysql_fetch_array($resultado)){
                                                             echo "<option value='".$row2['IdEstado']."'>". $row2['Estado']."</option>";
                                                         }
@@ -214,7 +214,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <select class='form-control' id="selectCity" required name="city">
-                                                            <option disabled selected>Selecciona..</option>
+                                                            <option disabled selected value="">Selecciona..</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -263,7 +263,7 @@
                                                         $query = "SELECT * FROM TipoProveedor ORDER BY TipoProveedor ASC";
                                                         $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
                                                             echo "<select id='type_provider' name='type_provider' class='form-control' required>";
-                                                            echo "<option disabled selected>Selecciona..</option>";
+                                                            echo "<option disabled selected value=''>Selecciona..</option>";
                                                         while($row2 = mysql_fetch_array($resultado)){
                                                             echo "<option value='".$row2['idTipoProveedor']."'>". $row2['TipoProveedor']."</option>";
                                                         }
@@ -276,7 +276,7 @@
                                                     </label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                                         <select id="status" required class="form-control" name="status">
-                                                            <option disabled selected>Selecciona..</option>
+                                                            <option disabled selected value="">Selecciona..</option>
                                                             <option value="1">Activo</option>
                                                             <option value="0">Inactivo</option>
                                                         </select>
@@ -287,7 +287,7 @@
                                                     </label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                                         <select id="selectOutstanding" required class="form-control" name="outstanding">
-                                                            <option disabled selected>Selecciona..</option>
+                                                            <option disabled selected value="">Selecciona..</option>
                                                             <option value="1">Sí</option>
                                                             <option value="2">No</option>
                                                         </select>

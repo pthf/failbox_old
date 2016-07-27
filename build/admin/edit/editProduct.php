@@ -405,21 +405,32 @@ session_start();
                               <input id="sku" class="form-control col-md-7 col-xs-12" name="sku" placeholder="Nombre del producto" required="" type="text" value="<?php echo $fila['SKU'];?>">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estatus">Estatus
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" name="estatus">
-                                <?php if ($fila['Estatus'] == 'Activo') { ?>
-                                <option selected>Activo</option>
-                                <option>Inactivo</option>
-                                <?php } else if ($fila['Estatus'] == 'Inactivo') { ?>
-                                <option>Activo</option>
-                                <option selected>Inactivo</option>
-                                <?php } ?>
-                              </select>
+                          <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estatus">Estatus
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" id="estatus" name="estatus">
+                                  <?php if ($fila['Estatus'] == 'Activo') { ?>
+                                  <option selected>Activo</option>
+                                  <option>Inactivo</option>
+                                  <?php } else if ($fila['Estatus'] == 'Inactivo') { ?>
+                                  <option>Activo</option>
+                                  <option selected>Inactivo</option>
+                                  <?php } ?>
+                                </select>
+                              </div>
                             </div>
-                          </div>
+                          <?php } else { ?>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estatus">Estatus
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input disabled class="form-control" type="text" value="<?php echo $fila['Estatus']?>">
+                                <input hidden type="text" name="estatus" value="<?php echo $fila['Estatus']?>">
+                              </div>
+                            </div>
+                          <?php } ?>
                           <div class=" form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="outstanding">¿Destacar?
                             </label>

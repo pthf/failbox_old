@@ -142,7 +142,70 @@
     .directive('sliderCartNew', function(){
         return{
             restrict: 'E',
-            templateUrl: './partials/slider-cart-new.html'
+            templateUrl: './partials/slider-cart-new.html',
+		    controller: function($document){
+		    	$(document).on('click', '.buttonAddCart', function(){
+					var idProduct = $(this).attr('data-id');
+					var name = $(this).attr('data-name');
+					var price = $(this).attr('data-price');
+					var not_price = $(this).attr('data-notprice');
+					var stocks = $(this).attr('data-stocks');
+					var quantity = $(this).attr('data-quantity');
+					var subtotal = quantity*not_price;
+					alert(subtotal);
+
+					$.ajax({
+						url: "../php/funtions_cart.php",
+						type: "POST",
+						data: {
+							idProduct:idProduct,
+							quantity:quantity,
+							fuction_name: 'verify_max_items'
+						},
+						success: function(result){
+							if(result==1 || result==-1){
+								var fuction_name = "agregar_producto";
+								$.ajax({
+									beforeSend: function(){
+									},
+									url: "../php/funtions_cart.php",
+									type: "POST",
+									data: {
+										id_producto:id_producto,
+										precio:precio,
+										cantidad:cantidad,
+										sub_total:sub_total,
+										id_tamano_producto:id_tamano_producto,
+										id_sabor_producto:id_sabor_producto,
+										fuction_name:fuction_name,
+										identificador_cant:identificador_cant
+									},
+									success: function(data){
+										actualizar_carrito();
+									},
+									error: function(){
+									},
+									complete: function(){
+									},
+									timeout: 10000
+								});
+							}else{
+								$('.alertaCapMax').html('Máximo '+cantidad_producto+' de '+name_producto+' por compra. Si deseas un pedido especial, <a href="contacto.php">comunícate</a> con nosotros.');
+								$('.alertaCapMax').css({'opacity' : '1'});
+								setTimeout(function () {
+									$('.alertaCapMax').css({'opacity' : '0'});
+									$('.alertaCapMax').text('');
+								}, 5000);
+							}
+						},
+						error: function(){
+						},
+						complete: function(){
+						},
+						timeout: 10000
+					});
+				})
+			}
         };
     })
 
