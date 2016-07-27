@@ -120,17 +120,6 @@
 				  	})
 				})
 
-				setInterval(function(){
-					if(($('.itemsSelecteds li').length-1) == item_selected )
-					item_selected = 0;
-					else
-					item_selected++;
-					$('.slider .contenedor').css({
-						'margin-left' : '-'+(item_selected*100)+'%'
-					});
-					$('.itemsSelecteds li img').attr("src", "./src/images/notselected.png");
-					$('.itemsSelecteds li:nth-child('+(item_selected+1)+') img').attr("src", "./src/images/selected.png");
-				}, 5000);
 			}
 		};
 	})
