@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
 	<link rel="stylesheet" type="text/css" href="./css/home_responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	
 	<!-- Bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

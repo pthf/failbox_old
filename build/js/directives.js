@@ -480,6 +480,19 @@
 			restrict: 'E',
 			templateUrl: './partials/desc-general-item.html',
 			controller: function($document){
+				setTimeout(function(){
+					var mySwiper = new Swiper('.swiper-container',{
+						pagination: '.pagination',
+						loop:false,
+						grabCursor: false,
+						paginationClickable: true,
+
+						speed:800,
+
+						debugger: false
+				  	})
+				})
+
 				$('.returnSpan').click(function(){
 					parent.history.back();
 					return false;
