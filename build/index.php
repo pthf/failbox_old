@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- <base href="http://paratodohayfans.com/web/failbox/"> -->
-	<base href="http://localhost/www/FAILBOX/build/">
+	<base href="http://localhost/failbox/build/">
 	<title>FailBox - Lo que cuenta es de adentro.</title>
 	<link rel="shortcut icon" type="image/png" href="./src/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
@@ -37,6 +37,6 @@
 	<script src="./js/lib/slider.js">
 
 	</script>
-	
+
 </body>
 </html>
