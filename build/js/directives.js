@@ -117,10 +117,10 @@
 						paginationClickable: true,
 						autoplay:5500,
 						speed:1000,
-
+						calculateHeight: true,
 						debugger: false
 				  	})
-				})
+				}, 80)
 
 
 			}
@@ -486,12 +486,11 @@
 						loop:false,
 						grabCursor: false,
 						paginationClickable: true,
-
+						calculateHeight: true,
 						speed:800,
-
 						debugger: false
 				  	})
-				})
+				}, 80)
 
 				$('.returnSpan').click(function(){
 					parent.history.back();

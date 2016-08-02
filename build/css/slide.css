@@ -161,13 +161,16 @@ section.slider-wrapper {
 	position: relative;
 	height: 10%;
 	width: 50%;
-	bottom: 66px;
+
 }
 .content-swiper .swiper-slide{
 	background-color: rgba(255, 255, 255, 0);
 }
+.content-swiper .swiper-container{
+	max-height: none;
+}
 .content-swiper .swiper-container .swiper-wrapper .swiper-slide img{
-	height: auto;
+	height: 100%;
 }
 .content-swiper .pagination{
 
