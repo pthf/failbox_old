@@ -33,6 +33,9 @@ require_once("../db/conexion.php");
 			case 'addNewSubcategory':
 				addNewSubcategory();
 				break;
+			case 'addNewCategory':
+				addNewCategory();
+				break;
 			case 'getEditProduct':
 				getEditProduct($_POST['idCategory']);
 				break;
@@ -176,16 +179,74 @@ require_once("../db/conexion.php");
 		$query = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['name_provider']."'";
 		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$row1 = mysql_fetch_array($resultado);
-
-		$convert_name = explode(' ', $formData['name_product']);
-		$convert_name = strtolower(implode('-', $convert_name));
-		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-		$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 		
+		function scanear_string($string)
+		{
+		 
+		    $string = trim($string);
+		 
+		    $string = str_replace(
+		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ñ', 'Ñ', 'ç', 'Ç'),
+		        array('n', 'N', 'c', 'C',),
+		        $string
+		    );
+		 
+		    //Esta parte se encarga de eliminar cualquier caracter extraño
+		    $string = str_replace(
+		        array('¨', 'º', '-', '~',
+		             '#', '@', '|', '!', '"',
+		             "·", "$", "%", "&", "/",
+		             "(", ")", "?", "'", "¡",
+		             "¿", "[", "^", "<code>", "]",
+		             "+", "}", "{", "¨", "´",
+		             ">", "<", ";", ",", ":",
+		             "."),
+		        '',
+		        $string
+		    );
+		 
+		 
+		    return $string;
+		}
+
+		$nombre_prod = scanear_string(strtolower($formData['name_product']));
+		$nombre_prod = explode(' ', $nombre_prod);
+		$nombres_filters = array_filter($nombre_prod);
+		$nombre_prod = implode('-', $nombres_filters);
+
 		$sql_products = "INSERT INTO Productos 
 							VALUES (null,'".$formData['name_provider']."','".$formData['name_product']."',
-								'".$formData["description"]."','".$route_name."','".$formData['stocks']."',
+								'".$formData["description"]."','".$nombre_prod."','".$formData['stocks']."',
 								'".$formData['pricelist']."','".$formData['pricefailbox']."',
 								'".$formData['cost_shipping']."','".$formData['warranty']."',
 								'".$formData['model']."','".$formData['sku']."',
@@ -245,13 +306,71 @@ require_once("../db/conexion.php");
 
 		if ($row == 0) {
 
-			$convert_name = explode(' ', $formData['other_subcategory']);
-			$convert_name = strtolower(implode('-', $convert_name));
-			$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-			$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-			$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+			function scanear_string($string)
+			{
+			 
+			    $string = trim($string);
+			 
+			    $string = str_replace(
+			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ñ', 'Ñ', 'ç', 'Ç'),
+			        array('n', 'N', 'c', 'C',),
+			        $string
+			    );
+			 
+			    //Esta parte se encarga de eliminar cualquier caracter extraño
+			    $string = str_replace(
+			        array('¨', 'º', '-', '~',
+			             '#', '@', '|', '!', '"',
+			             "·", "$", "%", "&", "/",
+			             "(", ")", "?", "'", "¡",
+			             "¿", "[", "^", "<code>", "]",
+			             "+", "}", "{", "¨", "´",
+			             ">", "<", ";", ",", ":",
+			             "."),
+			        '',
+			        $string
+			    );
+			 
+			 
+			    return $string;
+			}
 
-			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, RouteSubcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$route_name."','".$formData['category']."')";
+			$nombre_subcat = scanear_string(strtolower($formData['other_subcategory']));
+			$nombre_subcat = explode(' ', $nombre_subcat);
+			$nombres_filters = array_filter($nombre_subcat);
+			$nombre_subcat = implode('-', $nombres_filters);
+
+			$sql = "INSERT INTO Subcategoria (IdSubcategoria, Subcategoria, RouteSubcategoria, Categorias_IdCategoria) VALUES ('','".$formData['other_subcategory']."','".$nombre_subcat."','".$formData['category']."')";
 			$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 			// $id = mysqli_insert_id();
@@ -259,11 +378,100 @@ require_once("../db/conexion.php");
 			if ($row = mysql_fetch_row($rs)) {
 				$id = trim($row[0]);
 			}
-			echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
+			// echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
 
 		} else {
 
-			echo '<span style="color:red">Ya existe la subcategoria, intente de nuevo!!</span><br>';
+			// echo '<span style="color:red">Ya existe la subcategoria, intente de nuevo!!</span><br>';
+
+		}
+		
+	}
+
+	function addNewCategory() {
+
+		parse_str($_POST['action'],$formData);
+
+		$query = "SELECT Categoria FROM Categorias WHERE Categoria = '".$formData['other_category']."'"; 
+		$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_num_rows($result_query);
+
+		if ($row == 0) {
+
+			function scanear_string($string)
+			{
+			 
+			    $string = trim($string);
+			 
+			    $string = str_replace(
+			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ñ', 'Ñ', 'ç', 'Ç'),
+			        array('n', 'N', 'c', 'C',),
+			        $string
+			    );
+			 
+			    //Esta parte se encarga de eliminar cualquier caracter extraño
+			    $string = str_replace(
+			        array('¨', 'º', '-', '~',
+			             '#', '@', '|', '!', '"',
+			             "·", "$", "%", "&", "/",
+			             "(", ")", "?", "'", "¡",
+			             "¿", "[", "^", "<code>", "]",
+			             "+", "}", "{", "¨", "´",
+			             ">", "<", ";", ",", ":",
+			             "."),
+			        '',
+			        $string
+			    );
+			 
+			 
+			    return $string;
+			}
+
+			$nombre_cat = scanear_string(strtolower($formData['other_category']));
+			$nombre_cat = explode(' ', $nombre_cat);
+			$nombres_filters = array_filter($nombre_cat);
+			$nombre_cat = implode('-', $nombres_filters);
+
+
+			//registra las categorias de los productos
+			$sql = "INSERT INTO Categorias (IdCategoria, Categoria, RouteCategoria) VALUES ('', '".$formData['other_category']."', '".$nombre_cat."')";
+			$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+		
+			// echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
+
+		} else {
+
+			// echo '<span style="color:red">Ya existe la subcategoria, intente de nuevo!!</span><br>';
 
 		}
 		
@@ -277,16 +485,74 @@ require_once("../db/conexion.php");
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
 
-	    $convert_name = explode(' ', $formData['name_product']);
-		$convert_name = strtolower(implode('-', $convert_name));
-		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-		$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+		function scanear_string($string)
+		{
+		 
+		    $string = trim($string);
+		 
+		    $string = str_replace(
+		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ñ', 'Ñ', 'ç', 'Ç'),
+		        array('n', 'N', 'c', 'C',),
+		        $string
+		    );
+		 
+		    //Esta parte se encarga de eliminar cualquier caracter extraño
+		    $string = str_replace(
+		        array('¨', 'º', '-', '~',
+		             '#', '@', '|', '!', '"',
+		             "·", "$", "%", "&", "/",
+		             "(", ")", "?", "'", "¡",
+		             "¿", "[", "^", "<code>", "]",
+		             "+", "}", "{", "¨", "´",
+		             ">", "<", ";", ",", ":",
+		             "."),
+		        '',
+		        $string
+		    );
+		 
+		 
+		    return $string;
+		}
+
+		$nombre_prod = scanear_string(strtolower($formData['name_product']));
+		$nombre_prod = explode(' ', $nombre_prod);
+		$nombres_filters = array_filter($nombre_prod);
+		$nombre_prod = implode('-', $nombres_filters);
 
 	    //Realizamos los cambios de los datos a la tabla Productos
 	    $sql_changes_prod = "UPDATE Productos 
 	                            SET NombreProveedor='".$formData['name_provider']."', NombreProd='" . $formData['name_product'] . "', 
-	                            	RouteProd='" .$route_name. "', Descripcion='" . $formData["description"] . "', 
+	                            	RouteProd='" .$nombre_prod. "', Descripcion='" . $formData["description"] . "', 
 	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
 	                                PrecioFailbox='" . $formData['pricefailbox'] . "', CostoEnvio='".$formData['cost_shipping']."',
 	                                Garantia='" . $formData['warranty'] . "', Modelo='" . $formData['model'] . "',
@@ -351,11 +617,75 @@ require_once("../db/conexion.php");
 		  $array_id = array();
           for($i=1; $i < count($array_products); $i++){
 
-          	$convert_name = explode(' ', $array_products[$i][0]);
-			$convert_name = strtolower(implode('-', $convert_name));
-			$no_permitidas= array("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-			$permitidas= array("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-			$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+   			// $convert_name = explode(' ', $array_products[$i][0]);
+			// $convert_name = strtolower(implode('-', $convert_name));
+			// $no_permitidas= array("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+			// $permitidas= array("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+			// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+
+			function scanear_string_prod($string)
+			{
+			 
+			    $string = trim($string);
+			 
+			    $string = str_replace(
+			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+			        $string
+			    );
+			 
+			    $string = str_replace(
+			        array('ñ', 'Ñ', 'ç', 'Ç'),
+			        array('n', 'N', 'c', 'C',),
+			        $string
+			    );
+			 
+			    //Esta parte se encarga de eliminar cualquier caracter extraño
+			    $string = str_replace(
+			        array('¨', 'º', '-', '~',
+			             '#', '@', '|', '!', '"',
+			             "·", "$", "%", "&", "/",
+			             "(", ")", "?", "'", "¡",
+			             "¿", "[", "^", "<code>", "]",
+			             "+", "}", "{", "¨", "´",
+			             ">", "<", ";", ",", ":",
+			             "."),
+			        '',
+			        $string
+			    );
+			 
+			 
+			    return $string;
+			}
+
+			$nombre_prod = scanear_string_prod(strtolower($array_products[$i][0]));
+			$nombre_prod = explode(' ', $nombre_prod);
+			$nombres_filters = array_filter($nombre_prod);
+			$nombre_prod = implode('-', $nombres_filters);
 
 			$query1 = "SELECT * FROM Categorias WHERE Categoria = '".$array_products[$i][14]."'";
 			$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
@@ -366,13 +696,77 @@ require_once("../db/conexion.php");
 				$lower_category = strtolower($category);
 				$capital_category = ucwords($lower_category);
 
-				$convert_name = explode(' ', $capital_category);
-				$convert_name = strtolower(implode('-', $convert_name));
-				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+				// $convert_name = explode(' ', $capital_category);
+				// $convert_name = strtolower(implode('-', $convert_name));
+				// $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				$sql = "INSERT INTO Categorias VALUES('', '".$capital_category."', '".$route_name."')";
+				function scanear_string_cat($string)
+				{
+				 
+				    $string = trim($string);
+				 
+				    $string = str_replace(
+				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ñ', 'Ñ', 'ç', 'Ç'),
+				        array('n', 'N', 'c', 'C',),
+				        $string
+				    );
+				 
+				    //Esta parte se encarga de eliminar cualquier caracter extraño
+				    $string = str_replace(
+				        array('¨', 'º', '-', '~',
+				             '#', '@', '|', '!', '"',
+				             "·", "$", "%", "&", "/",
+				             "(", ")", "?", "'", "¡",
+				             "¿", "[", "^", "<code>", "]",
+				             "+", "}", "{", "¨", "´",
+				             ">", "<", ";", ",", ":",
+				             "."),
+				        '',
+				        $string
+				    );
+				 
+				 
+				    return $string;
+				}
+
+				$nombre_cat = scanear_string_cat(strtolower($capital_category));
+				$nombre_cat = explode(' ', $nombre_cat);
+				$nombres_filters = array_filter($nombre_cat);
+				$nombre_cat = implode('-', $nombres_filters);
+
+				$sql = "INSERT INTO Categorias VALUES('', '".$capital_category."', '".$nombre_cat."')";
 				$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 			} 
@@ -391,13 +785,77 @@ require_once("../db/conexion.php");
 				$lower_subcategory = strtolower($subcategory);
 				$capital_subcategory = ucwords($lower_subcategory);
 
-				$convert_name = explode(' ', $capital_subcategory);
-				$convert_name = strtolower(implode('-', $convert_name));
-				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+				// $convert_name = explode(' ', $capital_subcategory);
+				// $convert_name = strtolower(implode('-', $convert_name));
+				// $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				$sql2 = "INSERT INTO Subcategoria VALUES('','".$capital_subcategory."','".$route_name."','".$fila[0]."')";
+				function scanear_string_sub($string)
+				{
+				 
+				    $string = trim($string);
+				 
+				    $string = str_replace(
+				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ñ', 'Ñ', 'ç', 'Ç'),
+				        array('n', 'N', 'c', 'C',),
+				        $string
+				    );
+				 
+				    //Esta parte se encarga de eliminar cualquier caracter extraño
+				    $string = str_replace(
+				        array('¨', 'º', '-', '~',
+				             '#', '@', '|', '!', '"',
+				             "·", "$", "%", "&", "/",
+				             "(", ")", "?", "'", "¡",
+				             "¿", "[", "^", "<code>", "]",
+				             "+", "}", "{", "¨", "´",
+				             ">", "<", ";", ",", ":",
+				             "."),
+				        '',
+				        $string
+				    );
+				 
+				 
+				    return $string;
+				}
+
+				$nombre_subcat = scanear_string_sub(strtolower($capital_subcategory));
+				$nombre_subcat = explode(' ', $nombre_subcat);
+				$nombres_filters = array_filter($nombre_subcat);
+				$nombre_subcat = implode('-', $nombres_filters);
+
+				$sql2 = "INSERT INTO Subcategoria VALUES('','".$capital_subcategory."','".$nombre_subcat."','".$fila[0]."')";
 				$res2 = mysql_query($sql2,Conectar::con()) or die(mysql_error());
 
 			} 
@@ -411,13 +869,77 @@ require_once("../db/conexion.php");
 				$lower_brand = strtolower($brand);
 				$capital_brand = ucwords($lower_brand);
 
-				$convert_name = explode(' ', $capital_brand);
-				$convert_name = strtolower(implode('-', $convert_name));
-				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-				$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+				// $convert_name = explode(' ', $capital_brand);
+				// $convert_name = strtolower(implode('-', $convert_name));
+				// $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				$sql3 = "INSERT INTO Marcas VALUES('', '".$capital_brand."', '".$route_name."')";
+				function scanear_string_brand($string)
+				{
+				 
+				    $string = trim($string);
+				 
+				    $string = str_replace(
+				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+				        $string
+				    );
+				 
+				    $string = str_replace(
+				        array('ñ', 'Ñ', 'ç', 'Ç'),
+				        array('n', 'N', 'c', 'C',),
+				        $string
+				    );
+				 
+				    //Esta parte se encarga de eliminar cualquier caracter extraño
+				    $string = str_replace(
+				        array('¨', 'º', '-', '~',
+				             '#', '@', '|', '!', '"',
+				             "·", "$", "%", "&", "/",
+				             "(", ")", "?", "'", "¡",
+				             "¿", "[", "^", "<code>", "]",
+				             "+", "}", "{", "¨", "´",
+				             ">", "<", ";", ",", ":",
+				             "."),
+				        '',
+				        $string
+				    );
+				 
+				 
+				    return $string;
+				}
+
+				$nombre_brand = scanear_string_brand(strtolower($capital_brand));
+				$nombre_brand = explode(' ', $nombre_brand);
+				$nombres_filters = array_filter($nombre_brand);
+				$nombre_brand = implode('-', $nombres_filters);
+
+				$sql3 = "INSERT INTO Marcas VALUES('', '".$capital_brand."', '".$nombre_brand."')";
 				$res3 = mysql_query($sql3,Conectar::con()) or die(mysql_error());
 
 			}
@@ -437,10 +959,10 @@ require_once("../db/conexion.php");
 			$array_images = explode('-', $array_products[$i][10]);
 			$images = implode(',', $array_images);
 
-            $query = "INSERT INTO Productos VALUES(null,'".$array_products[$i][16]."','".$array_products[$i][0]."','".$array_products[$i][1]."','".$route_name."',
+            $query = "INSERT INTO Productos VALUES(null,'".$array_products[$i][16]."','".$array_products[$i][0]."','".$array_products[$i][1]."','".$nombre_prod."',
                     '".$array_products[$i][2]."','".$array_products[$i][3]."','".$array_products[$i][4]."','".$array_products[$i][5]."',
-                    '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".$array_products[$i][9]."',
-                    '".$images."','".$array_products[$i][11]."','".$array_products[$i][12]."','".$datatime."',
+                    '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".(trim($array_products[$i][9]))."',
+                    '".$images."','".$array_products[$i][11]."','".(strtoupper($array_products[$i][12]))."','".$datatime."',
                     '1','".$row3['IdMarca']."','".$row1['IdCategoria']."','".$row2['IdSubcategoria']."')";
 	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
 

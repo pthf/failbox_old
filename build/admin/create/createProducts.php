@@ -571,7 +571,7 @@
 
                                       </div>
                                       <div id="menu3" class="tab-pane fade">
-                                        <form class="form-horizontal form-label-left" name="new_category" action="" onsubmit="sendCategory(); return false">
+                                        <form class="form-horizontal form-label-left" name="new_category" action="" id="formNewCategory">
                                             <div class="col-sm-5"><br>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Nueva categoría 

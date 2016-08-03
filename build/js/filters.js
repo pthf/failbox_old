@@ -4,8 +4,8 @@
     .filter('urlName', function () {
       return function (inputname) {
         inputname = inputname.trim();
-        var no_permitidas = ["á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ"];
-        var permitidas = ["a","e","i","o","u","A","E","I","O","U","N","n","N","&"];
+        var no_permitidas = ["á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","&","(",")","+","/"];
+        var permitidas = ["a","e","i","o","u","A","E","I","O","U","N","n"," "," "," "," "," "];
         var convert_name = inputname.split(" ");
         convert_name = convert_name.join('-');
         convert_name = convert_name.toLowerCase();

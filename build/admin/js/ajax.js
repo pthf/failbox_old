@@ -25,7 +25,6 @@ function sendCategory(){
   divResultCat = document.getElementById('result_category');
   //recogemos los valores de los inputs
   category = document.new_category.other_category.value;
- 
   //instanciamos el objetoAjax
   ajax=objetoAjax();
  
@@ -45,6 +44,8 @@ function sendCategory(){
  }
   ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   //enviando los valores a registro.php para que inserte los datos
+  alert(category);
+  exit();
   ajax.send("other_category="+category)
 }
 
