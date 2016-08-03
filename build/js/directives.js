@@ -108,21 +108,32 @@
 			restrict: 'E',
 			templateUrl: './partials/slider-home.html',
 			controller: function($document){
+				var mySwiper;
 
+
+
+
+				var conf =  {
+								pagination: '.pagination',
+								loop:true,
+								grabCursor: false,
+								paginationClickable: true,
+								autoplay:5500,
+								speed:1000,
+								calculateHeight: true,
+								debugger: false,
+								resizeReInit: true,
+								observer: true,
+								observeParents: true
+							}
 				setTimeout(function(){
-					var mySwiper = new Swiper('.swiper-container',{
-						pagination: '.pagination',
-						loop:true,
-						grabCursor: false,
-						paginationClickable: true,
-						autoplay:5500,
-						speed:1000,
-						calculateHeight: true,
-						debugger: false
-				  	})
-				}, 80)
+					mySwiper = new Swiper('.swiper-container', conf)
+				}, 80);
 
-
+				$(window).resize(function(){
+					//mySwiper.update();
+					location.reload();
+				});
 			}
 		};
 	})
@@ -480,8 +491,9 @@
 			restrict: 'E',
 			templateUrl: './partials/desc-general-item.html',
 			controller: function($document){
+				var mySwiper;
 				setTimeout(function(){
-					var mySwiper = new Swiper('.swiper-container',{
+					mySwiper = new Swiper('.swiper-container',{
 						pagination: '.pagination',
 						loop:false,
 						grabCursor: false,
@@ -491,7 +503,9 @@
 						debugger: false
 				  	})
 				}, 80)
-
+				$(window).resize(function(){
+				  mySwiper.reInit() // or mySwiper.resizeFix()
+				});
 				$('.returnSpan').click(function(){
 					parent.history.back();
 					return false;

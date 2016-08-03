@@ -41,7 +41,8 @@ section.slider-wrapper {
 
 .swiper-slide img {
 	width: 100%;
-	height:100%;
+	height:auto;
+	position: relative;
 }
 
 .pagination {
@@ -68,7 +69,7 @@ section.slider-wrapper {
 
 .swiper-container {
 	width: 100%;
-    max-height: 500px;
+
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -167,7 +168,7 @@ section.slider-wrapper {
 	background-color: rgba(255, 255, 255, 0);
 }
 .content-swiper .swiper-container{
-	max-height: none;
+
 }
 .content-swiper .swiper-container .swiper-wrapper .swiper-slide img{
 	height: 100%;
@@ -204,7 +205,12 @@ section.slider-wrapper {
 
 	.touch-slider {
 		width: 100%;
-		height: 250px;
+		height: 100%;
+		position:relative;
+	}
+	.swiper-container{
+		height: 100%;
+		position:relative;
 	}
 }
 
