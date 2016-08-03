@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./css/slide.css">
 <div class="contInformation">
 
 	<div class="returnDiv" style="background: red; width: 80%; margin-bottom: 1vw; position: relative; ">
@@ -6,7 +7,7 @@
 
 	<div class="infoArticulo">
 
-		<div class="sliderStore">
+		<!--div class="sliderStore">
 
 			<ul class="sliderContenido">
 
@@ -25,7 +26,24 @@
 				</ul>
 			</div>
 
+		</div-->
+
+
+		<div class="content-swiper">
+	
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" ng-repeat="image in item.images_slider" >
+							<img src="./admin/images/products/{{image}}">
+						</div>
+					</div>
+				</div>
+				<div class="pagination"></div>
+
 		</div>
+
+
+
 		<!--Detalle del Producto-->
 		<div class="descInfo">
 			<span class="descritem">{{item.name}}</span><br><br>
@@ -41,9 +59,9 @@
 	</div>
 
 
-	<div class="paypal">
+	<!--div class="paypal">
 		<a href="{{item.paypal}}" target="_blank"><img src="./src/images/buynow.es.png" style="width: 80%; height: auto; margin: 0 auto;"></a>
-	</div>
+	</div-->
 
 
 </div>

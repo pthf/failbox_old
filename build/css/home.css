@@ -777,6 +777,7 @@ ul.listNav li.itemGroup ul.subItems li{
 .contInformation{
 	width: 80%;
 	height: auto;
+	padding-bottom: 70px;
 	margin: 0 auto;
 	display: -webkit-flex;
 	display: -ms-flexbox;
