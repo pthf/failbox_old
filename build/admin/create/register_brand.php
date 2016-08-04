@@ -24,14 +24,73 @@ if ($capital_brand == "" || $capital_brand == NULL) {
 		echo "<span style='color:red'>Ya existe la marca, intente de nuevo!!</span><br>";
 
 	} else { 
-		$convert_name = explode(' ', $capital_brand);
-		$convert_name = strtolower(implode('-', $convert_name));
-		$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","Ñ","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-		$permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-		$route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
+		
+		function scanear_string($string)
+		{
+		 
+		    $string = trim($string);
+		 
+		    $string = str_replace(
+		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+		        $string
+		    );
+		 
+		    $string = str_replace(
+		        array('ñ', 'Ñ', 'ç', 'Ç'),
+		        array('n', 'N', 'c', 'C',),
+		        $string
+		    );
+		 
+		    //Esta parte se encarga de eliminar cualquier caracter extraño
+		    $string = str_replace(
+		        array('¨', 'º', '-', '~',
+		             '#', '@', '|', '!', '"',
+		             "·", "$", "%", "&", "/",
+		             "(", ")", "?", "'", "¡",
+		             "¿", "[", "^", "<code>", "]",
+		             "+", "}", "{", "¨", "´",
+		             ">", "<", ";", ",", ":",
+		             "."),
+		        '',
+		        $string
+		    );
+		 
+		 
+		    return $string;
+		}
+
+		$nombre_brand = scanear_string(strtolower($capital_brand));
+		$nombre_brand = explode(' ', $nombre_brand);
+		$nombres_filters = array_filter($nombre_brand);
+		$nombre_brand = implode('-', $nombres_filters);
 
 		//registra los categorias de los productos
-		$sql = "INSERT INTO Marcas (IdMarca, Marca, RouteMarca) VALUES ('', '".$capital_brand."', '".$route_name."')";
+		$sql = "INSERT INTO Marcas (IdMarca, Marca, RouteMarca) VALUES ('', '".$capital_brand."', '".$nombre_brand."')";
 		$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
 	} 

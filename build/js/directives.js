@@ -224,6 +224,7 @@
 			});
 
 			$('#slide1 .leftItem').click(function(){
+				alert();
 				if(item_selected==0)
 				item_selected=tam_items;
 				else
@@ -231,6 +232,11 @@
 				$('#slide1 .contendItems .contItemsPosition').css({
 					'margin-left' : '-'+(item_selected*100)+'%'
 				});
+			});
+
+			$(".buttonAddCart").click(function(e){
+				e.preventDefault();
+				alert();
 			});
 
 		};
