@@ -396,6 +396,9 @@
 
 @media (max-width: 768px){
 
+	.navegationFailBox .nav{
+		display:none !important;
+	}
 	span.returnSpan{
 		font-size: .6em !important;
 	}
@@ -529,7 +532,9 @@
 	.contInformation .infoArticulo{
 		font-size: .6em;
 	}
-
+	 .contInformation .infoArticulo .descInfo{
+		 margin-top: 60px;
+	 }
 	.cont-search-product{
 		font-size: .6em;
 	}
@@ -826,4 +831,10 @@
 		font-size: .4em;
 	}
 
+}
+
+@media (min-width: 768px){
+	.ulmenuMobile{
+		display: none !important;
+	}
 }

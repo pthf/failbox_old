@@ -50,6 +50,7 @@ section.slider-wrapper {
 	width: 100%;
 	z-index: 2;
 	position: absolute;
+	margin: 3px 0;
 	text-align: center;
 }
 
