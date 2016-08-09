@@ -1,122 +1,315 @@
 
-<div class="topMenu" ng-controller="topMenuController" id="top">
+<style>
+	@media (max-width: 767px){
+		.titleNav{
+			display:none;
+		}
+		.ulmenuMobile{
 
-	<div class="logoFailBox">
+		}
+		.topMenu{
+			padding:0;
+		}
+		.navbar{
+			position: absolute;;
+			background-color: rgba(248, 248, 248, 0);
+			border: none;
+			left:0;
+			width: 100%;
+		}
+		.navbar-header{
+			height: auto;
+		}
 
-		<div class="img">
-			<a href="home/"><img src="src/images/failbox-04.png"></a>
+		.navbar-toggle{
+			position: absolute;
+			margin: 0;
+
+			height: 100%;
+			border-radius: 0;
+		}
+		.navbar-default .navbar-toggle{
+			border: 1px solid rgba(255, 255, 255, 0);
+			top: 4px;
+			left:3px;
+		}
+		.navbar-fixed-top {
+			position: relative;
+			top: auto;/* Auto position navbar top */
+		}
+
+		.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+			max-height:inherit;/* Clear max-height */
+		}
+
+		.navbar-toggle .top-bar {
+		    transform: rotate(45deg);
+		    -webkit-transform: rotate(45deg);
+		    transform-origin: 10% 10%;
+		    -webkit-transform-origin: 10% 10%;
+		}
+		.navbar-toggle .middle-bar {
+		    opacity: 0;
+		}
+		.navbar-toggle .bottom-bar {
+		    transform: rotate(-45deg);
+		    transform-origin: 10% 90%;
+		    -webkit-transform: rotate(-45deg);
+		    -webkit-transform-origin: 10% 90%;
+		}
+		.navegationFailBox input.barNav {
+		    width: 75%;
+		    margin-left: 27px;
+		}
+		.navbar-toggle .icon-bar {
+		    transition: all 0.2s;
+		    -webkit-transition: all 0.2s;
+		}
+		.navbar-toggle.collapsed .top-bar {
+		    transform: rotate(0);
+		    -webkit-transform: rotate(0);
+		}
+		.navbar-toggle.collapsed .middle-bar {
+		    opacity: 1;
+		}
+		.navbar-toggle.collapsed .bottom-bar {
+		    transform: rotate(0);
+		    -webkit-transform: rotate(0);
+		}
+
+		.navbar-default .navbar-toggle .icon-bar{
+			background-color: #fff;
+			width: 30px;
+			height: 3px;
+		}
+		.navbar-toggle .icon-bar+.icon-bar{
+			margin-top: 5px;
+		}
+
+		.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+			background-color: rgba(248, 248, 248, 0);
+		}
+		.navbar-collapse{
+			position: absolute;
+    		z-index: 999;
+		}
+
+		.navbar-collapse .title{
+			color: #fff;
+
+		}
+		.navbar-collapse .sub{
+			background-color: #3e3e3e;
+			padding: 10px 30px;
+			border-bottom: 1px solid #6b6b6b;
+		}
+		.navbar-collapse .sub:last-child{
+			border-bottom: none;
+		}
+		.navbar-collapse .main-submenu-mobile{
+			padding-top: 2px;
+		}
+		.navbar-collapse .sub a{
+
+		}
+		.navbar-collapse, .navbar-default .navbar-form{
+			border-color: rgb(231, 231, 231);
+			background-color: #58595B;
+			width: 100%;
+			font-size: 12px;
+		}
+		.navbar-collapse ul li{
+			border-bottom: 1px solid #dcdcdc;
+			padding: 15px 0;
+		}
+		.navbar-collapse ul li:last-child{
+			border-bottom: 0px solid #fff;
+		}
+		.navbar-collapse ul li:first-child{
+			border-top: 0px solid #fff;
+		}
+		.topMenu .navegationFailBox label{
+			width: 90%;
+    		left: 44px;
+			z-index: 9999;
+		}
+		.nav>li>a:focus, .nav>li>a:hover{
+			background-color: rgba(238, 238, 238, 0);
+		}
+		.navbar-nav a{
+			width: 100%;
+			height: 100%;
+		}
+		.navbar-nav{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.sub{
+			display: none;
+			margin-left: 10px;
+		}
+		.h-title{
+			padding-left: 10px;
+		}
+
+	}
+</style>
+<div ng-controller="topMenuController">
+	<div class="topMenu" id="top">
+
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar top-bar"></span>
+					<span class="icon-bar middle-bar"></span>
+					<span class="icon-bar bottom-bar"></span>
+				</button>
+			</div>
+		</nav>
+
+		<div class="logoFailBox">
+			<div class="img">
+				<a href="home/"><img src="src/images/failbox-04.png"></a>
+			</div>
+			<div class="titleNav">
+				<span>¿Quiénes somos?</span>
+			</div>
 		</div>
 
-		<div class="titleNav">
-			<span>¿Quiénes somos?</span>
-		</div>
-	</div>
+		<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">
 
-	<div class="navegationFailBox" ng-controller="tabShowMenuTopController as tabs">
+			<label style="position: relative">
 
-		<label style="position: relative">
+				<div class="nav" ng-mouseleave="tabs.closeMenuRestart()">
+					<span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)" style="width: 100%; display: inline-block;">
+						Productos
+						<img class="selectIndicator" src="src/images/indMostLess-02.png">
+					</span>
 
-			<div class="nav" ng-mouseleave="tabs.closeMenuRestart()">
-				<span class="opctit" ng-mouseover="tabs.selectTab(0); tabs.openMenu()"  ng-mouseleave="tabs.selectTab(0)" style="width: 100%; display: inline-block;">
-					Productos
-					<img class="selectIndicator" src="src/images/indMostLess-02.png">
-				</span>
-				<ul class="listNav" ng-show="tabs.menuProductos">
-					<li class="itemGroup" ng-repeat="(key, data) in menuProductos"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
-						<span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
-							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
-								<a href="productos/{{subkey | urlName}}" style="width: 100%; display: inline-block;">
-									{{subkey}}
-									<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
-								</a>
+					<ul class="listNav" ng-show="tabs.menuProductos">
+						<li class="itemGroup" ng-repeat="(key, data) in menuProductos"  ng-init="imgSrc='src/images/indMostLess-01.png'" ng-mouseover="imgSrc='src/images/indMostLess-01.png'" ng-mouseout="imgSrc='src/images/indMostLess-01.png'">
+							<span class="title" ng-mouseover="tabs.selectTab($index+1)" ng-mouseleave="tabs.selectBrand(0)">
+								<span ng-repeat="(subkey, subdata) in data">
+									<a href="productos/{{subkey | urlName}}">
+										{{subkey}}
+										<img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}">
+									</a>
+								</span>
 							</span>
-						</span>
 
-						<span ng-show="$last"  class="title" >
-							<span ng-repeat="(subkey, subdata) in data" style="width: 100%; display: inline-block;">
-								<a href="productos" style="width: 100%; display: inline-block;">
-									Todos los productos
-								</a>
+							<span ng-show="$last"  class="title" >
+								<span ng-repeat="(subkey, subdata) in data">
+									<a href="productos">
+										Todos los productos
+									</a>
+								</span>
 							</span>
-						</span>
 
-						<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}" style="margin-top: -1vw;">
-							<span ng-repeat="(subkey, subdata) in data">
-								<li class="" ng-repeat="(key, subDataKey) in subdata" ng-mouseover="tabs.selectBrand($index+1)">
-									<span ng-repeat="(keysubDataKey, datasubDataKey) in subDataKey" style="width: 100%; display: inline-block;" >
-										<a href="productos/{{subkey | urlName}}/{{keysubDataKey | urlName}}" style="width: 100%; display: inline-block;">
-											{{keysubDataKey}}
-											<!-- <img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}"> -->
-										</a>
-
-
-										<!-- <ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
+							<ul class="subItems" ng-show="tabs.tab_selected === {{$index+1}}" style="margin-top: -1vw;">
+								<span ng-repeat="(subkey, subdata) in data">
+									<li ng-repeat="(key, subDataKey) in subdata" ng-mouseover="tabs.selectBrand($index+1)">
+										<span ng-repeat="(keysubDataKey, datasubDataKey) in subDataKey" style="width: 100%; display: inline-block;" >
+											<a href="productos/{{subkey | urlName}}/{{keysubDataKey | urlName}}" style="width: 100%; display: inline-block;">
+												{{keysubDataKey}}
+												<!-- <img style="width: .65em" class="selectIndicator" ng-src="{{imgSrc}}"> -->
+											</a>
 
 
+											<!-- <ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
 
-										</ul> -->
 
 
-									</span>
-									<!-- <ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
-										<span ng-repeat="(subkeysubDataKey, subdatasubDataKey) in subDataKey">
-											<li class="">
-												<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey2, datasubDataKey2) in subdatasubDataKey">
-													<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey3, datasubDataKey3) in datasubDataKey2">
-														<a href="productos/{{subkey | urlName}}/{{keysubDataKey3 | urlName}}/{{keysubDataKey3 | urlName}}" style="width: 100%; display: inline-block;">
-															{{keysubDataKey3}}
-														</a>
-													</span>
-												</span>
-											</li>
+											</ul> -->
+
+
 										</span>
-									</ul> -->
-								</li>
-							</span>
-						</ul>
+										<!-- <ul class="subItems" ng-show="tabs.menuBrand === {{$index+1}}">
+											<span ng-repeat="(subkeysubDataKey, subdatasubDataKey) in subDataKey">
+												<li class="">
+													<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey2, datasubDataKey2) in subdatasubDataKey">
+														<span style="width: 100%; display: inline-block;" ng-repeat="(keysubDataKey3, datasubDataKey3) in datasubDataKey2">
+															<a href="productos/{{subkey | urlName}}/{{keysubDataKey3 | urlName}}/{{keysubDataKey3 | urlName}}" style="width: 100%; display: inline-block;">
+																{{keysubDataKey3}}
+															</a>
+														</span>
+													</span>
+												</li>
+											</span>
+										</ul> -->
+									</li>
+								</span>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<input class="barNav" type="text">
+				</input>
+
+				<div class="search">
+					<img src="src/images/failbox-05.png">
+				</div>
+
+				<div class="contElements">
+					<div style="width: auto; height: auto; background:#FFF;">
+					</div>
+				</div>
+
+			</label>
+
+		</div>
+
+		<!-- <div class="countBar" ng-controller="tabShowMenuTopController as tabs"> -->
+
+		<div class="countBar" style="z-index:-10; opacity: 0">
+			<div class="nav">
+				<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+
+				<ul class="listNav" ng-show="tabs.menuCuenta">
+					<li class="itemGroup">
+						<span class="title" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
+					</li>
+					<li class="itemGroup">
+						<span class="title" data-toggle="modal" data-target="#popup-login">Iniciar Sesión</span>
 					</li>
 				</ul>
+
 			</div>
-
-			<input class="barNav" type="text">
-
-			</input>
-
-			<div class="search">
-				<img src="src/images/failbox-05.png">
-			</div>
-
-			<div class="contElements">
-				<div style="width: auto; height: auto; background:#FFF;">
-				</div>
-			</div>
-
-		</label>
-
-	</div>
-
-	<!-- <div class="countBar" ng-controller="tabShowMenuTopController as tabs"> -->
-	<div class="countBar" style="z-index:-10; opacity: 0">
-		<div class="nav">
-			<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
-
-			<ul class="listNav" ng-show="tabs.menuCuenta">
-				<li class="itemGroup">
-					<span class="title" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
-				</li>
-				<li class="itemGroup">
-					<span class="title" data-toggle="modal" data-target="#popup-login">Iniciar Sesión</span>
-				</li>
-			</ul>
-
 		</div>
-	</div>
 
-	<div class="cartBar" style="z-index:-10; opacity: 0">
-		<div class="nav">
-			<span class="cantidad">2</span>
-			<img src="src/images/failbox-03.png">
+		<div class="cartBar" style="z-index:-10; opacity: 0">
+			<div class="nav">
+				<span class="cantidad">2</span>
+				<img src="src/images/failbox-03.png">
+			</div>
 		</div>
+
 	</div>
 
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+		 ng-controller="tabShowMenuTopControllerMobile as tabs"
+	>
+
+		<ul class="nav navbar-nav ulmenuMobile" ng-repeat="(key, data) in menuProductos">
+
+			<li class="title menuMobile" ng-repeat="(key, datas) in data">
+				<span class="h-title">{{key}}</span>
+				<ul class="main-submenu-mobile">
+					<li ng-repeat="(subkey, subdatas) in datas" class="sub">
+						<a ng-repeat="(keysubDataKey, datasubDataKey) in subdatas" href="productos/{{key | urlName}}/{{keysubDataKey | urlName}}">
+							{{keysubDataKey}}
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li ng-show="tabs.tab_selected === {{$index+1}}" >
+				<span class="title">
+					<a href="productos">
+						Todos los productos
+					</a>
+				</span>
+			</li>
+		</ul>
+	</div>
 </div>
