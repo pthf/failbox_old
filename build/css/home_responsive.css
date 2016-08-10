@@ -393,7 +393,13 @@
 	}
 
 }
-
+@media only screen and (orientation: landscape) {
+	.bottomSite .navFailBox img{
+		width: 50% !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
 @media (max-width: 768px){
 
 	.navegationFailBox .nav{
@@ -576,6 +582,58 @@
 
 	.faqs{
 		font-size: .8em;
+	}
+	.bottomSite .navFailBox{
+		padding: 0;
+	}
+	input{
+		border-radius: 0;
+	}
+	.bottomSite .followSocial{
+		font-size: 17px;
+		display: -webkit-inline-flex;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+	}
+	.bottomSite .followSocial .titleFollow{
+		margin-right: 10px !important;
+	}
+	.bottomSite .navFailBox img{
+
+		width: 100%;
+	}
+
+	.socialFailBox{
+		text-align: center;
+	}
+	.newsletter span{
+		text-align: center !important;
+		margin: 10px 0 !important;
+		font-size: 13px
+	}
+	#newsletterForm div{
+		text-align: center !important;
+	}
+	#newsletterForm div .texti{
+		height: 23px;
+		width: 70%;
+		font-size: 11px;
+
+	}
+	#newsletterForm div .submitt{
+		height: 23px;
+	    margin: 0;
+	    width: auto;
+		font-size: 10px;
+	}
+	#newsletterForm .terminos{
+		margin-top: 12px;
+	}
+	#newsletterForm .terminos .checkb2{
+		width: 20px;
+	}
+	#newsletterForm .terminos .checkb{
+		font-size: 12px !important;
 	}
 
 

@@ -1452,6 +1452,18 @@ iframe {
 		height: 360px;
     width: 480px;
 	}
+	.faqs .title{
+		font-size: 23px !important;
+	}
+	.faqs .sub{
+		font-size: 8px;
+		padding: 0 5px !important;
+	}
+	.faqs ul{
+		width: 100% !important;
+		font-size: 10px;
+	}
+
 
 }
 
@@ -1524,12 +1536,14 @@ span.returnSpan{
 	margin-bottom: 2vw;
 }
 .faqs div.g-subs{
-	font-size: 1.5em;
+	font-size: 2vw;
 	display: flex;
+	display: -webkit-flex;
 	padding-bottom:35px;
 }
 .faqs span.slash{
 	color: #6EB153;
+	font-size: 2vw;
 }
 .faqs div.sub{
 	padding:0 10px;

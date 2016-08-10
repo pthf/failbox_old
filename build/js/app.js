@@ -43,6 +43,10 @@
 				templateUrl: 'views/faq.html',
 				controller: 'homeSliderController'
 			})
+			.when('/aviso-de-privacidad', {
+				templateUrl: 'views/privacidad.html',
+				controller: 'homeSliderController'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

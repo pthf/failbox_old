@@ -59,7 +59,7 @@
 		}
 		.navegationFailBox input.barNav {
 		    width: 75%;
-		    margin-left: 27px;
+		    margin-left: 15%;
 		}
 		.navbar-toggle .icon-bar {
 		    transition: all 0.2s;
@@ -100,7 +100,7 @@
 		}
 		.navbar-collapse .sub{
 			background-color: #3e3e3e;
-			padding: 10px 30px;
+			padding: 0;
 			border-bottom: 1px solid #6b6b6b;
 		}
 		.navbar-collapse .sub:last-child{
@@ -110,7 +110,8 @@
 			padding-top: 2px;
 		}
 		.navbar-collapse .sub a{
-
+			display: block;
+			padding: 12px 35px;
 		}
 		.navbar-collapse, .navbar-default .navbar-form{
 			border-color: rgb(231, 231, 231);
@@ -129,7 +130,7 @@
 			border-top: 0px solid #fff;
 		}
 		.topMenu .navegationFailBox label{
-			width: 90%;
+			width: 100%;
     		left: 44px;
 			z-index: 9999;
 		}
@@ -144,12 +145,21 @@
 			margin-top: 0;
 			margin-bottom: 0;
 		}
-		.sub{
+		.main-submenu-mobile .sub{
 			display: none;
-			margin-left: 10px;
 		}
 		.h-title{
 			padding-left: 10px;
+		}
+		.no-padding{
+			padding: 0 !important;
+		}
+		.no-padding a{
+			display: block;
+			padding: 10px 0;
+		}
+		.additional div:first-child{
+			border-right: 1px solid #fff;
 		}
 
 	}
@@ -296,20 +306,48 @@
 			<li class="title menuMobile" ng-repeat="(key, datas) in data">
 				<span class="h-title">{{key}}</span>
 				<ul class="main-submenu-mobile">
+					<li ng-show="$first" class="sub">
+						<span class="title">
+							<a href="productos/{{key}}">
+								Todos
+							</a>
+						</span>
+					</li>
 					<li ng-repeat="(subkey, subdatas) in datas" class="sub">
 						<a ng-repeat="(keysubDataKey, datasubDataKey) in subdatas" href="productos/{{key | urlName}}/{{keysubDataKey | urlName}}">
 							{{keysubDataKey}}
 						</a>
 					</li>
 				</ul>
+
 			</li>
-			<li ng-show="tabs.tab_selected === {{$index+1}}" >
-				<span class="title">
+			<li ng-show="$last">
+				<span class="title" style="margin-left:10px">
 					<a href="productos">
 						Todos los productos
 					</a>
 				</span>
 			</li>
+			<li ng-show="$last" class="row additional no-padding">
+				<div class="col-xs-6 text-center no-padding">
+					<a href="faq">
+						<i class="glyphicon glyphicon-book"></i>
+						FAQ
+					</a>
+				</div>
+				<div class="col-xs-6 text-center no-padding">
+					<a href="contacto">
+						<i class="glyphicon glyphicon-edit"></i>
+						Contacto
+					</a>
+				</div>
+
+
+
+
+
+			</li>
+
 		</ul>
 	</div>
 </div>

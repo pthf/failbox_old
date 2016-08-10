@@ -212,6 +212,17 @@ section.slider-wrapper {
 		height: 100%;
 		position:relative;
 	}
+	.content-swiper .swiper-container .swiper-wrapper .swiper-slide img{
+		height: 38vw;
+		width: auto;
+	}
+	.content-swiper .swiper-pagination-switch{
+		height: 10px;
+		width: 10px;
+	}
+	.content-swiper .pagination{
+		margin: 15px 0;
+	}
 }
 
 @media (max-width: 480px) {

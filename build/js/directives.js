@@ -109,10 +109,6 @@
 			templateUrl: './partials/slider-home.html',
 			controller: function($document){
 				var mySwiper;
-
-
-
-
 				var conf =  {
 								pagination: '.pagination',
 								loop:true,
@@ -128,12 +124,14 @@
 							}
 				setTimeout(function(){
 					mySwiper = new Swiper('.swiper-container', conf)
-				}, 80);
 
-				$(window).resize(function(){
-					//mySwiper.update();
-					location.reload();
-				});
+				}, 80);
+				var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+					if (!isMobile) {
+					 $(window).resize(function(){
+	  					location.reload();
+	  				});
+					}
 			}
 		};
 	})
@@ -508,7 +506,7 @@
 						speed:800,
 						debugger: false
 				  	})
-				}, 80)
+				}, 80);
 				$(window).resize(function(){
 				  mySwiper.reInit() // or mySwiper.resizeFix()
 				});
