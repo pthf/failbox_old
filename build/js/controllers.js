@@ -142,18 +142,6 @@
 			var subcategory = $routeParams.subcategory;
 			var brand = $routeParams.brand;
 			//$rootScope.pages =$rootScope.pages +1;
-			console.log($rootScope.pages);
-			if($rootScope.pages != 1){
-				var pag = $('.sliderCat .itemSelecteds .itemsContend span').attr('name', $rootScope.pages);
-				console.log(pag);
-				setTimeout(function(){
-					console.log('trigger');
-					pag.trigger('click');
-				}, 2000)
-
-			}
-
-
 
 			if(category != null && subcategory != null && brand != null){
 				$scope.loadingData = false;
@@ -185,7 +173,7 @@
 				}
 			}
 			setTimeout(function(){
-				console.log('active clicks');
+
 				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
 			    	$rootScope.pages = $(e.currentTarget).attr('name');
 					console.log($rootScope.pages);

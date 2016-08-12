@@ -334,9 +334,17 @@
 		};
 	})
 
-	.directive('loadSearchProductsByFilters', function(){
+	.directive('loadSearchProductsByFilters', ['$rootScope', function($rootScope){
 		return function(){
+			//Paginacion dinamica
+			console.log($rootScope.pages);
+			if($rootScope.pages != 1){
+				var pag = $('.sliderCat .itemSelecteds .itemsContend span').attr('name', $rootScope.pages);
+				$('.sliderCat .itemSelecteds .itemsContend span').removeClass('selected')
+				pag.addClass('selected');
+				handlerShow($rootScope.pages);
 
+			}
 			//Funcionalidad hover y unhover.
 			$(document).on('mouseover', '.contItemsPosition .item .imgBox', function(){
 				$(this).css({ 'cursor' : 'pointer' });
@@ -363,8 +371,8 @@
 			//Se genera los items de navegacion del contenido.
 			var tam_items = $('#slide2 .contItemsPosition div.groupItems').length;
 
-			var itemSelecteds = '<span class="first" style="display:none; z-index: -10;"><img src="./src/images/first.png" style="width: .9em;"></span>';
-			itemSelecteds+= '<span class="before" style="display:none; z-index: -10;"><img src="./src/images/before.png" style="width: .9em;"></span>';
+			var itemSelecteds = '<div class="wrap-arrow-a wrap-page"><span class="first" style="display:none; z-index: -10;"><img src="./src/images/first.png" style="width: .9em;"></span>';
+			itemSelecteds+= '<span class="before" style="display:none; z-index: -10;"><img src="./src/images/before.png" style="width: .9em;"></span></div>';
 			itemSelecteds+= '<div style="display: inline-block;" class="itemsContend">';
 			for(var i=0; i<tam_items; i++){
 				if(i==0)
@@ -373,8 +381,8 @@
 				itemSelecteds+= '<span name="'+(i+1)+'">'+(i+1)+'</span>';
 			}
 			itemSelecteds+= '</div>';
-			itemSelecteds+= '<span class="next"><img src="./src/images/next.png" style="width: .9em;"></span>';
-			itemSelecteds+= '<span class="last"><img src="./src/images/last.png" style="width: .9em;"></span>';
+			itemSelecteds+= '<div class="wrap-arrow-b wrap-page"><span class="next"><img src="./src/images/next.png" style="width: .9em;"></span>';
+			itemSelecteds+= '<span class="last"><img src="./src/images/last.png" style="width: .9em;"></span></div>';
 			$('.itemSelecteds').html(itemSelecteds);
 
 			//Ajusta tamaño de los divs.
@@ -447,7 +455,7 @@
 			}
 
 		};
-	})
+	}])
 
 	.directive('bottomSite', function(){
 		return{

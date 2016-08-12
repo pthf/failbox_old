@@ -1125,6 +1125,7 @@ ul.groupAllItems span{
 	z-index: 10;
 	width: 100%;
 	text-align: center;
+	padding:
 }
 
 .itemSelecteds span{
@@ -1138,6 +1139,23 @@ ul.groupAllItems span{
 
 .itemSelecteds span.selected{
 	color: #6EB153;
+}
+.itemSelecteds .itemsContend{
+	display: inline-block;
+    padding: 0 60px;
+}
+.itemSelecteds .wrap-arrow-a{
+	position: absolute;
+    display: inline-block;
+    left: 0;
+}
+.itemSelecteds .wrap-arrow-b{
+	position: absolute;
+    display: inline-block;
+    right: 0;
+}
+.itemSelecteds .wrap-page{
+	position: absolute;
 }
 
 .nav a{
