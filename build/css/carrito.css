@@ -1,0 +1,14 @@
+.carrito .titulo {
+  font-size: 30px;
+  padding: 50px 0;
+  color: #6EB153; }
+.carrito .productos .producto {
+  displayt: block;
+  border: 1px solid #000; }
+  .carrito .productos .producto .imagen img {
+    width: 100%;
+    height: auto; }
+  .carrito .productos .producto .contador .menos, .carrito .productos .producto .contador .mas {
+    border-radius: 16px; }
+
+/*# sourceMappingURL=carrito.css.map */

@@ -47,6 +47,10 @@
 				templateUrl: 'views/privacidad.html',
 				controller: 'homeSliderController'
 			})
+			.when('/micarrito', {
+				templateUrl: 'views/carrito/micarrito.html',
+				controller: ''
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,gBAAO;EACH,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,OAAO;AAKd,6BAAS;EACL,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,cAAc;EAElB,yCAAG;IACC,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,IAAI;EAKhB,4FAAY;IACR,aAAa,EAAE,IAAI",
+"sources": ["../scss/carrito.scss"],
+"names": [],
+"file": "carrito.css"
+}
