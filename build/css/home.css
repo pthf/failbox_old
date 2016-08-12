@@ -188,6 +188,7 @@ div.item .imgBox img.imgInfo{
 	height: auto;
 	opacity: 0;
 	transition: 1s;
+	z-index: 999;
 }
 
 .item .descritem{
@@ -263,6 +264,7 @@ div.item .imgBox img.imgInfo{
 
 .topMenu .logoFailBox{
 	width: 20%;
+	z-index: 99999999;
 }
 
 .logoFailBox div.img{
@@ -1462,6 +1464,12 @@ iframe {
 	.faqs ul{
 		width: 100% !important;
 		font-size: 10px;
+	}
+	.contInformation{
+		margin-top: 20px;
+	}
+	.contInformation .infoArticulo{
+		margin-top: 30px;
 	}
 
 

@@ -215,6 +215,7 @@
 
 	.flex-aside-left-menu{
 		width: 30%;
+
 	}
 
 	.flex-asise-right-items{
@@ -394,14 +395,19 @@
 
 }
 @media only screen and (orientation: landscape) {
-	.bottomSite .navFailBox img{
+	.bottomSite .navFailBox .logo{
 		width: 50% !important;
 		margin-left: auto;
 		margin-right: auto;
 	}
 }
 @media (max-width: 768px){
-
+	.flex-aside-left-menu{
+		display:none;
+	}
+	.flex-asise-right-items{
+		width: 100% !important;
+	}
 	.navegationFailBox .nav{
 		display:none !important;
 	}
@@ -433,7 +439,26 @@
 		text-align: center;
 		margin-top: 2vw;
 	}
-
+	div.item .imgBox img{
+		width: 25vw !important;
+		height: 25vw !important;
+	}
+	.item .descritem, .item .price_not, .item .price_yes{
+		font-size: 1.8em;
+		display: block;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.item .buttonAddCart img{
+		width: 30px;
+	}
+	.resize-price-new{
+		/*font-size: 1.2em !important;*/
+	}
+	.resize-price-new{
+		display:none;
+	}
 	.topMenu{
 		display: flex;
 		flex-direction: row;
@@ -599,8 +624,9 @@
 		margin-right: 10px !important;
 	}
 	.bottomSite .navFailBox img{
-
-		width: 100%;
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.socialFailBox{
@@ -890,7 +916,20 @@
 	}
 
 }
-
+@media (min-width: 768px) and (max-width: 1271px) {
+	.bottomSite .navFailBox{
+		padding-left: 0;
+	}
+	.socialFailBox{
+		padding-right: 5vw;
+	}
+	.navFailBox img{
+		width: 23vw !important;
+	}
+	.navFailBox{
+		padding-left: 5vw !important;
+	}
+}
 @media (min-width: 768px){
 	.ulmenuMobile{
 		display: none !important;

@@ -96,13 +96,19 @@
 			};
 
 			$(document).ready(function(){
+
 				setTimeout(function(){
 					$('.navbar-nav .menuMobile').click(function(e){
 						e.stopPropagation();
 						$el = $(e.currentTarget).find('.sub');
-						//$('.navbar-nav .menuMobile').find('.sub').slideUp();
-						$el.slideToggle();
+						if($(e.currentTarget).find('.sub').is(':hidden')){
+							$('.navbar-nav .menuMobile').find('.sub').slideUp();
+							$el.slideToggle();
+						}
 					});
+					$('.close-menu').click(function(){
+						$(".navbar-collapse").collapse('hide');
+					})
 				}, 1000);
 			});
 		}])
@@ -131,10 +137,23 @@
 			});
 		}])
 
-		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
+		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
 			var category = $routeParams.category;
 			var subcategory = $routeParams.subcategory;
 			var brand = $routeParams.brand;
+			//$rootScope.pages =$rootScope.pages +1;
+			console.log($rootScope.pages);
+			if($rootScope.pages != 1){
+				var pag = $('.sliderCat .itemSelecteds .itemsContend span').attr('name', $rootScope.pages);
+				console.log(pag);
+				setTimeout(function(){
+					console.log('trigger');
+					pag.trigger('click');
+				}, 2000)
+
+			}
+
+
 
 			if(category != null && subcategory != null && brand != null){
 				$scope.loadingData = false;
@@ -165,6 +184,18 @@
 					}
 				}
 			}
+			setTimeout(function(){
+				console.log('active clicks');
+				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
+			    	$rootScope.pages = $(e.currentTarget).attr('name');
+					console.log($rootScope.pages);
+				});
+				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
+					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');
+					console.log($rootScope.pages);
+				})
+			}, 800)
+
 		}])
 
 		.controller('itemController', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){

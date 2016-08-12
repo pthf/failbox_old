@@ -55,6 +55,8 @@
 
 	}]);
 
-
+	app.run(['$rootScope', function($rootScope){
+		$rootScope.pages = 1;
+	}])
 
 })();

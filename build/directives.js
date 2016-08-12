@@ -25,7 +25,7 @@
 									var not_price = parseInt(data.not_price);
 									resultElemets += '<a href="articulo/'+data.url+'"><div class="itemSearched"><img style="width: 4vw; height: 4vw; " src="./admin/images/products/'+data.image+'"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">'+data.name+'</span><span style="display: block; text-align: center; margin-top: 2px"><span style="text-decoration: line-through">$'+price.toFixed(2)+'</span> - <span style="font-weight: bold; color: red;">$'+not_price.toFixed(2)+'</span></span></div></div></a>';
 								});
-								if(resultElemets.length > 0){
+								if(resultElemets.length>0){
 									$('.contElements div').html(resultElemets);
 								}else{
 									$('.contElements div').html('<div class="itemSearched"><div><span style="display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Ningún resultado encontrado.</span></div></div>')
@@ -222,6 +222,7 @@
 			});
 
 			$('#slide1 .leftItem').click(function(){
+				alert();
 				if(item_selected==0)
 				item_selected=tam_items;
 				else
@@ -233,6 +234,7 @@
 
 			$(".buttonAddCart").click(function(e){
 				e.preventDefault();
+				alert();
 			});
 
 		};
@@ -245,12 +247,6 @@
 		};
 	})
 
-	.directive('avisoPrivacidad', function(){
-		return{
-			restrict: 'E',
-			templateUrl: './partials/aviso-privacidad.html'
-		}
-	})
 	.directive('loadSliderCartFeactured', function(){
 		return function(){
 
@@ -560,7 +556,7 @@
 			restrict: 'E',
 			templateUrl: './partials/list-products-filtered.html',
 			controller: function($document){
-				$(document).on('click', '.groupAllItems img', function(e){
+				$(document).on('click', '.groupAllItems img', function(){
 					$('.groupAllItems img').attr('src','./src/images/viewmore-aside.png');
 					$(this).attr('src','./src/images/viewmore.png');
 				});
@@ -628,4 +624,11 @@
 		}
 	})
 
+
+	.directive('avisoPrivacidad', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/aviso-privacidad.html'
+		}
+	})
 })();

@@ -180,7 +180,7 @@
 
 		<div class="logoFailBox">
 			<div class="img">
-				<a href="home/"><img src="src/images/failbox-04.png"></a>
+				<a href="/"><img src="src/images/failbox-04.png"></a>
 			</div>
 			<div class="titleNav">
 				<span>¿Quiénes somos?</span>
@@ -298,8 +298,7 @@
 	</div>
 
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-		 ng-controller="tabShowMenuTopControllerMobile as tabs"
-	>
+		 ng-controller="tabShowMenuTopControllerMobile as tabs">
 
 		<ul class="nav navbar-nav ulmenuMobile" ng-repeat="(key, data) in menuProductos">
 
@@ -308,7 +307,7 @@
 				<ul class="main-submenu-mobile">
 					<li ng-show="$first" class="sub">
 						<span class="title">
-							<a href="productos/{{key}}">
+							<a href="productos/{{key | urlName}}">
 								Todos
 							</a>
 						</span>
@@ -319,33 +318,27 @@
 						</a>
 					</li>
 				</ul>
-
 			</li>
-			<li ng-show="$last">
+			<li ng-show="$last" class="close-menu">
 				<span class="title" style="margin-left:10px">
 					<a href="productos">
 						Todos los productos
 					</a>
 				</span>
 			</li>
-			<li ng-show="$last" class="row additional no-padding">
+			<li ng-show="$last" class="row additional no-padding close-menu">
 				<div class="col-xs-6 text-center no-padding">
 					<a href="faq">
 						<i class="glyphicon glyphicon-book"></i>
 						FAQ
 					</a>
 				</div>
-				<div class="col-xs-6 text-center no-padding">
+				<div class="col-xs-6 text-center no-padding close-menu">
 					<a href="contacto">
 						<i class="glyphicon glyphicon-edit"></i>
 						Contacto
 					</a>
 				</div>
-
-
-
-
-
 			</li>
 
 		</ul>

@@ -212,6 +212,9 @@ section.slider-wrapper {
 		height: 100%;
 		position:relative;
 	}
+	.content-swiper .swiper-container .swiper-wrapper .swiper-slide{
+
+	}
 	.content-swiper .swiper-container .swiper-wrapper .swiper-slide img{
 		height: 38vw;
 		width: auto;

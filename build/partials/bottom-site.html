@@ -1,12 +1,47 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	checksize()
+})
+$(window).resize(function(){
+	console.log($(document).width());
+	checksize()
+
+});
+function checksize(){
+	if($(document).width() < 751){
+		$('.socialFailBox').addClass('container');
+	}else if($(document).width() > 752){
+		$('.socialFailBox').removeClass('container');
+	}
+}
+</script>
+<style media="screen">
+	@media (min-width: 768px) and (max-width: 1271px) {
+		.bottomSite .navFailBox{
+			padding-left: 40px !important;
+		}
+		.socialFailBox{
+		    padding-right: 5vw;
+		}
+		.bottomSite .navFailBox .logo{
+			width: 23vw !important;
+		}
+		.navFailBox{
+			padding-left: 5vw !important;
+		}
+	}
+
+</style>
 <div class="bottomSite">
 	<div class="navFailBox">
-		<a href="/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
+		<a class="visible-sm" href="/"><img style="width: 3vw" class="img-responsive" src="./src/images/failbox-04.png"></a><br>
+		<a class="visible-xs visible-md hidden-sm visible-lg" href="/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<span class="navItem hidden-xs"><a style="color:white;" href="faq">FAQ</a></span>
 		<span class="navItem hidden-xs"><a style="color:white;" href="contacto">Contacto</a></span>
 	</div>
 
-	<div class="socialFailBox container">
-		<div class="followSocial">
+	<div class="socialFailBox">
+		<div class="followSocial" style="display: inline-flex">
 			<span class="titleFollow" style="display: inline-block; margin-right: .9vw;">¡Síguenos!</span>
 			<a href="https://www.facebook.com/FAILBOXmx/?fref=ts" target="_blank">
 				<li>
