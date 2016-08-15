@@ -19,7 +19,8 @@
 					<span class="descritem">{{subdata.name}}</span>
 					<span class="price_not">{{subdata.price | currency }}</span>
 					<span class="price_yes">{{subdata.not_price | currency }}</span>
-					<a href="{{subdata.paypal}}" target="_blank"><div class="buttonAddCart"><img src="./src/images/cartimage.png"></div></a>
+					<!-- <a href="{{subdata.paypal}}" target="_blank"><div class="buttonAddCart"><img src="./src/images/cartimage.png"></div></a> -->
+					<div class="buttonAddCart" data-id="{{subdata.id}}" data-name="{{subdata.name}}" data-price="{{subdata.price}}" data-notprice="{{subdata.not_price}}" data-quantity="1" data-stocks="{{subdata.stocks}}"><img src="./src/images/cartimage.png"></div>
 				</div>
 			</div>
 		</div>
