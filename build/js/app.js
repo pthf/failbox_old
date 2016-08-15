@@ -49,7 +49,7 @@
 			})
 			.when('/micarrito', {
 				templateUrl: 'views/carrito/micarrito.html',
-				controller: ''
+				controller: 'carrito'
 			})
 			.otherwise({
 				redirectTo: '/'

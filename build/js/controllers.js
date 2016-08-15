@@ -193,6 +193,19 @@
 				$scope.item = data;
 				$scope.loadingData = true;
 			});
-		}]);
+		}])
 
+		.controller('carrito', ['$scope', function($scope){
+			$scope.contador = 1;
+
+			$scope.increment = function(number){
+				$scope.contador= number+1;
+			}
+			$scope.decrement = function(number){
+				if(number > 1){
+					$scope.contador= number-1;
+				}
+
+			}
+		}])
 })();

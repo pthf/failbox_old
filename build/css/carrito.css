@@ -1,14 +1,61 @@
-.carrito .titulo {
-  font-size: 30px;
-  padding: 50px 0;
-  color: #6EB153; }
-.carrito .productos .producto {
-  displayt: block;
-  border: 1px solid #000; }
-  .carrito .productos .producto .imagen img {
-    width: 100%;
-    height: auto; }
-  .carrito .productos .producto .contador .menos, .carrito .productos .producto .contador .mas {
-    border-radius: 16px; }
+.carrito {
+  font-family: 'Gotham-Light'; }
+  .carrito .titulo {
+    font-size: 30px;
+    padding: 50px 0;
+    font-weight: bold;
+    color: #6EB153; }
+    .carrito .titulo #logcarrito {
+      width: 40px;
+      padding-right: 10px;
+      padding-bottom: 10px; }
+  .carrito .productos .producto {
+    border: 1px solid #000; }
+    .carrito .productos .producto .imagen {
+      padding: 20px 0; }
+      .carrito .productos .producto .imagen img {
+        width: 65%;
+        height: auto; }
+    .carrito .productos .producto .contador .cont {
+      padding: 0 10px; }
+      .carrito .productos .producto .contador .cont img {
+        width: 20px; }
+    .carrito .productos .producto .contador .leyenda {
+      position: absolute;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px; }
+    .carrito .productos .producto .contador .cantindad {
+      width: 50px;
+      border: 1px solid #000;
+      text-align: center;
+      padding: 3px 5px 4px 5px; }
+    .carrito .productos .producto .texto {
+      text-align: justify; }
+    .carrito .productos .producto:first-child {
+      border-bottom: 0; }
+    .carrito .productos .producto:last-child {
+      border-top: 0; }
+
+/*Align all inside class*/
+.vertical-align {
+  display: flex;
+  flex-direction: row; }
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Optional, to align inner items
+     horizontally inside the column */ }
+
+.vertical-align > [class^="col-"] > div,
+.vertical-align > [class*=" col-"] > div {
+  /* flex: 1; */
+  flex-grow: 1; }
 
 /*# sourceMappingURL=carrito.css.map */
