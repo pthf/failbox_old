@@ -188,6 +188,7 @@ div.item .imgBox img.imgInfo{
 	height: auto;
 	opacity: 0;
 	transition: 1s;
+	z-index: 999;
 }
 
 .item .descritem{
@@ -263,6 +264,7 @@ div.item .imgBox img.imgInfo{
 
 .topMenu .logoFailBox{
 	width: 20%;
+	z-index: 99999999;
 }
 
 .logoFailBox div.img{
@@ -1123,6 +1125,7 @@ ul.groupAllItems span{
 	z-index: 10;
 	width: 100%;
 	text-align: center;
+	padding:
 }
 
 .itemSelecteds span{
@@ -1136,6 +1139,23 @@ ul.groupAllItems span{
 
 .itemSelecteds span.selected{
 	color: #6EB153;
+}
+.itemSelecteds .itemsContend{
+	display: inline-block;
+    padding: 0 60px;
+}
+.itemSelecteds .wrap-arrow-a{
+	position: absolute;
+    display: inline-block;
+    left: 0;
+}
+.itemSelecteds .wrap-arrow-b{
+	position: absolute;
+    display: inline-block;
+    right: 0;
+}
+.itemSelecteds .wrap-page{
+	position: absolute;
 }
 
 .nav a{
@@ -1452,6 +1472,24 @@ iframe {
 		height: 360px;
     width: 480px;
 	}
+	.faqs .title{
+		font-size: 23px !important;
+	}
+	.faqs .sub{
+		font-size: 8px;
+		padding: 0 5px !important;
+	}
+	.faqs ul{
+		width: 100% !important;
+		font-size: 10px;
+	}
+	.contInformation{
+		margin-top: 20px;
+	}
+	.contInformation .infoArticulo{
+		margin-top: 30px;
+	}
+
 
 }
 
@@ -1524,12 +1562,14 @@ span.returnSpan{
 	margin-bottom: 2vw;
 }
 .faqs div.g-subs{
-	font-size: 1.5em;
+	font-size: 2vw;
 	display: flex;
+	display: -webkit-flex;
 	padding-bottom:35px;
 }
 .faqs span.slash{
 	color: #6EB153;
+	font-size: 2vw;
 }
 .faqs div.sub{
 	padding:0 10px;

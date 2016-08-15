@@ -10,3 +10,5 @@ node_modules/.bin/acorn
 *.htaccess
 node_modules/.bin/user-home
 node_modules/.bin/semver
+scss/
+.sass-cache/

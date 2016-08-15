@@ -6,9 +6,9 @@
 
 	<div class="contendItems">
 
-		<div class="contItemsPosition">
+		<div class="contItemsPosition filtroall">
 			<div class="groupItems groupItemsFilters" ng-repeat="(key, data) in itemsCart" load-search-products-by-filters>
-				<div class="item itemFilters" ng-repeat="subdata in data.data">
+				<div class="item itemFilters col-xs-4" ng-repeat="subdata in data.data">
 					<a href="articulo/{{subdata.url}}">
 						<div class="imgBox" style="position: relative;">
 							<img src="./admin/images/products/{{subdata.image}}">

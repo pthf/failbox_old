@@ -3,7 +3,7 @@
 <html ng-app="failboxStore">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=nos">
 	<!-- <base href="http://paratodohayfans.com/web/failbox/"> -->
 	<base href="http://localhost/www/failbox/build/">
 	<title>FailBox - Lo que cuenta es de adentro.</title>
@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
 	<link rel="stylesheet" type="text/css" href="./css/home_responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
-
+	<link rel="stylesheet" type="text/css" href="./css/carrito.css">
 	<!-- Bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -36,9 +36,8 @@
 	<script src="./js/directives.js"></script>
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
-	<script src="./js/lib/slider.js">
-
-	</script>
+	<script src="./js/lib/slider.js"></script>
+	<script src="http://localhost:35729/livereload.js"></script>
 
 </body>
 </html>

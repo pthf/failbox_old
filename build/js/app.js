@@ -43,6 +43,14 @@
 				templateUrl: 'views/faq.html',
 				controller: 'homeSliderController'
 			})
+			.when('/aviso-de-privacidad', {
+				templateUrl: 'views/privacidad.html',
+				controller: 'homeSliderController'
+			})
+			.when('/micarrito', {
+				templateUrl: 'views/carrito/micarrito.html',
+				controller: 'carrito'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
@@ -51,6 +59,8 @@
 
 	}]);
 
-
+	app.run(['$rootScope', function($rootScope){
+		$rootScope.pages = 1;
+	}])
 
 })();

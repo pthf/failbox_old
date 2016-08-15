@@ -6,7 +6,6 @@
 			failboxService.showMenuCategories().then(function(data){
 				$scope.menuProductos = data;
 			});
-
 			var activeCategory = false;
 			$scope.openCategory = function(categoryName){
 				//if(!activeCategory){
@@ -35,7 +34,8 @@
 
 		}])
 
-		.controller('tabShowMenuTopController', function(){
+		.controller('tabShowMenuTopController',['$scope', function($scope){
+
 			this.menuProductos = false;
 			this.menuCuenta = false;
 			this.menuBrand = 0;
@@ -63,7 +63,55 @@
 				this.menuBrand = 0;
 				this.tab_selected = 0;
 			};
-		})
+		}])
+
+		.controller('tabShowMenuTopControllerMobile',['$scope', function($scope){
+
+			this.menuProductos = false;
+			this.menuCuenta = false;
+			this.menuBrand = 0;
+			this.tab_selected = 0;
+
+			this.selectBrand = function(brandSelect){
+					this.menuBrand = brandSelect;
+			};
+
+			this.selectTab = function(tab_selected){
+				this.tab_selected = tab_selected;
+			};
+
+			this.openMenu = function(){
+				this.menuProductos = !this.menuProductos;
+			};
+
+			this.openCuenta = function(){
+				this.menuCuenta = !this.menuCuenta;
+			};
+
+			this.closeMenuRestart = function(){
+				this.menuProductos = false;
+				this.menuCuenta = false;
+				this.menuBrand = 0;
+				this.tab_selected = 0;
+			};
+
+			$(document).ready(function(){
+
+				setTimeout(function(){
+					$('.navbar-nav .menuMobile').click(function(e){
+						e.stopPropagation();
+						$el = $(e.currentTarget).find('.sub');
+						if($(e.currentTarget).find('.sub').is(':hidden')){
+							$('.navbar-nav .menuMobile').find('.sub').slideUp();
+							$el.slideToggle();
+						}
+					});
+					$('.close-menu').click(function(){
+						$(".navbar-collapse").collapse('hide');
+					})
+				}, 1000);
+			});
+		}])
 
 		.controller('homeSliderController', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
@@ -97,10 +145,13 @@
 			});
 		}])
 
-		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
+		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
+		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
+
 			var category = $routeParams.category;
 			var subcategory = $routeParams.subcategory;
 			var brand = $routeParams.brand;
+			//$rootScope.pages =$rootScope.pages +1;
 
 			if(category != null && subcategory != null && brand != null){
 				$scope.loadingData = false;
@@ -131,6 +182,18 @@
 					}
 				}
 			}
+			setTimeout(function(){
+
+				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
+			    	$rootScope.pages = $(e.currentTarget).attr('name');
+					console.log($rootScope.pages);
+				});
+				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
+					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');
+					console.log($rootScope.pages);
+				})
+			}, 800)
+
 		}])
 
 		.controller('itemController', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
@@ -140,6 +203,19 @@
 				$scope.item = data;
 				$scope.loadingData = true;
 			});
-		}]);
+		}])
 
+		.controller('carrito', ['$scope', function($scope){
+			$scope.contador = 1;
+
+			$scope.increment = function(number){
+				$scope.contador= number+1;
+			}
+			$scope.decrement = function(number){
+				if(number > 1){
+					$scope.contador= number-1;
+				}
+
+			}
+		}])
 })();

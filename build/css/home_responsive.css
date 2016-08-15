@@ -215,6 +215,7 @@
 
 	.flex-aside-left-menu{
 		width: 30%;
+
 	}
 
 	.flex-asise-right-items{
@@ -393,9 +394,23 @@
 	}
 
 }
-
+@media only screen and (orientation: landscape) {
+	.bottomSite .navFailBox .logo{
+		width: 50% !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
 @media (max-width: 768px){
-
+	.flex-aside-left-menu{
+		display:none;
+	}
+	.flex-asise-right-items{
+		width: 100% !important;
+	}
+	.navegationFailBox .nav{
+		display:none !important;
+	}
 	span.returnSpan{
 		font-size: .6em !important;
 	}
@@ -424,7 +439,26 @@
 		text-align: center;
 		margin-top: 2vw;
 	}
-
+	div.item .imgBox img{
+		width: 25vw !important;
+		height: 25vw !important;
+	}
+	.item .descritem, .item .price_not, .item .price_yes{
+		font-size: 1.8em;
+		display: block;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.item .buttonAddCart img{
+		width: 30px;
+	}
+	.resize-price-new{
+		/*font-size: 1.2em !important;*/
+	}
+	.resize-price-new{
+		display:none;
+	}
 	.topMenu{
 		display: flex;
 		flex-direction: row;
@@ -529,7 +563,9 @@
 	.contInformation .infoArticulo{
 		font-size: .6em;
 	}
-
+	 .contInformation .infoArticulo .descInfo{
+		 margin-top: 60px;
+	 }
 	.cont-search-product{
 		font-size: .6em;
 	}
@@ -572,6 +608,60 @@
 	.faqs{
 		font-size: .8em;
 	}
+	.bottomSite .navFailBox{
+		padding: 0;
+	}
+	input{
+		border-radius: 0;
+	}
+	.bottomSite .followSocial{
+		font-size: 17px;
+		display: -webkit-inline-flex;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+	}
+	.bottomSite .followSocial .titleFollow{
+		margin-right: 10px !important;
+	}
+	.bottomSite .navFailBox img{
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.socialFailBox{
+		text-align: center;
+	}
+	.newsletter span{
+		text-align: center !important;
+		margin: 10px 0 !important;
+		font-size: 13px
+	}
+	#newsletterForm div{
+		text-align: center !important;
+	}
+	#newsletterForm div .texti{
+		height: 23px;
+		width: 70%;
+		font-size: 11px;
+
+	}
+	#newsletterForm div .submitt{
+		height: 23px;
+	    margin: 0;
+	    width: auto;
+		font-size: 10px;
+	}
+	#newsletterForm .terminos{
+		margin-top: 12px;
+	}
+	#newsletterForm .terminos .checkb2{
+		width: 20px;
+	}
+	#newsletterForm .terminos .checkb{
+		font-size: 12px !important;
+	}
+
 
 }
 
@@ -825,4 +915,23 @@
 		font-size: .4em;
 	}
 
+}
+@media (min-width: 768px) and (max-width: 1271px) {
+	.bottomSite .navFailBox{
+		padding-left: 0;
+	}
+	.socialFailBox{
+		padding-right: 5vw;
+	}
+	.navFailBox img{
+		width: 23vw !important;
+	}
+	.navFailBox{
+		padding-left: 5vw !important;
+	}
+}
+@media (min-width: 768px){
+	.ulmenuMobile{
+		display: none !important;
+	}
 }
