@@ -784,6 +784,17 @@
 		}
 	})
 
+	.directive('resumenCompra', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/resumen-compra.html',
+			controller: function($document){
+			}
+		}
+	})
+
+
+
 
 	.directive('productsMyCart', function(){
 		return{
