@@ -81,7 +81,7 @@
             text-weight: bold; }
       .datos-envio .resumen .detalle .principal .precio-envio {
         font-size: 12px;
-        padding: 15px 38px;
+        padding: 15px;
         border-top: 1px solid #000; }
         .datos-envio .resumen .detalle .principal .precio-envio .texto-envio, .datos-envio .resumen .detalle .principal .precio-envio .total-envio {
           width: 50%;

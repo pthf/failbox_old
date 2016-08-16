@@ -234,7 +234,7 @@
 			$(".buttonAddCart").click(function(e){
 				e.preventDefault();
 			});
-			
+
 		};
 	})
 
@@ -528,13 +528,13 @@
 				});
 
 				// Decrementar valor del input sobre la cantidad de stocks a comprar
-				var i = 1; 
+				var i = 1;
 				$(document).on('click', '.menos', function(){
 				    if(i>=2){
-				        i = i - 1; 
-				        var idProduct = $(this).attr('data-id-product'); 
-					    var name = $(this).attr('data-name'); 
-					    var notprice = $(this).attr('data-notprice'); 
+				        i = i - 1;
+				        var idProduct = $(this).attr('data-id-product');
+					    var name = $(this).attr('data-name');
+					    var notprice = $(this).attr('data-notprice');
 				        var cant = document.getElementById("cantidad");
 				        cant.value = i;
 				        if(cant.value == 1){
@@ -548,13 +548,13 @@
 				});
 
 				// Incrementar valor del input sobre la cantidad de stocks a comprar
-				var i = 1; 
+				var i = 1;
 				$(document).on('click', '.mas', function(){
-				    i = i + 1; 
-				    var idProduct = $(this).attr('data-id-product'); 
-				    var name = $(this).attr('data-name'); 
-				    var notprice = $(this).attr('data-notprice'); 
-				    var cant = document.getElementById("cantidad"); 
+				    i = i + 1;
+				    var idProduct = $(this).attr('data-id-product');
+				    var name = $(this).attr('data-name');
+				    var notprice = $(this).attr('data-notprice');
+				    var cant = document.getElementById("cantidad");
 				    cant.value = i;
 
 				    if(cant.value == 1){
@@ -651,7 +651,7 @@
 			          	timeout: 10000
 			     	});
 				});
-					
+
 			}
 		}
 	})
@@ -773,7 +773,7 @@
 		}
 	})
 
-<<<<<<< HEAD
+
 	.directive('datosEnvio', function(){
 		return{
 			restrict: 'E',
@@ -783,9 +783,9 @@
 			}
 		};
 	})
-=======
+
 	$(document).on('click', '.buttonAddCart', function(){
-					
+
 	  	var idProduct = $(this).attr('data-id');
 	  	var name = $(this).attr('data-name');
 	  	var notprice = $(this).attr('data-notprice');
@@ -860,6 +860,6 @@
 			}
 		});
 	});
->>>>>>> origin/master
+
 
 })();
