@@ -51,19 +51,9 @@
 				templateUrl: 'views/carrito/micarrito.html',
 				controller: 'carrito'
 			})
-
-			.when('/datos-envio', {
-				templateUrl: 'views/carrito/datosenvio.html',
-				controller: ''
-			})
-			.when('/resumen-compra', {
-				templateUrl: 'views/carrito/resumencompra.html',
-				controller: ''
-
 			.when('/datos_envio', {
 				templateUrl: 'views/carrito/datos_envio.html',
 				controller: 'carrito'
-
 			})
 			.otherwise({
 				redirectTo: '/'
