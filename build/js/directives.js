@@ -793,6 +793,15 @@
 		}
 	})
 
+	.directive('agradecimiento', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/success.html',
+			controller: function($document){
+			}
+		}
+	})
+
 
 
 

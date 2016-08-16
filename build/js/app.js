@@ -63,6 +63,10 @@
 				templateUrl: 'views/carrito/datos_envio.html',
 				controller: 'carrito'
 			})
+			.when('/gracias', {
+				templateUrl: 'views/carrito/gracias.html',
+				controller: ''
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
