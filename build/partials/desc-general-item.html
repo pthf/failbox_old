@@ -54,14 +54,84 @@
 			<p>{{item.descripcion}}</p>
 			<p>Marca: {{item.marca}}</p>
 			<p>SKU: {{item.sku}}</p>
+			<table border="2">
+				<tr>
+					<td>
+						<table style="margin: 60px; text-align:center;">
+							<tr>
+								<td>
+									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> - </button>
+									<input class="input_stocks"id="cantidad" type="text" style="text-align: center; width:50px;" value="1">
+									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}">+</button>
+								</td>
+							</tr>
+							<tr>
+								<td>Cant.</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="test_stock">
+									<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>
+									</div>
+									<div class="test_stock_"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="result_products" style="color: red; font-size: 13px;"></span>
+								</td>
+							</tr>
+						</table>
+							
+					</td>
+				</tr>
+			</table>
 		</div>
 
 	</div>
-
+	<div class="contInformation" ng-controller="getListItemsCart">
+	<h1 style="color:#6eb153;padding-right: 75%;"><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"> MI CARRITO</h1>
+	<table border="1" style="margin:2%">
+		<tr>
+			<td>
+				<table style="width:1200px; text-align:center; font-family: 'Gotham-Light';">
+					<tr ng-repeat="(key, itemsCart) in itemsCart">
+						<td width='100px'>
+							<!-- <div class="swiper-slide" ng-repeat="image in item.images_slider" > -->
+							<div class="swiper-slide">
+								<img src="./admin/images/products/{{itemsCart.foto_producto}}">
+							</div>
+						</td>
+						<td style="width: 100px;font-size: 1.5em;">{{itemsCart.nombre_producto}}</td>
+						<td style="width: 100px;">
+							<div style="" class="price_not">{{itemsCart.precio_lista | currency }}</div>
+							<div style="" class="price_yes">{{itemsCart.precio | currency}}</div>
+						</td>
+						<td style="font-size: 1.5em; width: 100px;">
+							<button class="btn menos_" type="button" id="menos_" name="{{itemsCart.id_producto}}" style="border-radius: 20px;background: #6eb153;color: #fff;"> - </button>
+							<input class="input_stocks" id="cantidad" type="text" style="text-align: center; width:50px;" name="cantidad" value="{{itemsCart.cantidad}}">
+							<button class="btn mas_" type="button" id="mas_" name="{{itemsCart.id_producto}}" style="border-radius: 20px;background: #6eb153;color: #fff;">+</button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	<button style="padding: 14px 18px 14px 18px;border: 0px;border-radius: 9px;background: #6EB153;color: #FFF;font-size: 1.5em;font-family: 'Gotham-Light';margin-left: 80%;">Comprar Ahora</button>
+	</div>
 
 	<!--div class="paypal">
 		<a href="{{item.paypal}}" target="_blank"><img src="./src/images/buynow.es.png" style="width: 80%; height: auto; margin: 0 auto;"></a>
 	</div-->
 
+	<div class="content-swiper">
+	
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="cart_"></div>
+			</div>
+		</div>
+
+	</div>
 
 </div>

@@ -137,7 +137,17 @@
 			});
 		}])
 
+		.controller('getListItemsCart', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			failboxService.products_cart().then(function(data){
+				$scope.itemsCart = data;
+				$scope.loadingData = true;
+			});
+		}])
+
+		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
+
 			var category = $routeParams.category;
 			var subcategory = $routeParams.subcategory;
 			var brand = $routeParams.brand;

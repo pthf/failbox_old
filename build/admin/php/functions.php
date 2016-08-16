@@ -179,65 +179,6 @@ require_once("../db/conexion.php");
 		$query = "SELECT * FROM Proveedores WHERE idProveedor = '".$formData['name_provider']."'";
 		$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$row1 = mysql_fetch_array($resultado);
-		
-		function scanear_string($string)
-		{
-		 
-		    $string = trim($string);
-		 
-		    $string = str_replace(
-		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ñ', 'Ñ', 'ç', 'Ç'),
-		        array('n', 'N', 'c', 'C',),
-		        $string
-		    );
-		 
-		    //Esta parte se encarga de eliminar cualquier caracter extraño
-		    $string = str_replace(
-		        array('¨', 'º', '-', '~',
-		             '#', '@', '|', '!', '"',
-		             "·", "$", "%", "&", "/",
-		             "(", ")", "?", "'", "¡",
-		             "¿", "[", "^", "<code>", "]",
-		             "+", "}", "{", "¨", "´",
-		             ">", "<", ";", ",", ":",
-		             "."),
-		        '',
-		        $string
-		    );
-		 
-		 
-		    return $string;
-		}
 
 		$nombre_prod = scanear_string(strtolower($formData['name_product']));
 		$nombre_prod = explode(' ', $nombre_prod);
@@ -306,65 +247,6 @@ require_once("../db/conexion.php");
 
 		if ($row == 0) {
 
-			function scanear_string($string)
-			{
-			 
-			    $string = trim($string);
-			 
-			    $string = str_replace(
-			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ñ', 'Ñ', 'ç', 'Ç'),
-			        array('n', 'N', 'c', 'C',),
-			        $string
-			    );
-			 
-			    //Esta parte se encarga de eliminar cualquier caracter extraño
-			    $string = str_replace(
-			        array('¨', 'º', '-', '~',
-			             '#', '@', '|', '!', '"',
-			             "·", "$", "%", "&", "/",
-			             "(", ")", "?", "'", "¡",
-			             "¿", "[", "^", "<code>", "]",
-			             "+", "}", "{", "¨", "´",
-			             ">", "<", ";", ",", ":",
-			             "."),
-			        '',
-			        $string
-			    );
-			 
-			 
-			    return $string;
-			}
-
 			$nombre_subcat = scanear_string(strtolower($formData['other_subcategory']));
 			$nombre_subcat = explode(' ', $nombre_subcat);
 			$nombres_filters = array_filter($nombre_subcat);
@@ -398,65 +280,6 @@ require_once("../db/conexion.php");
 
 		if ($row == 0) {
 
-			function scanear_string($string)
-			{
-			 
-			    $string = trim($string);
-			 
-			    $string = str_replace(
-			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ñ', 'Ñ', 'ç', 'Ç'),
-			        array('n', 'N', 'c', 'C',),
-			        $string
-			    );
-			 
-			    //Esta parte se encarga de eliminar cualquier caracter extraño
-			    $string = str_replace(
-			        array('¨', 'º', '-', '~',
-			             '#', '@', '|', '!', '"',
-			             "·", "$", "%", "&", "/",
-			             "(", ")", "?", "'", "¡",
-			             "¿", "[", "^", "<code>", "]",
-			             "+", "}", "{", "¨", "´",
-			             ">", "<", ";", ",", ":",
-			             "."),
-			        '',
-			        $string
-			    );
-			 
-			 
-			    return $string;
-			}
-
 			$nombre_cat = scanear_string(strtolower($formData['other_category']));
 			$nombre_cat = explode(' ', $nombre_cat);
 			$nombres_filters = array_filter($nombre_cat);
@@ -484,65 +307,6 @@ require_once("../db/conexion.php");
 	    date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
-
-		function scanear_string($string)
-		{
-		 
-		    $string = trim($string);
-		 
-		    $string = str_replace(
-		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-		        $string
-		    );
-		 
-		    $string = str_replace(
-		        array('ñ', 'Ñ', 'ç', 'Ç'),
-		        array('n', 'N', 'c', 'C',),
-		        $string
-		    );
-		 
-		    //Esta parte se encarga de eliminar cualquier caracter extraño
-		    $string = str_replace(
-		        array('¨', 'º', '-', '~',
-		             '#', '@', '|', '!', '"',
-		             "·", "$", "%", "&", "/",
-		             "(", ")", "?", "'", "¡",
-		             "¿", "[", "^", "<code>", "]",
-		             "+", "}", "{", "¨", "´",
-		             ">", "<", ";", ",", ":",
-		             "."),
-		        '',
-		        $string
-		    );
-		 
-		 
-		    return $string;
-		}
 
 		$nombre_prod = scanear_string(strtolower($formData['name_product']));
 		$nombre_prod = explode(' ', $nombre_prod);
@@ -595,6 +359,65 @@ require_once("../db/conexion.php");
 
 	}
 
+	function scanear_string($string)
+	{
+	 
+	    $string = trim($string);
+	 
+	    $string = str_replace(
+	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+	        $string
+	    );
+	 
+	    $string = str_replace(
+	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+	        $string
+	    );
+	 
+	    $string = str_replace(
+	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+	        $string
+	    );
+	 
+	    $string = str_replace(
+	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+	        $string
+	    );
+	 
+	    $string = str_replace(
+	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+	        $string
+	    );
+	 
+	    $string = str_replace(
+	        array('ñ', 'Ñ', 'ç', 'Ç'),
+	        array('n', 'N', 'c', 'C',),
+	        $string
+	    );
+	 
+	    //Esta parte se encarga de eliminar cualquier caracter extraño
+	    $string = str_replace(
+	        array('¨', 'º', '-', '~',
+	             '#', '@', '|', '!', '"',
+	             "·", "$", "%", "&", "/",
+	             "(", ")", "?", "'", "¡",
+	             "¿", "[", "^", "<code>", "]",
+	             "+", "}", "{", "¨", "´",
+	             ">", "<", ";", ",", ":",
+	             "."),
+	        '',
+	        $string
+	    );
+	 
+	 
+	    return $string;
+	}
+
 	function cargaMasivaProductos () {
 
 		$fname = $_FILES['upload_products']['name'];
@@ -623,66 +446,9 @@ require_once("../db/conexion.php");
 			// $permitidas= array("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
 			// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-			function scanear_string_prod($string)
-			{
-			 
-			    $string = trim($string);
-			 
-			    $string = str_replace(
-			        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-			        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-			        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-			        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-			        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-			        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-			        $string
-			    );
-			 
-			    $string = str_replace(
-			        array('ñ', 'Ñ', 'ç', 'Ç'),
-			        array('n', 'N', 'c', 'C',),
-			        $string
-			    );
-			 
-			    //Esta parte se encarga de eliminar cualquier caracter extraño
-			    $string = str_replace(
-			        array('¨', 'º', '-', '~',
-			             '#', '@', '|', '!', '"',
-			             "·", "$", "%", "&", "/",
-			             "(", ")", "?", "'", "¡",
-			             "¿", "[", "^", "<code>", "]",
-			             "+", "}", "{", "¨", "´",
-			             ">", "<", ";", ",", ":",
-			             "."),
-			        '',
-			        $string
-			    );
-			 
-			 
-			    return $string;
-			}
+			//Aqui estaba la funcion scanear_string_prod
 
-			$nombre_prod = scanear_string_prod(strtolower($array_products[$i][0]));
+			$nombre_prod = scanear_string(strtolower($array_products[$i][0]));
 			$nombre_prod = explode(' ', $nombre_prod);
 			$nombres_filters = array_filter($nombre_prod);
 			$nombre_prod = implode('-', $nombres_filters);
@@ -702,66 +468,9 @@ require_once("../db/conexion.php");
 				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
 				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				function scanear_string_cat($string)
-				{
-				 
-				    $string = trim($string);
-				 
-				    $string = str_replace(
-				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ñ', 'Ñ', 'ç', 'Ç'),
-				        array('n', 'N', 'c', 'C',),
-				        $string
-				    );
-				 
-				    //Esta parte se encarga de eliminar cualquier caracter extraño
-				    $string = str_replace(
-				        array('¨', 'º', '-', '~',
-				             '#', '@', '|', '!', '"',
-				             "·", "$", "%", "&", "/",
-				             "(", ")", "?", "'", "¡",
-				             "¿", "[", "^", "<code>", "]",
-				             "+", "}", "{", "¨", "´",
-				             ">", "<", ";", ",", ":",
-				             "."),
-				        '',
-				        $string
-				    );
-				 
-				 
-				    return $string;
-				}
+				
 
-				$nombre_cat = scanear_string_cat(strtolower($capital_category));
+				$nombre_cat = scanear_string(strtolower($capital_category));
 				$nombre_cat = explode(' ', $nombre_cat);
 				$nombres_filters = array_filter($nombre_cat);
 				$nombre_cat = implode('-', $nombres_filters);
@@ -791,66 +500,8 @@ require_once("../db/conexion.php");
 				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
 				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				function scanear_string_sub($string)
-				{
-				 
-				    $string = trim($string);
-				 
-				    $string = str_replace(
-				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ñ', 'Ñ', 'ç', 'Ç'),
-				        array('n', 'N', 'c', 'C',),
-				        $string
-				    );
-				 
-				    //Esta parte se encarga de eliminar cualquier caracter extraño
-				    $string = str_replace(
-				        array('¨', 'º', '-', '~',
-				             '#', '@', '|', '!', '"',
-				             "·", "$", "%", "&", "/",
-				             "(", ")", "?", "'", "¡",
-				             "¿", "[", "^", "<code>", "]",
-				             "+", "}", "{", "¨", "´",
-				             ">", "<", ";", ",", ":",
-				             "."),
-				        '',
-				        $string
-				    );
-				 
-				 
-				    return $string;
-				}
 
-				$nombre_subcat = scanear_string_sub(strtolower($capital_subcategory));
+				$nombre_subcat = scanear_string(strtolower($capital_subcategory));
 				$nombre_subcat = explode(' ', $nombre_subcat);
 				$nombres_filters = array_filter($nombre_subcat);
 				$nombre_subcat = implode('-', $nombres_filters);
@@ -875,66 +526,8 @@ require_once("../db/conexion.php");
 				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
 				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				function scanear_string_brand($string)
-				{
-				 
-				    $string = trim($string);
-				 
-				    $string = str_replace(
-				        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-				        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-				        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-				        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-				        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-				        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-				        $string
-				    );
-				 
-				    $string = str_replace(
-				        array('ñ', 'Ñ', 'ç', 'Ç'),
-				        array('n', 'N', 'c', 'C',),
-				        $string
-				    );
-				 
-				    //Esta parte se encarga de eliminar cualquier caracter extraño
-				    $string = str_replace(
-				        array('¨', 'º', '-', '~',
-				             '#', '@', '|', '!', '"',
-				             "·", "$", "%", "&", "/",
-				             "(", ")", "?", "'", "¡",
-				             "¿", "[", "^", "<code>", "]",
-				             "+", "}", "{", "¨", "´",
-				             ">", "<", ";", ",", ":",
-				             "."),
-				        '',
-				        $string
-				    );
-				 
-				 
-				    return $string;
-				}
 
-				$nombre_brand = scanear_string_brand(strtolower($capital_brand));
+				$nombre_brand = scanear_string(strtolower($capital_brand));
 				$nombre_brand = explode(' ', $nombre_brand);
 				$nombres_filters = array_filter($nombre_brand);
 				$nombre_brand = implode('-', $nombres_filters);
@@ -963,7 +556,7 @@ require_once("../db/conexion.php");
                     '".$array_products[$i][2]."','".$array_products[$i][3]."','".$array_products[$i][4]."','".$array_products[$i][5]."',
                     '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".(trim($array_products[$i][9]))."',
                     '".$images."','".$array_products[$i][11]."','".(strtoupper($array_products[$i][12]))."','".$datatime."',
-                    '1','".$row3['IdMarca']."','".$row1['IdCategoria']."','".$row2['IdSubcategoria']."')";
+                    '1','".$row3['IdMarca']."','".$row1['IdCategoria']."','".$row2['IdSubcategoria']."','2')";
 	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
 
 	        $rs = mysql_query("SELECT MAX(IdProducto) AS id FROM Productos",Conectar::con()) or die(mysql_error());

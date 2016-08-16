@@ -1,6 +1,10 @@
-<?php 
-$fuction_name = $_POST['fuction_name'];
-    switch($fuction_name){
+<?php
+    include ("../admin/db/conexion.php");
+    // connect_base_de_datos();
+    session_start();
+
+    $namefunction = $_POST['namefunction'];
+    switch($namefunction){
 
       case 'cambio_tamano':
         cambio_tamano();
@@ -50,31 +54,33 @@ $fuction_name = $_POST['fuction_name'];
       case 'verify_day_end':
           verify_day_end();
           break;
-      case 'verify_max_items':
-          verify_max_items($_POST['id_producto'], $_POST['cantidad']);
+      case 'verify_max_stock':
+          verify_max_stock($_POST['idProduct'], $_POST['quantity']);
           break;
     }
 
-    function verify_max_items($id_producto, $cantidad){
+    function verify_max_stock($idProduct, $cantidad){
+
       if(isset($_SESSION['carrito'])){
+
         $total_cantidad_aux = 0;
         $resultvar = 1;
-        $query = "SELECT horas_produccion FROM producto WHERE id_producto =".$id_producto;
-        $result = mysql_query($query) or die(mysql_error());
+        $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+        $result = mysql_query($query,Conectar::con()) or die(mysql_error());
         $line = mysql_fetch_array($result);
         if(mysql_num_rows($result)>0){
-          $stock_max = $line['horas_produccion'];
+          $stock_max = $line['Stock'];
           if($stock_max<$cantidad)
             $resultvar =  0;
           else{
             foreach ($_SESSION['carrito'] as $key => $value) {
-              if($value['id_producto'] == $id_producto){
+              if($value['id_producto'] == $idProduct){
                 $cantidad_cart = $value['cantidad'];
                 $total_cantidad_aux = $cantidad_cart + $cantidad;
-                $query = "SELECT horas_produccion FROM producto WHERE id_producto =".$value['id_producto'];
-                $result = mysql_query($query) or die(mysql_error());
+                $query = "SELECT Stock FROM Productos WHERE IdProducto =".$value['id_producto'];
+                $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 $line = mysql_fetch_array($result);
-                $stock_max = $line['horas_produccion'];
+                $stock_max = $line['Stock'];
                 if($stock_max<$total_cantidad_aux)
                   $resultvar =  0;
                 else
@@ -85,17 +91,20 @@ $fuction_name = $_POST['fuction_name'];
           }
         }
         echo $resultvar;
-      }else{
-        $query = "SELECT horas_produccion FROM producto WHERE id_producto =".$id_producto;
-        $result = mysql_query($query) or die(mysql_error());
+
+      } else {
+
+        $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+        $result = mysql_query($query,Conectar::con()) or die(mysql_error());
         $line = mysql_fetch_array($result);
         if(mysql_num_rows($result)>0){
-          $stock_max = $line['horas_produccion'];
+          $stock_max = $line['Stock'];
           if($stock_max<$cantidad)
             echo 0;
           else
             echo 1;
         }
+
       }
     }
 
@@ -134,86 +143,55 @@ $fuction_name = $_POST['fuction_name'];
     //Agregar productos al carrito.
     function agregar_producto(){
 
-      if($_SESSION['carrito']){
+      if(isset($_SESSION['carrito'])){
 
-        $id_producto = $_POST['id_producto'];
-        $precio = $_POST['precio'];
-        $cantidad = $_POST['cantidad'];
-        $sub_total = $_POST['sub_total'];
-        $id_tamano_producto = $_POST['id_tamano_producto'];
-        $id_sabor_producto = $_POST['id_sabor_producto'];
-        $identificador_cant = $_POST['identificador_cant'];
-
-        if($id_tamano_producto!=0){
-          $query = "SELECT precio FROM detalle_tamano WHERE id_tamano_producto = ".$id_tamano_producto." AND id_producto = ".$id_producto;
-          $result = mysql_query($query) or die(mysql_error());
-          $line = mysql_fetch_array($result);
-          $precio = $line['precio'];
-          $sub_total = $precio * $cantidad;
-        }
-
-        /*
-        Se usara los siguientes indicadores para poder detectar si se repite el producto, la variable es: $identificador_cant
-        0 Solo Cantidad (Default). 1 Solo Tamano. 2 Solo Sabor. 3 Los dos.
-        */
+        $id_producto = $_POST['idProduct'];
+        $precio = $_POST['notprice'];
+        $cantidad = $_POST['quantity'];
+        $sub_total = $precio*$cantidad;
 
         $arreglo_carrito = $_SESSION['carrito'];
-        $find = false; $pos = 0;
+        $find = false;
+
         foreach ($arreglo_carrito as $key => $value) {
-          if($find==false){
-            switch ($identificador_cant) {
-              case 0:
-                if(($arreglo_carrito[$key]['id_producto'] == $id_producto))
-                $find = true; $pos = $arreglo_carrito[$key]['indetificar_pos'];
-                break;
-              case 1:
-                if(($id_tamano_producto!=0 && $arreglo_carrito[$key]['id_tamano_producto'] == $id_tamano_producto) && ($arreglo_carrito[$key]['id_producto'] == $id_producto))
-                  $find = true; $pos = $arreglo_carrito[$key]['indetificar_pos'];
-                break;
-              case 2:
-                if(($id_sabor_producto!=0 && $arreglo_carrito[$key]['id_sabor_producto'] == $id_sabor_producto) && ($arreglo_carrito[$key]['id_producto'] == $id_producto))
-                  $find = true; $pos = $arreglo_carrito[$key]['indetificar_pos'];
-                break;
-              case 3:
-                if(($id_tamano_producto!=0 && $arreglo_carrito[$key]['id_tamano_producto'] == $id_tamano_producto) && ($id_sabor_producto!=0 && $arreglo_carrito[$key]['id_sabor_producto'] == $id_sabor_producto) && ($arreglo_carrito[$key]['id_producto'] == $id_producto))
-                  $find = true; $pos = $arreglo_carrito[$key]['indetificar_pos'];
-                break;
+          if($arreglo_carrito[$key]['id_producto'] == $id_producto)
+            $find = true; 
+        }
+
+        if ($find == true) {
+          for ($i=0; $i < count($arreglo_carrito); $i++) { 
+            if ($id_producto == $arreglo_carrito[$i]['id_producto']) {
+              if ($cantidad == 1) {
+                $arreglo_carrito[$i]['cantidad'] = $arreglo_carrito[$i]['cantidad'] + 1;
+                $arreglo_carrito[$i]['sub_total'] = $arreglo_carrito[$i]['cantidad'] * $arreglo_carrito[$i]['precio'];
+              } else if ($cantidad > 1) {
+                $arreglo_carrito[$i]['cantidad'] = $arreglo_carrito[$i]['cantidad'] + $cantidad;
+                $arreglo_carrito[$i]['sub_total'] = $arreglo_carrito[$i]['cantidad'] * $arreglo_carrito[$i]['precio'];
+              }
             }
           }
-        }
 
-        if($find==true){
+          $_SESSION['carrito'] = $arreglo_carrito;
 
-        foreach ($arreglo_carrito as $key => $value) {
-          if($arreglo_carrito[$key]['indetificar_pos'] == $pos ){
-            $arreglo_carrito[$key]['cantidad'] = $arreglo_carrito[$key]['cantidad'] + $cantidad;
-            $arreglo_carrito[$key]['sub_total'] = $arreglo_carrito[$key]['cantidad'] * $arreglo_carrito[$key]['precio'];
-          }
-        }
+        } else {
 
-        $_SESSION['carrito'] = $arreglo_carrito;
-
-        }else{
-
-          $query = "SELECT * FROM producto WHERE id_producto =".$id_producto;
-          $result = mysql_query($query) or die(mysql_error());
+          $query = "SELECT * FROM Productos WHERE IdProducto =".$id_producto;
+          $result = mysql_query($query,Conectar::con()) or die(mysql_error());
           $line = mysql_fetch_array($result);
 
-          $last_element = end($arreglo_carrito);
-          $tam_array = $last_element['indetificar_pos']+1;
-
+          $images = explode(',', $line['Image']);
           $arreglo_descr_producto = array(
             'id_producto' => $id_producto,
-            'nombre_producto' => $line['nombre_producto'],
-            'descripcion_producto' => $line['descripcion_producto'],
-            'foto_producto' => $line['foto_producto'],
-            'id_categoria' => $line['id_categoria'],
-            'id_sabor_producto' => $id_sabor_producto,
-            'id_tamano_producto' => $id_tamano_producto,
+            'nombre_producto' => $line['NombreProd'],
+            'descripcion_producto' => $line['Descripcion'],
+            'foto_producto' => $images[0],
+            'id_categoria' => $line['Categorias_IdCategoria'],
+            'id_subcategoria' => $line['Subcategoria_IdSubcategoria'],
+            'id_marca' => $line['Marcas_IdMarca'],
             'cantidad' => $cantidad,
+            'precio_lista' => $line['PrecioLista'],
             'precio' => $precio,
-            'sub_total' => $sub_total,
-            'indetificar_pos' => $tam_array
+            'sub_total' => $sub_total
           );
 
           array_push($arreglo_carrito, $arreglo_descr_producto);
@@ -221,41 +199,31 @@ $fuction_name = $_POST['fuction_name'];
 
         }
 
-      }else{
+          print_r($_SESSION['carrito']);
 
-        $id_producto = $_POST['id_producto'];
-        $precio = $_POST['precio'];
-        $cantidad = $_POST['cantidad'];
-        $sub_total = $_POST['sub_total'];
-        $id_tamano_producto = $_POST['id_tamano_producto'];
-        $id_sabor_producto = $_POST['id_sabor_producto'];
+      } else {
+        $id_producto = $_POST['idProduct'];
+        $precio = $_POST['notprice'];
+        $cantidad = $_POST['quantity'];
+        $sub_total = $precio*$cantidad;
 
-        //Se obtiene nuevo precio y subtotal en caso de que exista esa opcion, que por defecto nos retornan un valor a cero.
-        if($id_tamano_producto!=0){
-            $query = "SELECT precio FROM detalle_tamano WHERE id_tamano_producto = ".$id_tamano_producto." AND id_producto = ".$id_producto;
-            $result = mysql_query($query) or die(mysql_error());
-            $line = mysql_fetch_array($result);
-            $precio = $line['precio'];
-            $sub_total = $precio * $cantidad;
-          }
-
-          $query = "SELECT * FROM producto WHERE id_producto =".$id_producto;
-          $result = mysql_query($query) or die(mysql_error());
+          $query = "SELECT * FROM Productos WHERE IdProducto =".$id_producto;
+          $result = mysql_query($query,Conectar::con()) or die(mysql_error());
           $line = mysql_fetch_array($result);
 
-          $tam_array = 5;
+          $images = explode(',', $line['Image']);
           $arreglo_descr_producto[] = array(
             'id_producto' => $id_producto,
-            'nombre_producto' => $line['nombre_producto'],
-            'descripcion_producto' => $line['descripcion_producto'],
-            'foto_producto' => $line['foto_producto'],
-            'id_categoria' => $line['id_categoria'],
-            'id_sabor_producto' => $id_sabor_producto,
-            'id_tamano_producto' => $id_tamano_producto,
+            'nombre_producto' => $line['NombreProd'],
+            'descripcion_producto' => $line['Descripcion'],
+            'foto_producto' => $images[0],
+            'id_categoria' => $line['Categorias_IdCategoria'],
+            'id_subcategoria' => $line['Subcategoria_IdSubcategoria'],
+            'id_marca' => $line['Marcas_IdMarca'],
             'cantidad' => $cantidad,
+            'precio_lista' => $line['PrecioLista'],
             'precio' => $precio,
-            'sub_total' => $sub_total,
-            'indetificar_pos' => $tam_array
+            'sub_total' => $sub_total
           );
 
           $_SESSION['carrito'] = $arreglo_descr_producto;
@@ -287,11 +255,11 @@ $fuction_name = $_POST['fuction_name'];
     //Disminuir cantidad de un articulo.
     function disminuir_item_cart(){
 
-      $id_item_pos_cart = $_POST['id_item_pos_cart'];
+      $idItemCart = $_POST['idItemCart'];
       $arreglo_carrito = $_SESSION['carrito'];
 
       foreach ($arreglo_carrito as $key => $value) {
-        if($arreglo_carrito[$key]['indetificar_pos'] == $id_item_pos_cart){
+        if($arreglo_carrito[$key]['id_producto'] == $idItemCart){
 
           $arreglo_carrito[$key]['cantidad'] = $arreglo_carrito[$key]['cantidad'] - 1;
           $arreglo_carrito[$key]['sub_total'] = $arreglo_carrito[$key]['cantidad'] * $arreglo_carrito[$key]['precio'];
@@ -313,11 +281,11 @@ $fuction_name = $_POST['fuction_name'];
     //Aumentar cantidad de un articulo.
     function incrementar_item_cart(){
 
-      $id_item_pos_cart = $_POST['id_item_pos_cart'];
+      $idItemCart = $_POST['idItemCart'];
       $arreglo_carrito = $_SESSION['carrito'];
 
       foreach ($arreglo_carrito as $key => $value) {
-        if($arreglo_carrito[$key]['indetificar_pos'] == $id_item_pos_cart){
+        if($arreglo_carrito[$key]['id_producto'] == $idItemCart){
 
           $arreglo_carrito[$key]['cantidad'] = $arreglo_carrito[$key]['cantidad'] + 1;
           $arreglo_carrito[$key]['sub_total'] = $arreglo_carrito[$key]['cantidad'] * $arreglo_carrito[$key]['precio'];
@@ -341,66 +309,12 @@ $fuction_name = $_POST['fuction_name'];
 
         if(isset($_SESSION['carrito'])){
           $total = 0;
-          $data = $_SESSION['carrito'];
+          for ($i=0; $i < count($_SESSION['carrito']); $i++) { 
+            $total = $total + $_SESSION['carrito'][$i]["sub_total"];
+            
+          }
 
-          foreach ($data as $i => $value) {
-                $total = $total + $data[$i]["sub_total"];
-
-                $result = mysql_query("SELECT * FROM tamano_producto WHERE id_tamano_producto = ".$data[$i]["id_tamano_producto"]);
-                $line = mysql_fetch_array($result);
-                $cantidad = $line['cantidad'];
-                $id_tamano_producto = $line['id_tamano_producto'];
-
-                $result = mysql_query("SELECT nombre_sabor_producto FROM sabor_producto WHERE id_sabor_producto = ".$data[$i]["id_sabor_producto"]);
-                $line = mysql_fetch_array($result);
-                $nombre_sabor_producto = $line['nombre_sabor_producto'];
-
-                $query_tam = "SELECT nombre FROM  presentacion_tamano INNER JOIN detalle_tamano ON presentacion_tamano.id_presentacion = detalle_tamano.id_presentacion
-                WHERE  detalle_tamano.id_producto = ".$data[$i]['id_producto']." AND  detalle_tamano.id_tamano_producto = ".$data[$i]['id_tamano_producto'];
-                $result_tam_name = mysql_query($query_tam) or die(mysql_errno());
-                $line_tam = mysql_fetch_array($result_tam_name);
-
-
-                $qaux = "SELECT horas_produccion FROM producto WHERE id_producto = ".$data[$i]["id_producto"];
-                $raux = mysql_query($qaux) or die(mysql_error());
-                $laux = mysql_fetch_array($raux);
-                $cantidadMax = $laux['horas_produccion'];
-
-                echo '
-                    <div class="cont_user">
-                      <div class="cant_most_less">
-
-                        <input type="text" class="input_cant" value="'.$data[$i]["cantidad"].'" name=""  data-cantidad="'.$data[$i]["cantidad"].'" readonly>
-                        <span class="less_item_cart" name="'.$data[$i]["indetificar_pos"].'"><img src="../img/store_actions-03.png"></span>
-                        <span class="more_item_cart" name="'.$data[$i]["indetificar_pos"].'" data-id-product="'.$data[$i]["id_producto"].'" data-name-product="'.$data[$i]["nombre_producto"].'" data-cant-maxima="'.$cantidadMax.'" ><img src="../img/store_actions-01.png"></span>
-                      </div>
-
-                      <span class="left_side delete_item_cart" name="'.$data[$i]["indetificar_pos"].'"><img src="../img/close_img.png"></span>
-
-                      <div class="info_buy">
-                        <div>
-                          <span>'.$data[$i]["nombre_producto"].'</span>
-                ';
-                        if($data[$i]["id_sabor_producto"]!=0)
-                            echo '
-                                <span>Sabor: '.$nombre_sabor_producto.'</span>
-                            ';
-
-                    if($data[$i]["id_tamano_producto"]!=0)
-                      echo '
-                        <span>Tamaño: '.$cantidad.' '.$line_tam["nombre"].'</span>
-                      ';
-
-
-                echo '
-                            </div>
-                            <span>$'.number_format($data[$i]["sub_total"],2,".",",").'</span>
-                        </div>
-                    </div>
-                ';
-            }
-
-            echo '
+          echo '
                   <div class="act_cont">
                     <div class="total_buy">
                       <span>TOTAL</span>
@@ -411,9 +325,65 @@ $fuction_name = $_POST['fuction_name'];
                     </div>
             ';
 
-            $_SESSION['total_carrito'] = $total;
+          $_SESSION['total_carrito'] = $total;
+
+          // foreach ($_SESSION['carrito'] as $key => $value) {
+          //   $total = $total + $_SESSION['carrito'][$key]["sub_total"];
+          //   echo '$'.number_format($_SESSION['carrito'][$key]["sub_total"],2,".",",").'';
+          // }
+
+
+      //     $total = 0;
+      //     $data = $_SESSION['carrito'];
+
+      //     foreach ($data as $i => $value) {
+      //           $total = $total + $data[$i]["sub_total"];
+
+      //           $qaux = "SELECT Stock FROM Productos WHERE IdProducto = ".$data[$i]["id_producto"];
+      //           $raux = mysql_query($qaux,Conectar::con()) or die(mysql_error());
+      //           $laux = mysql_fetch_array($raux);
+      //           $cantidadMax = $laux['Stock'];
+
+      //           echo '
+      //               <div class="cont_user">
+      //                 <div class="cant_most_less">
+
+      //                   <input type="text" class="input_cant" value="'.$data[$i]["cantidad"].'" name=""  data-cantidad="'.$data[$i]["cantidad"].'" readonly>
+      //                   <span class="less_item_cart" name="'.$data[$i]["nombre_producto"].'"><img src="../img/store_actions-03.png"></span>
+      //                   <span class="more_item_cart" name="'.$data[$i]["nombre_producto"].'" data-id-product="'.$data[$i]["id_producto"].'" data-name-product="'.$data[$i]["nombre_producto"].'" data-cant-maxima="'.$cantidadMax.'" ><img src="../img/store_actions-01.png"></span>
+      //                 </div>
+
+      //                 <span class="left_side delete_item_cart" name="'.$data[$i]["nombre_producto"].'"><img src="../img/close_img.png"></span>
+
+      //                 <div class="info_buy">
+      //                   <div>
+      //                     <span>'.$data[$i]["nombre_producto"].'</span>
+      //           ';
+
+      //           echo '
+      //                       </div>
+      //                       <span>$'.number_format($data[$i]["sub_total"],2,".",",").'</span>
+      //                   </div>
+      //               </div>
+      //           ';
+      //       }
+
+      //       echo '
+      //             <div class="act_cont">
+      //               <div class="total_buy">
+      //                 <span>TOTAL</span>
+      //               </div>
+      //                   <span class="price_total">$'.number_format($total,2,".",",").'</span>
+      //                   <a href="carrito.php"> <span class="gotocart">IR AL CARRITO</span> </a>
+      //                   <span class="alertaCapMax"></span>
+      //               </div>
+      //       ';
+
+      //       $_SESSION['total_carrito'] = $total;
 
         }else{
+
+          echo "No hay sesion actualizar_carrito";
           echo '
             <div class="g_cart_cont"><br>
               <div class="price_total">
@@ -426,7 +396,8 @@ $fuction_name = $_POST['fuction_name'];
               </div>
               <span class="alertaCapMax"></span>
           ';
-      }
+          
+        }
 
     }
 
@@ -876,7 +847,5 @@ $fuction_name = $_POST['fuction_name'];
         $result = mysql_query($query) or die(mysql_error());
 
     }
-
-?>
 
 ?>

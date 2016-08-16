@@ -37,6 +37,17 @@
 				return deferred.promise;
 			}
 
+			function products_cart(){
+				var deferred = $q.defer();
+
+				$http.get('./php/products_cart.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
 			function all(){
 				var deferred = $q.defer();
 				$http.get('./php/items.php')
@@ -116,7 +127,8 @@
 				productFilteredTwo: productFilteredTwo,
 				productFilteredOne: productFilteredOne,
 				productFiltered: productFiltered,
-				showMenuCategories: showMenuCategories
+				showMenuCategories: showMenuCategories,
+				products_cart: products_cart
 			}
 
 		}]);
