@@ -98,6 +98,29 @@
       color: red;
       padding: 10px 0; }
 
+.resumen-compra .price_yes {
+  color: #000; }
+.resumen-compra .datos-envio {
+  border: 1px solid #000;
+  border-top: 0; }
+  .resumen-compra .datos-envio .descripcion .title, .resumen-compra .datos-envio .descripcion .telefono {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  .resumen-compra .datos-envio .precio {
+    font-size: 1em; }
+.resumen-compra .opciones {
+  margin: 50px 0; }
+  .resumen-compra .opciones .volver img {
+    width: 20px;
+    height: auto; }
+  .resumen-compra .opciones .volver span {
+    color: #6EB153;
+    font-size: 15px;
+    font-weight: bold; }
+  .resumen-compra .opciones .pay img {
+    height: auto;
+    width: 35%; }
+
 /*Align all inside class*/
 .vertical-align {
   display: flex;
