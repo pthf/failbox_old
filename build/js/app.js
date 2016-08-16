@@ -55,6 +55,10 @@
 				templateUrl: 'views/carrito/datosenvio.html',
 				controller: ''
 			})
+			.when('/resumen-compra', {
+				templateUrl: 'views/carrito/resumencompra.html',
+				controller: ''
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
