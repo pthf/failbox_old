@@ -145,6 +145,26 @@
 			});
 		}])
 
+		.controller('purchaseSummary', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			$scope.totalCart = 0.0;
+			failboxService.summary_products_cart().then(function(data){
+				$scope.itemsCart = data;
+				$scope.loadingData = true;
+			});
+			failboxService.total_cart().then(function(data){
+				$scope.totalCart = data;
+			});
+		}])
+
+		.controller('countItemsCart', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			failboxService.count_items_cart().then(function(data){
+				$scope.countCart = data;
+				$scope.loadingData = true;
+			});
+		}])
+
 		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
 
