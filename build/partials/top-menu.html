@@ -180,7 +180,7 @@
 
 		<div class="logoFailBox">
 			<div class="img">
-				<a href="/"><img src="src/images/failbox-04.png"></a>
+				<a href="/www/failbox/build/"><img src="src/images/failbox-04.png"></a>
 			</div>
 			<div class="titleNav">
 				<span>¿Quiénes somos?</span>
@@ -272,7 +272,7 @@
 
 		<!-- <div class="countBar" ng-controller="tabShowMenuTopController as tabs"> -->
 
-		<div class="countBar" style="z-index:-10; opacity: 0">
+		<div class="countBar">
 			<div class="nav">
 				<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
 
@@ -288,10 +288,12 @@
 			</div>
 		</div>
 
-		<div class="cartBar" style="z-index:-10; opacity: 0">
+		<div class="cartBar" ng-controller="countItemsCart">
 			<div class="nav">
-				<span class="cantidad">2</span>
-				<img src="src/images/failbox-03.png">
+				<a href="carrito">
+					<span class="cantidad">{{countCart === "" ? "0" : countCart}}</span>
+					<img src="src/images/failbox-03.png">
+				</a>
 			</div>
 		</div>
 

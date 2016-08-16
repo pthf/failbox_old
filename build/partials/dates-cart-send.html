@@ -1,0 +1,32 @@
+<div class="mi_carrito carrito" ng-controller="purchaseSummary">
+    <div class="container">
+        <div class="titulo">
+            DATOS DE ENVIO
+        </div>
+        Resumen de Compra
+        <table border="1">
+			<tr ng-repeat="(key, itemsCart) in itemsCart">
+				<td>
+					<table style="margin: 60px; text-align:center;">
+						<tr>
+							<td>
+								<img style="width: 40%;" src="./admin/images/products/{{itemsCart.foto_producto}}" />
+								<td>{{itemsCart.nombre_producto}}</td>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<h3><strong>TOTAL: {{totalCart | currency}} </strong></h3>
+		<h4 style="color:red">En esta compra ahorrarás $999.00</h4>
+    </div>
+</div>

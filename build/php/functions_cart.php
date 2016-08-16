@@ -57,6 +57,9 @@
       case 'verify_max_stock':
           verify_max_stock($_POST['idProduct'], $_POST['quantity']);
           break;
+      case 'verify_stocks':
+          verify_stocks($_POST['idProduct'], $_POST['quantity']);
+          break;
     }
 
     function verify_max_stock($idProduct, $cantidad){
@@ -70,9 +73,11 @@
         $line = mysql_fetch_array($result);
         if(mysql_num_rows($result)>0){
           $stock_max = $line['Stock'];
-          if($stock_max<$cantidad)
-            $resultvar =  0;
-          else{
+          // print_r('Stocks: '.$stock_max.' - Cantidad: '.$cantidad);
+          // exit();
+          // if($stock_max<$cantidad)
+          //   $resultvar =  0;
+          // else{
             foreach ($_SESSION['carrito'] as $key => $value) {
               if($value['id_producto'] == $idProduct){
                 $cantidad_cart = $value['cantidad'];
@@ -88,7 +93,7 @@
                 break;
               }
             }
-          }
+          // }
         }
         echo $resultvar;
 
@@ -106,6 +111,35 @@
         }
 
       }
+    }
+
+    function verify_stocks($idProduct, $cantidad){
+
+      $total_cantidad_aux = 0;
+      $resultvar = 1;
+      $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+      $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+      $line = mysql_fetch_array($result);
+      if(mysql_num_rows($result)>0){
+        $stock_max = $line['Stock'];
+        foreach ($_SESSION['carrito'] as $key => $value) {
+          if($value['id_producto'] == $idProduct){
+            $cantidad_cart = $value['cantidad'];
+            $total_cantidad_aux = $cantidad_cart + 1;
+            $query = "SELECT Stock FROM Productos WHERE IdProducto =".$value['id_producto'];
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            $line = mysql_fetch_array($result);
+            $stock_max = $line['Stock'];
+            if($stock_max<$total_cantidad_aux)
+              $resultvar =  0;
+            else
+              $resultvar =  1;
+            break;
+          }
+        }
+      }
+      echo $resultvar;
+
     }
 
     function cambio_tamano(){
@@ -164,9 +198,25 @@
               if ($cantidad == 1) {
                 $arreglo_carrito[$i]['cantidad'] = $arreglo_carrito[$i]['cantidad'] + 1;
                 $arreglo_carrito[$i]['sub_total'] = $arreglo_carrito[$i]['cantidad'] * $arreglo_carrito[$i]['precio'];
+
+                // $query = "SELECT Stock FROM Productos WHERE IdProducto = '".$id_producto."'";
+                // $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+                // $row = mysql_fetch_array($result);
+                // $total_stocks = $row['Stock'] - $cantidad;
+                // $query1 = "UPDATE Productos SET Stock = '".$total_stocks."' WHERE IdProducto = '".$id_producto."'";
+                // $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+
               } else if ($cantidad > 1) {
                 $arreglo_carrito[$i]['cantidad'] = $arreglo_carrito[$i]['cantidad'] + $cantidad;
                 $arreglo_carrito[$i]['sub_total'] = $arreglo_carrito[$i]['cantidad'] * $arreglo_carrito[$i]['precio'];
+
+                // $query = "SELECT Stock FROM Productos WHERE IdProducto = '".$id_producto."'";
+                // $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+                // $row = mysql_fetch_array($result);
+                // $total_stocks = $row['Stock'] - $cantidad;
+                // $query1 = "UPDATE Productos SET Stock = '".$total_stocks."' WHERE IdProducto = '".$id_producto."'";
+                // $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+
               }
             }
           }
@@ -191,7 +241,8 @@
             'cantidad' => $cantidad,
             'precio_lista' => $line['PrecioLista'],
             'precio' => $precio,
-            'sub_total' => $sub_total
+            'sub_total' => $sub_total,
+            'costo_envio' => $line['CostoEnvio']
           );
 
           array_push($arreglo_carrito, $arreglo_descr_producto);
@@ -223,7 +274,8 @@
             'cantidad' => $cantidad,
             'precio_lista' => $line['PrecioLista'],
             'precio' => $precio,
-            'sub_total' => $sub_total
+            'sub_total' => $sub_total,
+            'costo_envio' => $line['CostoEnvio']
           );
 
           $_SESSION['carrito'] = $arreglo_descr_producto;
@@ -311,7 +363,6 @@
           $total = 0;
           for ($i=0; $i < count($_SESSION['carrito']); $i++) { 
             $total = $total + $_SESSION['carrito'][$i]["sub_total"];
-            
           }
 
           echo '
