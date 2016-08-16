@@ -47,8 +47,12 @@
 				templateUrl: 'views/privacidad.html',
 				controller: 'homeSliderController'
 			})
-			.when('/micarrito', {
+			.when('/carrito', {
 				templateUrl: 'views/carrito/micarrito.html',
+				controller: 'carrito'
+			})
+			.when('/datos_envio', {
+				templateUrl: 'views/carrito/datos_envio.html',
 				controller: 'carrito'
 			})
 			.otherwise({
