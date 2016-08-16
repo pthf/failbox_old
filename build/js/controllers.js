@@ -205,7 +205,6 @@
 				if(number > 1){
 					$scope.contador= number-1;
 				}
-
 			}
 		}])
 })();

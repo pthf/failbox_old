@@ -35,10 +35,68 @@
       padding: 3px 5px 4px 5px; }
     .carrito .productos .producto .texto {
       text-align: justify; }
-    .carrito .productos .producto:first-child {
-      border-bottom: 0; }
-    .carrito .productos .producto:last-child {
-      border-top: 0; }
+  .carrito .btn-success {
+    background-color: #6EB153; }
+
+.datos-envio {
+  font-family: 'Gotham-Light'; }
+  .datos-envio .titulo {
+    font-size: 30px;
+    padding: 50px 0;
+    font-weight: bold;
+    color: #6EB153; }
+  .datos-envio .formulario input, .datos-envio .formulario select {
+    border-radius: 0; }
+  .datos-envio .formulario .submit {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-right: 15px; }
+  .datos-envio .formulario .btn-success {
+    background-color: #6EB153; }
+  .datos-envio .resumen {
+    margin-top: -15px; }
+    .datos-envio .resumen .texto {
+      color: #6EB153;
+      font-size: 17px;
+      font-weight: 100;
+      padding: 10px 0; }
+    .datos-envio .resumen .detalle .principal {
+      border: 1px solid #000; }
+      .datos-envio .resumen .detalle .principal .producto {
+        font-size: 12px;
+        border-top: 1px solid #000; }
+        .datos-envio .resumen .detalle .principal .producto:first-child {
+          border-top: 0; }
+        .datos-envio .resumen .detalle .principal .producto .descripcion {
+          padding: 0; }
+          .datos-envio .resumen .detalle .principal .producto .descripcion .cantidad {
+            padding-bottom: 10px;
+            padding-top: 10px; }
+          .datos-envio .resumen .detalle .principal .producto .descripcion .d-texto {
+            margin-top: 10px; }
+          .datos-envio .resumen .detalle .principal .producto .descripcion .precio {
+            text-align: right;
+            text-weight: bold; }
+      .datos-envio .resumen .detalle .principal .precio-envio {
+        font-size: 12px;
+        padding: 15px 38px;
+        border-top: 1px solid #000; }
+        .datos-envio .resumen .detalle .principal .precio-envio .texto-envio, .datos-envio .resumen .detalle .principal .precio-envio .total-envio {
+          width: 50%;
+          display: inline; }
+        .datos-envio .resumen .detalle .principal .precio-envio .total-envio {
+          position: absolute;
+          text-align: right; }
+    .datos-envio .resumen .detalle .final .total {
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: bold !important;
+      color: #000; }
+    .datos-envio .resumen .detalle .final .ahorro {
+      color: red;
+      padding: 10px 0; }
 
 /*Align all inside class*/
 .vertical-align {

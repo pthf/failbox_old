@@ -636,4 +636,14 @@
 		}
 	})
 
+	.directive('datosEnvio', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/datos-envio.html',
+			controller: function($document){
+
+			}
+		};
+	})
+
 })();
