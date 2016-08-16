@@ -780,6 +780,9 @@
 			restrict: 'E',
 			templateUrl: './partials/datos-envio.html',
 			controller: function($document){
+			}
+		}
+	})
 
 
 	.directive('productsMyCart', function(){
