@@ -10,7 +10,10 @@
       padding-right: 10px;
       padding-bottom: 10px; }
   .carrito .productos .producto {
-    border: 1px solid #000; }
+    border: 1px solid #000;
+    border-top: 0; }
+    .carrito .productos .producto:first-child {
+      border-top: 1px solid #000; }
     .carrito .productos .producto .imagen {
       padding: 20px 0; }
       .carrito .productos .producto .imagen img {
