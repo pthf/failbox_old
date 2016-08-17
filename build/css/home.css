@@ -492,7 +492,7 @@ ul.listNav{
 	width: 120% !important;
 	height: auto;
 	position: absolute;
-	top: 100%;
+	top: 94%;
 	left: 0%;
 	z-index: 10;
 }
@@ -974,6 +974,18 @@ ul.listNav li.itemGroup ul.subItems li{
 
 .sliderStore .contenedor li{
 	width: 100% !important;
+}
+.contador-detalle-producto .redes{
+	font-family: 'Gotham-Light';
+}
+.contador-detalle-producto .redes .leyenda{
+	padding: 10px 0;
+}
+.contador-detalle-producto .redes img{
+	width: 30px;
+}
+.contador-detalle-producto .redes a{
+	padding: 10px 5px;
 }
 .contador-detalle-producto{
 	width: 286px;
