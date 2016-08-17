@@ -526,7 +526,17 @@
 					parent.history.back();
 					return false;
 				});
+				$('.informacion-producto .titulo').click(function(){
+					if($('.informacion-producto .contenedor').is(':visible')){
+						$('i').removeClass('glyphicon-chevron-up');
+						$('i').addClass('glyphicon-chevron-down');
+					}else{
+						$('i').removeClass('glyphicon-chevron-down');
+						$('i').addClass('glyphicon-chevron-up');
+					}
 
+					$('.informacion-producto .contenedor').slideToggle('')
+				})
 				// Decrementar valor del input sobre la cantidad de stocks a comprar
 				var i = 1;
 				$(document).on('click', '.menos', function(){

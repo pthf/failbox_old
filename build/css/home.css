@@ -1003,7 +1003,27 @@ ul.listNav li.itemGroup ul.subItems li{
 	margin: 30px;
 	text-align:center;
 }
-
+.informacion-producto{
+	font-family: 'Gotham-Light';
+}
+.informacion-producto .titulo{
+		cursor: pointer;
+		color: #6EB153;
+		margin-top: 100px;
+		margin-bottom: 50px;
+}
+.informacion-producto .contenedor{
+	border: 1px solid #000;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.informacion-producto .contenedor .item div{
+	padding: 2px 0;
+}
+.informacion-producto .glyphicon{
+	font-size: 22px;
+    margin-left: 20px;
+}
 
 .descInfo{
 	text-align: left;
