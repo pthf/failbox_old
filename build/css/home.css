@@ -841,7 +841,6 @@ ul.listNav li.itemGroup ul.subItems li{
 }
 
 .descInfo{
-	width: 50%;
 	height: 10vw;
 }
 
@@ -976,14 +975,35 @@ ul.listNav li.itemGroup ul.subItems li{
 .sliderStore .contenedor li{
 	width: 100% !important;
 }
+.contador-detalle-producto{
+	width: 286px;
+}
+.contador-detalle-producto .btn{
+	background-color: #fff;
+}
+.contador-detalle-producto .btn img{
+	width: 20px;
+}
+.contador-detalle-producto .buttonAddCart img{
+	width: 200px; cursor:pointer;margin-top:20px
+}
+.contador-detalle-producto table tbody table{
+	
+	margin: 30px;
+	text-align:center;
+}
+
 
 .descInfo{
 	text-align: left;
-	width: 30%;
-	margin-left: 10%;
-	margin-right: 10%;
+	width: 25%;
+	margin-left: 20px;
+	margin-right: 20px;
 	height: auto;
 	font-family: 'Gotham-Light';
+}
+.descInfo p{
+	text-align: justify;
 }
 
 .itemSliderConten{
@@ -1443,6 +1463,7 @@ iframe {
 
 @media (max-width: 768px) {
 
+
 	.contact-title{
 		text-align: center;
 	}
@@ -1488,6 +1509,10 @@ iframe {
 	}
 	.contInformation .infoArticulo{
 		margin-top: 30px;
+	}
+
+	.contInformation .infoArticulo .content-swiper{
+		width: 50%;
 	}
 
 

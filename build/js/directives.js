@@ -542,7 +542,7 @@
 				            cant.value="1";
 				        }
 				        $('.test_stock').remove();
-				    	$('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>');
+				    	$('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				    }
 
 				});
@@ -562,7 +562,7 @@
 			            cant.value="1";
 				    }
 				    $('.test_stock').remove();
-				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>');
+				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				});
 
 
@@ -772,8 +772,6 @@
 			}
 		}
 	})
-
-
 
 	.directive('datosEnvio', function(){
 		return{

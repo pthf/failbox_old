@@ -161,7 +161,8 @@ section.slider-wrapper {
 /* detail article slide */
 .content-swiper{
 	position: relative;
-	width: 50%;
+	width: 38%;
+
 }
 .content-swiper .swiper-slide{
 	background-color: rgba(255, 255, 255, 0);

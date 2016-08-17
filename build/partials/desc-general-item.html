@@ -30,7 +30,7 @@
 
 
 		<div class="content-swiper">
-	
+
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" ng-repeat="image in item.images_slider" >
@@ -54,15 +54,18 @@
 			<p>{{item.descripcion}}</p>
 			<p>Marca: {{item.marca}}</p>
 			<p>SKU: {{item.sku}}</p>
-			<table border="2">
+		</div>
+
+		<div class="contador-detalle-producto" style="">
+			<table border="1">
 				<tr>
 					<td>
-						<table style="margin: 60px; text-align:center;">
+						<table >
 							<tr>
 								<td>
-									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> - </button>
+									<button class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> <img src="./src/images/carrito/min.png" /> </button>
 									<input class="input_stocks"id="cantidad" type="text" style="text-align: center; width:50px;" value="1">
-									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}">+</button>
+									<button class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"><img src="./src/images/carrito/mor.png" /></button>
 								</td>
 							</tr>
 							<tr>
@@ -71,7 +74,7 @@
 							<tr>
 								<td>
 									<div class="test_stock">
-									<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>
+										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
 									</div>
 									<div class="test_stock_"></div>
 								</td>
@@ -82,7 +85,6 @@
 								</td>
 							</tr>
 						</table>
-							
 					</td>
 				</tr>
 			</table>
@@ -95,7 +97,7 @@
 	</div-->
 
 	<!-- <div class="content-swiper">
-	
+
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="cart_"></div>
