@@ -988,7 +988,6 @@ ul.listNav li.itemGroup ul.subItems li{
 	width: 200px; cursor:pointer;margin-top:20px
 }
 .contador-detalle-producto table tbody table{
-	
 	margin: 30px;
 	text-align:center;
 }
@@ -1557,7 +1556,7 @@ span.returnSpan{
 	height: auto;
 	margin: 0 auto;
 	font-size: 1.5em;
-	font-family: 'Gotham-Bold';
+	font-family: 'Gotham-light';
 	margin-bottom: 4vw;
 }
 
@@ -1660,4 +1659,34 @@ span.returnSpan{
 .goTop img{
 	width: 100%;
 	height: auto;
+}
+#popup-registrar .registro{
+	border-left: 1px solid #6EB153;
+}
+
+#popup-registrar .head-title{
+	font-family: 'Gotham-Bold';
+	color: #6EB153;
+}
+#popup-registrar .modal-header, #popup-registrar .modal-footer{
+	border-bottom: 0;
+	border-top:0;
+}
+#popup-registrar .modal-content{
+	border-top: 0;
+}
+#popup-registrar input{
+	border: 1px solid #000 !important;
+	border-radius: 0;
+}
+#popup-registrar input:hover, #popup-registrar input:active, #popup-registrar input:focus{
+	box-shadow: none;
+}
+#popup-registrar .btn-default{
+	background-color: #58595B !important;
+	color: #fff;
+	border-radius: 0;
+}
+#popup-registrar .inner{
+	padding-top: 50px;
 }
