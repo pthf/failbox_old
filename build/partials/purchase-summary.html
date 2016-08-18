@@ -1,0 +1,47 @@
+<div class="mi_carrito carrito" ng-controller="getListItemsCart">
+    <div class="container">
+        <div class="titulo">
+            <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
+            RESUMEN DE COMPRA
+        </div>
+        <div class="productos">
+
+            <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                <div class="col-md-4 imagen text-center">
+                    <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />
+                </div>
+                <div class="col-md-4 texto">
+                    {{itemsCart.nombre_producto}}
+                </div>
+                <div class="col-md-4 precio text-center">
+                    <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
+                </div>
+            </div>
+
+            <div class="container-fluid vertical-align">
+
+                <div class="col-md-4 texto">
+                    DATOS DE ENVíO
+                </div>
+
+                <div class="col-md-4 precio text-center">
+                    <div  class="price_yes text-center">$5,000.00</div>
+                </div>
+            </div>
+
+
+            <br>
+            <div class="text text-left volver col-md-6">
+                <img src="./src/images/carrito/back-arrow.png" />
+                <span>VOLVER</span>
+            </div>
+            <div class="text-right col-md-6">
+                <img  src="./src/images/carrito/paypal.jpg" alt="" />
+            </div>
+            <br>
+
+
+        </div>
+
+    </div>
+</div>
