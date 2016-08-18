@@ -59,6 +59,14 @@
 				templateUrl: 'views/carrito/resumencompra.html',
 				controller: ''
 			})
+			.when('/gracias', {
+				templateUrl: 'views/carrito/gracias.html',
+				controller: ''
+			})
+			.when('/preguntas-frecuentes', {
+				templateUrl: 'views/carrito/preguntas_frecuentes.html',
+				controller: ''
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

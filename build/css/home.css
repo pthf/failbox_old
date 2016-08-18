@@ -492,7 +492,7 @@ ul.listNav{
 	width: 120% !important;
 	height: auto;
 	position: absolute;
-	top: 100%;
+	top: 94%;
 	left: 0%;
 	z-index: 10;
 }
@@ -841,7 +841,6 @@ ul.listNav li.itemGroup ul.subItems li{
 }
 
 .descInfo{
-	width: 50%;
 	height: 10vw;
 }
 
@@ -976,14 +975,66 @@ ul.listNav li.itemGroup ul.subItems li{
 .sliderStore .contenedor li{
 	width: 100% !important;
 }
+.contador-detalle-producto .redes{
+	font-family: 'Gotham-Light';
+}
+.contador-detalle-producto .redes .leyenda{
+	padding: 10px 0;
+}
+.contador-detalle-producto .redes img{
+	width: 30px;
+}
+.contador-detalle-producto .redes a{
+	padding: 10px 5px;
+}
+.contador-detalle-producto{
+	width: 286px;
+}
+.contador-detalle-producto .btn{
+	background-color: #fff;
+}
+.contador-detalle-producto .btn img{
+	width: 20px;
+}
+.contador-detalle-producto .buttonAddCart img{
+	width: 200px; cursor:pointer;margin-top:20px
+}
+.contador-detalle-producto table tbody table{
+	margin: 30px;
+	text-align:center;
+}
+.informacion-producto{
+	font-family: 'Gotham-Light';
+}
+.informacion-producto .titulo{
+		cursor: pointer;
+		color: #6EB153;
+		margin-top: 100px;
+		margin-bottom: 50px;
+}
+.informacion-producto .contenedor{
+	border: 1px solid #000;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.informacion-producto .contenedor .item div{
+	padding: 2px 0;
+}
+.informacion-producto .glyphicon{
+	font-size: 22px;
+    margin-left: 20px;
+}
 
 .descInfo{
 	text-align: left;
-	width: 30%;
-	margin-left: 10%;
-	margin-right: 10%;
+	width: 25%;
+	margin-left: 20px;
+	margin-right: 20px;
 	height: auto;
 	font-family: 'Gotham-Light';
+}
+.descInfo p{
+	text-align: justify;
 }
 
 .itemSliderConten{
@@ -1443,6 +1494,7 @@ iframe {
 
 @media (max-width: 768px) {
 
+
 	.contact-title{
 		text-align: center;
 	}
@@ -1490,6 +1542,10 @@ iframe {
 		margin-top: 30px;
 	}
 
+	.contInformation .infoArticulo .content-swiper{
+		width: 50%;
+	}
+
 
 }
 
@@ -1532,7 +1588,7 @@ span.returnSpan{
 	height: auto;
 	margin: 0 auto;
 	font-size: 1.5em;
-	font-family: 'Gotham-Bold';
+	font-family: 'Gotham-light';
 	margin-bottom: 4vw;
 }
 
@@ -1635,4 +1691,34 @@ span.returnSpan{
 .goTop img{
 	width: 100%;
 	height: auto;
+}
+#popup-registrar .registro{
+	border-left: 1px solid #6EB153;
+}
+
+#popup-registrar .head-title{
+	font-family: 'Gotham-Bold';
+	color: #6EB153;
+}
+#popup-registrar .modal-header, #popup-registrar .modal-footer{
+	border-bottom: 0;
+	border-top:0;
+}
+#popup-registrar .modal-content{
+	border-top: 0;
+}
+#popup-registrar input{
+	border: 1px solid #000 !important;
+	border-radius: 0;
+}
+#popup-registrar input:hover, #popup-registrar input:active, #popup-registrar input:focus{
+	box-shadow: none;
+}
+#popup-registrar .btn-default{
+	background-color: #58595B !important;
+	color: #fff;
+	border-radius: 0;
+}
+#popup-registrar .inner{
+	padding-top: 50px;
 }

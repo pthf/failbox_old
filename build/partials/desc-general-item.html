@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/slide.css">
+	<link rel="stylesheet" href="./css/slide.css">
 <div class="contInformation">
 
 	<div class="returnDiv" style="background: red; width: 80%; margin-bottom: 1vw; position: relative; ">
@@ -30,7 +30,7 @@
 
 
 		<div class="content-swiper">
-	
+
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" ng-repeat="image in item.images_slider" >
@@ -54,15 +54,18 @@
 			<p>{{item.descripcion}}</p>
 			<p>Marca: {{item.marca}}</p>
 			<p>SKU: {{item.sku}}</p>
-			<table border="2">
+		</div>
+		<!-- Contador -->
+		<div class="contador-detalle-producto" style="">
+			<table border="1">
 				<tr>
 					<td>
-						<table style="margin: 60px; text-align:center;">
+						<table>
 							<tr>
 								<td>
-									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> - </button>
+									<button class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> <img src="./src/images/carrito/min.png" /> </button>
 									<input class="input_stocks"id="cantidad" type="text" style="text-align: center; width:50px;" value="1">
-									<button style="border-radius: 20px;background: #6eb153;color: #fff;" class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}">+</button>
+									<button class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"><img src="./src/images/carrito/mor.png" /></button>
 								</td>
 							</tr>
 							<tr>
@@ -71,7 +74,7 @@
 							<tr>
 								<td>
 									<div class="test_stock">
-									<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>
+										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
 									</div>
 									<div class="test_stock_"></div>
 								</td>
@@ -82,12 +85,58 @@
 								</td>
 							</tr>
 						</table>
-							
+
 					</td>
 				</tr>
-			</table>
-		</div>
 
+
+			</table>
+			<!-- redes sociales -->
+			<div class="col-md-12 text-center redes">
+				<div class="leyenda">
+					Compartir Producto
+				</div>
+
+				<div class="img">
+					<a href="#">
+						<img src="./src/images/fbg.png" alt="" />
+					</a>
+					<a href="#">
+						<img src="./src/images/twg.png" alt="" />
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Informacion de producto -->
+		<div class="informacion-producto col-md-12">
+			<div class="titulo">
+				<h2>Información Adicional <i class="glyphicon glyphicon-chevron-up"></i></h2>
+
+			</div>
+			<div class="contenedor col-md-8">
+
+				<div class="item col-md-12">
+					<div class="col-md-6 text-left">
+						NO. REF. (SKU)
+					</div>
+					<div class="col-md-6 text-right">
+						1000188883
+					</div>
+				</div>
+
+				<div class="item col-md-12">
+					<div class="col-md-6 text-left">
+						PROXIMAMENTE
+					</div>
+					<div class="col-md-6 text-right">
+						No
+					</div>
+				</div>
+
+			</div>
+		</div>
 	</div>
 
 	<!--div class="paypal">
@@ -95,7 +144,7 @@
 	</div-->
 
 	<!-- <div class="content-swiper">
-	
+
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="cart_"></div>

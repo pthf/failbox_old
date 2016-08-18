@@ -10,7 +10,10 @@
       padding-right: 10px;
       padding-bottom: 10px; }
   .carrito .productos .producto {
-    border: 1px solid #000; }
+    border: 1px solid #000;
+    border-top: 0; }
+    .carrito .productos .producto:first-child {
+      border-top: 1px solid #000; }
     .carrito .productos .producto .imagen {
       padding: 20px 0; }
       .carrito .productos .producto .imagen img {
@@ -69,6 +72,8 @@
         border-top: 1px solid #000; }
         .datos-envio .resumen .detalle .principal .producto:first-child {
           border-top: 0; }
+        .datos-envio .resumen .detalle .principal .producto .imagen {
+          margin-top: 10px; }
         .datos-envio .resumen .detalle .principal .producto .descripcion {
           padding: 0; }
           .datos-envio .resumen .detalle .principal .producto .descripcion .cantidad {
@@ -97,6 +102,60 @@
     .datos-envio .resumen .detalle .final .ahorro {
       color: red;
       padding: 10px 0; }
+
+.resumen-compra .price_yes {
+  color: #000; }
+.resumen-compra .datos-envio {
+  border: 1px solid #000;
+  border-top: 0; }
+  .resumen-compra .datos-envio .descripcion .title, .resumen-compra .datos-envio .descripcion .telefono {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  .resumen-compra .datos-envio .precio {
+    font-size: 1em; }
+.resumen-compra .opciones {
+  margin: 50px 0; }
+  .resumen-compra .opciones .volver img {
+    width: 20px;
+    height: auto; }
+  .resumen-compra .opciones .volver span {
+    color: #6EB153;
+    font-size: 15px;
+    font-weight: bold; }
+  .resumen-compra .opciones .pay img {
+    height: auto;
+    width: 35%; }
+
+.gracias {
+  padding-bottom: 120px; }
+  .gracias .titulo {
+    font-family: 'Gotham-Bold';
+    color: #6EB153;
+    font-size: 2.3vw;
+    padding-top: 40px;
+    padding-bottom: 40px; }
+  .gracias .img {
+    padding: 50px 1px; }
+    .gracias .img img {
+      width: 210px;
+      height: auto; }
+  .gracias .texto-secundario .texto-1 {
+    font-family: 'Gotham-Bold'; }
+  .gracias .texto-secundario .texto-2 {
+    font-family: 'Gotham-Light'; }
+  .gracias .texto-secundario .text-img {
+    font-family: 'Gotham-Light'; }
+    .gracias .texto-secundario .text-img .arbol img {
+      height: auto;
+      width: 40px;
+      padding: 10px 0; }
+    .gracias .texto-secundario .text-img .arbol small {
+      padding: 10px 0; }
+  .gracias .titulo-relacionados {
+    font-family: 'Gotham-Light';
+    color: #6EB153;
+    margin-top: 100px;
+    padding: 50px 0; }
 
 /*Align all inside class*/
 .vertical-align {

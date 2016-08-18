@@ -526,7 +526,17 @@
 					parent.history.back();
 					return false;
 				});
+				$('.informacion-producto .titulo').click(function(){
+					if($('.informacion-producto .contenedor').is(':visible')){
+						$('i').removeClass('glyphicon-chevron-up');
+						$('i').addClass('glyphicon-chevron-down');
+					}else{
+						$('i').removeClass('glyphicon-chevron-down');
+						$('i').addClass('glyphicon-chevron-up');
+					}
 
+					$('.informacion-producto .contenedor').slideToggle('')
+				})
 				// Decrementar valor del input sobre la cantidad de stocks a comprar
 				var i = 1;
 				$(document).on('click', '.menos', function(){
@@ -542,7 +552,7 @@
 				            cant.value="1";
 				        }
 				        $('.test_stock').remove();
-				    	$('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>');
+				    	$('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				    }
 
 				});
@@ -562,7 +572,7 @@
 			            cant.value="1";
 				    }
 				    $('.test_stock').remove();
-				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img style="width: 50px; cursor:pointer;" src="./src/images/cartimage.png"></div>');
+				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				});
 
 
@@ -784,10 +794,19 @@
 		}
 	})
 
-	.directive('purchaseSummary', function(){
+	.directive('resumenCompra', function(){
 		return{
 			restrict: 'E',
-			templateUrl: './partials/purchase-summary.html',
+			templateUrl: './partials/resumen-compra.html',
+			controller: function($document){
+			}
+		}
+	})
+
+	.directive('agradecimiento', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/success.html',
 			controller: function($document){
 			}
 		}
