@@ -75,8 +75,19 @@
 
 	}]);
 
-	app.run(['$rootScope', function($rootScope){
+	app.run(['$rootScope', function($rootScope, $templateCache, scope){
 		$rootScope.pages = 1;
+
+		$rootScope.$on('$routeChangeStart', function(event, next, current) {
+
+			$rootScope.$destroy();
+			$(document).find("*").off();
+	        /*if (typeof(current) !== 'undefined'){
+				console.log(current.templateUrl);
+	            $templateCache.remove(current.templateUrl);
+	        }*/
+    	});
+
 	}])
 
 })();
