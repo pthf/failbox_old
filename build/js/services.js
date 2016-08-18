@@ -81,6 +81,28 @@
 				return deferred.promise;
 			}
 
+			function cost_shipping () {
+				var deferred = $q.defer();
+
+				$http.get('./php/cost_shipping.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
+			function total_notprice () {
+				var deferred = $q.defer();
+
+				$http.get('./php/total_notprice.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
 			function all(){
 				var deferred = $q.defer();
 				$http.get('./php/items.php')
@@ -164,7 +186,9 @@
 				products_cart: products_cart,
 				summary_products_cart: summary_products_cart,
 				total_cart: total_cart,
-				count_items_cart: count_items_cart
+				count_items_cart: count_items_cart,
+				cost_shipping: cost_shipping,
+				total_notprice: total_notprice
 			}
 
 		}]);
