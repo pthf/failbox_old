@@ -289,37 +289,37 @@
 
     //Disminuir cantidad de un articulo.
     function disminuir_item_cart(){
+      if (isset($_SESSION['carrito'])) {
+        $idItemCart = $_POST['idItemCart'];
+        $arreglo_carrito = $_SESSION['carrito'];
 
-      $idItemCart = $_POST['idItemCart'];
-      $arreglo_carrito = $_SESSION['carrito'];
+        $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idItemCart;
+        $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+        $line = mysql_fetch_array($result);
+        $stock_max = $line['Stock'];
 
-      $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idItemCart;
-      $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-      $line = mysql_fetch_array($result);
-      $stock_max = $line['Stock'];
+        foreach ($arreglo_carrito as $key => $value) {
+          if($arreglo_carrito[$key]['id_producto'] == $idItemCart){
 
-      foreach ($arreglo_carrito as $key => $value) {
-        if($arreglo_carrito[$key]['id_producto'] == $idItemCart){
+            $total_cantidad = $stock_max + 1;
+            $query1 = "UPDATE Productos SET Stock = '".$total_cantidad."' WHERE IdProducto = '".$idItemCart."'";
+            $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
-          $total_cantidad = $stock_max + 1;
-          $query1 = "UPDATE Productos SET Stock = '".$total_cantidad."' WHERE IdProducto = '".$idItemCart."'";
-          $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+            $arreglo_carrito[$key]['cantidad'] = $arreglo_carrito[$key]['cantidad'] - 1;
+            $arreglo_carrito[$key]['sub_total'] = $arreglo_carrito[$key]['cantidad'] * $arreglo_carrito[$key]['precio'];
 
-          $arreglo_carrito[$key]['cantidad'] = $arreglo_carrito[$key]['cantidad'] - 1;
-          $arreglo_carrito[$key]['sub_total'] = $arreglo_carrito[$key]['cantidad'] * $arreglo_carrito[$key]['precio'];
-
-          if($arreglo_carrito[$key]['cantidad']==0){
-            unset($arreglo_carrito[$key]);
+            if($arreglo_carrito[$key]['cantidad']==0){
+              unset($arreglo_carrito[$key]);
+            }
           }
         }
+
+        $_SESSION['carrito'] = $arreglo_carrito;
+
+        if(count($_SESSION['carrito']) == 0){
+          unset($_SESSION['carrito']);
+        }
       }
-
-      $_SESSION['carrito'] = $arreglo_carrito;
-
-      if(count($_SESSION['carrito']) == 0){
-        unset($_SESSION['carrito']);
-      }
-
     }
 
     //Aumentar cantidad de un articulo.
@@ -844,75 +844,79 @@
     }
 
     function registrar_datos_pago(){
+          
+      parse_str($_POST['action'],$formData);
 
-        //Datos para la tabla pedido.
-        $orden_pedido = "NULL";
-        $nombre_cliente = $_POST['name'];
-        $apellidos_cliente = $_POST['lastname'];
-        $email_cliente = $_POST['email'];
-        $telefono_cliente = $_POST['phone'];
-        $date_today = date('Y-m-d');
-        $fecha_pedido = $date_today;
-        $date_user = date($_POST["select_year"].'-'.$_POST["select_month"].'-'.$_POST["select_day"]);
-        $fecha_entrega = $date_user;
-        $total_pedido = $_SESSION['total_carrito_mas_envio'];
-        $horario_entrega = $_POST["select_horario"];
-        $status = false;
+      print_r($formData);
 
-        $query = "INSERT INTO pedido (orden_pedido, nombre_cliente, apellidos_cliente, email_cliente, telefono_cliente, fecha_pedido, horario_entrega, fecha_entrega, total_pedido, status)
-                  VALUES ('$orden_pedido', '$nombre_cliente', '$apellidos_cliente', '$email_cliente', '$telefono_cliente', '$fecha_pedido', '$horario_entrega','$fecha_entrega', '$total_pedido', '$status') ";
-        $result = mysql_query($query) or die(mysql_error());
+        // //Datos para la tabla pedido.
+        // $orden_pedido = "NULL";
+        // $nombre_cliente = $_POST['name'];
+        // $apellidos_cliente = $_POST['lastname'];
+        // $email_cliente = $_POST['email'];
+        // $telefono_cliente = $_POST['phone'];
+        // $date_today = date('Y-m-d');
+        // $fecha_pedido = $date_today;
+        // $date_user = date($_POST["select_year"].'-'.$_POST["select_month"].'-'.$_POST["select_day"]);
+        // $fecha_entrega = $date_user;
+        // $total_pedido = $_SESSION['total_carrito_mas_envio'];
+        // $horario_entrega = $_POST["select_horario"];
+        // $status = false;
 
-        $id_pedido = mysql_insert_id();
-        $orden_pedido = "PAYMGT".$id_pedido.date("Y").date("m").date("d");
+        // $query = "INSERT INTO pedido (orden_pedido, nombre_cliente, apellidos_cliente, email_cliente, telefono_cliente, fecha_pedido, horario_entrega, fecha_entrega, total_pedido, status)
+        //           VALUES ('$orden_pedido', '$nombre_cliente', '$apellidos_cliente', '$email_cliente', '$telefono_cliente', '$fecha_pedido', '$horario_entrega','$fecha_entrega', '$total_pedido', '$status') ";
+        // $result = mysql_query($query) or die(mysql_error());
 
-        $query = "UPDATE pedido SET orden_pedido = '$orden_pedido' WHERE id_pedido = $id_pedido";
-        $result = mysql_query($query) or die(mysql_error());
+        // $id_pedido = mysql_insert_id();
+        // $orden_pedido = "PAYMGT".$id_pedido.date("Y").date("m").date("d");
 
-        //Datos para la tabla detalle pedido.
-        $data_cart = $_SESSION['carrito'];
-        foreach ($data_cart as $key => $value) {
-            $id_producto = $data_cart[$key]['id_producto'];
-            $id_sabor_producto = $data_cart[$key]['id_sabor_producto'];
-            $id_tamano_producto = $data_cart[$key]['id_tamano_producto'];
-            $cantidad = $data_cart[$key]['cantidad'];
+        // $query = "UPDATE pedido SET orden_pedido = '$orden_pedido' WHERE id_pedido = $id_pedido";
+        // $result = mysql_query($query) or die(mysql_error());
 
-            $query = "INSERT INTO detalle_pedido (id_pedido, id_producto,  id_sabor_producto, id_tamano_producto, cantidad)
-                      VALUES ($id_pedido, $id_producto, $id_sabor_producto, $id_tamano_producto, $cantidad)";
-            $result = mysql_query($query) or die(mysql_error());
-        }
+        // //Datos para la tabla detalle pedido.
+        // $data_cart = $_SESSION['carrito'];
+        // foreach ($data_cart as $key => $value) {
+        //     $id_producto = $data_cart[$key]['id_producto'];
+        //     $id_sabor_producto = $data_cart[$key]['id_sabor_producto'];
+        //     $id_tamano_producto = $data_cart[$key]['id_tamano_producto'];
+        //     $cantidad = $data_cart[$key]['cantidad'];
 
-        //Datos de direccion, para la tabla datos_entrega.
-        if(isset($_POST['select_municipio']) && isset($_POST['select_colonia']) && isset($_POST['select_cpostal'])){
+        //     $query = "INSERT INTO detalle_pedido (id_pedido, id_producto,  id_sabor_producto, id_tamano_producto, cantidad)
+        //               VALUES ($id_pedido, $id_producto, $id_sabor_producto, $id_tamano_producto, $cantidad)";
+        //     $result = mysql_query($query) or die(mysql_error());
+        // }
 
-            $select_municipio = $_POST['select_municipio'];
-            $select_colonia  = $_POST['select_colonia'];
-            $select_cpostal = $_POST['select_cpostal'];
-            $direccion_complete = $_POST['direccion_complete'];
-            $num_direccion = $_POST['num_direccion'];
-            $streets = $_POST['streets'];
+        // //Datos de direccion, para la tabla datos_entrega.
+        // if(isset($_POST['select_municipio']) && isset($_POST['select_colonia']) && isset($_POST['select_cpostal'])){
 
-            $query = "SELECT id_direccion
-                FROM direcciones_aceptados
-                WHERE id_municipio = '$select_municipio'
-                AND id_colonia = '$select_colonia'
-                AND codigo_postal = '$select_cpostal' ";
-            $result = mysql_query($query) or die(mysql_error());
-            $line = mysql_fetch_array($result);
-            $id_direccion = $line['id_direccion'];
+        //     $select_municipio = $_POST['select_municipio'];
+        //     $select_colonia  = $_POST['select_colonia'];
+        //     $select_cpostal = $_POST['select_cpostal'];
+        //     $direccion_complete = $_POST['direccion_complete'];
+        //     $num_direccion = $_POST['num_direccion'];
+        //     $streets = $_POST['streets'];
 
-            $query = "INSERT INTO datos_entrega (id_direccion, id_pedido, direccion_complete, num_direccion, streets) VALUES ($id_direccion, $id_pedido, '$direccion_complete', '$num_direccion', '$streets')";
-            $result = mysql_query($query) or die(mysql_error());
+        //     $query = "SELECT id_direccion
+        //         FROM direcciones_aceptados
+        //         WHERE id_municipio = '$select_municipio'
+        //         AND id_colonia = '$select_colonia'
+        //         AND codigo_postal = '$select_cpostal' ";
+        //     $result = mysql_query($query) or die(mysql_error());
+        //     $line = mysql_fetch_array($result);
+        //     $id_direccion = $line['id_direccion'];
 
-        }
+        //     $query = "INSERT INTO datos_entrega (id_direccion, id_pedido, direccion_complete, num_direccion, streets) VALUES ($id_direccion, $id_pedido, '$direccion_complete', '$num_direccion', '$streets')";
+        //     $result = mysql_query($query) or die(mysql_error());
 
-        $response_2 = array(
-            'orden_pedido' => $orden_pedido,
-            'amount' => $_SESSION['total_carrito'],
-            'shipping' => $_SESSION['cargo_envio']
-        );
+        // }
 
-        echo json_encode($response_2);
+        // $response_2 = array(
+        //     'orden_pedido' => $orden_pedido,
+        //     'amount' => $_SESSION['total_carrito'],
+        //     'shipping' => $_SESSION['cargo_envio']
+        // );
+
+        // echo json_encode($response_2);
 
     }
 
