@@ -14,9 +14,11 @@
                 <div class="col-md-3 texto">
                     {{itemsCart.nombre_producto}}
                 </div>
-                <div class="col-md-3 precio text-center">
-                    <div class="price_not text-center">{{itemsCart.precio_lista | currency }}</div>
-                    <div class="price_yes text-center">{{itemsCart.precio | currency}}</div>
+                <div class="producto-wrap">
+                    <div class="col-md-3 precio text-center">
+                        <div class=" text-center"><s>{{itemsCart.precio_lista | currency }}</s></div>
+                        <div class=" text-center">{{itemsCart.precio | currency}}</div>
+                    </div>
                 </div>
                 <div class="contador col-md-3 contador">
                     <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
@@ -27,7 +29,7 @@
                 </div>
             </div>
             <span class="result_products" style="color: red; font-size: 13px;"></span>
-            
+
             <br>
             <div class="text-right">
                 <!-- <a href="datos-envio" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</a> -->
@@ -38,7 +40,7 @@
 
         </div>
 
-        <div class="titulo">
+        <div class="titulo-footer">
             Productos Relacionados
         </div>
         <slider-cart-feactured ng-controller="sliderFeacturedProductsController" ng-if="loadingData"></slider-cart-feactured>

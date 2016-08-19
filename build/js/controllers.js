@@ -148,20 +148,12 @@
 		.controller('purchaseSummary', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
 			$scope.totalCart = 0.0;
-			$scope.costShipping = 0.0;
-			$scope.totalNotPrice = 0.0;
 			failboxService.summary_products_cart().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
 			});
 			failboxService.total_cart().then(function(data){
 				$scope.totalCart = data;
-			});
-			failboxService.cost_shipping().then(function(data){
-				$scope.costShipping = data;
-			});
-			failboxService.total_notprice().then(function(data){
-				$scope.totalNotPrice = data;
 			});
 		}])
 

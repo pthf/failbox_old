@@ -956,7 +956,7 @@
 						}
 					});
 				});
-				
+
 				$(document).on('click', '.buttonBuyNow', function(){
 					// $.ajax({
 			  //         	beforeSend: function(){
@@ -1084,7 +1084,7 @@
 			}
 		});
 	});
-	
+
 	function agregar_producto(idProduct,notprice,quantity,sub_total){
 		alert('Agregar Producto');
 		var namefunction = "agregar_producto";
