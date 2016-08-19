@@ -358,8 +358,13 @@
 		<div class="cartBar" ng-controller="countItemsCart">
 			<div class="nav">
 				<a href="carrito">
-					<span class="cantidad">{{countCart === "" ? "0" : countCart}}</span>
-					<img src="src/images/failbox-03.png">
+					<div ng-if="countCart == ''">
+						<img src="src/images/failbox-03.png">
+					</div>
+					<div ng-if="countCart">
+						<span class="cantidad">{{countCart}}</span>
+						<img src="src/images/failbox-03.png">
+					</div>
 				</a>
 			</div>
 		</div>

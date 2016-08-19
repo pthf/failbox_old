@@ -75,14 +75,14 @@
           $stock_max = $line['Stock'];
             foreach ($_SESSION['carrito'] as $key => $value) {
               if($value['id_producto'] == $idProduct){
-                $cantidad_cart = $value['cantidad'];
-                $total_cantidad_aux = $cantidad_cart + $cantidad;
+                // $cantidad_cart = $value['cantidad'];
+                // $total_cantidad_aux = $cantidad_cart + $cantidad;
                 $query = "SELECT Stock FROM Productos WHERE IdProducto =".$value['id_producto'];
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 $line = mysql_fetch_array($result);
                 $stock_max = $line['Stock'];
 
-                if($stock_max<$total_cantidad_aux)
+                if($stock_max<$cantidad)
                   $resultvar =  0;
                 else
                   $resultvar =  1;
@@ -233,7 +233,7 @@
 
         }
 
-          print_r($_SESSION['carrito']);
+          // print_r($_SESSION['carrito']);
 
       } else {
         $id_producto = $_POST['idProduct'];
@@ -370,16 +370,16 @@
             $total = $total + $_SESSION['carrito'][$i]["sub_total"];
           }
 
-          echo '
-                  <div class="act_cont">
-                    <div class="total_buy">
-                      <span>TOTAL</span>
-                    </div>
-                        <span class="price_total">$'.number_format($total,2,".",",").'</span>
-                        <a href="carrito.php"> <span class="gotocart">IR AL CARRITO</span> </a>
-                        <span class="alertaCapMax"></span>
-                    </div>
-            ';
+          // echo '
+          //         <div class="act_cont">
+          //           <div class="total_buy">
+          //             <span>TOTAL</span>
+          //           </div>
+          //               <span class="price_total">$'.number_format($total,2,".",",").'</span>
+          //               <a href="carrito.php"> <span class="gotocart">IR AL CARRITO</span> </a>
+          //               <span class="alertaCapMax"></span>
+          //           </div>
+          //   ';
 
           $_SESSION['total_carrito'] = $total;
           $_SESSION['carrito'] = $_SESSION['carrito'];
@@ -847,25 +847,20 @@
           
       parse_str($_POST['action'],$formData);
 
-      print_r($formData);
+      date_default_timezone_set('UTC');
+      date_default_timezone_set("America/Mexico_City");
+      $datatime = date("Y-m-d H:i:s");
+      
+      $status = "Pendiente";
+      $query1 = "INSERT INTO Pedidos VALUES (null,'$datatime', '".$status."', 1) ";
+      $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
-        // //Datos para la tabla pedido.
-        // $orden_pedido = "NULL";
-        // $nombre_cliente = $_POST['name'];
-        // $apellidos_cliente = $_POST['lastname'];
-        // $email_cliente = $_POST['email'];
-        // $telefono_cliente = $_POST['phone'];
-        // $date_today = date('Y-m-d');
-        // $fecha_pedido = $date_today;
-        // $date_user = date($_POST["select_year"].'-'.$_POST["select_month"].'-'.$_POST["select_day"]);
-        // $fecha_entrega = $date_user;
-        // $total_pedido = $_SESSION['total_carrito_mas_envio'];
-        // $horario_entrega = $_POST["select_horario"];
-        // $status = false;
+      $idPedido = mysql_insert_id();
 
-        // $query = "INSERT INTO pedido (orden_pedido, nombre_cliente, apellidos_cliente, email_cliente, telefono_cliente, fecha_pedido, horario_entrega, fecha_entrega, total_pedido, status)
-        //           VALUES ('$orden_pedido', '$nombre_cliente', '$apellidos_cliente', '$email_cliente', '$telefono_cliente', '$fecha_pedido', '$horario_entrega','$fecha_entrega', '$total_pedido', '$status') ";
-        // $result = mysql_query($query) or die(mysql_error());
+      $query = "INSERT INTO DatosEnvios VALUES (null,'".$formData['typeAddress']."', '".$formData['state']."', '".$formData['city']."', 
+                                              '".$formData['address']."', '".$formData['colony']."', '".$formData['cp']."', 
+                                              '".$formData['tel']."','".$formData['cel']."', '".$idPedido."')";
+      $result = mysql_query($query,Conectar::con()) or die(mysql_error());
 
         // $id_pedido = mysql_insert_id();
         // $orden_pedido = "PAYMGT".$id_pedido.date("Y").date("m").date("d");

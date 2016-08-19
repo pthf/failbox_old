@@ -712,7 +712,9 @@
 						processData: false,
 						contentType: false,
 						success : function(result){
-							alert(result);
+							// alert(result);
+							$('#formDatesSend')[0].reset();
+							window.location.href = "resumen-compra";
 						},
 						error: function(){
 							alert('error');
@@ -853,7 +855,7 @@
 	});
 	
 	function agregar_producto(idProduct,notprice,quantity,sub_total){
-		alert('Agregar Producto');
+		// alert('Agregar Producto');
 		var namefunction = "agregar_producto";
 		$.ajax({
 			beforeSend: function(){
@@ -869,7 +871,7 @@
 				namefunction:namefunction
 			},
 			success: function(result){
-		  		alert(result);
+		  		// alert(result);
 			},
 			error: function(error){
 				alert("error");
@@ -881,7 +883,7 @@
 	}
 
 	function actualizar_carrito(){
-		alert('Actualizar Carrito');
+		// alert('Actualizar Carrito');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -892,7 +894,7 @@
               	namefunction:'actualizar_carrito'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		// $('.cart_').html(data);
           	},
           	error: function(){
@@ -904,7 +906,7 @@
 	}
 
 	function actualizar_carrito_confirmar(idProduct,quantity){
-		alert('Actualizar Carrito Confirmar');
+		// alert('Actualizar Carrito Confirmar');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -917,7 +919,7 @@
               	quantity: quantity
           	},
           	success: function(data){
-          		alert(data);
+          		alert('Añadido a carrito');
           		// $('.g_cart_cont').html(data);
           	},
           	error: function(){
@@ -930,7 +932,7 @@
 	}
 
 	function disminuir_item_cart(idItemCart){
-		alert('Disminuir Item Cart');
+		// alert('Disminuir Item Cart');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -942,7 +944,7 @@
               	namefunction:'disminuir_item_cart'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		location.reload();
           		// $('.g_cart_cont').html(data);
           	},
@@ -956,7 +958,7 @@
 	}
 
 	function incrementar_item_cart(idItemCart){
-		alert('Incrementar Item Cart');
+		// alert('Incrementar Item Cart');
 		$.ajax({
       		beforeSend: function(){
       			location.reload();
@@ -968,7 +970,7 @@
               	namefunction:'incrementar_item_cart'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		location.reload();
           	},
           	error: function(){
