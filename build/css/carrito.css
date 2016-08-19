@@ -18,7 +18,14 @@
       border-top: 1px solid #000; }
     .carrito .productos .producto .producto-wrap {
       display: flex;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       align-items: center; }
+      .carrito .productos .producto .producto-wrap .precio_lista {
+        color: #58595b;
+        opacity: 0.6; }
+      .carrito .productos .producto .producto-wrap .precio {
+        color: red; }
     .carrito .productos .producto .precio {
       display: block; }
     .carrito .productos .producto .imagen {

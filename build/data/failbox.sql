@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-07-2016 a las 23:15:19
+-- Tiempo de generación: 19-08-2016 a las 17:46:14
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -38,10 +38,10 @@ CREATE TABLE `BannersHome` (
 --
 
 INSERT INTO `BannersHome` (`idBannersHome`, `BannersHomeImage`, `BannersHomeUrl`, `BannersHomeName`) VALUES
-(8, '20160627231625', 'http://paratodohayfans.com/web/failbox/#/', 'Banner 04'),
-(15, '20160627235944', 'http://paratodohayfans.com/web/failbox/#/', 'Banner 02'),
-(17, '20160628000234', 'http://paratodohayfans.com/web/failbox/#/', 'Banner 02'),
-(18, '20160628000535', 'http://paratodohayfans.com/web/failbox/#/', 'Banner 01');
+(19, '20160819173636', 'http://localhost/www/failbox/build/', 'Banner 01'),
+(20, '20160819173659', 'http://localhost/www/failbox/build/', 'Banner 02'),
+(21, '20160819173711', 'http://localhost/www/failbox/build/', 'Banner 03'),
+(22, '20160819173726', 'http://localhost/www/failbox/build/', 'Banner 04');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,13 @@ CREATE TABLE `Caracteristicas` (
   `IdCaracteristica` int(11) NOT NULL,
   `NombreCaracteristica` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Caracteristicas`
+--
+
+INSERT INTO `Caracteristicas` (`IdCaracteristica`, `NombreCaracteristica`) VALUES
+(1, 'Color');
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,11 @@ CREATE TABLE `Categorias` (
 --
 
 INSERT INTO `Categorias` (`IdCategoria`, `Categoria`, `RouteCategoria`) VALUES
-(1, 'Electrónica', 'electronica');
+(17, 'Cómputo', 'computo'),
+(18, 'Redes', 'redes'),
+(19, 'Audio', 'audio'),
+(20, 'Accesorios', 'accesorios'),
+(21, 'Bags | Cases', 'bags-cases');
 
 -- --------------------------------------------------------
 
@@ -2586,6 +2597,13 @@ CREATE TABLE `DatosEnvios` (
   `IdPedido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `DatosEnvios`
+--
+
+INSERT INTO `DatosEnvios` (`IdDatosEnvios`, `TipoDireccion`, `Estado`, `Ciudad`, `Direccion`, `Colonia`, `CP`, `Telefono`, `Celular`, `IdPedido`) VALUES
+(1, 'Casa de Pepe', 'Jalisco', 'Guadalajara', 'Av. Moctezuma', 'Independencia', 45080, 31425364, 2147483647, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -2652,7 +2670,11 @@ CREATE TABLE `Marcas` (
 --
 
 INSERT INTO `Marcas` (`IdMarca`, `Marca`, `RouteMarca`) VALUES
-(1, 'Panasonic', 'panasonic');
+(3, 'Marca1', 'marca1'),
+(4, 'Toshiba', 'toshiba'),
+(5, 'Marca2', 'marca2'),
+(6, 'Hp', 'hp'),
+(7, 'Acteck', 'acteck');
 
 -- --------------------------------------------------------
 
@@ -2686,6 +2708,13 @@ CREATE TABLE `Pedidos` (
   `Estatus` varchar(45) DEFAULT NULL,
   `Usuarios_IdUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Pedidos`
+--
+
+INSERT INTO `Pedidos` (`IdPedido`, `FechaPedido`, `Estatus`, `Usuarios_IdUsuario`) VALUES
+(1, '2016-08-18 17:52:50', 'Pendiente', 1);
 
 -- --------------------------------------------------------
 
@@ -2723,9 +2752,24 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`IdProducto`, `NombreProveedor`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `CostoEnvio`, `Garantia`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `IdPrivilegio`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`, `Proveedores_idProveedor`) VALUES
-(5, '2', 'PANTALLA DE 40"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'pantalla-de-40"', 4, 2900, 2800, 0, '1', 'SDFASDF-DASF', '1000188883213', 'Activo', 'sam_03.jpeg,sam_02.jpg,sam_01.jpg', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 14:19:58', 1, 1, 1, 1, 2),
-(6, '3', 'BOCINAS BS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'bocinas-bs', 3, 3000, 2800, 99, '2', 'DSFAS-2123', '23894728347', 'Activo', 'gelato_cafe_baileys.png,gelato_chocolate_amargo.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 14:23:33', 1, 1, 1, 1, 3),
-(7, '7', 'BOCINAS BS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'bocinas-bs', 2, 3000, 1500, 120, '3', 'BOCSDAS-3242', '23894728347', 'Activo', 'gelato_avellana_piemonte.png,gelato_amaretto01.png', 'https://www.paypal.com/mx/webapps/mpp/home', 'SI', '2016-07-13 16:28:43', 2, 1, 1, 1, 7);
+(25, 'CompuSoluciones', 'HP 2012 120W Advanced Docking Station', 'HP Docking Station 120W, 4x USB 3.0, 2x USB 2.0, VGA, 2DVI', 'hp-2012-120w-advanced-docking-station', 5, 3999, 2599, 0, '', 'A7E36AA', 'A7E36AA', 'Activo', 'A7E36AA_01.jpg,A7E36AA_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K4UXFJ5W2BVVE', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 10, 2),
+(26, 'CompuSoluciones', 'HP ProBook 440 i3-6100U 14.0 8GB/1T PC', 'HP ProBook440 G3, Corei3-6100U (2.3GHz)1, 8GB (1x8GB) 1600, 1TB 5400, UMA: Integrated, RT RTL8723BE b/g/n 1x1 , 14" LED HD Webcam 720p, W10PRO64 Downgrade Windows 7 Professional, No, 4C 44WHr, 1/1/0 + Bitdefender Total Security1yr', 'hp-probook-440-i36100u-140-8gb1t-pc', 5, 12999, 11259, 0, '', 'T3L38LTBITDEF', 'T3L38LTBITDEF', 'Activo', 'T3L38LTBITDEF_01.jpg,T3L38LTBITDEF_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K3UVKML8XS8A6', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 11, 2),
+(28, 'CompuSoluciones', 'HP Workstation Z230 SFF', 'HP Z230 SFF, Intel Xeon E3-1226v3 3.3 8M GT2 4C CPU, RAM 4GB DDR3-1600 nECC (1x4GB), Disco Duro 1TB, 16X SuperMulti DVDRW SATA 1st ODD, Win8.1 Pro 64 downgrade to Win7 Pro 64 L, NVIDIA Quadro K420 1GB. ', 'hp-workstation-z230-sff', 5, 28499, 16999, 99, '', 'L0P51LT', 'L0P51LT', 'Activo', 'L0P51LT_01.jpg,L0P51LT_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2FZUYDJTP7F6L', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 13, 2),
+(29, 'CompuSoluciones', 'HP ZBook 14 i7-5500U 14.0 8GB/256 PC', 'HP ZBook 14 i7-5500U 14.0 8GB RAM/256 PC', 'hp-zbook-14-i75500u-140-8gb256-pc', 5, 36999, 23999, 0, '', 'M3Q95LT', 'M3Q95LT', 'Activo', 'M3Q95LT_01.jpg,M3Q95LT_02.jpg,M3Q95LT_03.jpg,M3Q95LT_04.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3AZSFHD82BT38', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 14, 2),
+(31, 'CompuSoluciones', 'HP 9.5mm SATA DVD RW Jb Kit', 'HP JackBlack 652241-B21 Quemador de DVD 9.5mm, DVD-RW, SATA, Interno, para ProLiant.', 'hp-95mm-sata-dvd-rw-jb-kit', 5, 2999, 1049, 0, '', '652241-B21', '652241-B21', 'Activo', '652241_B21.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=25QY4JE6DVMHA', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 16, 2),
+(32, 'Revko', 'Audífonos In-Ear  Amarillo', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Amarillo', 'audifonos-inear-amarillo', 10, 99, 59, 0, '', 'LVEB-807', 'LVEB-807', 'Activo', 'LVEB_807_01.jpg,LVEB_807_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VNF5LSXX7ZNTQ', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(33, 'Revko', 'Audífonos In-Ear Verde', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Verde', 'audifonos-inear-verde', 10, 99, 59, 0, '', 'LVEB-806', 'LVEB-806', 'Activo', 'LVEB_806_01.jpg,LVEB_806_02.jpg,LVEB_806_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YU3KZL4DG5B5N', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(34, 'Revko', 'Audífonos In-Ear (Naranja)', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Naranja', 'audifonos-inear-naranja', 10, 99, 59, 0, '', 'LVEB-804', 'LVEB-804', 'Activo', 'LVEB_804_01.jpg,LVEB_804_02.jpg,LVEB_804_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X88AR6MW2HAG8', 'SI', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(35, 'Revko', 'Mini Mouse óptico Naranja', 'Mini Mouse óptico Inalambrico Xplotion Mi-300Rf Naranja', 'mini-mouse-optico-naranja', 10, 199, 139, 0, '', 'WKMI-304', 'WKMI-304', 'Activo', 'WKMI_304.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=48W4FDVNJHWM4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
+(36, 'Revko', 'Power Bank 4400 Rojo', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Rojo', 'power-bank-4400-rojo', 10, 269, 199, 99, '', 'PWPB-405', 'PWPB-405', 'Activo', 'PWPB_405.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VV9N95KCHVNUG', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(37, 'Revko', 'Power Bank 4400 Morado', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Morado', 'power-bank-4400-morado', 10, 269, 199, 99, '', 'PWPB-403', 'PWPB-403', 'Activo', 'PWPB_403.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YEY4AUJLSSE3S', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(38, 'Revko', 'Mini Mouse óptico Negro', 'Mini Mouse óptico Retractil Usb Negro', 'mini-mouse-optico-negro', 10, 109, 79, 0, '', 'MOMR-011', 'MOMR-011', 'Activo', 'MOMR_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66737WY25NYLW', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
+(39, 'Revko', 'Base Giratoria para iPad Acteck', 'Base-Stand 360 iPad Is-100 Negro', 'base-giratoria-para-ipad-acteck', 10, 249, 69, 99, '', 'MVIS-001', 'MVIS-001', 'Activo', 'MVIS_001_01.jpg,MVIS_001_01.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=99E8W9GWDSYL6', 'NO', '2016-08-19 10:29:28', 1, 7, 21, 20, 2),
+(40, 'Revko', 'Cable Auxiliar Flexible Rosa', 'Cable Auxiliar Flexible 3.5 Mm 1 Mts Af-100 Rosa', 'cable-auxiliar-flexible-rosa', 10, 69, 49, 0, '', 'LKCA-011', 'LKCA-011', 'Activo', 'LKCA_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YLH5B6LVSA6C4', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 21, 2),
+(41, 'Revko', 'Power Bank 4400 Azul', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Azul', 'power-bank-4400-azul', 10, 269, 199, 0, '', 'PWPB-402', 'PWPB-402', 'Activo', 'PWPB_402.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KMM266YQCUT8Y', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(42, 'Revko', 'Lector De Memoria Interna Negro', 'Lector De Memoria Interna Usb Tr-190 Negro', 'lector-de-memoria-interna-negro', 10, 159, 99, 0, '', 'TBTR-001', 'TBTR-001', 'Activo', 'TBTR_001.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W5JYQKE72ZM88', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 22, 2),
+(43, 'Revko', 'Power Bank 2600 Negro', 'Power Bank 2600 Mah Xplotion Pb-200 Negro', 'power-bank-2600-negro', 10, 149, 109, 0, '', 'PWPB-201', 'PWPB-201', 'Activo', 'PWPB_201_01.jpg,PWPB_201_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VCH862CQT6YY4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(44, 'Revko', 'Kit Teclado Estándar Alámbrico/Mouse Alámbric', 'Kit Teclado Estándar Alámbrico/Mouse Alámbrico Usb 1000Dpi Ak2-2200 Negro', 'kit-teclado-estandar-alambricomouse-alambrico', 10, 239, 189, 99, '', 'WKTE-004', 'WKTE-004', 'Activo', 'WKTE_004.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K5LYUJNL2548W', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 23, 2);
 
 -- --------------------------------------------------------
 
@@ -2756,13 +2800,37 @@ CREATE TABLE `Productos_has_Imagenes` (
 --
 
 INSERT INTO `Productos_has_Imagenes` (`Productos_IdProducto`, `IdImagen`, `NombreImagen`) VALUES
-(5, 1, 'sam_03.jpeg'),
-(5, 2, 'sam_02.jpg'),
-(5, 3, 'sam_01.jpg'),
-(6, 4, 'gelato_cafe_baileys.png'),
-(6, 5, 'gelato_chocolate_amargo.png'),
-(7, 6, 'gelato_avellana_piemonte.png'),
-(7, 7, 'gelato_amaretto01.png');
+(25, 67, 'A7E36AA_01.jpg'),
+(25, 68, 'A7E36AA_02.jpg'),
+(26, 69, 'T3L38LTBITDEF_01.jpg'),
+(26, 70, 'T3L38LTBITDEF_02.jpg'),
+(28, 72, 'L0P51LT_01.jpg'),
+(28, 73, 'L0P51LT_02.jpg'),
+(29, 74, 'M3Q95LT_01.jpg'),
+(29, 75, 'M3Q95LT_02.jpg'),
+(29, 76, 'M3Q95LT_03.jpg'),
+(29, 77, 'M3Q95LT_04.jpg'),
+(31, 79, '652241_B21.jpg'),
+(32, 80, 'LVEB_807_01.jpg'),
+(32, 81, 'LVEB_807_02.jpg'),
+(33, 82, 'LVEB_806_01.jpg'),
+(33, 83, 'LVEB_806_02.jpg'),
+(33, 84, 'LVEB_806_03.jpg'),
+(34, 85, 'LVEB_804_01.jpg'),
+(34, 86, 'LVEB_804_02.jpg'),
+(34, 87, 'LVEB_804_03.jpg'),
+(35, 88, 'WKMI_304.jpg'),
+(36, 89, 'PWPB_405.jpg'),
+(37, 90, 'PWPB_403.jpg'),
+(38, 91, 'MOMR_011.jpg'),
+(39, 92, 'MVIS_001_01.jpg'),
+(39, 93, 'MVIS_001_01.jpg'),
+(40, 94, 'LKCA_011.jpg'),
+(41, 95, 'PWPB_402.jpg'),
+(42, 96, 'TBTR_001.jpg'),
+(43, 97, 'PWPB_201_01.jpg'),
+(43, 98, 'PWPB_201_02.jpg'),
+(44, 99, 'WKTE_004.jpg');
 
 -- --------------------------------------------------------
 
@@ -2819,7 +2887,7 @@ INSERT INTO `Proveedores` (`idProveedor`, `RazonSocial`, `Direccion`, `Colonia`,
 (4, 'SUMITEL', '16 de Septiembre #130, Local 68 y 92,', 'Centro', 45070, '33333333', 'sumitel@gmail.com', 2, 0, 0, 0, 'PROV-2016-07-123', '2016-07-14 17:30:50', 2, 'logo_sumitel.png', 'Sumitel01', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '1', 1, 15, 692),
 (5, 'Ejemplo', 'test', 'test', 44700, '33333333', 'test@example.com', 2, 0, 0, 0, 'PROV-2016-07-124', '2016-07-14 17:25:48', 2, 'img_perfil05.jpg', 'Ejemplo', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '0', 3, 4, 44),
 (6, 'Mi PC Comunicaciones  S.A. De C.V.', 'México, D.F. 91 38 9990', 'Col. Aguilas', 45080, '33', 'pthf@example.com', 2, 0, 0, 0, 'PROV-2016-07-135', '2016-07-14 17:26:27', 2, 'img_perfil06.png', 'pthf', '$2y$10$UqXY3UMDxBNAF/Gs78d73eHfe914FdOVMUBWw5x/H.NLKrJ5yqrmO', '1', 3, 2, 25),
-(7, 'SUMITEL', 'Lerdo de Tejada', 'Centro', 45070, '01800 (holabebe)', 'example@example.com', 2, 0, 0, 0, 'PROV-2016-07-136', '2016-07-14 17:16:53', 2, 'img_perfil01.png', 'Sumitel', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', '0', 2, 8, 261);
+(7, 'SUMITEL', 'Lerdo de Tejada', 'Centro', 45070, '01800 (holabebe)', 'example@example.com', 1, 80, 95, 105, 'PROV-2016-07-136', '2016-07-14 17:16:53', 2, 'img_perfil01.png', 'Sumitel', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', '0', 2, 8, 261);
 
 -- --------------------------------------------------------
 
@@ -2839,7 +2907,20 @@ CREATE TABLE `Subcategoria` (
 --
 
 INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `RouteSubcategoria`, `Categorias_IdCategoria`) VALUES
-(1, 'Televisiones', 'televisiones', 1);
+(10, 'Docking Station', 'docking-station', 17),
+(11, 'Laptops', 'laptops', 17),
+(12, 'Monitores', 'monitores', 17),
+(13, 'Servidores', 'servidores', 17),
+(14, 'All In One', 'all-in-one', 17),
+(15, 'Switch', 'switch', 18),
+(16, 'Dvd', 'dvd', 17),
+(17, 'Audífonos', 'audifonos', 19),
+(18, 'Mouse', 'mouse', 20),
+(19, 'Power Banks', 'power-banks', 20),
+(20, 'Stand', 'stand', 21),
+(21, 'Cables', 'cables', 20),
+(22, 'Lector De Memorias', 'lector-de-memorias', 20),
+(23, 'Combos | Kits', 'combos-kits', 20);
 
 -- --------------------------------------------------------
 
@@ -2884,11 +2965,11 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `NombreUser`, `Nombre`, `Apellido`, `Email`, `Password`, `TipoPerfil`, `Privilegios`, `UltimaConexion`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-07-15 16:08:23'),
+(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-08-19 10:03:57'),
 (2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-30 12:35:09'),
 (3, 'Proveedor2', 'Proveedor_Dos', 'Proveedor2', 'prov2@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 3, '2016-06-16 16:53:26'),
 (4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00'),
-(5, 'Sumitel', 'SUMITEL', '', 'example@example.com', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', 'Proveedor', 2, '2016-07-15 16:07:30');
+(5, 'Sumitel', 'SUMITEL', '', 'example@example.com', '$2y$10$x75rcYJxKX2ayQdxkJfmVeM5ub94LHXJXIxgD5/mtjE6kC..ZM0Ma', 'Proveedor', 2, '2016-07-18 17:06:57');
 
 --
 -- Índices para tablas volcadas
@@ -3027,17 +3108,17 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `BannersHome`
 --
 ALTER TABLE `BannersHome`
-  MODIFY `idBannersHome` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idBannersHome` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `Caracteristicas`
 --
 ALTER TABLE `Caracteristicas`
-  MODIFY `IdCaracteristica` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCaracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `Ciudades`
 --
@@ -3052,7 +3133,7 @@ ALTER TABLE `Contactos`
 -- AUTO_INCREMENT de la tabla `DatosEnvios`
 --
 ALTER TABLE `DatosEnvios`
-  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Estados`
 --
@@ -3062,7 +3143,7 @@ ALTER TABLE `Estados`
 -- AUTO_INCREMENT de la tabla `Marcas`
 --
 ALTER TABLE `Marcas`
-  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `Newsletter`
 --
@@ -3072,17 +3153,17 @@ ALTER TABLE `Newsletter`
 -- AUTO_INCREMENT de la tabla `Pedidos`
 --
 ALTER TABLE `Pedidos`
-  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT de la tabla `Productos_has_Imagenes`
 --
 ALTER TABLE `Productos_has_Imagenes`
-  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdImagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
@@ -3092,7 +3173,7 @@ ALTER TABLE `Proveedores`
 -- AUTO_INCREMENT de la tabla `Subcategoria`
 --
 ALTER TABLE `Subcategoria`
-  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdSubcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `TipoProveedor`
 --

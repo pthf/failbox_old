@@ -575,95 +575,6 @@
 				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				});
 
-
-				  //Reduciremos el numero de cantidad a menos uno, eso cuando el usuario de click en el boton less.
-			  	$(document).on('click', '.menos_', function(){
-				  	var idItemCart = $(this).attr('name');
-			  		disminuir_item_cart(idItemCart);
-			  		actualizar_carrito();
-				  	// $.ajax({
-			    //       	beforeSend: function(){
-			    //   		},
-			    //       	url: "./php/functions_cart.php",
-			    //       	type: "POST",
-			    //       	data: {
-			    //       		idItemCart: idItemCart,
-			    //           	namefunction:'disminuir_item_cart'
-			    //       	},
-			    //       	success: function(data){
-			    //       		$.ajax({
-					  //         	beforeSend: function(){
-					  //     		},
-					  //         	url: "./php/functions_cart.php",
-					  //         	type: "POST",
-					  //         	data: {
-					  //             	namefunction:'actualizar_carrito'
-					  //         	},
-					  //         	success: function(data){
-					  //         		alert(data);
-					  //         		// $('.g_cart_cont').html(data);
-					  //         	},
-					  //         	error: function(){
-					  //         	},
-					  //         	complete: function(){
-					  //         	},
-					  //         	timeout: 10000
-					  //     	});
-			    //       		location.reload();
-			    //       		// $('.g_cart_cont').html(data);
-			    //       	},
-			    //       	error: function(){
-			    //       	},
-			    //       	complete: function(){
-			    //       	},
-			    //       	timeout: 10000
-			    //   	});
-				});
-
-				$(document).on('click', '.mas_', function(){
-					var idItemCart = $(this).attr('name');
-					incrementar_item_cart(idItemCart);
-					actualizar_carrito();
-				  	// $.ajax({
-		     //      		beforeSend: function(){
-				   //    	},
-			    //       	url: "./php/functions_cart.php",
-			    //       	type: "POST",
-			    //       	data: {
-			    //       		idItemCart: idItemCart,
-			    //           	namefunction:'incrementar_item_cart'
-			    //       	},
-			    //       	success: function(data){
-			    //       		$.ajax({
-					  //         	beforeSend: function(){
-					  //     		},
-					  //         	url: "./php/functions_cart.php",
-					  //         	type: "POST",
-					  //         	data: {
-					  //             	namefunction:'actualizar_carrito'
-					  //         	},
-					  //         	success: function(data){
-					  //         		alert(data);
-					  //         		// $('.g_cart_cont').html(data);
-					  //         	},
-					  //         	error: function(){
-					  //         	},
-					  //         	complete: function(){
-					  //         	},
-					  //         	timeout: 10000
-					  //     	});
-			    //       		// actualizar_carrito();
-			    //       		// actualizar_carrito_confirmar();
-			    //       		location.reload();
-			    //       	},
-			    //       	error: function(){
-			    //       	},
-			    //       	complete: function(){
-			    //       	},
-			    //       	timeout: 10000
-			    //  	});
-				});
-
 			}
 		}
 	})
@@ -790,6 +701,27 @@
 			restrict: 'E',
 			templateUrl: './partials/datos-envio.html',
 			controller: function($document){
+				$('#formDatesSend').submit(function(){
+					var ajaxData = new FormData();
+					ajaxData.append("action", $(this).serialize());
+					ajaxData.append("namefunction", "registrar_datos_pago");
+					$.ajax({
+						type: 'POST',
+						url: './php/functions_cart.php',
+						data: ajaxData,
+						processData: false,
+						contentType: false,
+						success : function(result){
+							// alert(result);
+							$('#formDatesSend')[0].reset();
+							window.location.href = "resumen-compra";
+						},
+						error: function(){
+							alert('error');
+						},
+						timeout: 10000
+					});
+				});
 			}
 		}
 	})
@@ -822,45 +754,6 @@
 				  	var idItemCart = $(this).attr('name');
 			  		disminuir_item_cart(idItemCart);
 			  		actualizar_carrito();
-				  	// $.ajax({
-			    //       	beforeSend: function(){
-			    //       		location.reload();
-			    //   		},
-			    //       	url: "./php/functions_cart.php",
-			    //       	type: "POST",
-			    //       	data: {
-			    //       		idItemCart: idItemCart,
-			    //           	namefunction:'disminuir_item_cart'
-			    //       	},
-			    //       	success: function(data){
-			    //       		$.ajax({
-					  //         	beforeSend: function(){
-					  //         		location.reload();
-					  //     		},
-					  //         	url: "./php/functions_cart.php",
-					  //         	type: "POST",
-					  //         	data: {
-					  //             	namefunction:'actualizar_carrito'
-					  //         	},
-					  //         	success: function(data){
-					  //         		alert(data);
-					  //         		// $('.g_cart_cont').html(data);
-					  //         	},
-					  //         	error: function(){
-					  //         	},
-					  //         	complete: function(){
-					  //         	},
-					  //         	timeout: 10000
-					  //     	});
-			    //       		location.reload();
-			    //       		// $('.g_cart_cont').html(data);
-			    //       	},
-			    //       	error: function(){
-			    //       	},
-			    //       	complete: function(){
-			    //       	},
-			    //       	timeout: 10000
-			    //   	});
 				});
 
 				$(document).on('click', '.mas_', function(){
@@ -880,67 +773,6 @@
 								incrementar_item_cart(idItemCart);
 								actualizar_carrito();
 								actualizar_carrito_confirmar(idItemCart,quantity);
-							  	// $.ajax({
-					     //      		beforeSend: function(){
-					     //      			location.reload();
-							   //    	},
-						    //       	url: "./php/functions_cart.php",
-						    //       	type: "POST",
-						    //       	data: {
-						    //       		idItemCart: idItemCart,
-						    //           	namefunction:'incrementar_item_cart'
-						    //       	},
-						    //       	success: function(data){
-						    //       		$.ajax({
-								  //         	beforeSend: function(){
-								  //         		location.reload();
-								  //     		},
-								  //         	url: "./php/functions_cart.php",
-								  //         	type: "POST",
-								  //         	data: {
-								  //             	namefunction:'actualizar_carrito'
-								  //         	},
-								  //         	success: function(data){
-								  //         		alert(data);
-								  //         		$.ajax({
-										//           	beforeSend: function(){
-										//           		location.reload();
-										//       		},
-										//           	url: "./php/functions_cart.php",
-										//           	type: "POST",
-										//           	data: {
-										//               	namefunction:'actualizar_carrito_confirmar',
-										//               	idProduct: idItemCart,
-										//               	quantity: quantity
-										//           	},
-										//           	success: function(data){
-										//           		alert(data);
-										//           		// $('.g_cart_cont').html(data);
-										//           	},
-										//           	error: function(){
-										//           	},
-										//           	complete: function(){
-										//           	},
-										//           	timeout: 10000
-										//       	});
-								  //         		// $('.g_cart_cont').html(data);
-								  //         	},
-								  //         	error: function(){
-								  //         	},
-								  //         	complete: function(){
-								  //         	},
-								  //         	timeout: 10000
-								  //     	});
-						    //       		// actualizar_carrito();
-						    //       		// actualizar_carrito_confirmar();
-						    //       		location.reload();
-						    //       	},
-						    //       	error: function(){
-						    //       	},
-						    //       	complete: function(){
-						    //       	},
-						    //       	timeout: 10000
-						    //  	});
 							} else if(result == 0){
 								alert('No hay existencias');
 								$('.result_products').html('No hay existencias.');
@@ -958,25 +790,25 @@
 				});
 
 				$(document).on('click', '.buttonBuyNow', function(){
-					// $.ajax({
-			  //         	beforeSend: function(){
-			  //     		},
-			  //         	url: "./php/functions_cart.php",
-			  //         	type: "POST",
-			  //         	data: {
-			  //             	namefunction:'actualizar_carrito_confirmar'
-			  //         	},
-			  //         	success: function(data){
-			  //         		// alert(data);
-			  //         		window.location.href = "datos-envio";
-			  //         		// $('.g_cart_cont').html(data);
-			  //         	},
-			  //         	error: function(){
-			  //         	},
-			  //         	complete: function(){
-			  //         	},
-			  //         	timeout: 10000
-			  //     	});
+					$.ajax({
+			          	beforeSend: function(){
+			      		},
+			          	url: "./php/functions_cart.php",
+			          	type: "POST",
+			          	data: {
+			              	namefunction:'actualizar_carrito_confirmar'
+			          	},
+			          	success: function(data){
+			          		// alert(data);
+			          		window.location.href = "datos-envio";
+			          		// $('.g_cart_cont').html(data);
+			          	},
+			          	error: function(){
+			          	},
+			          	complete: function(){
+			          	},
+			          	timeout: 10000
+			      	});
 				});
 			}
 		};
@@ -1006,69 +838,6 @@
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
 					actualizar_carrito_confirmar(idProduct,quantity);
-					// var namefunction = "agregar_producto";
-					// $.ajax({
-					// 	beforeSend: function(){
-					// 		location.reload();
-					// 	},
-					// 	url: "./php/functions_cart.php",
-					// 	type: "POST",
-					// 	data: {
-					// 		idProduct:idProduct,
-					// 		notprice:notprice,
-					// 		quantity:quantity,
-					// 		sub_total:sub_total,
-					// 		namefunction:namefunction
-					// 	},
-					// 	success: function(result){
-					//   		$.ajax({
-					//           	beforeSend: function(){
-					//           		location.reload();
-					//       		},
-					//           	url: "./php/functions_cart.php",
-					//           	type: "POST",
-					//           	data: {
-					//               	namefunction:'actualizar_carrito'
-					//           	},
-					//           	success: function(data){
-					//           		alert(data);
-					//           		// $('.cart_').html(data);
-					//           		$.ajax({
-					// 		          	beforeSend: function(){
-					// 		          		location.reload();
-					// 		      		},
-					// 		          	url: "./php/functions_cart.php",
-					// 		          	type: "POST",
-					// 		          	data: {
-					// 		              	namefunction:'actualizar_carrito_confirmar',
-					// 		              	idProduct: idProduct,
-					// 		              	quantity: quantity
-					// 		          	},
-					// 		          	success: function(data){
-					// 		          		alert(data);
-					// 		          		// $('.g_cart_cont').html(data);
-					// 		          	},
-					// 		          	error: function(){
-					// 		          	},
-					// 		          	complete: function(){
-					// 		          	},
-					// 		          	timeout: 10000
-					// 		      	});
-					//           	},
-					//           	error: function(){
-					//           	},
-					//           	complete: function(){
-					//           	},
-					//           	timeout: 10000
-					//       	});
-					// 	},
-					// 	error: function(error){
-					// 		alert("error");
-					// 	},
-					// 	complete: function(){
-					// 	},
-					// 	timeout: 10000
-					// });
 				} else if(result == 0){
 					alert('No hay existencias');
 					$('.result_products').html('No hay existencias.');
@@ -1086,7 +855,7 @@
 	});
 
 	function agregar_producto(idProduct,notprice,quantity,sub_total){
-		alert('Agregar Producto');
+		// alert('Agregar Producto');
 		var namefunction = "agregar_producto";
 		$.ajax({
 			beforeSend: function(){
@@ -1102,7 +871,7 @@
 				namefunction:namefunction
 			},
 			success: function(result){
-		  		alert(result);
+		  		// alert(result);
 			},
 			error: function(error){
 				alert("error");
@@ -1114,7 +883,7 @@
 	}
 
 	function actualizar_carrito(){
-		alert('Actualizar Carrito');
+		// alert('Actualizar Carrito');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -1125,7 +894,7 @@
               	namefunction:'actualizar_carrito'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		// $('.cart_').html(data);
           	},
           	error: function(){
@@ -1137,7 +906,7 @@
 	}
 
 	function actualizar_carrito_confirmar(idProduct,quantity){
-		alert('Actualizar Carrito Confirmar');
+		// alert('Actualizar Carrito Confirmar');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -1150,7 +919,7 @@
               	quantity: quantity
           	},
           	success: function(data){
-          		alert(data);
+          		alert('Añadido a carrito');
           		// $('.g_cart_cont').html(data);
           	},
           	error: function(){
@@ -1163,7 +932,7 @@
 	}
 
 	function disminuir_item_cart(idItemCart){
-		alert('Disminuir Item Cart');
+		// alert('Disminuir Item Cart');
 		$.ajax({
           	beforeSend: function(){
           		location.reload();
@@ -1175,7 +944,7 @@
               	namefunction:'disminuir_item_cart'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		location.reload();
           		// $('.g_cart_cont').html(data);
           	},
@@ -1189,7 +958,7 @@
 	}
 
 	function incrementar_item_cart(idItemCart){
-		alert('Incrementar Item Cart');
+		// alert('Incrementar Item Cart');
 		$.ajax({
       		beforeSend: function(){
       			location.reload();
@@ -1201,7 +970,7 @@
               	namefunction:'incrementar_item_cart'
           	},
           	success: function(data){
-          		alert(data);
+          		// alert(data);
           		location.reload();
           	},
           	error: function(){
