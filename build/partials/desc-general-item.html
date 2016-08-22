@@ -46,8 +46,8 @@
 		<!--Detalle del Producto-->
 		<div class="descInfo">
 			<span class="descritem">{{item.name}}</span><br><br>
-			<span class="price_not">{{item.price | currency }}</span>
-			<span class="price_yes">{{item.not_price | currency}}</span><br>
+			<s class="precio_lista">{{item.price | currency }}</s>
+			<span class="precio">{{item.not_price | currency}}</span><br>
 			<span style="color: #6EB153" ng-if="item.cost_shipping != 0">Costo de envío: {{item.cost_shipping | currency}}</span>
 			<span style="color: #6EB153" ng-if="item.cost_shipping == 0">¡Envio Gratis!</span><br><br>
 			<p>{{item.descripcion}}</p>

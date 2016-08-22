@@ -990,13 +990,14 @@ ul.listNav li.itemGroup ul.subItems li{
 	padding: 10px 0;
 }
 .contador-detalle-producto .redes img{
-	width: 30px;
+	width: 25px;
 }
 .contador-detalle-producto .redes a{
 	padding: 10px 5px;
 }
 .contador-detalle-producto{
 	width: 286px;
+	font-family: 'Gotham-Light';
 }
 .contador-detalle-producto .btn{
 	background-color: #fff;
@@ -1044,7 +1045,20 @@ ul.listNav li.itemGroup ul.subItems li{
 .descInfo p{
 	text-align: justify;
 }
-
+.descInfo .precio_lista{
+	color: #58595b;
+	opacity: 0.6;
+	font-size: 16px;
+	margin-right: 16px;
+}
+.descInfo .precio{
+	color: red;
+	font-size: 16px;
+}
+.descInfo .descritem {
+	line-height: 20px;
+	text-align: justify;
+}
 .itemSliderConten{
 	width: 70%;
 	height: auto;
