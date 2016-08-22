@@ -2,6 +2,7 @@ node_modules
 /build/.htaccess
 
 build/.htaccess
+node_modules/
 node_modules/.bin/browserslist
 node_modules/.bin/browserslist
 node_modules/.bin/mime
