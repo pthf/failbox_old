@@ -3,9 +3,7 @@ $(document).ready(function(){
 	checksize()
 })
 $(window).resize(function(){
-	console.log($(document).width());
-	checksize()
-
+	checksize();
 });
 function checksize(){
 	if($(document).width() < 751){
@@ -13,6 +11,14 @@ function checksize(){
 	}else if($(document).width() > 752){
 		$('.socialFailBox').removeClass('container');
 	}
+	var timeoutId = null;
+	var height = $('.topMenu').parent().height();
+	if (timeoutId) clearTimeout(timeout);
+
+	clearTimeout(timeoutId);
+	timeoutId = setTimeout(function(){
+		$('.loadedView').css('padding-top', height+'px');
+	}, 250)
 }
 </script>
 <style media="screen">

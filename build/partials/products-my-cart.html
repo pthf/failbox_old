@@ -1,8 +1,4 @@
-<style type="text/css">
-.fullwidth {
-    width:100% !important;
-}
-</style>
+
 <div class="mi_carrito carrito" ng-controller="getListItemsCart">
     <div class="container" ng-class="{'fullwidth':itemsCart == ''}">
         <div ng-if="itemsCart == ''">
@@ -20,41 +16,44 @@
             <div class="productos">
 
                 <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                    <span class="close deleteItemCart" name="{{itemsCart.id_producto}}"><img src="./src/images/carrito/mas_info.png" /></span>
                     <div class="col-md-3 imagen text-center">
                         <img src="./admin/images/products/{{itemsCart.foto_producto}}" />
                     </div>
                     <div class="col-md-3 texto">
                         {{itemsCart.nombre_producto}}
                     </div>
-                    <div class="col-md-3 precio text-center">
-                        <div class="price_not text-center">{{itemsCart.precio_lista | currency }}</div>
-                        <div class="price_yes text-center">{{itemsCart.precio | currency}}</div>
+                    <div class="producto-wrap col-md-3">
+                        <div class="col-md-12 precio text-center">
+                            <div class="text-center precio_lista"><s>{{itemsCart.precio_lista | currency }}</s></div>
+                            <div class="text-center precio">{{itemsCart.precio | currency}}</div>
+                        </div>
                     </div>
                     <div class="contador col-md-3 contador">
-                        <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
-                        <a id="menos_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont menos_" style="cursor:pointer;"><img src="./src/images/carrito/min.png" /></a>
-                        <input disabled type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
-                        <a id="mas_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont mas_" style="cursor:pointer"><img src="./src/images/carrito/mor.png" /></a>
-                        <!-- <a ng-click="increment(contador)" class="cont" href="#" ><img src="./src/images/carrito/mor.png" /></a> -->
+
+                        <div class="producto-wrap">
+
+                            <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
+                            <a id="menos_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont menos_" style="cursor:pointer;"><img src="./src/images/carrito/min.png" /></a>
+                            <input type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
+                            <a id="mas_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont mas_" style="cursor:pointer"><img src="./src/images/carrito/mor.png" /></a>
+                            <!-- <a ng-click="increment(contador)" class="cont" href="#" ><img src="./src/images/carrito/mor.png" /></a> -->
+                        </div>
                     </div>
-                    <div><button class="deleteItemCart" name="{{itemsCart.id_producto}}">X</button></div>
                 </div>
                 <span class="result_products" style="color: red; font-size: 13px;"></span>
-                
                 <br>
                 <div class="text-right">
                     <a href="datos-envio" class="btn btn-success btn-lg">COMPRAR AHORA</a>
                     <!-- <button type="button" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</button> -->
                 </div>
                 <br>
-
-
             </div>
 
-            <div class="titulo">
+            <div class="titulo-footer">
                 Productos Relacionados
             </div>
-            <slider-cart-feactured ng-controller="sliderFeacturedProductsController" ng-if="loadingData" ng-class="{'fullwidth':itemsCart}"></slider-cart-feactured>
         </div>
     </div>
+    <slider-cart-feactured ng-controller="sliderFeacturedProductsController" ng-if="loadingData" ng-class="{'fullwidth':itemsCart}"></slider-cart-feactured>
 </div>

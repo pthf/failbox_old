@@ -1,4 +1,4 @@
-<div class="mi_carrito carrito" ng-controller="getListItemsCart">
+<div class="resumen-compra carrito" ng-controller="getListItemsCart">
 
     <div class="container" id="holabebe" pedido="{{idPedido}}">
         <div ng-if="itemsCart == ''">
@@ -6,14 +6,13 @@
                 <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
                 <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
             </div>
-        </div>
+
         <div ng-if="itemsCart">
             <div class="titulo">
                 <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
                 RESUMEN DE COMPRA
             </div>
             <div class="productos">
-
                 <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
                     <div class="col-md-4 imagen text-center">
                         <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />

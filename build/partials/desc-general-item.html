@@ -1,4 +1,4 @@
-	<link rel="stylesheet" href="./css/slide.css">
+<link rel="stylesheet" href="./css/slide.css">
 <div class="contInformation">
 
 	<div class="returnDiv" style="background: red; width: 80%; margin-bottom: 1vw; position: relative; ">
@@ -25,29 +25,27 @@
 					</li>
 				</ul>
 			</div>
-
 		</div-->
 
 
 		<div class="content-swiper">
-
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide" ng-repeat="image in item.images_slider" >
-							<img src="./admin/images/products/{{image}}">
-						</div>
+			<div class="show-porcent">{{porcent}}%</div>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" ng-repeat="image in item.images_slider" >
+						<img src="./admin/images/products/{{image}}">
 					</div>
 				</div>
-				<div class="pagination"></div>
-
+			</div>
+			<div class="pagination"></div>
 		</div>
 
 
 		<!--Detalle del Producto-->
 		<div class="descInfo">
 			<span class="descritem">{{item.name}}</span><br><br>
-			<span class="price_not">{{item.price | currency }}</span>
-			<span class="price_yes">{{item.not_price | currency}}</span><br>
+			<s class="precio_lista">{{item.price | currency }}</s>
+			<span class="precio">{{item.not_price | currency}}</span><br>
 			<span style="color: #6EB153" ng-if="item.cost_shipping != 0">Costo de envío: {{item.cost_shipping | currency}}</span>
 			<span style="color: #6EB153" ng-if="item.cost_shipping == 0">¡Envio Gratis!</span><br><br>
 			<p>{{item.descripcion}}</p>

@@ -232,7 +232,15 @@ div.item .imgBox img.imgInfo{
 	width: 100%;
 	height: auto;
 }
-
+top-menu{
+	position: fixed;
+	width: 100%;
+	z-index: 999999;
+	top: 0;
+}
+.loadedView{
+	padding-top: 108px;
+}
 .topMenu{
 	width: 100%;
 	height: auto;
@@ -830,6 +838,17 @@ ul.listNav li.itemGroup ul.subItems li{
 	height: 10vw;
 }
 
+.contInformation .show-porcent{
+	background-color: #58595b;
+	text-align: center;
+	width: 40px;
+	float: right;
+	padding: 10px 0px;
+	border-radius: 20px;
+	color: #fff;
+	font-family: 'Gotham-Light';
+}
+
 .sliderStore{
 	width: 50% !important;
 	height: auto;
@@ -982,13 +1001,14 @@ ul.listNav li.itemGroup ul.subItems li{
 	padding: 10px 0;
 }
 .contador-detalle-producto .redes img{
-	width: 30px;
+	width: 25px;
 }
 .contador-detalle-producto .redes a{
 	padding: 10px 5px;
 }
 .contador-detalle-producto{
 	width: 286px;
+	font-family: 'Gotham-Light';
 }
 .contador-detalle-producto .btn{
 	background-color: #fff;
@@ -1013,7 +1033,7 @@ ul.listNav li.itemGroup ul.subItems li{
 		margin-bottom: 50px;
 }
 .informacion-producto .contenedor{
-	border: 1px solid #000;
+	border: 1px solid #58595B;
 	padding-bottom: 10px;
 	padding-top: 10px;
 }
@@ -1036,7 +1056,20 @@ ul.listNav li.itemGroup ul.subItems li{
 .descInfo p{
 	text-align: justify;
 }
-
+.descInfo .precio_lista{
+	color: #58595b;
+	opacity: 0.6;
+	font-size: 16px;
+	margin-right: 16px;
+}
+.descInfo .precio{
+	color: red;
+	font-size: 16px;
+}
+.descInfo .descritem {
+	line-height: 20px;
+	text-align: justify;
+}
 .itemSliderConten{
 	width: 70%;
 	height: auto;
@@ -1493,7 +1526,9 @@ iframe {
 }
 
 @media (max-width: 768px) {
-
+	.loadedView{
+		padding-top: 79px;
+	}
 
 	.contact-title{
 		text-align: center;
@@ -1550,6 +1585,9 @@ iframe {
 }
 
 @media (max-width: 480px){
+	.loadedView{
+		padding-top: 57px;
+	}
 	.video-modal-wrapper {
 	    height: 195px;
 	    width: 320px;
