@@ -22,6 +22,7 @@
 <body>
 	<div class="contenedor">
 		<top-menu></top-menu>
+		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view>
 		</div>
 		<bottom-site></bottom-site>

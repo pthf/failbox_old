@@ -203,6 +203,47 @@
     margin-top: 100px;
     padding: 50px 0; }
 
+.buy-slide {
+  border: 1px solid #58595B;
+  border-top: 0;
+  padding-right: 0 !important;
+  box-shadow: -1px 1px 11px #58595B;
+  background-color: #fff;
+  font-family: 'Gotham-Light';
+  position: fixed !important;
+  z-index: 11;
+  overflow-y: hidde;
+  right: 10px; }
+  .buy-slide .content-buy {
+    height: 400px;
+    max-height: 400px;
+    overflow-x: hidden;
+    padding-right: 20px; }
+  .buy-slide .btn-lg {
+    background-color: #6EB153;
+    width: 100%;
+    border-radius: 0px !important; }
+  .buy-slide .subtotal {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .buy-slide .content-btn {
+    border-top: 1px solid #58595B;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  .buy-slide .producto {
+    border-top: 1px solid #58595B;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .buy-slide .producto:first-child {
+      border-top: none; }
+  .buy-slide .titulo {
+    font-family: 'Gotham-Bold'; }
+  .buy-slide .descripcion {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .buy-slide .precio {
+    font-family: 'Gotham-Bold'; }
+
 /*Align all inside class*/
 .vertical-align {
   display: flex;

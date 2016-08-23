@@ -734,6 +734,14 @@
 			}
 		}
 	})
+	.directive('buySlide', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/buy-slide.html',
+			controller: function($document){
+			}
+		}
+	})
 
 	.directive('agradecimiento', function(){
 		return{
