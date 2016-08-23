@@ -15,9 +15,11 @@
             </div>
             <div class="productos">
 
-                <div class="producto container-fluid vertical-align col-xs-12" ng-repeat="(key, itemsCart) in itemsCart">
-                    <span class="close deleteItemCard"><img src="./src/images/carrito/mas_info.png" /></span>
-                    <div class="col-xs-4 col-md-3 col-sm-3 imagen text-center">
+
+                <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                    <span class="close deleteItemCart" name="{{itemsCart.id_producto}}"><img src="./src/images/carrito/mas_info.png" /></span>
+                    <div class="col-md-3 imagen text-center">
+
                         <img src="./admin/images/products/{{itemsCart.foto_producto}}" />
                     </div>
                     <div class="col-md-3 col-sm-3 texto col-xs-4">
@@ -29,7 +31,9 @@
                             <div class="text-center precio">{{itemsCart.precio | currency}}</div>
                         </div>
                     </div>
+
                     <div class="contador col-xs-12 col-sm-3 col-md-3 contador">
+
                         <div class="producto-wrap">
 
                             <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
@@ -43,8 +47,8 @@
                 <span class="result_products" style="color: red; font-size: 13px;"></span>
                 <br>
                 <div class="text-right">
-                    <!-- <a href="datos-envio" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</a> -->
-                    <button type="button" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</button>
+                    <a href="datos-envio" class="btn btn-success btn-lg">COMPRAR AHORA</a>
+                    <!-- <button type="button" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</button> -->
                 </div>
                 <br>
             </div>

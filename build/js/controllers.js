@@ -139,21 +139,34 @@
 
 		.controller('getListItemsCart', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
+			$scope.loadingDataPedido = false;
 			failboxService.products_cart().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
+			});
+			failboxService.idpedido_cart().then(function(data){
+				$scope.idPedido = data;
+				$scope.loadingDataPedido = true;
 			});
 		}])
 
 		.controller('purchaseSummary', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
 			$scope.totalCart = 0.0;
+			$scope.costShipping = 0.0;
+			$scope.totalNotPrice = 0.0;
 			failboxService.summary_products_cart().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
 			});
 			failboxService.total_cart().then(function(data){
 				$scope.totalCart = data;
+			});
+			failboxService.cost_shipping().then(function(data){
+				$scope.costShipping = data;
+			});
+			failboxService.total_notprice().then(function(data){
+				$scope.totalNotPrice = data;
 			});
 		}])
 
@@ -206,7 +219,7 @@
 
 				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
 			    	$rootScope.pages = $(e.currentTarget).attr('name');
-
+					console.log($rootScope.pages);
 				});
 				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
 					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');
@@ -220,9 +233,6 @@
 			var url = $routeParams.url;
 			$scope.loadingData = false;
 			failboxService.byItem(url).then(function(data){
-				dif = data.not_price - data.price ;
-				decimal = Math.abs( dif / data.price );
-				$scope.porcent = Math.round(decimal * 100);
 				$scope.item = data;
 				$scope.loadingData = true;
 			});

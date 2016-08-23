@@ -40,6 +40,9 @@
             <div class="form-group col-md-6 col-sm-6 col-xs-6">
                 <input required class="form-control" type="text" placeholder="Celular" value="" name="cel">
             </div>
+            <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                <div style="color:red"class="result_cart"></div>
+            </div>
             <div class="submit">
                 <button required type="submit" class="btn btn-success btn-lg">Continuar</button>
             </div>
@@ -48,47 +51,54 @@
     </div>
 
     <div class="resumen col-md-4 col-md-offset-1 col-sm-12 col-xs-12" ng-controller="purchaseSummary">
-        <div class="texto row">
-            Resúmen de compra
+        <div ng-if="itemsCart == ''">
+            <div class="texto row">
+                No tienes productos en tu carrito.
+            </div>
         </div>
+        <div ng-if="itemsCart">
+            <div class="texto row">
+                Resúmen de compra
+            </div>
 
-        <div class="detalle row col-sm-12 col-xs-12">
+            <div class="detalle row col-sm-12 col-xs-12">
 
-            <div class="principal row">
+                <div class="principal row">
 
-                <div class="col-md-12 producto col-sm-12 col-xs-12" ng-repeat="(key, itemsCart) in itemsCart">
-                    <div class="imagen col-md-4 col-sm-4 col-xs-5">
-                        <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" alt="" />
+                    <div class="col-md-12 producto col-sm-12 col-xs-12" ng-repeat="(key, itemsCart) in itemsCart">
+                        <div class="imagen col-md-4 col-sm-4 col-xs-5">
+                            <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" alt="" />
+                        </div>
+                        <div class="descripcion col-md-8 col-sm-8 col-xs-7">
+                            <div class="d-texto col-md-12 col-sm-12 col-xs-12">
+                                {{itemsCart.nombre_producto}}
+                            </div>
+                            <div class="cantidad col-md-12 col-sm-12 col-xs-12">
+                                CANTIDAD : {{itemsCart.cantidad}}
+                            </div>
+                            <div class="precio col-md-11 col-sm-12 col-xs-12">
+                                <b>{{itemsCart.precio | currency}}</b>
+                            </div>
+                        </div>
                     </div>
-                    <div class="descripcion col-md-8 col-sm-8 col-xs-7">
-                        <div class="d-texto col-md-12 col-sm-12 col-xs-12">
-                            {{itemsCart.nombre_producto}}
-                        </div>
-                        <div class="cantidad col-md-12 col-sm-12 col-xs-12">
-                            CANTIDAD : {{itemsCart.cantidad}}
-                        </div>
-                        <div class="precio col-md-11 col-sm-12 col-xs-12">
-                            <b>{{itemsCart.precio | currency}}</b>
-                        </div>
+
+                    <div class="precio-envio col-md-12 col-sm-12 col-xs-12">
+                        <div class="texto-envio col-sm-6 col-xs-6">ENVÍO A DOMICILIO</div>
+                        <div class="total-envio col-sm-6 col-xs-6">{{costShipping | currency}}</div>
                     </div>
+
                 </div>
 
-                <div class="precio-envio col-md-12 col-sm-12 col-xs-12">
-                    <div class="texto-envio col-sm-6 col-xs-6">ENVÍO A DOMICILIO</div>
-                    <div class="total-envio col-sm-6 col-xs-6">{{costShipping | currency}}</div>
+                <div class="final text-right">
+                    <div class="total">
+                        <b>TOTAL: {{totalCart | currency}}</b>
+                    </div>
+                    <div class="ahorro">
+                        En esta compra ahorrarás {{totalNotPrice - totalCart | currency}}
+                    </div>
                 </div>
 
             </div>
-
-            <div class="final text-right">
-                <div class="total">
-                    <b>TOTAL: {{totalCart | currency}}</b>
-                </div>
-                <div class="ahorro">
-                    En esta compra ahorrarás {{totalNotPrice - totalCart | currency}}
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
