@@ -251,6 +251,7 @@
 			templateUrl: './partials/aviso-privacidad.html'
 		}
 	})
+
 	.directive('loadSliderCartFeactured', function(){
 		return function(){
 
@@ -337,7 +338,6 @@
 	.directive('loadSearchProductsByFilters', ['$rootScope', function($rootScope){
 		return function(){
 			//Paginacion dinamica
-			console.log($rootScope.pages);
 			if($rootScope.pages != 1){
 				var pag = $('.sliderCat .itemSelecteds .itemsContend span').attr('name', $rootScope.pages);
 				$('.sliderCat .itemSelecteds .itemsContend span').removeClass('selected')

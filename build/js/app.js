@@ -79,7 +79,6 @@
 		$rootScope.pages = 1;
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
-
 			$rootScope.$destroy();
 			$(document).find("*").off();
 	        /*if (typeof(current) !== 'undefined'){
@@ -87,6 +86,10 @@
 	            $templateCache.remove(current.templateUrl);
 	        }*/
     	});
+		angular.element(document).ready(function () {
+			
+		});
+
 
 	}])
 

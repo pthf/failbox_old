@@ -29,16 +29,15 @@
 
 
 		<div class="content-swiper">
-
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide" ng-repeat="image in item.images_slider" >
-							<img src="./admin/images/products/{{image}}">
-						</div>
+			<div class="show-porcent">{{porcent}}%</div>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" ng-repeat="image in item.images_slider" >
+						<img src="./admin/images/products/{{image}}">
 					</div>
 				</div>
-				<div class="pagination"></div>
-
+			</div>
+			<div class="pagination"></div>
 		</div>
 
 

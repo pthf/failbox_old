@@ -206,7 +206,7 @@
 
 				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
 			    	$rootScope.pages = $(e.currentTarget).attr('name');
-					console.log($rootScope.pages);
+
 				});
 				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
 					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');
@@ -220,6 +220,9 @@
 			var url = $routeParams.url;
 			$scope.loadingData = false;
 			failboxService.byItem(url).then(function(data){
+				dif = data.not_price - data.price ;
+				decimal = Math.abs( dif / data.price );
+				$scope.porcent = Math.round(decimal * 100);
 				$scope.item = data;
 				$scope.loadingData = true;
 			});
