@@ -139,9 +139,14 @@
 
 		.controller('getListItemsCart', ['$scope', 'failboxService', function($scope, failboxService){
 			$scope.loadingData = false;
+			$scope.loadingDataPedido = false;
 			failboxService.products_cart().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
+			});
+			failboxService.idpedido_cart().then(function(data){
+				$scope.idPedido = data;
+				$scope.loadingDataPedido = true;
 			});
 		}])
 

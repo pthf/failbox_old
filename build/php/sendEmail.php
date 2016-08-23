@@ -26,7 +26,7 @@ $email_message .= "Comentarios: " . $_POST['message'] . "\n\n";
 $headers = 'From: '.$_POST['email']."\r\n".
 'Reply-To: '.$_POST['email']."\r\n" .
 'X-Mailer: PHP/' . phpversion();
-@mail('sandra@failbox.com.mx', $_POST['subject'], $email_message, $headers);
+@mail('hola@failbox.mx', $_POST['subject'], $email_message, $headers);
 
 echo "¡El formulario se ha enviado con éxito!";
 }

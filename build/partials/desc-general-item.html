@@ -43,7 +43,6 @@
 		</div>
 
 
-
 		<!--Detalle del Producto-->
 		<div class="descInfo">
 			<span class="descritem">{{item.name}}</span><br><br>
@@ -70,6 +69,12 @@
 							</tr>
 							<tr>
 								<td>Cant.</td>
+							</tr>
+							<tr>
+								<td ng-show="item.stocks == 3" > Solo quedan {{item.stocks}} piezas disponibles*</td>
+								<td ng-show="item.stocks == 2" style="color:red;">Solo quedan {{item.stocks}} piezas disponibles*</td>
+								<td ng-show="item.stocks == 1" style="color:red;">Ultimo producto en existencia*</td>
+								<td ng-show="item.stocks == 0" style="color:red;">Sin existencias*</td>
 							</tr>
 							<tr>
 								<td>

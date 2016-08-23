@@ -22,6 +22,7 @@ while ($row = mysql_fetch_array($resultado)) {
                 "image" => $array_images[0],
                 "images_slider" => $array_images,
                 "paypal" => $row['urlPaypal'],
+                "stocks" => $row['Stock']
     );
     $productos[] = $producto;
 }

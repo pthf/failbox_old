@@ -712,9 +712,19 @@
 						processData: false,
 						contentType: false,
 						success : function(result){
-							// alert(result);
-							$('#formDatesSend')[0].reset();
-							window.location.href = "resumen-compra";
+							if (result == -1) {
+								$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
+								$('.result_cart').css({'opacity' : '1'});
+								setTimeout(function () {
+									$('.result_cart').css({'opacity' : '0'});
+									$('.result_cart').text('');
+								}, 5000);
+								$('#formDatesSend')[0].reset();
+							}else {
+								// alert(result);
+								$('#formDatesSend')[0].reset();
+								window.location.href = "resumen-compra";
+							};
 						},
 						error: function(){
 							alert('error');
@@ -731,6 +741,41 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
+				setTimeout(function(){ 
+					idpedido = $("#holabebe").attr('pedido');
+					// alert(idpedido);
+					if (idpedido == '') {
+						window.location.href = "datos-envio";
+					};
+				}, 250);
+				$(document).on('click', '.formPaypal', function(){
+				  	$.ajax({
+			          	beforeSend: function(){
+			      		},
+			          	url: "./php/functions_cart.php",
+			          	type: "POST",
+			          	data: {
+			              	namefunction:'actualizar_carrito_confirmar'
+			          	},
+			          	success: function(data){
+			          		if (data == 1) {
+			          			// alert('Comprar en Paypal');
+				  				$( "#target" ).submit();
+			          		} else if(data == -1){
+			          			alert('El numero de existencias excede de algunos productos, se ajustaran de acuerdo a las existencias del producto');
+			          			location.reload();
+			          		} else {
+			          			alert('Algunos productos se agotaron, serán eliminados del carrito');
+			          			location.reload();
+			          		};
+			          	},
+			          	error: function(){
+			          	},
+			          	complete: function(){
+			          	},
+			          	timeout: 10000
+			      	});
+				});
 			}
 		}
 	})
@@ -769,18 +814,19 @@
 				            quantity: quantity
 				    	},
 						success: function(result){
+							// alert(result);
 							if(result==1 || result==-1){
 								incrementar_item_cart(idItemCart);
 								actualizar_carrito();
-								actualizar_carrito_confirmar(idItemCart,quantity);
+								// actualizar_carrito_confirmar(idItemCart,quantity);
 							} else if(result == 0){
 								alert('No hay existencias');
-								$('.result_products').html('No hay existencias.');
-								$('.result_products').css({'opacity' : '1'});
-								setTimeout(function () {
-									$('.result_products').css({'opacity' : '0'});
-									$('.result_products').text('');
-								}, 5000);
+								// $('.result_products').html('No hay existencias.');
+								// $('.result_products').css({'opacity' : '1'});
+								// setTimeout(function () {
+								// 	$('.result_products').css({'opacity' : '0'});
+								// 	$('.result_products').text('');
+								// }, 5000);
 							}
 						},
 						error: function(error){
@@ -802,6 +848,29 @@
 			          		// alert(data);
 			          		window.location.href = "datos-envio";
 			          		// $('.g_cart_cont').html(data);
+			          	},
+			          	error: function(){
+			          	},
+			          	complete: function(){
+			          	},
+			          	timeout: 10000
+			      	});
+				});
+
+				$(document).on('click', '.deleteItemCart', function(){
+				  	var idItemCart = $(this).attr('name');
+				  	$.ajax({
+			          	beforeSend: function(){
+			      		},
+			          	url: "./php/functions_cart.php",
+			          	type: "POST",
+			          	data: {
+			              	namefunction:'eliminar_item_cart',
+			              	idItemCart: idItemCart
+			          	},
+			          	success: function(data){
+			          		// alert(data);
+			          		location.reload();
 			          	},
 			          	error: function(){
 			          	},
@@ -837,7 +906,7 @@
 				if(result==1 || result==-1){
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
-					actualizar_carrito_confirmar(idProduct,quantity);
+					// actualizar_carrito_confirmar(idProduct,quantity);
 				} else if(result == 0){
 					alert('No hay existencias');
 					$('.result_products').html('No hay existencias.');
@@ -894,6 +963,7 @@
               	namefunction:'actualizar_carrito'
           	},
           	success: function(data){
+          		alert('Añadido a carrito');
           		// alert(data);
           		// $('.cart_').html(data);
           	},

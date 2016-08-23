@@ -48,6 +48,17 @@
 				return deferred.promise;
 			}
 
+			function idpedido_cart(){
+				var deferred = $q.defer();
+
+				$http.get('./php/idpedido_cart.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
 			function summary_products_cart() {
 				var deferred = $q.defer();
 
@@ -188,7 +199,8 @@
 				total_cart: total_cart,
 				count_items_cart: count_items_cart,
 				cost_shipping: cost_shipping,
-				total_notprice: total_notprice
+				total_notprice: total_notprice,
+				idpedido_cart: idpedido_cart
 			}
 
 		}]);

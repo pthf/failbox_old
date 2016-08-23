@@ -33,17 +33,18 @@
                     <div class="contador col-md-3 contador">
                         <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
                         <a id="menos_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont menos_" style="cursor:pointer;"><img src="./src/images/carrito/min.png" /></a>
-                        <input type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
+                        <input disabled type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
                         <a id="mas_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont mas_" style="cursor:pointer"><img src="./src/images/carrito/mor.png" /></a>
                         <!-- <a ng-click="increment(contador)" class="cont" href="#" ><img src="./src/images/carrito/mor.png" /></a> -->
                     </div>
+                    <div><button class="deleteItemCart" name="{{itemsCart.id_producto}}">X</button></div>
                 </div>
                 <span class="result_products" style="color: red; font-size: 13px;"></span>
                 
                 <br>
                 <div class="text-right">
-                    <!-- <a href="datos-envio" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</a> -->
-                    <button type="button" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</button>
+                    <a href="datos-envio" class="btn btn-success btn-lg">COMPRAR AHORA</a>
+                    <!-- <button type="button" class="btn btn-success btn-lg buttonBuyNow">COMPRAR AHORA</button> -->
                 </div>
                 <br>
 

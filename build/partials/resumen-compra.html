@@ -1,47 +1,73 @@
 <div class="mi_carrito carrito" ng-controller="getListItemsCart">
-    <div class="container">
-        <div class="titulo">
-            <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
-            RESUMEN DE COMPRA
+
+    <div class="container" id="holabebe" pedido="{{idPedido}}">
+        <div ng-if="itemsCart == ''">
+            <div class="titulo" style="text-align:center;">
+                <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
+                <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
+            </div>
         </div>
-        <div class="productos">
-
-            <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
-                <div class="col-md-4 imagen text-center">
-                    <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />
-                </div>
-                <div class="col-md-4 texto">
-                    {{itemsCart.nombre_producto}}
-                </div>
-                <div class="col-md-4 precio text-center">
-                    <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
-                </div>
+        <div ng-if="itemsCart">
+            <div class="titulo">
+                <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
+                RESUMEN DE COMPRA
             </div>
+            <div class="productos">
 
-            <div class="container-fluid vertical-align">
-
-                <div class="col-md-4 texto">
-                    DATOS DE ENVíO
+                <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                    <div class="col-md-4 imagen text-center">
+                        <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />
+                    </div>
+                    <div class="col-md-4 texto">
+                        {{itemsCart.nombre_producto}}
+                    </div>
+                    <div class="col-md-4 precio text-center">
+                        <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
+                    </div>
                 </div>
 
-                <div class="col-md-4 precio text-center">
-                    <div  class="price_yes text-center">$5,000.00</div>
+                <div class="container-fluid vertical-align">
+
+                    <div class="col-md-4 texto">
+                        DATOS DE ENVíO
+                    </div>
+
+                    <div class="col-md-4 precio text-center">
+                        <div  class="price_yes text-center">$5,000.00</div>
+                    </div>
                 </div>
+
+
+                <br>
+                <a href="datos-envio" style="color:black">
+                    <div class="text text-left volver col-md-6">
+                        <img src="./src/images/carrito/back-arrow.png" />
+                        <span>VOLVER</span>
+                    </div>
+                </a>
+                <div class="text-right col-md-6" ng-controller="purchaseSummary">
+                    <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
+
+                    <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_xclick">
+                        <input type="hidden" name="business" value="hola@failbox.mx">
+                        <input type="hidden" name="item_name" value="Compras Failbox">
+                        <input type="hidden" name="currency_code" value="MXN">
+                        <input type="hidden" name="amount" value="{{totalCart | currency}}">
+                        <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                    </form>
+                   <!--  <form action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="business" value="hola@failbox.mx">
+                        <input type="hidden" name="item_name_1" value="Compra 1">
+                        <input type="hidden" name="currency_code" value="MXN">
+                        <input type="hidden" name="amount_1" value="220.00">
+                        <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                    </form> -->
+                    <!-- <img  src="./src/images/carrito/paypal.jpg" alt="" /> -->
+                </div>
+
             </div>
-
-
-            <br>
-            <div class="text text-left volver col-md-6">
-                <img src="./src/images/carrito/back-arrow.png" />
-                <span>VOLVER</span>
-            </div>
-            <div class="text-right col-md-6">
-                <img  src="./src/images/carrito/paypal.jpg" alt="" />
-            </div>
-            <br>
-
-
         </div>
-
     </div>
 </div>
