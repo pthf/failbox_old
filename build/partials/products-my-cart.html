@@ -1,8 +1,4 @@
-<style type="text/css">
-.fullwidth {
-    width:100% !important;
-}
-</style>
+
 <div class="mi_carrito carrito" ng-controller="getListItemsCart">
     <div class="container" ng-class="{'fullwidth':itemsCart == ''}">
         <div ng-if="itemsCart == ''">
@@ -20,6 +16,7 @@
             <div class="productos">
 
                 <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                    <span class="close"><img src="./src/images/carrito/mas_info.png" /></span>
                     <div class="col-md-3 imagen text-center">
                         <img src="./admin/images/products/{{itemsCart.foto_producto}}" />
                     </div>
