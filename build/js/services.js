@@ -184,6 +184,17 @@
 				return deferred.promise;
 			}
 
+			function dates_pedido() {
+				var deferred = $q.defer();
+
+				$http.get('./php/dates_pedido.php')
+					.success(function (data) {
+						deferred.resolve(data);
+					});
+
+				return deferred.promise;
+			}
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
@@ -200,7 +211,8 @@
 				count_items_cart: count_items_cart,
 				cost_shipping: cost_shipping,
 				total_notprice: total_notprice,
-				idpedido_cart: idpedido_cart
+				idpedido_cart: idpedido_cart,
+				dates_pedido: dates_pedido
 			}
 
 		}]);

@@ -26,7 +26,6 @@
                             <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
                         </div>
                     </div>
-
                     <div class="container-fluid vertical-align datos-envio">
                         <div class="descripcion">
                             <div class="col-md-10 col-md-offset-2">
@@ -35,23 +34,23 @@
                                     DATOS DE ENVíO
                                 </div>
                                 <div class="col-md-12 direccion">
-                                    DIRECCIÓN #1222 COL. PROVIDENCIA
+                                    {{datesPedido.Direccion}} {{datesPedido.Colonia}}
                                 </div>
                                 <div class="col-md-12 ciudad">
-                                    GUADALAJARA, JALISCO
+                                    {{datesPedido.Ciudad}}, {{datesPedido.Estado}}
                                 </div>
                                 <div class="col-md-12 codigo">
-                                    C.P. 44550
+                                    C.P. {{datesPedido.CP}}
                                 </div>
                                 <div class="col-md-12 telefono">
-                                    3315998876
+                                    {{Celular}}
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="col-md-4 precio text-center">
-                            <div  class="text-center">$5,000.00</div>
+                            <div  class="text-center">{{totalCart | currency}}</div>
                         </div>
                     </div>
 

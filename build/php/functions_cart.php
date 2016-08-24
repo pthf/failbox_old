@@ -503,9 +503,9 @@
             $resultado = -1;
             $_SESSION['carrito'][$key]['cantidad'] = $row['Stock'];
           } else {
-            $total_stock = ($row['Stock'] - $value['cantidad']);
-            $query = "UPDATE Productos SET Stock = '".$total_stock."' WHERE IdProducto = '".$value['id_producto']."'";
-            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            // $total_stock = ($row['Stock'] - $value['cantidad']);
+            // $query = "UPDATE Productos SET Stock = '".$total_stock."' WHERE IdProducto = '".$value['id_producto']."'";
+            // $result = mysql_query($query,Conectar::con()) or die(mysql_error());
             unset($_SESSION['carrito']);
             unset($_SESSION['total_carrito']);
             unset($_SESSION['id_pedido']);

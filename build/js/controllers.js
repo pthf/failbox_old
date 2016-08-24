@@ -141,6 +141,8 @@
 
 			$scope.loadingData = false;
 			$scope.loadingDataPedido = false;
+			$scope.datesPedidoCart = false;
+			$scope.totalCart = 0.0;
 			failboxService.products_cart().then(function(data){
 				$scope.itemsCart = data;
 				$scope.loadingData = true;
@@ -148,6 +150,13 @@
 			failboxService.idpedido_cart().then(function(data){
 				$scope.idPedido = data;
 				$scope.loadingDataPedido = true;
+			});
+			failboxService.dates_pedido().then(function(data){
+				$scope.datesPedido = data;
+				$scope.datesPedidoCart = true;
+			});
+			failboxService.total_cart().then(function(data){
+				$scope.totalCart = data;
 			});
 		}])
 
