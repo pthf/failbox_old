@@ -741,7 +741,7 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				setTimeout(function(){ 
+				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
@@ -865,8 +865,9 @@
 			      	});
 				});
 
-				$(document).on('click', '.deleteItemCart', function(){
+				$(document).on('click', '.deleteItemCart', function(e){
 				  	var idItemCart = $(this).attr('name');
+
 				  	$.ajax({
 			          	beforeSend: function(){
 			      		},
@@ -878,7 +879,18 @@
 			          	},
 			          	success: function(data){
 			          		// alert(data);
-			          		location.reload();
+			          		//location.reload();
+							if($('.productos').find('.producto:visible').length != 0){
+								$(e.target).closest('.producto').fadeOut('', function(){
+									$(this).remove();
+									$('.productos').find('.producto:first-child').css('border', '1px solid #58595b');
+									if($('.productos:visible').find('.producto').length == 0 ){
+										location.reload();
+									}
+									console.log($('.productos').find('.producto:visible').length);
+								});
+							}
+
 			          	},
 			          	error: function(){
 			          	},
@@ -886,10 +898,32 @@
 			          	},
 			          	timeout: 10000
 			      	});
+
 				});
 			}
 		};
 	})
+
+	.directive('buttonAddCart', ['$rootScope', function($rootScope) {
+     	return {
+          	restrict: 'C',
+			scope: {
+				itemsCart: '='
+			},
+			replace : false,
+          	link: function(scope, element, attrs) {
+
+				element.bind('click', function() {
+					console.log($rootScope.itemsCartr);
+					scope.$digest();
+					/*scope.$watch('itemsCart', function(newValue, oldValue) {
+					  //update the DOM with newValue
+					  console.log(newValue, oldValue);
+				  });*/
+				})
+          	}
+      	}
+    }])
 
 	$(document).on('click', '.cartBar', function(e){
 		$('.buy-slide').slideToggle('fast')
@@ -916,9 +950,9 @@
 				if(result==1 || result==-1){
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
-					// actualizar_carrito_confirmar(idProduct,quantity);
-					$scope.$digest();
-					$('.buy-slide').slideToggle('fast');
+					if($('.buy-slide:hidden')){
+						$('.buy-slide').slideDown('fast');
+					}
 				} else if(result == 0){
 					alert('No hay existencias');
 					$('.result_products').html('No hay existencias.');
@@ -975,7 +1009,7 @@
               	namefunction:'actualizar_carrito'
           	},
           	success: function(data){
-          		alert('Añadido a carrito');
+
           		// alert(data);
           		// $('.cart_').html(data);
           	},

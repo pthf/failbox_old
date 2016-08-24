@@ -160,30 +160,42 @@
       color: red;
       padding: 10px 0; }
 
-.resumen-compra .price_yes {
-  color: #000; }
-.resumen-compra .datos-envio {
-  border: 1px solid #58595b;
-  border-top: 0; }
-  .resumen-compra .datos-envio .descripcion .title, .resumen-compra .datos-envio .descripcion .telefono {
-    padding-top: 20px;
-    padding-bottom: 20px; }
-  .resumen-compra .datos-envio .precio {
-    font-size: 1.2em; }
-.resumen-compra .opciones {
-  margin-top: 20px;
-  margin-bottom: 50px; }
-  .resumen-compra .opciones .volver img {
-    width: 20px;
-    height: auto;
-    margin-bottom: 8px; }
-  .resumen-compra .opciones .volver span {
-    color: #6EB153;
-    font-size: 21px;
+.resumen-compra {
+  font-size: 15px;
+  font-family: 'Gotham-Light'; }
+  .resumen-compra .price_yes {
+    color: #000; }
+  .resumen-compra .productos .producto .texto {
+    justify-content: flex-start; }
+  .resumen-compra .productos .producto .precio {
+    display: inherit; }
+    .resumen-compra .productos .producto .precio .price_yes {
+      font-size: 15px; }
+  .resumen-compra .datos-envio {
+    border: 1px solid #58595b;
+    border-top: 0;
+    background-color: #6EB153;
+    color: #fff;
     font-family: 'Gotham-Bold'; }
-  .resumen-compra .opciones .pay .formPaypal {
-    height: auto;
-    width: 35%; }
+    .resumen-compra .datos-envio .descripcion .title, .resumen-compra .datos-envio .descripcion .telefono {
+      padding-top: 20px;
+      padding-bottom: 20px; }
+    .resumen-compra .datos-envio .precio {
+      font-size: 1.2em; }
+  .resumen-compra .opciones {
+    margin-top: 20px;
+    margin-bottom: 50px; }
+    .resumen-compra .opciones .volver img {
+      width: 20px;
+      height: auto;
+      margin-bottom: 8px; }
+    .resumen-compra .opciones .volver span {
+      color: #6EB153;
+      font-size: 21px;
+      font-family: 'Gotham-Bold'; }
+    .resumen-compra .opciones .pay .formPaypal {
+      height: auto;
+      width: 35%; }
 
 .gracias {
   padding-bottom: 120px; }

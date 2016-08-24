@@ -1,6 +1,6 @@
 <div class="resumen-compra carrito" ng-controller="getListItemsCart">
 
-    <div class="container" id="idpedido_resumen" pedido="{{idPedido}}">
+    <div class="container" >
         <div ng-if="itemsCart == ''" >
             <div class="titulo carrito-vacio">
                 <h1>NO TIENES PRODUCTOS EN TU CARRITO.</h1>
@@ -21,6 +21,8 @@
                         </div>
                         <div class="col-md-4 texto">
                             {{itemsCart.nombre_producto}}
+                            
+                            Cantidad: {{itemsCart.cantidad}}
                         </div>
                         <div class="col-md-4 precio text-center">
                             <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
