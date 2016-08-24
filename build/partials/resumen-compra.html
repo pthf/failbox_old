@@ -1,12 +1,12 @@
 <div class="resumen-compra carrito" ng-controller="getListItemsCart">
-
-    <div class="container" id="holabebe" pedido="{{idPedido}}">
+    <div class="container" id="idpedido_resumen" pedido="{{idPedido}}">
+    <!-- <div class="container"> -->
         <div ng-if="itemsCart == ''">
             <div class="titulo" style="text-align:center;">
                 <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
                 <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
             </div>
-
+        </div>
         <div ng-if="itemsCart">
             <div class="titulo">
                 <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
@@ -45,24 +45,20 @@
                     </div>
                 </a>
                 <div class="text-right col-md-6" ng-controller="purchaseSummary">
-                    <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
+                    <!-- <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button"> -->
 
-                    <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                    <!-- <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post"> -->
+                    <form id="target" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
                         <input type="hidden" name="cmd" value="_xclick">
                         <input type="hidden" name="business" value="hola@failbox.mx">
                         <input type="hidden" name="item_name" value="Compras Failbox">
                         <input type="hidden" name="currency_code" value="MXN">
                         <input type="hidden" name="amount" value="{{totalCart | currency}}">
+                        <input type="hidden" name="return" value="http://localhost/www/failbox/build/gracias">
+                        <input type="hidden" name="cancel_return" value="http://localhost/www/failbox/build/productos/">
+                        <input type="hidden" name="notify_url" value="http://localhost/www/FAILBOX/build/php/pay_valite.php?num=id_pedido">
                         <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
                     </form>
-                   <!--  <form action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="business" value="hola@failbox.mx">
-                        <input type="hidden" name="item_name_1" value="Compra 1">
-                        <input type="hidden" name="currency_code" value="MXN">
-                        <input type="hidden" name="amount_1" value="220.00">
-                        <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-                    </form> -->
                     <!-- <img  src="./src/images/carrito/paypal.jpg" alt="" /> -->
                 </div>
 

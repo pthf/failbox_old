@@ -1,4 +1,3 @@
-
 <div class="mi_carrito carrito" ng-controller="getListItemsCart">
     <div class="container" ng-class="{'fullwidth':itemsCart == ''}">
         <div ng-if="itemsCart == ''">
@@ -6,7 +5,6 @@
                 <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
                 <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
             </div>
-            <slider-cart-feactured ng-controller="sliderFeacturedProductsController" ng-if="loadingData"></slider-cart-feactured>
         </div>
         <div ng-if="itemsCart">
             <div class="titulo">

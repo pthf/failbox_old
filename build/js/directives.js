@@ -742,7 +742,7 @@
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
 				setTimeout(function(){ 
-					idpedido = $("#holabebe").attr('pedido');
+					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
 						window.location.href = "datos-envio";
