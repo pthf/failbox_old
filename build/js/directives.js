@@ -741,7 +741,7 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				setTimeout(function(){ 
+				setTimeout(function(){
 					idpedido = $("#holabebe").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
@@ -891,9 +891,11 @@
 		};
 	})
 
-
-	$(document).on('click', '.buttonAddCart', function(){
-
+	$(document).on('click', '.cartBar', function(e){
+		$('.buy-slide').slideToggle('fast')
+	})
+	$(document).on('click', '.buttonAddCart', function(e){
+		e.preventDefault();
 	  	var idProduct = $(this).attr('data-id');
 	  	var name = $(this).attr('data-name');
 	  	var notprice = $(this).attr('data-notprice');
@@ -915,6 +917,8 @@
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
 					// actualizar_carrito_confirmar(idProduct,quantity);
+					$scope.$digest();
+					$('.buy-slide').slideToggle('fast');
 				} else if(result == 0){
 					alert('No hay existencias');
 					$('.result_products').html('No hay existencias.');
@@ -936,7 +940,7 @@
 		var namefunction = "agregar_producto";
 		$.ajax({
 			beforeSend: function(){
-				location.reload();
+				//location.reload();
 			},
 			url: "./php/functions_cart.php",
 			type: "POST",
@@ -963,7 +967,7 @@
 		// alert('Actualizar Carrito');
 		$.ajax({
           	beforeSend: function(){
-          		location.reload();
+          		//location.reload();
       		},
           	url: "./php/functions_cart.php",
           	type: "POST",

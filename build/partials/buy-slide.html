@@ -1,81 +1,22 @@
 <div class="buy-slide col-md-2">
-    <div class="content-buy">
-        <!-- 1 -->
-        <div class="producto row">
-            <div class="col-md-5">
-                    <img class="img-responsive" src="http://failbox.mx/admin/images/products/TABACT002_01.jpg" />
+    <div class="content-buy" ng-controller="getListItemsCart">
+        <!-- NGREPEAT -->
+        <div class="producto col-md-12" ng-repeat="list in itemsCart">
+
+            <div class="col-md-4">
+                <img class="img-responsive" src="./admin/images/products/{{list.foto_producto}}" />
             </div>
-            <div class="col-md-7">
-                <div class="titulo">
-                    Tablet Acteck Aikun
-                </div>
-                <div class="descripcion">
-                    Tablet Acteck Aikun Dc A23 1Gb/16Gb
-                    And4.4.2 7" Bat. 8Gb (Mvta-017)
-                </div>
-                <div class="precio">
-                    $1,259.00
-                </div>
-            </div>
-        </div>
-        <!-- 2 -->
-        <div class="producto row">
-            <div class="col-md-5">
-                    <img class="img-responsive" src="./admin/images/products/652241_B21.jpg" />
-            </div>
-            <div class="col-md-7">
-                <div class="titulo">
-                    Tablet Acteck Aikun
-                </div>
-                <div class="descripcion">
-                    Tablet Acteck Aikun Dc A23 1Gb/16Gb
-                    And4.4.2 7" Bat. 8Gb (Mvta-017)
-                </div>
-                <div class="precio">
-                    $1,259.00
-                </div>
-            </div>
-        </div>
-        <!-- 3 -->
-        <div class="producto row">
-            <div class="col-md-5">
-                    <img class="img-responsive" src="./admin/images/products/LVEB_804_01.jpg" />
-            </div>
-            <div class="col-md-7">
-                <div class="titulo">
-                    Tablet Acteck Aikun
-                </div>
-                <div class="descripcion">
-                    Tablet Acteck Aikun Dc A23 1Gb/16Gb
-                    And4.4.2 7" Bat. 8Gb (Mvta-017)
-                </div>
-                <div class="precio">
-                    $1,259.00
-                </div>
-            </div>
-        </div>
-        <!-- 4 -->
-        <div class="producto row">
-        <div class="col-md-5">
-                <img class="img-responsive" src="./admin/images/products/LVEB_804_01.jpg" />
-        </div>
-        <div class="col-md-7">
-            <div class="titulo">
-                Tablet Acteck Aikun
-            </div>
-            <div class="descripcion">
-                Tablet Acteck Aikun Dc A23 1Gb/16Gb
-                And4.4.2 7" Bat. 8Gb (Mvta-017)
-            </div>
-            <div class="precio">
-                $1,259.00
+            <div class="col-md-8">
+                <div class="titulo">{{list.nombre_producto}}</div>
+                <div class="descripcion">{{list.descripcion_producto}}</div>
+                <div class="cantidad">Cantidad: {{list.cantidad}}</div>
+                <div class="precio">{{list.precio | currency}}</div>
             </div>
         </div>
     </div>
-    </div>
-    <div class="subtotal row">
+    <div class="subtotal col-md-12" ng-controller="purchaseSummary">
         <div class="col-md-6 text-left"><strong>SUBTOTAL: </strong></div>
-        <div class="precio col-md-6 text-right">$ 980.00</div>
+        <div class="precio col-md-6 text-right">{{totalCart | currency}}</div>
     </div>
     <div class="col-md-12 text-center content-btn">
         <a href="carrito"> <button class="btn btn-success btn-lg ">IR A CARRITO</button></a>
