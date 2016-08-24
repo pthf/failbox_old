@@ -77,6 +77,7 @@
 
 	app.run(['$rootScope', function($rootScope, $templateCache, scope){
 		$rootScope.pages = 1;
+		$rootScope.itemsCartr = '';
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.$destroy();
@@ -87,7 +88,7 @@
 	        }*/
     	});
 		angular.element(document).ready(function () {
-			
+
 		});
 
 
