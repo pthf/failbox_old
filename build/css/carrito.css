@@ -10,6 +10,18 @@
       width: 40px;
       padding-right: 10px;
       padding-bottom: 10px; }
+  .carrito .carrito-vacio {
+    text-align: center;
+    border: 1px solid #58595B;
+    margin: 70px 0;
+    padding: 28px 0; }
+    .carrito .carrito-vacio .btn-success {
+      border-radius: 0; }
+    .carrito .carrito-vacio h1 {
+      font-size: .8em;
+      color: #58595B; }
+    .carrito .carrito-vacio h2 {
+      font-size: .6em; }
   .carrito .productos .producto {
     position: relative;
     border: 1px solid #58595b;
@@ -21,7 +33,8 @@
       position: absolute;
       right: 0;
       padding-top: 5px;
-      padding-right: 5px; }
+      padding-right: 5px;
+      z-index: 9999; }
       .carrito .productos .producto .close img {
         height: auto;
         width: 25px; }
@@ -168,7 +181,7 @@
     color: #6EB153;
     font-size: 21px;
     font-family: 'Gotham-Bold'; }
-  .resumen-compra .opciones .pay img {
+  .resumen-compra .opciones .pay .formPaypal {
     height: auto;
     width: 35%; }
 
@@ -202,6 +215,53 @@
     color: #6EB153;
     margin-top: 100px;
     padding: 50px 0; }
+
+.buy-slide {
+  display: none;
+  border: 1px solid #58595B;
+  border-top: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  box-shadow: -1px 1px 11px #58595B;
+  background-color: #fff;
+  font-family: 'Gotham-Light';
+  position: fixed !important;
+  z-index: 11;
+  overflow-y: hidde;
+  right: 10px; }
+  .buy-slide .content-buy {
+    height: 400px;
+    max-height: 400px;
+    overflow-x: hidden; }
+  .buy-slide .btn-lg {
+    background-color: #6EB153;
+    width: 100%;
+    border-radius: 0px !important; }
+  .buy-slide .subtotal {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .buy-slide .content-btn {
+    border-top: 1px solid #58595B;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  .buy-slide .producto {
+    border-top: 1px solid #58595B;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .buy-slide .producto:first-child {
+      border-top: none; }
+  .buy-slide .titulo {
+    font-family: 'Gotham-Bold'; }
+  .buy-slide .descripcion {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .buy-slide .cantidad {
+    padding-bottom: 10px; }
+  .buy-slide .precio {
+    font-family: 'Gotham-Bold'; }
+
+.icon-countCart {
+  cursor: pointer; }
 
 /*Align all inside class*/
 .vertical-align {

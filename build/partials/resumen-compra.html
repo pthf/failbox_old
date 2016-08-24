@@ -1,68 +1,90 @@
 <div class="resumen-compra carrito" ng-controller="getListItemsCart">
+
     <div class="container" id="idpedido_resumen" pedido="{{idPedido}}">
-    <!-- <div class="container"> -->
-        <div ng-if="itemsCart == ''">
-            <div class="titulo" style="text-align:center;">
-                <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
-                <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
+        <div ng-if="itemsCart == ''" >
+            <div class="titulo carrito-vacio">
+                <h1>NO TIENES PRODUCTOS EN TU CARRITO.</h1>
+                <h2><a href="productos">
+                    <button class="btn btn-success btn-lg">¡Empieza a comprar ahora!</button>
+                </a></h2>
             </div>
         </div>
         <div ng-if="itemsCart">
-            <div class="titulo">
-                <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
-                RESUMEN DE COMPRA
-            </div>
-            <div class="productos">
-                <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
-                    <div class="col-md-4 imagen text-center">
-                        <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />
-                    </div>
-                    <div class="col-md-4 texto">
-                        {{itemsCart.nombre_producto}}
-                    </div>
-                    <div class="col-md-4 precio text-center">
-                        <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
-                    </div>
+                <div class="titulo">
+                    <img id="logcarrito" src="./src/images/carrito/c1.png" alt="" />
+                    RESUMEN DE COMPRA
                 </div>
-
-                <div class="container-fluid vertical-align">
-
-                    <div class="col-md-4 texto">
-                        DATOS DE ENVíO
+                <div class="productos">
+                    <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                        <div class="col-md-4 imagen text-center">
+                            <img class="img-responsive" src="./admin/images/products/{{itemsCart.foto_producto}}" />
+                        </div>
+                        <div class="col-md-4 texto">
+                            {{itemsCart.nombre_producto}}
+                        </div>
+                        <div class="col-md-4 precio text-center">
+                            <div  class="price_yes text-center">{{itemsCart.precio | currency}}</div>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 precio text-center">
-                        <div  class="price_yes text-center">$5,000.00</div>
+                    <div class="container-fluid vertical-align datos-envio">
+                        <div class="descripcion">
+                            <div class="col-md-10 col-md-offset-2">
+
+                                <div class="col-md-12 title">
+                                    DATOS DE ENVíO
+                                </div>
+                                <div class="col-md-12 direccion">
+                                    DIRECCIÓN #1222 COL. PROVIDENCIA
+                                </div>
+                                <div class="col-md-12 ciudad">
+                                    GUADALAJARA, JALISCO
+                                </div>
+                                <div class="col-md-12 codigo">
+                                    C.P. 44550
+                                </div>
+                                <div class="col-md-12 telefono">
+                                    3315998876
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4 precio text-center">
+                            <div  class="text-center">$5,000.00</div>
+                        </div>
                     </div>
+
+
+
                 </div>
-
-
-                <br>
-                <a href="datos-envio" style="color:black">
+                <div class="opciones col-md-12">
+                    <br>
                     <div class="text text-left volver col-md-6">
-                        <img src="./src/images/carrito/back-arrow.png" />
-                        <span>VOLVER</span>
+                        <a href="datos-envio">
+                            <img src="./src/images/carrito/back-arrow.png" />
+                            <span>VOLVER</span>
+                        </a>
                     </div>
-                </a>
-                <div class="text-right col-md-6" ng-controller="purchaseSummary">
-                    <!-- <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button"> -->
 
-                    <!-- <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post"> -->
-                    <form id="target" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_xclick">
-                        <input type="hidden" name="business" value="hola@failbox.mx">
-                        <input type="hidden" name="item_name" value="Compras Failbox">
-                        <input type="hidden" name="currency_code" value="MXN">
-                        <input type="hidden" name="amount" value="{{totalCart | currency}}">
-                        <input type="hidden" name="return" value="http://localhost/www/failbox/build/gracias">
-                        <input type="hidden" name="cancel_return" value="http://localhost/www/failbox/build/productos/">
-                        <input type="hidden" name="notify_url" value="http://localhost/www/FAILBOX/build/php/pay_valite.php?num=id_pedido">
-                        <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-                    </form>
-                    <!-- <img  src="./src/images/carrito/paypal.jpg" alt="" /> -->
+                    <div class="text-right pay col-md-6" ng-controller="purchaseSummary">
+                        <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
+
+                        <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="business" value="hola@failbox.mx">
+                            <input type="hidden" name="item_name" value="Compras Failbox">
+                            <input type="hidden" name="currency_code" value="MXN">
+                            <input type="hidden" name="amount" value="{{totalCart | currency}}">
+                            <input type="hidden" name="return" value="http://localhost/www/failbox/build/gracias">
+                            <input type="hidden" name="cancel_return" value="http://localhost/www/failbox/build/productos/">
+                            <input type="hidden" name="notify_url" value="http://localhost/www/FAILBOX/build/php/pay_valite.php?num=id_pedido">
+                            <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                        </form>
+                    </div>
+
+                    <br>
                 </div>
-
             </div>
-        </div>
     </div>
 </div>

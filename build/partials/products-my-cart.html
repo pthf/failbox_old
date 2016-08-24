@@ -1,9 +1,11 @@
 <div class="mi_carrito carrito" ng-controller="getListItemsCart">
     <div class="container" ng-class="{'fullwidth':itemsCart == ''}">
         <div ng-if="itemsCart == ''">
-            <div class="titulo" style="text-align:center;">
-                <h1 style="font-size:.8em;">NO TIENES PRODUCTOS EN TU CARRITO.</h1>
-                <h2 style="font-size:.6em;"><a href="productos" style="color:#58595B">¡Empieza a comprar ahora!</a></h2>
+            <div class="titulo carrito-vacio">
+                <h1>NO TIENES PRODUCTOS EN TU CARRITO.</h1>
+                <h2><a href="productos">
+                    <button class="btn btn-success btn-lg">¡Empieza a comprar ahora!</button>
+                </a></h2>
             </div>
         </div>
         <div ng-if="itemsCart">
@@ -13,21 +15,24 @@
             </div>
             <div class="productos">
 
+
                 <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
                     <span class="close deleteItemCart" name="{{itemsCart.id_producto}}"><img src="./src/images/carrito/mas_info.png" /></span>
                     <div class="col-md-3 imagen text-center">
+
                         <img src="./admin/images/products/{{itemsCart.foto_producto}}" />
                     </div>
-                    <div class="col-md-3 texto">
+                    <div class="col-md-3 col-sm-3 texto col-xs-4">
                         {{itemsCart.nombre_producto}}
                     </div>
-                    <div class="producto-wrap col-md-3">
-                        <div class="col-md-12 precio text-center">
+                    <div class="producto-wrap col-sm-3 col-md-3 col-xs-4">
+                        <div class=" col-md-12 precio text-center">
                             <div class="text-center precio_lista"><s>{{itemsCart.precio_lista | currency }}</s></div>
                             <div class="text-center precio">{{itemsCart.precio | currency}}</div>
                         </div>
                     </div>
-                    <div class="contador col-md-3 contador">
+
+                    <div class="contador col-xs-12 col-sm-3 col-md-3 contador">
 
                         <div class="producto-wrap">
 
