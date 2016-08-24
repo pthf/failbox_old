@@ -917,7 +917,7 @@
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
 					// actualizar_carrito_confirmar(idProduct,quantity);
-					$scope.$digest();
+
 					$('.buy-slide').slideToggle('fast');
 				} else if(result == 0){
 					alert('No hay existencias');
