@@ -741,7 +741,7 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				setTimeout(function(){ 
+				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
@@ -865,8 +865,9 @@
 			      	});
 				});
 
-				$(document).on('click', '.deleteItemCart', function(){
+				$(document).on('click', '.deleteItemCart', function(e){
 				  	var idItemCart = $(this).attr('name');
+
 				  	$.ajax({
 			          	beforeSend: function(){
 			      		},
@@ -878,7 +879,18 @@
 			          	},
 			          	success: function(data){
 			          		// alert(data);
-			          		location.reload();
+			          		//location.reload();
+							if($('.productos').find('.producto:visible').length != 0){
+								$(e.target).closest('.producto').fadeOut('', function(){
+									$(this).remove();
+									$('.productos').find('.producto:first-child').css('border', '1px solid #58595b');
+									if($('.productos:visible').find('.producto').length == 0 ){
+										location.reload();
+									}
+									console.log($('.productos').find('.producto:visible').length);
+								});
+							}
+
 			          	},
 			          	error: function(){
 			          	},
@@ -886,10 +898,20 @@
 			          	},
 			          	timeout: 10000
 			      	});
+
 				});
 			}
 		};
 	})
+
+	.directive('buttonAddCart', function() {
+     	return {
+          	restrict: 'C',
+          	link: function(scope, element, attrs) {
+				console.log(element);
+          	}
+      	}
+    })
 
 	$(document).on('click', '.cartBar', function(e){
 		$('.buy-slide').slideToggle('fast')
