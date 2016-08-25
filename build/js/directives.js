@@ -818,6 +818,7 @@
 			}
 		}
 	})
+
 	.directive('buySlide', function(){
 		return{
 			restrict: 'E',
@@ -946,17 +947,23 @@
      	return {
           	restrict: 'C',
 			replace : false,
+			transclude: false,
           	link: function(scope, element, attrs) {
+
 				element.bind('click', function() {
+
 					$timeout(function(){
 						failboxService.products_cart().then(function(data){
-							$rootScope.$broadcast('shopping:add', data);
+							
+							$rootScope.$emit('shopping:add', data);
 						}).then(function(){
 							failboxService.total_cart().then(function(data){
+
 								$rootScope.$emit('shopping:price', data);
 							});
 						})
 						failboxService.count_items_cart().then(function(data){
+
 							$rootScope.$emit('shopping:count', data);
 						})
 					}, 500)
