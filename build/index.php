@@ -38,7 +38,7 @@
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
 	<script src="./js/lib/slider.js"></script>
-	<script src="http://localhost:35729/livereload.js"></script>
+	<!--<script src="http://localhost:35729/livereload.js"></script>-->
 
 </body>
 </html>

@@ -50,6 +50,8 @@
         }
         curl_close($ch);
                 if (strcmp ($res, "VERIFIED") == 0) {
+
+                	echo "Hola bebe";
             /**
              * A partir de aqui, deberiamos hacer otras comprobaciones rutinarias antes de continuar. Son opcionales, pero recomiendo al menos las dos primeras. Por ejemplo:
              * 

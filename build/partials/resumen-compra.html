@@ -1,6 +1,6 @@
 <div class="resumen-compra carrito" ng-controller="getListItemsCart">
 
-    <div class="container" >
+    <div class="container" id="idpedido_resumen" pedido="{{idPedido}}">
         <div ng-if="itemsCart == ''" >
             <div class="titulo carrito-vacio">
                 <h1>NO TIENES PRODUCTOS EN TU CARRITO.</h1>
@@ -70,16 +70,17 @@
 
                     <div class="text-right pay col-md-6" ng-controller="purchaseSummary">
                         <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
-
-                        <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                        <!-- <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post"> -->
+                        <form id="target" style="display:none" action="https://www.sandbox.paypal.com/mx/cgi-bin/webscr" method="post">
                             <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="hola@failbox.mx">
+                            <!-- <input type="hidden" name="business" value="hola@failbox.mx"> -->
+                            <input type="hidden" name="business" value="hola-facilitator@failbox.mx">
                             <input type="hidden" name="item_name" value="Compras Failbox">
                             <input type="hidden" name="currency_code" value="MXN">
                             <input type="hidden" name="amount" value="{{totalCart | currency}}">
-                            <input type="hidden" name="return" value="http://localhost/www/failbox/build/gracias">
-                            <input type="hidden" name="cancel_return" value="http://localhost/www/failbox/build/productos/">
-                            <input type="hidden" name="notify_url" value="http://localhost/www/FAILBOX/build/php/pay_valite.php?num=id_pedido">
+                            <input type="hidden" name="return" value="http://paratodohayfans.com/web/failbox/gracias">
+                            <input type="hidden" name="cancel_return" value="http://paratodohayfans.com/web/failbox/productos/">
+                            <input type="hidden" name="notify_url" value="http://paratodohayfans.com/web/failbox/php/pay_valite.php?num={{idPedido}}">
                             <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
                         </form>
                     </div>

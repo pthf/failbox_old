@@ -701,37 +701,76 @@
 			restrict: 'E',
 			templateUrl: './partials/datos-envio.html',
 			controller: function($document){
-				$('#formDatesSend').submit(function(){
-					var ajaxData = new FormData();
-					ajaxData.append("action", $(this).serialize());
-					ajaxData.append("namefunction", "registrar_datos_pago");
-					$.ajax({
-						type: 'POST',
-						url: './php/functions_cart.php',
-						data: ajaxData,
-						processData: false,
-						contentType: false,
-						success : function(result){
-							if (result == -1) {
-								$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
-								$('.result_cart').css({'opacity' : '1'});
-								setTimeout(function () {
-									$('.result_cart').css({'opacity' : '0'});
-									$('.result_cart').text('');
-								}, 5000);
-								$('#formDatesSend')[0].reset();
-							}else {
-								// alert(result);
-								$('#formDatesSend')[0].reset();
-								window.location.href = "resumen-compra";
-							};
-						},
-						error: function(){
-							alert('error');
-						},
-						timeout: 10000
-					});
-				});
+				setTimeout(function(){
+					idpedido = $("#idpedido_resumen").attr('pedido');
+					if (idpedido == '') {
+						$('.form1').remove();
+						$('#formDatesSend').submit(function(){
+							var ajaxData = new FormData();
+							ajaxData.append("action", $(this).serialize());
+							ajaxData.append("namefunction", "registrar_datos_pago");
+							$.ajax({
+								type: 'POST',
+								url: './php/functions_cart.php',
+								data: ajaxData,
+								processData: false,
+								contentType: false,
+								success : function(result){
+									if (result == -1) {
+										$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
+										$('.result_cart').css({'opacity' : '1'});
+										setTimeout(function () {
+											$('.result_cart').css({'opacity' : '0'});
+											$('.result_cart').text('');
+										}, 5000);
+										$('#formDatesSend')[0].reset();
+									}else {
+										// alert(result);
+										$('#formDatesSend')[0].reset();
+										window.location.href = "resumen-compra";
+									};
+								},
+								error: function(){
+									alert('error');
+								},
+								timeout: 10000
+							});
+						});
+					} else if(idpedido){
+						$('.form2').remove();
+						$('#formDatesSend_').submit(function(){
+							var ajaxData = new FormData();
+							ajaxData.append("action", $(this).serialize());
+							ajaxData.append("namefunction", "registrar_datos_pago");
+							$.ajax({
+								type: 'POST',
+								url: './php/functions_cart.php',
+								data: ajaxData,
+								processData: false,
+								contentType: false,
+								success : function(result){
+									if (result == -1) {
+										$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
+										$('.result_cart').css({'opacity' : '1'});
+										setTimeout(function () {
+											$('.result_cart').css({'opacity' : '0'});
+											$('.result_cart').text('');
+										}, 5000);
+										$('#formDatesSend_')[0].reset();
+									}else {
+										// alert(result);
+										$('#formDatesSend_')[0].reset();
+										window.location.href = "resumen-compra";
+									};
+								},
+								error: function(){
+									alert('error');
+								},
+								timeout: 10000
+							});
+						});
+					};
+				}, 250);
 			}
 		}
 	})

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-08-2016 a las 23:42:42
+-- Tiempo de generación: 19-08-2016 a las 17:46:14
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -79,6 +79,7 @@ CREATE TABLE `Categorias` (
 
 INSERT INTO `Categorias` (`IdCategoria`, `Categoria`, `RouteCategoria`) VALUES
 (17, 'Cómputo', 'computo'),
+(18, 'Redes', 'redes'),
 (19, 'Audio', 'audio'),
 (20, 'Accesorios', 'accesorios'),
 (21, 'Bags | Cases', 'bags-cases');
@@ -2601,20 +2602,7 @@ CREATE TABLE `DatosEnvios` (
 --
 
 INSERT INTO `DatosEnvios` (`IdDatosEnvios`, `TipoDireccion`, `Estado`, `Ciudad`, `Direccion`, `Colonia`, `CP`, `Telefono`, `Celular`, `IdPedido`) VALUES
-(1, 'Casa de Pepe', 'Jalisco', 'Guadalajara', 'Av. Moctezuma', 'Independencia', 45080, 31425364, 2147483647, 1),
-(2, 'Ejemplo', 'Jalisco', 'Zapopan', 'Calle de Prueba', 'Minerva', 34000, 33333333, 2147483647, 2),
-(3, 'Hacienda Atequiza', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'Lopez Cotilla', 44700, 33, 2147483647, 3),
-(4, 'Jose de Jesus ', 'Jalisco', 'Guadalajara', 'Privada Castillo 3900', 'La Provincia', 45000, 65432456, 2147483647, 4),
-(5, 'Julio Grajeda', 'Jalisco', 'Tlaquepaque', 'Isla Raza 456', 'Cruz del Sur', 34000, 56789000, 2147483647, 5),
-(6, 'Pepe Vazquez', 'Jalisco', 'Arandas', 'Prolongación Medrano', 'Centro', 45600, 34567890, 2147483647, 6),
-(7, 'Test', 'Jalisco', 'Guadalajara', 'Test', 'Test', 333333, 564654654, 67576576, 7),
-(8, 'Prueba', 'Jalisco', 'Guadalajara', 'Prueba', 'Prueba', 234234, 23421312, 1233213, 8),
-(9, 'Casa de Bryan', 'Jalisco', 'Zapopan', 'Av. Terranova 1440', 'Terranova', 45600, 31425364, 2147483647, 9),
-(10, 'Prueba', 'Jalisco', 'Guadalajara', 'Prueba', 'Arandas', 44700, 33333333, 2147483647, 10),
-(11, 'fsdfsd', 'dsf', 'sdf', 'sdf', 'sdf', 4234, 2342, 24342, 11),
-(12, 'asdadasd', 'asdas', 'sdasd', 'asdaD', '3242', 32423, 23423, 2342423, 12),
-(13, 'dsdsfsdfs', 'sdfsdfs', 'sdfsdf', 'sdfsdf', 'sfddfsdf', 324234, 234234, 234234, 13),
-(14, 'Casa de Bryan', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'dsfsdf', 44700, 324, 324, 14);
+(1, 'Casa de Pepe', 'Jalisco', 'Guadalajara', 'Av. Moctezuma', 'Independencia', 45080, 31425364, 2147483647, 1);
 
 -- --------------------------------------------------------
 
@@ -2716,9 +2704,8 @@ INSERT INTO `Newsletter` (`idNewsletter`, `Email`) VALUES
 
 CREATE TABLE `Pedidos` (
   `IdPedido` int(11) NOT NULL,
-  `FechaPedido` datetime NOT NULL,
-  `Status` int(11) NOT NULL,
-  `Total` int(11) NOT NULL,
+  `FechaPedido` datetime DEFAULT NULL,
+  `Estatus` varchar(45) DEFAULT NULL,
   `Usuarios_IdUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2726,21 +2713,8 @@ CREATE TABLE `Pedidos` (
 -- Volcado de datos para la tabla `Pedidos`
 --
 
-INSERT INTO `Pedidos` (`IdPedido`, `FechaPedido`, `Status`, `Total`, `Usuarios_IdUsuario`) VALUES
-(1, '2016-08-18 17:52:50', 0, 20000, 1),
-(2, '2016-08-22 15:55:39', 0, 122994, 1),
-(3, '2016-08-22 16:36:24', 0, 1061, 1),
-(4, '2016-08-23 11:21:00', 0, 335, 1),
-(5, '2016-08-23 11:26:59', 0, 79, 1),
-(6, '2016-08-23 11:48:49', 0, 27095, 1),
-(7, '2016-08-23 13:09:36', 0, 99, 1),
-(8, '2016-08-23 16:14:57', 0, 199, 1),
-(9, '2016-08-24 10:42:54', 0, 11259, 1),
-(10, '2016-08-24 11:10:43', 0, 11259, 1),
-(11, '2016-08-24 11:19:01', 0, 11259, 1),
-(12, '2016-08-24 11:34:38', 0, 1049, 1),
-(13, '2016-08-24 13:56:37', 0, 77254, 1),
-(14, '2016-08-24 14:30:29', 0, 298, 1);
+INSERT INTO `Pedidos` (`IdPedido`, `FechaPedido`, `Estatus`, `Usuarios_IdUsuario`) VALUES
+(1, '2016-08-18 17:52:50', 'Pendiente', 1);
 
 -- --------------------------------------------------------
 
@@ -2778,24 +2752,24 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`IdProducto`, `NombreProveedor`, `NombreProd`, `Descripcion`, `RouteProd`, `Stock`, `PrecioLista`, `PrecioFailbox`, `CostoEnvio`, `Garantia`, `Modelo`, `SKU`, `Estatus`, `Image`, `urlPaypal`, `Destacado`, `FechaAlta`, `IdPrivilegio`, `Marcas_IdMarca`, `Categorias_IdCategoria`, `Subcategoria_IdSubcategoria`, `Proveedores_idProveedor`) VALUES
-(25, 'CompuSoluciones', 'HP 2012 120W Advanced Docking Station', 'HP Docking Station 120W, 4x USB 3.0, 2x USB 2.0, VGA, 2DVI', 'hp-2012-120w-advanced-docking-station', 3, 3999, 2599, 0, '', 'A7E36AA', 'A7E36AA', 'Activo', 'A7E36AA_01.jpg,A7E36AA_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K4UXFJ5W2BVVE', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 10, 2),
-(26, 'CompuSoluciones', 'HP ProBook 440 i3-6100U 14.0 8GB/1T PC', 'HP ProBook440 G3, Corei3-6100U (2.3GHz)1, 8GB (1x8GB) 1600, 1TB 5400, UMA: Integrated, RT RTL8723BE b/g/n 1x1 , 14" LED HD Webcam 720p, W10PRO64 Downgrade Windows 7 Professional, No, 4C 44WHr, 1/1/0 + Bitdefender Total Security1yr', 'hp-probook-440-i36100u-140-8gb1t-pc', 3, 12999, 11259, 0, '', 'T3L38LTBITDEF', 'T3L38LTBITDEF', 'Activo', 'T3L38LTBITDEF_01.jpg,T3L38LTBITDEF_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K3UVKML8XS8A6', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 11, 2),
-(28, 'CompuSoluciones', 'HP Workstation Z230 SFF', 'HP Z230 SFF, Intel Xeon E3-1226v3 3.3 8M GT2 4C CPU, RAM 4GB DDR3-1600 nECC (1x4GB), Disco Duro 1TB, 16X SuperMulti DVDRW SATA 1st ODD, Win8.1 Pro 64 downgrade to Win7 Pro 64 L, NVIDIA Quadro K420 1GB. ', 'hp-workstation-z230-sff', 3, 28499, 16999, 99, '', 'L0P51LT', 'L0P51LT', 'Activo', 'L0P51LT_01.jpg,L0P51LT_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2FZUYDJTP7F6L', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 13, 2),
-(29, 'CompuSoluciones', 'HP ZBook 14 i7-5500U 14.0 8GB/256 PC', 'HP ZBook 14 i7-5500U 14.0 8GB RAM/256 PC', 'hp-zbook-14-i75500u-140-8gb256-pc', 3, 36999, 23999, 0, '', 'M3Q95LT', 'M3Q95LT', 'Activo', 'M3Q95LT_01.jpg,M3Q95LT_02.jpg,M3Q95LT_03.jpg,M3Q95LT_04.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3AZSFHD82BT38', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 14, 2),
-(31, 'CompuSoluciones', 'HP 9.5mm SATA DVD RW Jb Kit', 'HP JackBlack 652241-B21 Quemador de DVD 9.5mm, DVD-RW, SATA, Interno, para ProLiant.', 'hp-95mm-sata-dvd-rw-jb-kit', 3, 2999, 1049, 0, '', '652241-B21', '652241-B21', 'Activo', '652241_B21.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=25QY4JE6DVMHA', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 16, 2),
-(32, 'Revko', 'Audífonos In-Ear  Amarillo', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Amarillo', 'audifonos-inear-amarillo', 3, 99, 59, 0, '', 'LVEB-807', 'LVEB-807', 'Activo', 'LVEB_807_01.jpg,LVEB_807_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VNF5LSXX7ZNTQ', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
-(33, 'Revko', 'Audífonos In-Ear Verde', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Verde', 'audifonos-inear-verde', 3, 99, 59, 0, '', 'LVEB-806', 'LVEB-806', 'Activo', 'LVEB_806_01.jpg,LVEB_806_02.jpg,LVEB_806_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YU3KZL4DG5B5N', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
-(34, 'Revko', 'Audífonos In-Ear (Naranja)', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Naranja', 'audifonos-inear-naranja', 3, 99, 59, 0, '', 'LVEB-804', 'LVEB-804', 'Activo', 'LVEB_804_01.jpg,LVEB_804_02.jpg,LVEB_804_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X88AR6MW2HAG8', 'SI', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
-(35, 'Revko', 'Mini Mouse óptico Naranja', 'Mini Mouse óptico Inalambrico Xplotion Mi-300Rf Naranja', 'mini-mouse-optico-naranja', 3, 199, 139, 0, '', 'WKMI-304', 'WKMI-304', 'Activo', 'WKMI_304.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=48W4FDVNJHWM4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
-(36, 'Revko', 'Power Bank 4400 Rojo', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Rojo', 'power-bank-4400-rojo', 3, 269, 199, 99, '', 'PWPB-405', 'PWPB-405', 'Activo', 'PWPB_405.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VV9N95KCHVNUG', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
-(37, 'Revko', 'Power Bank 4400 Morado', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Morado', 'power-bank-4400-morado', 3, 269, 199, 99, '', 'PWPB-403', 'PWPB-403', 'Activo', 'PWPB_403.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YEY4AUJLSSE3S', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
-(38, 'Revko', 'Mini Mouse óptico Negro', 'Mini Mouse óptico Retractil Usb Negro', 'mini-mouse-optico-negro', 3, 109, 79, 0, '', 'MOMR-011', 'MOMR-011', 'Activo', 'MOMR_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66737WY25NYLW', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
-(39, 'Revko', 'Base Giratoria para iPad Acteck', 'Base-Stand 360 iPad Is-100 Negro', 'base-giratoria-para-ipad-acteck', 3, 249, 69, 99, '', 'MVIS-001', 'MVIS-001', 'Activo', 'MVIS_001_01.jpg,MVIS_001_01.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=99E8W9GWDSYL6', 'NO', '2016-08-19 10:29:28', 1, 7, 21, 20, 2),
-(40, 'Revko', 'Cable Auxiliar Flexible Rosa', 'Cable Auxiliar Flexible 3.5 Mm 1 Mts Af-100 Rosa', 'cable-auxiliar-flexible-rosa', 3, 69, 49, 0, '', 'LKCA-011', 'LKCA-011', 'Activo', 'LKCA_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YLH5B6LVSA6C4', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 21, 2),
-(41, 'Revko', 'Power Bank 4400 Azul', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Azul', 'power-bank-4400-azul', 3, 269, 199, 0, '', 'PWPB-402', 'PWPB-402', 'Activo', 'PWPB_402.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KMM266YQCUT8Y', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
-(42, 'Revko', 'Lector De Memoria Interna Negro', 'Lector De Memoria Interna Usb Tr-190 Negro', 'lector-de-memoria-interna-negro', 3, 159, 99, 0, '', 'TBTR-001', 'TBTR-001', 'Activo', 'TBTR_001.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W5JYQKE72ZM88', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 22, 2),
-(43, 'Revko', 'Power Bank 2600 Negro', 'Power Bank 2600 Mah Xplotion Pb-200 Negro', 'power-bank-2600-negro', 3, 149, 109, 0, '', 'PWPB-201', 'PWPB-201', 'Activo', 'PWPB_201_01.jpg,PWPB_201_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VCH862CQT6YY4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
-(44, 'Revko', 'Kit Teclado Estándar Alámbrico/Mouse Alámbric', 'Kit Teclado Estándar Alámbrico/Mouse Alámbrico Usb 1000Dpi Ak2-2200 Negro', 'kit-teclado-estandar-alambricomouse-alambrico', 3, 239, 189, 99, '', 'WKTE-004', 'WKTE-004', 'Activo', 'WKTE_004.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K5LYUJNL2548W', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 23, 2);
+(25, 'CompuSoluciones', 'HP 2012 120W Advanced Docking Station', 'HP Docking Station 120W, 4x USB 3.0, 2x USB 2.0, VGA, 2DVI', 'hp-2012-120w-advanced-docking-station', 5, 3999, 2599, 0, '', 'A7E36AA', 'A7E36AA', 'Activo', 'A7E36AA_01.jpg,A7E36AA_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K4UXFJ5W2BVVE', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 10, 2),
+(26, 'CompuSoluciones', 'HP ProBook 440 i3-6100U 14.0 8GB/1T PC', 'HP ProBook440 G3, Corei3-6100U (2.3GHz)1, 8GB (1x8GB) 1600, 1TB 5400, UMA: Integrated, RT RTL8723BE b/g/n 1x1 , 14" LED HD Webcam 720p, W10PRO64 Downgrade Windows 7 Professional, No, 4C 44WHr, 1/1/0 + Bitdefender Total Security1yr', 'hp-probook-440-i36100u-140-8gb1t-pc', 5, 12999, 11259, 0, '', 'T3L38LTBITDEF', 'T3L38LTBITDEF', 'Activo', 'T3L38LTBITDEF_01.jpg,T3L38LTBITDEF_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K3UVKML8XS8A6', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 11, 2),
+(28, 'CompuSoluciones', 'HP Workstation Z230 SFF', 'HP Z230 SFF, Intel Xeon E3-1226v3 3.3 8M GT2 4C CPU, RAM 4GB DDR3-1600 nECC (1x4GB), Disco Duro 1TB, 16X SuperMulti DVDRW SATA 1st ODD, Win8.1 Pro 64 downgrade to Win7 Pro 64 L, NVIDIA Quadro K420 1GB. ', 'hp-workstation-z230-sff', 5, 28499, 16999, 99, '', 'L0P51LT', 'L0P51LT', 'Activo', 'L0P51LT_01.jpg,L0P51LT_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2FZUYDJTP7F6L', 'NO', '2016-08-19 10:29:28', 1, 6, 17, 13, 2),
+(29, 'CompuSoluciones', 'HP ZBook 14 i7-5500U 14.0 8GB/256 PC', 'HP ZBook 14 i7-5500U 14.0 8GB RAM/256 PC', 'hp-zbook-14-i75500u-140-8gb256-pc', 5, 36999, 23999, 0, '', 'M3Q95LT', 'M3Q95LT', 'Activo', 'M3Q95LT_01.jpg,M3Q95LT_02.jpg,M3Q95LT_03.jpg,M3Q95LT_04.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3AZSFHD82BT38', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 14, 2),
+(31, 'CompuSoluciones', 'HP 9.5mm SATA DVD RW Jb Kit', 'HP JackBlack 652241-B21 Quemador de DVD 9.5mm, DVD-RW, SATA, Interno, para ProLiant.', 'hp-95mm-sata-dvd-rw-jb-kit', 5, 2999, 1049, 0, '', '652241-B21', '652241-B21', 'Activo', '652241_B21.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=25QY4JE6DVMHA', 'SI', '2016-08-19 10:29:28', 1, 6, 17, 16, 2),
+(32, 'Revko', 'Audífonos In-Ear  Amarillo', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Amarillo', 'audifonos-inear-amarillo', 10, 99, 59, 0, '', 'LVEB-807', 'LVEB-807', 'Activo', 'LVEB_807_01.jpg,LVEB_807_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VNF5LSXX7ZNTQ', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(33, 'Revko', 'Audífonos In-Ear Verde', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Verde', 'audifonos-inear-verde', 10, 99, 59, 0, '', 'LVEB-806', 'LVEB-806', 'Activo', 'LVEB_806_01.jpg,LVEB_806_02.jpg,LVEB_806_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YU3KZL4DG5B5N', 'NO', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(34, 'Revko', 'Audífonos In-Ear (Naranja)', 'Audífonos In-Ear Cable Plano Xplotion Cable Plano 3.5 Mm Eb-800 Naranja', 'audifonos-inear-naranja', 10, 99, 59, 0, '', 'LVEB-804', 'LVEB-804', 'Activo', 'LVEB_804_01.jpg,LVEB_804_02.jpg,LVEB_804_03.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X88AR6MW2HAG8', 'SI', '2016-08-19 10:29:28', 1, 7, 19, 17, 2),
+(35, 'Revko', 'Mini Mouse óptico Naranja', 'Mini Mouse óptico Inalambrico Xplotion Mi-300Rf Naranja', 'mini-mouse-optico-naranja', 10, 199, 139, 0, '', 'WKMI-304', 'WKMI-304', 'Activo', 'WKMI_304.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=48W4FDVNJHWM4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
+(36, 'Revko', 'Power Bank 4400 Rojo', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Rojo', 'power-bank-4400-rojo', 10, 269, 199, 99, '', 'PWPB-405', 'PWPB-405', 'Activo', 'PWPB_405.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VV9N95KCHVNUG', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(37, 'Revko', 'Power Bank 4400 Morado', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Morado', 'power-bank-4400-morado', 10, 269, 199, 99, '', 'PWPB-403', 'PWPB-403', 'Activo', 'PWPB_403.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YEY4AUJLSSE3S', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(38, 'Revko', 'Mini Mouse óptico Negro', 'Mini Mouse óptico Retractil Usb Negro', 'mini-mouse-optico-negro', 10, 109, 79, 0, '', 'MOMR-011', 'MOMR-011', 'Activo', 'MOMR_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66737WY25NYLW', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 18, 2),
+(39, 'Revko', 'Base Giratoria para iPad Acteck', 'Base-Stand 360 iPad Is-100 Negro', 'base-giratoria-para-ipad-acteck', 10, 249, 69, 99, '', 'MVIS-001', 'MVIS-001', 'Activo', 'MVIS_001_01.jpg,MVIS_001_01.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=99E8W9GWDSYL6', 'NO', '2016-08-19 10:29:28', 1, 7, 21, 20, 2),
+(40, 'Revko', 'Cable Auxiliar Flexible Rosa', 'Cable Auxiliar Flexible 3.5 Mm 1 Mts Af-100 Rosa', 'cable-auxiliar-flexible-rosa', 10, 69, 49, 0, '', 'LKCA-011', 'LKCA-011', 'Activo', 'LKCA_011.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YLH5B6LVSA6C4', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 21, 2),
+(41, 'Revko', 'Power Bank 4400 Azul', 'Power Bank 4400 Mah 2 Puertos Usb Xplotion Pb-400 Azul', 'power-bank-4400-azul', 10, 269, 199, 0, '', 'PWPB-402', 'PWPB-402', 'Activo', 'PWPB_402.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KMM266YQCUT8Y', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(42, 'Revko', 'Lector De Memoria Interna Negro', 'Lector De Memoria Interna Usb Tr-190 Negro', 'lector-de-memoria-interna-negro', 10, 159, 99, 0, '', 'TBTR-001', 'TBTR-001', 'Activo', 'TBTR_001.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W5JYQKE72ZM88', 'SI', '2016-08-19 10:29:28', 1, 7, 20, 22, 2),
+(43, 'Revko', 'Power Bank 2600 Negro', 'Power Bank 2600 Mah Xplotion Pb-200 Negro', 'power-bank-2600-negro', 10, 149, 109, 0, '', 'PWPB-201', 'PWPB-201', 'Activo', 'PWPB_201_01.jpg,PWPB_201_02.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VCH862CQT6YY4', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 19, 2),
+(44, 'Revko', 'Kit Teclado Estándar Alámbrico/Mouse Alámbric', 'Kit Teclado Estándar Alámbrico/Mouse Alámbrico Usb 1000Dpi Ak2-2200 Negro', 'kit-teclado-estandar-alambricomouse-alambrico', 10, 239, 189, 99, '', 'WKTE-004', 'WKTE-004', 'Activo', 'WKTE_004.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K5LYUJNL2548W', 'NO', '2016-08-19 10:29:28', 1, 7, 20, 23, 2);
 
 -- --------------------------------------------------------
 
@@ -2867,28 +2841,11 @@ INSERT INTO `Productos_has_Imagenes` (`Productos_IdProducto`, `IdImagen`, `Nombr
 CREATE TABLE `Productos_has_Pedidos` (
   `Productos_IdProducto` int(11) NOT NULL,
   `Pedidos_IdPedido` int(11) NOT NULL,
-  `Cantidad` int(11) NOT NULL,
-  `Precio` float NOT NULL,
-  `CostoEnvio` float NOT NULL
+  `Cantidad` decimal(18,2) DEFAULT NULL,
+  `Precio` float DEFAULT NULL,
+  `CostoEnvio` float DEFAULT NULL,
+  `Total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `Productos_has_Pedidos`
---
-
-INSERT INTO `Productos_has_Pedidos` (`Productos_IdProducto`, `Pedidos_IdPedido`, `Cantidad`, `Precio`, `CostoEnvio`) VALUES
-(25, 6, 1, 2599, 0),
-(26, 9, 1, 11259, 0),
-(26, 10, 1, 11259, 0),
-(26, 11, 1, 11259, 0),
-(29, 6, 1, 23999, 0),
-(29, 13, 2, 23999, 0),
-(31, 12, 1, 1049, 0),
-(37, 6, 1, 199, 99),
-(37, 14, 1, 199, 99),
-(41, 6, 1, 199, 0),
-(41, 8, 1, 199, 0),
-(42, 7, 1, 99, 0);
 
 -- --------------------------------------------------------
 
@@ -2955,6 +2912,7 @@ INSERT INTO `Subcategoria` (`IdSubcategoria`, `Subcategoria`, `RouteSubcategoria
 (12, 'Monitores', 'monitores', 17),
 (13, 'Servidores', 'servidores', 17),
 (14, 'All In One', 'all-in-one', 17),
+(15, 'Switch', 'switch', 18),
 (16, 'Dvd', 'dvd', 17),
 (17, 'Audífonos', 'audifonos', 19),
 (18, 'Mouse', 'mouse', 20),
@@ -3175,7 +3133,7 @@ ALTER TABLE `Contactos`
 -- AUTO_INCREMENT de la tabla `DatosEnvios`
 --
 ALTER TABLE `DatosEnvios`
-  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Estados`
 --
@@ -3195,7 +3153,7 @@ ALTER TABLE `Newsletter`
 -- AUTO_INCREMENT de la tabla `Pedidos`
 --
 ALTER TABLE `Pedidos`
-  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Productos`
 --

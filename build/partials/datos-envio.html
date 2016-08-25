@@ -1,54 +1,93 @@
 <div class="container datos-envio" ng-controller="getListItemsCart">
-    <div class="titulo">
+    <div class="titulo" id="idpedido_resumen" pedido="{{idPedido}}">
         DATOS DE ENVÍO
     </div>
-    <div class="formulario col-md-7 col-sm-12">
-        <form class="form" method="post" id="formDatesSend">
-            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                <input required class="form-control" type="text" value="" placeholder="Tipo de Dirección (Ejemplo: Oficina, Casa)" name="typeAddress">
-            </div>
-            <div class="form-group col-md-5 col-sm-5 col-xs-12">
-                <!-- <select class="form-control" >
-                    <option value="" selected="selected">Selecciona estado o región</option>
-                    <option value="1">Jalisco</option>
-                    <option value="2">Nayarit</option>
-                </select> -->
-                <input required class="form-control" type="text" placeholder="Selecciona estado o región" value="" name="state">
-            </div>
-            <div class="form-group col-md-7 col-sm-7 col-xs-12">
-                <!-- <select class="form-control" >
-                    <option disabled value="" selected="selected">Ciudad, delegación o municipio</option>
-                    <option value="1">Guadalajara</option>
-                    <option value="2">Zapopan</option>
-                    <option value="2">Nayarit</option>
-                </select>
- -->            <input required class="form-control" type="text" placeholder="Ciudad, delegación o municipio" value="" name="city">
-            </div>
-            <div class="form-group col-md-12 col-sm-4 col-xs-12">
-                <input required class="form-control" type="text" placeholder="Calle y Número" value="" name="address">
-            </div>
-            <div class="form-group col-md-6 col-sm-4 col-xs-8">
-                <input required class="form-control" type="text" placeholder="Colonia" value="" name="colony">
-            </div>
-            <div class="form-group col-md-6 col-sm-4 col-xs-4">
-                <input required class="form-control" type="text" placeholder="C.P." value="" name="cp">
-            </div>
+    <!-- <div ng-if="idPedido"> -->
+        <div class="formulario col-md-7 col-sm-12 form1" ng-show="idPedido">
+            <form class="form" method="post" id="formDatesSend_">
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <input required class="form-control" type="text" value="{{datesPedido.TipoDireccion}}" placeholder="Tipo de Dirección (Ejemplo: Oficina, Casa)" name="typeAddress">
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-12">  
+                    <input required class="form-control" type="text" placeholder="Selecciona estado o región" value="{{datesPedido.Estado}}" name="state">
+                </div>
+                <div class="form-group col-md-7 col-sm-7 col-xs-12">
+                   <input required class="form-control" type="text" placeholder="Ciudad, delegación o municipio" value="{{datesPedido.Ciudad}}" name="city">
+                </div>
+                <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                    <input required class="form-control" type="text" placeholder="Calle y Número" value="{{datesPedido.Direccion}}" name="address">
+                </div>
+                <div class="form-group col-md-6 col-sm-4 col-xs-8">
+                    <input required class="form-control" type="text" placeholder="Colonia" value="{{datesPedido.Colonia}}" name="colony">
+                </div>
+                <div class="form-group col-md-6 col-sm-4 col-xs-4">
+                    <input required class="form-control" type="text" placeholder="C.P." value="{{datesPedido.CP}}" name="cp">
+                </div>
 
-            <div class="form-group col-md-6 col-sm-6 col-xs-6">
-                <input required class="form-control" type="text" placeholder="Teléfono" value="" name="tel">
-            </div>
-            <div class="form-group col-md-6 col-sm-6 col-xs-6">
-                <input required class="form-control" type="text" placeholder="Celular" value="" name="cel">
-            </div>
-            <div class="form-group col-md-12 col-sm-4 col-xs-12">
-                <div style="color:red"class="result_cart"></div>
-            </div>
-            <div class="submit">
-                <button required type="submit" class="btn btn-success btn-lg">Continuar</button>
-            </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Teléfono" value="{{datesPedido.Telefono}}" name="tel">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Celular" value="{{datesPedido.Celular}}" name="cel">
+                </div>
+                <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                    <div style="color:red"class="result_cart"></div>
+                </div>
+                <div class="submit">
+                    <button required type="submit" class="btn btn-success btn-lg">Continuar</button>
+                </div>
+            </form>
+        </div>
+    <!-- </div> -->
+    <!-- <div ng-if="idPedido == ''"> -->
+        <div class="formulario col-md-7 col-sm-12 form2" ng-show="idPedido == ''">
+            <form class="form" method="post" id="formDatesSend">
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <input required class="form-control" type="text" value="" placeholder="Tipo de Dirección (Ejemplo: Oficina, Casa)" name="typeAddress">
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-12">
+                    <!-- <select class="form-control" >
+                        <option value="" selected="selected">Selecciona estado o región</option>
+                        <option value="1">Jalisco</option>
+                        <option value="2">Nayarit</option>
+                    </select> -->
+                    <input required class="form-control" type="text" placeholder="Selecciona estado o región" value="" name="state">
+                </div>
+                <div class="form-group col-md-7 col-sm-7 col-xs-12">
+                    <!-- <select class="form-control" >
+                        <option disabled value="" selected="selected">Ciudad, delegación o municipio</option>
+                        <option value="1">Guadalajara</option>
+                        <option value="2">Zapopan</option>
+                        <option value="2">Nayarit</option>
+                    </select>
+     -->            <input required class="form-control" type="text" placeholder="Ciudad, delegación o municipio" value="" name="city">
+                </div>
+                <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                    <input required class="form-control" type="text" placeholder="Calle y Número" value="" name="address">
+                </div>
+                <div class="form-group col-md-6 col-sm-4 col-xs-8">
+                    <input required class="form-control" type="text" placeholder="Colonia" value="" name="colony">
+                </div>
+                <div class="form-group col-md-6 col-sm-4 col-xs-4">
+                    <input required class="form-control" type="text" placeholder="C.P." value="" name="cp">
+                </div>
 
-        </form>
-    </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Teléfono" value="" name="tel">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Celular" value="" name="cel">
+                </div>
+                <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                    <div style="color:red"class="result_cart"></div>
+                </div>
+                <div class="submit">
+                    <button required type="submit" class="btn btn-success btn-lg">Continuar</button>
+                </div>
+
+            </form>
+        </div>
+    <!-- </div> -->
 
     <div class="resumen col-md-4 col-md-offset-1 col-sm-12 col-xs-12" ng-controller="purchaseSummary">
         <div ng-if="itemsCart == ''">

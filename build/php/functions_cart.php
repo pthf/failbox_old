@@ -774,7 +774,7 @@
 
           foreach ($_SESSION['carrito'] as $key => $value) {
             $query5 = "UPDATE Productos_has_Pedidos SET Productos_IdProducto = '".$value['id_producto']."', Cantidad = '".$value['cantidad']."', Precio = '".$value['precio']."', 
-                                                        CostoEnvio = '".$value['costo_envio']."' WHERE Pedidos_IdPedido = '".$idPedido."')";
+                                                        CostoEnvio = '".$value['costo_envio']."' WHERE Pedidos_IdPedido = '".$_SESSION['id_pedido']."'";
             $result5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
           }
 
