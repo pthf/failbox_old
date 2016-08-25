@@ -197,7 +197,7 @@
 			$rootScope.$on('shopping:count', function(event, args){
 				$scope.countCart = args;
 			})
-			
+
 		}])
 
 		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
@@ -255,6 +255,11 @@
 			var url = $routeParams.url;
 			$scope.loadingData = false;
 			failboxService.byItem(url).then(function(data){
+
+				dif = data.not_price - data.price ;
+ 				decimal = Math.abs( dif / data.price );
+				$scope.porcent = Math.round(decimal * 100);
+
 				$scope.item = data;
 				$scope.loadingData = true;
 			});
