@@ -77,7 +77,11 @@
 
 	app.run(['$rootScope', function($rootScope, $templateCache, scope){
 		$rootScope.pages = 1;
-		$rootScope.itemsCartr = '';
+		/*failboxService.products_cart().then(function(data){
+			$rootScope.itemsCartr = data;
+		})*/
+
+
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.$destroy();
@@ -90,8 +94,6 @@
 		angular.element(document).ready(function () {
 
 		});
-
-
 	}])
 
 })();

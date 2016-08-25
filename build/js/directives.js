@@ -887,7 +887,6 @@
 									if($('.productos:visible').find('.producto').length == 0 ){
 										location.reload();
 									}
-									console.log($('.productos').find('.producto:visible').length);
 								});
 							}
 
@@ -904,22 +903,49 @@
 		};
 	})
 
-	.directive('buttonAddCart', ['$rootScope', function($rootScope) {
+	.directive('buttonAddCart', ['$rootScope', 'failboxService', '$timeout', function($rootScope, failboxService, $timeout) {
      	return {
           	restrict: 'C',
-			scope: {
-				itemsCart: '='
-			},
 			replace : false,
           	link: function(scope, element, attrs) {
-
 				element.bind('click', function() {
-					console.log($rootScope.itemsCartr);
-					scope.$digest();
-					/*scope.$watch('itemsCart', function(newValue, oldValue) {
-					  //update the DOM with newValue
-					  console.log(newValue, oldValue);
-				  });*/
+					$timeout(function(){
+						failboxService.products_cart().then(function(data){
+							$rootScope.$broadcast('shopping:add', data);
+						}).then(function(){
+							failboxService.total_cart().then(function(data){
+								$rootScope.$emit('shopping:price', data);
+							});
+						})
+						failboxService.count_items_cart().then(function(data){
+							$rootScope.$emit('shopping:count', data);
+						})
+					}, 500)
+
+				})
+          	}
+      	}
+    }])
+
+	.directive('deleteItemCart', ['$rootScope', 'failboxService', '$timeout', function($rootScope, failboxService, $timeout) {
+     	return {
+          	restrict: 'C',
+			replace : false,
+          	link: function(scope, element, attrs) {
+				element.bind('click', function() {
+					$timeout(function(){
+						failboxService.products_cart().then(function(data){
+							$rootScope.$broadcast('shopping:add', data);
+						}).then(function(){
+							failboxService.total_cart().then(function(data){
+								$rootScope.$emit('shopping:price', data);
+							});
+						})
+						failboxService.count_items_cart().then(function(data){
+							$rootScope.$emit('shopping:count', data);
+						})
+					}, 500)
+
 				})
           	}
       	}
