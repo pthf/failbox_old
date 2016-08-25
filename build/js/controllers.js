@@ -144,8 +144,11 @@
 			$scope.datesPedidoCart = false;
 			$scope.totalCart = 0.0;
 			failboxService.products_cart().then(function(data){
-				$rootScope.itemsCartr = data;
+
 				$scope.itemsCart = data;
+				$rootScope.$on('shopping:add', function(event, data){
+					$scope.itemsCart = data;
+				});
 				$scope.loadingData = true;
 			});
 			failboxService.idpedido_cart().then(function(data){
@@ -157,11 +160,12 @@
 				$scope.datesPedidoCart = true;
 			});
 			failboxService.total_cart().then(function(data){
+				console.log(data)
 				$scope.totalCart = data;
 			});
 		}])
 
-		.controller('purchaseSummary', ['$scope', 'failboxService', function($scope, failboxService){
+		.controller('purchaseSummary', ['$scope', 'failboxService', '$rootScope', function($scope, failboxService, $rootScope){
 			$scope.loadingData = false;
 			$scope.totalCart = 0.0;
 			$scope.costShipping = 0.0;
@@ -172,6 +176,9 @@
 			});
 			failboxService.total_cart().then(function(data){
 				$scope.totalCart = data;
+				$rootScope.$on('shopping:price', function(event, args){
+					$scope.totalCart = args;
+				});
 			});
 			failboxService.cost_shipping().then(function(data){
 				$scope.costShipping = data;
@@ -181,12 +188,16 @@
 			});
 		}])
 
-		.controller('countItemsCart', ['$scope', 'failboxService', function($scope, failboxService){
+		.controller('countItemsCart', ['$scope', 'failboxService','$rootScope', function($scope, failboxService, $rootScope){
 			$scope.loadingData = false;
 			failboxService.count_items_cart().then(function(data){
 				$scope.countCart = data;
 				$scope.loadingData = true;
 			});
+			$rootScope.$on('shopping:count', function(event, args){
+				$scope.countCart = args;
+			})
+			
 		}])
 
 		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
