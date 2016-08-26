@@ -60,24 +60,43 @@
 						<table>
 							<tr>
 								<td>
-									<button class="btn menos" type="button" id="menos" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"> <img src="./src/images/carrito/min.png" /> </button>
-									<input class="input_stocks"id="cantidad" type="text" style="text-align: center; width:50px;" value="1">
-									<button class="btn mas" type="button" id="mas" data-name="{{item.name}}" data-id-product="{{item.id}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}"><img src="./src/images/carrito/mor.png" /></button>
+
+									<button class="btn menos" type="button" id="menos"
+											ng-disabled = "quantity < 2"
+											ng-click="quantity = quantity - 1"
+											data-name="{{item.name}}"
+											data-id-product="{{item.id}}"
+											data-price="{{item.price}}"
+											data-notprice="{{item.not_price}}">
+											<img src="./src/images/carrito/min.png" />
+									</button>
+
+									<input readonly="{{readonly}}" class="input_stocks" id="cantidad" type="text" style="text-align: center; width:50px;" ng-model="quantity">
+
+									<button class="btn mas" type="button" id="mas"
+											ng-disabled="stock_session == 0"
+											ng-click="quantity = quantity + 1"
+											data-name="{{item.name}}"
+											data-id-product="{{item.id}}"
+											data-price="{{item.price}}"
+											data-notprice="{{item.not_price}}">
+											<img src="./src/images/carrito/mor.png" />
+									</button>
+
 								</td>
 							</tr>
 							<tr>
 								<td>Cant.</td>
 							</tr>
 							<tr>
-								<td ng-show="item.stocks == 3" > Solo quedan {{item.stocks}} piezas disponibles*</td>
-								<td ng-show="item.stocks == 2" style="color:red;">Solo quedan {{item.stocks}} piezas disponibles*</td>
-								<td ng-show="item.stocks == 1" style="color:red;">Ultimo producto en existencia*</td>
-								<td ng-show="item.stocks == 0" style="color:red;">Sin existencias*</td>
+								<td ng-show="stock_session <= 3" ng-hide="stock_session <=0" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+								<td ng-show="stock_session == 0" style="color:red;">Sin existencias*</td>
+								<!--td ng-show="stock_session == 0; " style="color:red;">Sin existencias*</td-->
 							</tr>
 							<tr>
 								<td>
 									<div class="test_stock">
-										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="1" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
 									</div>
 									<div class="test_stock_"></div>
 								</td>

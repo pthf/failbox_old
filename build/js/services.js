@@ -195,6 +195,48 @@
 				return deferred.promise;
 			}
 
+			function verificar_existencia_session(idProduct, quantity) {
+				var deferred = $q.defer();
+				var xsrf = $.param({
+					namefunction: 'verify_my_cart',
+					idProduct: idProduct,
+					quantity: quantity
+				});
+
+				$http({
+					method: 'POST',
+					url: './php/functions_cart.php',
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+					data: xsrf
+				}).then(function(req){
+					deferred.resolve(req);
+				})
+
+				return deferred.promise;
+			}
+
+			function verificar_existencias_global(idProduct, quantity) {
+				var deferred = $q.defer();
+				var xsrf = $.param({
+					namefunction: 'verify_max_stock',
+					idProduct: idProduct,
+					quantity: quantity
+				});
+
+				$http({
+					method: 'POST',
+					url: './php/functions_cart.php',
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+					data: xsrf
+				}).then(function(req){
+					if(req.data == 0)
+						deferred.reject({error: 666, msj: 'sin existencias'});
+					else
+						deferred.resolve(req);
+				})
+				return deferred.promise;
+			}
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
@@ -212,7 +254,9 @@
 				cost_shipping: cost_shipping,
 				total_notprice: total_notprice,
 				idpedido_cart: idpedido_cart,
-				dates_pedido: dates_pedido
+				dates_pedido: dates_pedido,
+				verificar_existencia_session: verificar_existencia_session,
+				verificar_existencias_global: verificar_existencias_global
 			}
 
 		}]);
