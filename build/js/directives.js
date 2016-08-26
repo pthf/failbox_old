@@ -537,7 +537,7 @@
 
 					$('.informacion-producto .contenedor').slideToggle('')
 				})
-				// Decrementar valor del input sobre la cantidad de stocks a comprar
+				/* Decrementar valor del input sobre la cantidad de stocks a comprar
 				var i = 1;
 				$(document).on('click', '.menos', function(){
 				    if(i>=2){
@@ -574,7 +574,7 @@
 				    $('.test_stock').remove();
 				    $('.test_stock_').html('<div class="buttonAddCart" data-id="'+idProduct+'" data-name="'+name+'" data-price="" data-notprice="'+notprice+'" data-quantity="'+cant.value+'" data-stocks=""><img src="./src/images/carrito/agregar-carrito.png"></div>');
 				});
-
+				*/
 			}
 		}
 	})
@@ -824,6 +824,7 @@
 			}
 		}
 	})
+
 	.directive('buySlide', function(){
 		return{
 			restrict: 'E',
@@ -989,17 +990,23 @@
      	return {
           	restrict: 'C',
 			replace : false,
+			transclude: false,
           	link: function(scope, element, attrs) {
+
 				element.bind('click', function() {
+
 					$timeout(function(){
 						failboxService.products_cart().then(function(data){
-							$rootScope.$broadcast('shopping:add', data);
+
+							$rootScope.$emit('shopping:add', data);
 						}).then(function(){
 							failboxService.total_cart().then(function(data){
+
 								$rootScope.$emit('shopping:price', data);
 							});
 						})
 						failboxService.count_items_cart().then(function(data){
+
 							$rootScope.$emit('shopping:count', data);
 						})
 					}, 500)
@@ -1017,7 +1024,7 @@
 				element.bind('click', function() {
 					$timeout(function(){
 						failboxService.products_cart().then(function(data){
-							$rootScope.$broadcast('shopping:add', data);
+							$rootScope.$emit('shopping:add', data);
 						}).then(function(){
 							failboxService.total_cart().then(function(data){
 								$rootScope.$emit('shopping:price', data);
@@ -1032,6 +1039,38 @@
           	}
       	}
     }])
+
+	.directive('mas', ['$rootScope', 'failboxService', '$timeout', function($rootScope, failboxService, $timeout) {
+		return {
+			restrict: 'C',
+			replace : false,
+			transclude: false,
+          	link: function(scope, element, attrs) {
+				element.bind('click', function() {
+					//$rootScope.$emit('shopping:more', data);
+					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
+						scope.stock_session = req.data;
+					})
+				})
+			}
+		}
+	}])
+	.directive('menos', ['$rootScope', 'failboxService', '$timeout', function($rootScope, failboxService, $timeout) {
+		return {
+			restrict: 'C',
+			replace : false,
+			transclude: false,
+          	link: function(scope, element, attrs) {
+
+				element.bind('click', function() {
+					//$rootScope.$emit('shopping:more', data);
+					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
+						scope.stock_session = req.data;
+					})
+				})
+			}
+		}
+	}])
 
 	$(document).on('click', '.cartBar', function(e){
 		$('.buy-slide').slideToggle('fast')
@@ -1054,7 +1093,7 @@
 	            quantity: quantity
 	    	},
 			success: function(result){
-				// alert(result);
+
 				if(result==1 || result==-1){
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();

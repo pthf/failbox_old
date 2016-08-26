@@ -118,6 +118,9 @@
 			failboxService.sliderHome().then(function(data){
 				$scope.bannerMenu = data;
 				$scope.loadingData = true;
+				$scope.getLocation = function(url){
+					console.log(url);
+				}
 			});
 		}])
 
@@ -160,7 +163,6 @@
 				$scope.datesPedidoCart = true;
 			});
 			failboxService.total_cart().then(function(data){
-				console.log(data)
 				$scope.totalCart = data;
 			});
 		}])
@@ -197,7 +199,7 @@
 			$rootScope.$on('shopping:count', function(event, args){
 				$scope.countCart = args;
 			})
-			
+
 		}])
 
 		.controller('idPedidoCart', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
@@ -253,7 +255,6 @@
 				});
 				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
 					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');
-					console.log($rootScope.pages);
 				})
 			}, 800)
 
@@ -262,10 +263,32 @@
 		.controller('itemController', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 			var url = $routeParams.url;
 			$scope.loadingData = false;
+			$scope.quantity = 1;
+			$scope.disabled = false;
+			$scope.readonly  = true;
+
 			failboxService.byItem(url).then(function(data){
+				dif = data.not_price - data.price;
+ 				decimal = Math.abs( dif / data.price );
+
+				$scope.porcent = Math.round(decimal * 100);
 				$scope.item = data;
 				$scope.loadingData = true;
-			});
+
+				failboxService.verificar_existencias_global($scope.item.id, 1).then(function(req){
+
+				}).then(function(){
+					failboxService.verificar_existencia_session($scope.item.id, $scope.quantity).then(function(req){
+						$scope.stock_session = req.data;
+					})
+				}).catch(function(err){
+					$scope.quantity = 0;
+					$scope.disabled = true;
+				})
+
+			})
+
+
 		}])
 
 		.controller('carrito', ['$scope', function($scope){

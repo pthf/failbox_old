@@ -61,6 +61,9 @@
       case 'verify_stocks':
           verify_stocks($_POST['idProduct'], $_POST['quantity']);
           break;
+      case 'verify_my_cart':
+          verify_my_cart($_POST['idProduct'], $_POST['quantity']);
+          break;
     }
 
     function verify_max_stock($idProduct, $cantidad){
@@ -108,6 +111,65 @@
         }
 
       }
+    }
+
+    /*
+    * Description: check remaining products.
+    * return int
+    */
+
+    function verify_my_cart($idProduct, $cantidad){
+
+        $total_cantidad_aux = 0;
+        $resultvar = 1;
+
+        if(isset($_SESSION['carrito'])){
+
+            $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            $line = mysql_fetch_array($result);
+            if(mysql_num_rows($result)>0){
+
+                $stock_max = $line['Stock'];
+
+                foreach ($_SESSION['carrito'] as $key => $value) {
+
+                    if($value['id_producto'] == $idProduct) {
+
+                        $cantidad_cart = $value['cantidad'];
+                        // $total_cantidad_aux = $cantidad + 1;
+                        $total_cantidad_aux = ($cantidad_cart + $cantidad);
+                        $query = "SELECT Stock FROM Productos WHERE IdProducto =".$value['id_producto'];
+                        $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+                        $line = mysql_fetch_array($result);
+                        $stock_max = $line['Stock'];
+                        $my_real_cart = $stock_max - $cantidad;
+                        $total = $stock_max - ( $cantidad_cart + $cantidad );
+                        echo $total;
+                        break;
+                    } else {
+                        $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+                        $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+                        $line = mysql_fetch_array($result);
+                        if(mysql_num_rows($result)>0){
+                            $stock_max = $line['Stock'];
+                            echo (int)$stock_max - (int)$cantidad;
+                        }
+                        break;
+                    }
+                }
+            }
+
+        } else {
+
+            $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            $line = mysql_fetch_array($result);
+            if(mysql_num_rows($result)>0){
+                $stock_max = $line['Stock'];
+                echo (int)$stock_max - (int)$cantidad;
+            }
+        }
     }
 
     function verify_stocks($idProduct, $cantidad){
