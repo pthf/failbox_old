@@ -59,12 +59,16 @@
 				templateUrl: 'views/carrito/resumencompra.html',
 				controller: ''
 			})
-			.when('/gracias', {
+			.when('/gracias/:id', {
 				templateUrl: 'views/carrito/gracias.html',
 				controller: ''
 			})
 			.when('/preguntas-frecuentes', {
 				templateUrl: 'views/carrito/preguntas_frecuentes.html',
+				controller: ''
+			})
+			.when('/cancelado', {
+				templateUrl: 'views/carrito/cancelado.html',
 				controller: ''
 			})
 			.otherwise({

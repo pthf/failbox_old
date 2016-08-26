@@ -195,6 +195,16 @@
 				return deferred.promise;
 			}
 
+			function getIdPedido(id){
+		      	var deferred = $q.defer();
+
+	      		$http.get('./php/services.php?namefunction=getIdPedido&id='+id)
+					.success(function (data) {
+			        	deferred.resolve(data);
+			    	});
+			    return deferred.promise;
+		    }
+
 			return {
 				sliderHome: sliderHome,
 				new_products: new_products,
@@ -212,7 +222,8 @@
 				cost_shipping: cost_shipping,
 				total_notprice: total_notprice,
 				idpedido_cart: idpedido_cart,
-				dates_pedido: dates_pedido
+				dates_pedido: dates_pedido,
+				getIdPedido: getIdPedido
 			}
 
 		}]);

@@ -47,7 +47,7 @@
           calcular_costo_final();
           break;
       case 'registrar_datos_pago':
-          registrar_datos_pago();
+          registrar_datos_pago($_POST['total_cart'],$_POST['total_not_cart']);
           break;
       case 'registrar_factura':
           registrar_factura();
@@ -277,7 +277,6 @@
     function eliminar_item_cart(){
       $idItemCart = $_POST['idItemCart'];
       $arreglo_carrito = $_SESSION['carrito'];
-
       foreach ($arreglo_carrito as $key => $value) {
         if($arreglo_carrito[$key]['id_producto'] == $idItemCart){
           // $query1 = "SELECT Stock FROM Productos WHERE IdProducto = '".$idItemCart."'";
@@ -503,9 +502,9 @@
             $resultado = -1;
             $_SESSION['carrito'][$key]['cantidad'] = $row['Stock'];
           } else {
-            // $total_stock = ($row['Stock'] - $value['cantidad']);
-            // $query = "UPDATE Productos SET Stock = '".$total_stock."' WHERE IdProducto = '".$value['id_producto']."'";
-            // $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            $total_stock = ($row['Stock'] - $value['cantidad']);
+            $query = "UPDATE Productos SET Stock = '".$total_stock."' WHERE IdProducto = '".$value['id_producto']."'";
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
             unset($_SESSION['carrito']);
             unset($_SESSION['total_carrito']);
             unset($_SESSION['id_pedido']);
@@ -753,7 +752,7 @@
 
     }
 
-    function registrar_datos_pago(){
+    function registrar_datos_pago($total_cart,$total_not_cart){
           
       parse_str($_POST['action'],$formData);
 
@@ -769,7 +768,7 @@
         if ($num_row > 0) {
           $row = mysql_fetch_array($result);
           // echo "Actualizamos";
-          $query1 = "UPDATE Pedidos SET FechaPedido = '".$datatime."', Total='".$_SESSION['total_carrito']."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
+          $query1 = "UPDATE Pedidos SET FechaPedido = '".$datatime."', Total='".$total_cart."', TotalList='".$total_not_cart."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
           $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
           foreach ($_SESSION['carrito'] as $key => $value) {
@@ -788,7 +787,7 @@
 
           if (isset($_SESSION['carrito'])) {
             // $status = "Pendiente";
-            $query3 = "INSERT INTO Pedidos VALUES (null,'$datatime', '0', '".$_SESSION['total_carrito']."', 1) ";
+            $query3 = "INSERT INTO Pedidos VALUES (null,'$datatime', '0', '".$total_cart."', '".$total_not_cart."', 1) ";
             $result3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
 
             $idPedido = mysql_insert_id();
