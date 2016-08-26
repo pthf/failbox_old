@@ -264,7 +264,7 @@
 				total_notprice: total_notprice,
 				idpedido_cart: idpedido_cart,
 				dates_pedido: dates_pedido,
-				getIdPedido: getIdPedido
+				getIdPedido: getIdPedido,
 				verificar_existencia_session: verificar_existencia_session,
 				verificar_existencias_global: verificar_existencias_global
 			}
