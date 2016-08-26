@@ -839,34 +839,34 @@
 			restrict: 'E',
 			templateUrl: './partials/agradecimiento.html',
 			controller: function($document){
-				setTimeout(function(){
-					idpedido = $("#idpedido_resumen").attr('pedido');
-					if (idpedido == '') {
-						window.location.href = "productos";
-					}
-					// else{
-					// 	$.ajax({
-				 //          	beforeSend: function(){
-				 //      		},
-				 //          	url: "./php/functions_cart.php",
-				 //          	type: "POST",
-				 //          	data: {
-				 //              	namefunction:'verify_idpedido',
-				 //              	idpedido: idpedido
-				 //          	},
-				 //          	success: function(data){
-				 //          		alert(data);
-				 //          		// window.location.href = "datos-envio";
-				 //          		// $('.g_cart_cont').html(data);
-				 //          	},
-				 //          	error: function(){
-				 //          	},
-				 //          	complete: function(){
-				 //          	},
-				 //          	timeout: 10000
-				 //      	});
-					// };
-				}, 250);
+				// setTimeout(function(){
+				// 	idpedido = $("#idpedido_resumen").attr('pedido');
+				// 	if (idpedido == '') {
+				// 		window.location.href = "productos";
+				// 	}
+				// 	// else{
+				// 	// 	$.ajax({
+				//  //          	beforeSend: function(){
+				//  //      		},
+				//  //          	url: "./php/functions_cart.php",
+				//  //          	type: "POST",
+				//  //          	data: {
+				//  //              	namefunction:'verify_idpedido',
+				//  //              	idpedido: idpedido
+				//  //          	},
+				//  //          	success: function(data){
+				//  //          		alert(data);
+				//  //          		// window.location.href = "datos-envio";
+				//  //          		// $('.g_cart_cont').html(data);
+				//  //          	},
+				//  //          	error: function(){
+				//  //          	},
+				//  //          	complete: function(){
+				//  //          	},
+				//  //          	timeout: 10000
+				//  //      	});
+				// 	// };
+				// }, 250);
 			}
 		}
 	})
