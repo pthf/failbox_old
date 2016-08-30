@@ -107,14 +107,14 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-archive"></i> Pedidos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="../carrito/pedidos.php">Todos</a>
-                    </li>
+                   <!--  <li><a href="../carrito/pedidos.php">Todos</a>
+                    </li> -->
                     <li><a href="../carrito/pagados.php">Pagados</a>
                     </li>
                     <li><a href="../carrito/pendientes.php">Pendientes</a>
                     </li>
-                    <li><a href="../carrito/cancelados.php">Cancelados</a>
-                    </li>
+                    <!-- <li><a href="../carrito/cancelados.php">Cancelados</a>
+                    </li> -->
                   </ul>
                 </li>
               </ul>
@@ -144,8 +144,8 @@
                   </a>
                 <?php } else { 
                   $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
-                  $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                  $row = mysqli_fetch_array($res_sql);
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
                   ?>
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
@@ -190,8 +190,8 @@
                         <?php
                           if($_SESSION['idPrivilegio'] == 1) { 
                             $sql = "SELECT * FROM Pedidos WHERE Status = '0'";
-                            $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                            $num_total_products = mysqli_num_rows($res_sql);
+                            $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                            $num_total_products = mysql_num_rows($res_sql);
                           } 
                         ?>
                         <h2>Total de productos: <?php echo $num_total_products;?></h2>
@@ -219,8 +219,8 @@
                               $query = "SELECT * FROM Pedidos pe
                                           INNER JOIN DatosEnvios d ON d.IdPedido = pe.IdPedido
                                           INNER JOIN Usuarios u ON u.IdUsuario = pe.Usuarios_IdUsuario WHERE pe.Status = '0' ORDER BY pe.IdPedido DESC";
-                              $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-                              while($fila = mysqli_fetch_array($resultado)) { ?>
+                              $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                              while($fila = mysql_fetch_array($resultado)) { ?>
                               <tr>
                                 <!-- <td><a href="../edit/editProduct.php?id=<?=$fila['IdProducto']?>"></a></td> -->
                                 <td><?php echo $fila['IdPedido']?></td>
@@ -228,13 +228,14 @@
                                 <td><?php echo $fila['Direccion']?></td>
                                 <td><?php echo $fila['Total']?></td>
                                 <td style="width: 25%;">
-                                  <select required class="form-control" name="warranty">
+                                  <select required class="form-control" name="warranty" id="selectStatus">
                                       <option selected disabled value=''>Selecciona..</option>
                                       <option value="1">Pagado</option>
-                                      <option value="2">Cancelado</option>
+                                      <option value="2">Cancelar</option>
                                       <option selected value="0">Pendiente</option>
                                   </select>
-                                  <button>Cambiar</button>
+                                  <button class="status" data-status="">Cambiar</button>
+                                  <!-- <button class="status_" data-status="">Cambiar</button> -->
                                 </td>
                               </tr>
                             <?php }
@@ -294,6 +295,36 @@
             var table = $('#datatable-fixed-header').DataTable({
               fixedHeader: true
             });
+          });
+        </script>
+        <script type="text/javascript">
+            // $('.status_').hide();
+            $(".form-control").change(function(){
+              var status = $('select[class=form-control]').val();
+              // alert(status);
+              // $('.status').remove();
+              // $('.status_').html('<button class="status_" data-status="'+status+'" data-status="">Cambiar</button>');
+              // $('.status_').show();
+            });
+          $(document).on('click', '.status', function(){
+            // alert('Click Boton');
+              $.ajax({
+                beforeSend: function(){
+                },
+                  url: "../php/functions.php",
+                  type: "POST",
+                  data: {
+                      namefunction:'actualizar_status_pedido'
+                  },
+                  success: function(data){
+                    alert(data);
+                  },
+                  error: function(){
+                  },
+                  complete: function(){
+                  },
+                  timeout: 10000
+              });
           });
         </script>
 </body>

@@ -144,8 +144,8 @@
                   </a>
                 <?php } else { 
                   $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
-                  $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                  $row = mysqli_fetch_array($res_sql);
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
                   ?>
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
@@ -190,8 +190,8 @@
                         <?php
                           if($_SESSION['idPrivilegio'] == 1) { 
                             $sql = "SELECT * FROM Pedidos";
-                            $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                            $num_total_products = mysqli_num_rows($res_sql);
+                            $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                            $num_total_products = mysql_num_rows($res_sql);
                           } 
                         ?>
                         <h2>Total de pedidos: <?php echo $num_total_products;?></h2>
@@ -219,8 +219,8 @@
                               $query = "SELECT * FROM Pedidos pe
                                           INNER JOIN DatosEnvios d ON d.IdPedido = pe.IdPedido
                                           INNER JOIN Usuarios u ON u.IdUsuario = pe.Usuarios_IdUsuario ORDER BY pe.IdPedido DESC";
-                              $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-                              while($fila = mysqli_fetch_array($resultado)) { ?>
+                              $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                              while($fila = mysql_fetch_array($resultado)) { ?>
                               <tr>
                                 <!-- <td><a href="../edit/editProduct.php?id=<?=$fila['IdProducto']?>"></a></td> -->
                                 <td><?php echo $fila['IdPedido']?></td>
@@ -228,7 +228,7 @@
                                 <td><?php echo $fila['Direccion']?></td>
                                 <td><?php echo $fila['Total']?></td>
                                 <td style="width: 25%;">
-                                  <select required class="form-control" name="status">
+                                  <select required class="form-control" name="status" id="selectStatus">
                                       <option selected disabled value=''>Selecciona..</option>
                                       <?php if ($fila['Status']==0) { ?>
                                         <option value="1">Pagado</option>
@@ -306,31 +306,7 @@
             });
           });
         </script>
-        <script type="text/javascript">
-          $(document).on('click', '.status', function(){
-            /*$(".form-control").change(function(){
-              var status = $('select[class=form-control]').val();
-            });*/
-              $.ajax({
-                beforeSend: function(){
-                },
-                  url: "../php/functions.php",
-                  type: "POST",
-                  data: {
-                      namefunction:'actualizar_status_pedido',
-                      status: status 
-                  },
-                  success: function(data){
-                    alert(data);
-                  },
-                  error: function(){
-                  },
-                  complete: function(){
-                  },
-                  timeout: 10000
-              });
-          });
-        </script>
+        
 </body>
 
 </html>

@@ -107,14 +107,14 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-archive"></i> Pedidos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="carrito/pedidos.php">Todos</a>
-                    </li>
+                    <!-- <li><a href="carrito/pedidos.php">Todos</a>
+                    </li> -->
                     <li><a href="carrito/pagados.php">Pagados</a>
                     </li>
                     <li><a href="carrito/pendientes.php">Pendientes</a>
                     </li>
-                    <li><a href="carrito/cancelados.php">Cancelados</a>
-                    </li>
+                    <!-- <li><a href="carrito/cancelados.php">Cancelados</a>
+                    </li> -->
                   </ul>
                 </li>
               </ul>

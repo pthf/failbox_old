@@ -144,8 +144,8 @@
                   </a>
                 <?php } else { 
                   $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
-                  $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                  $row = mysqli_fetch_array($res_sql);
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
                   ?>
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
@@ -190,8 +190,8 @@
                         <?php
                           if($_SESSION['idPrivilegio'] == 1) { 
                             $sql = "SELECT * FROM Pedidos WHERE Status = '2'";
-                            $res_sql = mysqli_query(Conectar::con(),$sql) or die(mysqli_error(Conectar::con()));
-                            $num_total_products = mysqli_num_rows($res_sql);
+                            $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                            $num_total_products = mysql_num_rows($res_sql);
                           } 
                         ?>
                         <h2>Total de productos: <?php echo $num_total_products;?></h2>
@@ -219,8 +219,8 @@
                               $query = "SELECT * FROM Pedidos pe
                                           INNER JOIN DatosEnvios d ON d.IdPedido = pe.IdPedido
                                           INNER JOIN Usuarios u ON u.IdUsuario = pe.Usuarios_IdUsuario WHERE pe.Status = '2' ORDER BY pe.IdPedido DESC";
-                              $resultado = mysqli_query(Conectar::con(),$query) or die(mysqli_error());
-                              while($fila = mysqli_fetch_array($resultado)) { ?>
+                              $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                              while($fila = mysql_fetch_array($resultado)) { ?>
                               <tr>
                                 <!-- <td><a href="../edit/editProduct.php?id=<?=$fila['IdProducto']?>"></a></td> -->
                                 <td><?php echo $fila['IdPedido']?></td>

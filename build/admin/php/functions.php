@@ -70,7 +70,7 @@ require_once("../db/conexion.php");
 				changePassProvider();
 				break;
 			case 'actualizar_status_pedido':
-				actualizar_status_pedido($_POST['status']);
+				actualizar_status_pedido();
 				break;
 		}
 	}
@@ -860,7 +860,6 @@ require_once("../db/conexion.php");
 
 	}
 
-	function actualizar_status_pedido($status) {
-		echo "Hola bebe";
-		print_r($status);
+	function actualizar_status_pedido() {
+		// echo "Hola bebe";
 	}
