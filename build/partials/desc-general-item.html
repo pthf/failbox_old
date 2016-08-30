@@ -1,0 +1,176 @@
+<link rel="stylesheet" href="./css/slide.css">
+<div class="contInformation">
+
+	<div class="returnDiv" style="background: red; width: 80%; margin-bottom: 1vw; position: relative; ">
+		<span class="returnSpan" style="font-size: 1em; position: absolute; top: -2.5vw; right: -12vw;">< REGRESAR</span>
+	</div>
+
+	<div class="infoArticulo">
+
+		<!--div class="sliderStore">
+
+			<ul class="sliderContenido">
+
+				<li class="imageInfo" ng-repeat="image in item.images_slider" load-desc-gen-item>
+					<img src="./admin/images/products/{{image}}">
+				</li>
+
+			</ul>
+
+			<div class="itemSliderConten" style="margin-bottom: 2vw;">
+				<ul>
+					<li ng-repeat="image in item.images_slider" load-desc-gen-item>
+						<img ng-if="$index==0"  src="./src/images/seitem.png">
+						<img ng-if="$index!=0"  src="./src/images/seitemnot.png">
+					</li>
+				</ul>
+			</div>
+		</div-->
+
+
+		<div class="content-swiper">
+			<div class="show-porcent">{{porcent}}%</div>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" ng-repeat="image in item.images_slider" >
+						<img src="./admin/images/products/{{image}}">
+					</div>
+				</div>
+			</div>
+			<div class="pagination"></div>
+		</div>
+
+
+		<!--Detalle del Producto-->
+		<div class="descInfo">
+			<span class="descritem">{{item.name}}</span><br><br>
+			<s class="precio_lista">{{item.price | currency }}</s>
+			<span class="precio">{{item.not_price | currency}}</span><br>
+			<span style="color: #6EB153" ng-if="item.cost_shipping != 0">Costo de envío: {{item.cost_shipping | currency}}</span>
+			<span style="color: #6EB153" ng-if="item.cost_shipping == 0">¡Envio Gratis!</span><br><br>
+			<p>{{item.descripcion}}</p>
+			<p>Marca: {{item.marca}}</p>
+			<p>SKU: {{item.sku}}</p>
+		</div>
+
+		<!-- Contador -->
+		<div class="contador-detalle-producto">
+			<table border="1">
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<button class="btn menos" type="button" id="menos"
+											ng-disabled = "quantity < 2"
+											ng-click="quantity = quantity - 1"
+											data-name="{{item.name}}"
+											data-id-product="{{item.id}}"
+											data-price="{{item.price}}"
+											data-notprice="{{item.not_price}}">
+											<img src="./src/images/carrito/min.png" />
+									</button>
+
+									<input readonly="{{readonly}}" class="input_stocks" id="cantidad" type="text" style="text-align: center; width:50px;" ng-model="quantity">
+
+									<button class="btn mas" type="button" id="mas"
+											ng-disabled="stock_session == 0"
+											ng-click="quantity = quantity + 1"
+											data-name="{{item.name}}"
+											data-id-product="{{item.id}}"
+											data-price="{{item.price}}"
+											data-notprice="{{item.not_price}}">
+											<img src="./src/images/carrito/mor.png" />
+									</button>
+
+								</td>
+							</tr>
+							<tr>
+								<td>Cant.</td>
+							</tr>
+							<tr>
+								<td ng-show="stock_session <= 3" ng-hide="stock_session <=0" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+								<td ng-show="stock_session == 0" style="color:red;">Sin existencias*</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="test_stock">
+										<div ng-show="!disabled" class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div ng-show="disabled" class="buttonAddCartDisabled" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+									</div>
+									<div class="test_stock_"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="result_products" style="color: red; font-size: 13px;"></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			<!-- redes sociales -->
+			<div class="col-md-12 text-center redes" ng-show="!disabled">
+				<div class="leyenda">
+					Compartir Producto
+				</div>
+
+				<div class="img">
+					<a href="#">
+						<img src="./src/images/fbg.png" alt="" />
+					</a>
+					<a href="#">
+						<img src="./src/images/twg.png" alt="" />
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Informacion de producto -->
+		<div class="informacion-producto col-md-12 col-xs-12 col-sm-12">
+			<div class="titulo">
+				<h2>Información Adicional <i class="glyphicon glyphicon-chevron-up"></i></h2>
+
+			</div>
+			<div class="contenedor col-md-8 col-xs-12 col-sm-12">
+
+				<div class="item col-md-12 col-xs-12 col-sm-12">
+					<div class="col-md-6 text-left">
+						NO. REF. (SKU)
+					</div>
+					<div class="col-md-6 text-right">
+						1000188883
+					</div>
+				</div>
+
+				<div class="item col-md-12">
+					<div class="col-md-6 text-left">
+						PROXIMAMENTE
+					</div>
+					<div class="col-md-6 text-right">
+						No
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!--div class="paypal">
+		<a href="{{item.paypal}}" target="_blank"><img src="./src/images/buynow.es.png" style="width: 80%; height: auto; margin: 0 auto;"></a>
+	</div-->
+
+	<!-- <div class="content-swiper">
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="cart_"></div>
+			</div>
+		</div>
+
+	</div> -->
+
+</div>
