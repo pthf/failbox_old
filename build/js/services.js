@@ -195,6 +195,15 @@
 				return deferred.promise;
 			}
 
+			function getIdPedido(id){
+		      	var deferred = $q.defer();
+
+	      		$http.get('./php/services.php?namefunction=getIdPedido&id='+id)
+					.success(function (data) {
+			        	deferred.resolve(data);
+			    	});
+			    return deferred.promise;
+		    }
 			function verificar_existencia_session(idProduct, quantity) {
 				var deferred = $q.defer();
 				var xsrf = $.param({
@@ -255,6 +264,7 @@
 				total_notprice: total_notprice,
 				idpedido_cart: idpedido_cart,
 				dates_pedido: dates_pedido,
+				getIdPedido: getIdPedido,
 				verificar_existencia_session: verificar_existencia_session,
 				verificar_existencias_global: verificar_existencias_global
 			}

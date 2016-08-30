@@ -202,6 +202,14 @@
 
 		}])
 
+		.controller('idPedidoCart', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
+		    $scope.idPedido = [];
+		    $scope.id = parseInt($routeParams.id);
+		    failboxService.getIdPedido($scope.id).then(function(data){
+		      $scope.idPedido = data;
+		    });
+		}])
+
 		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
 

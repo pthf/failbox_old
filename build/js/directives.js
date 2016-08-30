@@ -703,12 +703,16 @@
 			controller: function($document){
 				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
+					totalCart = $("#total").attr('total');
+					totalNotCart = $("#totalnot").attr('totalnot');
 					if (idpedido == '') {
 						$('.form1').remove();
 						$('#formDatesSend').submit(function(){
 							var ajaxData = new FormData();
 							ajaxData.append("action", $(this).serialize());
 							ajaxData.append("namefunction", "registrar_datos_pago");
+							ajaxData.append("total_cart", totalCart);
+							ajaxData.append("total_not_cart", totalNotCart);
 							$.ajax({
 								type: 'POST',
 								url: './php/functions_cart.php',
@@ -742,6 +746,8 @@
 							var ajaxData = new FormData();
 							ajaxData.append("action", $(this).serialize());
 							ajaxData.append("namefunction", "registrar_datos_pago");
+							ajaxData.append("total_cart", totalCart);
+							ajaxData.append("total_not_cart", totalNotCart);
 							$.ajax({
 								type: 'POST',
 								url: './php/functions_cart.php',
@@ -831,7 +837,44 @@
 	.directive('agradecimiento', function(){
 		return{
 			restrict: 'E',
-			templateUrl: './partials/success.html',
+			templateUrl: './partials/agradecimiento.html',
+			controller: function($document){
+				// setTimeout(function(){
+				// 	idpedido = $("#idpedido_resumen").attr('pedido');
+				// 	if (idpedido == '') {
+				// 		window.location.href = "productos";
+				// 	}
+				// 	// else{
+				// 	// 	$.ajax({
+				//  //          	beforeSend: function(){
+				//  //      		},
+				//  //          	url: "./php/functions_cart.php",
+				//  //          	type: "POST",
+				//  //          	data: {
+				//  //              	namefunction:'verify_idpedido',
+				//  //              	idpedido: idpedido
+				//  //          	},
+				//  //          	success: function(data){
+				//  //          		alert(data);
+				//  //          		// window.location.href = "datos-envio";
+				//  //          		// $('.g_cart_cont').html(data);
+				//  //          	},
+				//  //          	error: function(){
+				//  //          	},
+				//  //          	complete: function(){
+				//  //          	},
+				//  //          	timeout: 10000
+				//  //      	});
+				// 	// };
+				// }, 250);
+			}
+		}
+	})
+
+	.directive('cancelado', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './partials/cancelado.html',
 			controller: function($document){
 			}
 		}
@@ -907,7 +950,7 @@
 
 				$(document).on('click', '.deleteItemCart', function(e){
 				  	var idItemCart = $(this).attr('name');
-
+				  	// alert(idItemCart);
 				  	$.ajax({
 			          	beforeSend: function(){
 			      		},

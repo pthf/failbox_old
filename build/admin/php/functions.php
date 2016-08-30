@@ -69,6 +69,9 @@ require_once("../db/conexion.php");
 			case 'changePassProvider':
 				changePassProvider();
 				break;
+			case 'actualizar_status_pedido':
+				actualizar_status_pedido();
+				break;
 		}
 	}
 
@@ -855,4 +858,8 @@ require_once("../db/conexion.php");
 			echo -1;
 		}
 
+	}
+
+	function actualizar_status_pedido() {
+		// echo "Hola bebe";
 	}

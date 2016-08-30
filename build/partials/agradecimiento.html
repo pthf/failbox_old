@@ -1,5 +1,5 @@
-<div class="gracias text-center">
-    <div class="container">
+<div class="gracias text-center" ng-controller="idPedidoCart">
+    <div class="container" id="idpedido_resumen" pedido="{{idPedido[0].IdPedido}}">
         <div class="titulo">
             GRACIAS POR TU COMPRA
         </div>
@@ -9,7 +9,7 @@
         </div>
         <div class="texto-secundario col-md-12">
             <div class="texto-1 col-md-12">
-                <h2> ¡Felicidades! En esta compra ahorraste $999.00</h2>
+                <h2> ¡Felicidades! En esta compra ahorraste {{idPedido[0].TotalNot - idPedido[0].Total| currency}}</h2>
             </div>
             <div class="texto-2 col-md-12">
                 <h3>

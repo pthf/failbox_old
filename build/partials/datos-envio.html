@@ -129,10 +129,10 @@
                 </div>
 
                 <div class="final text-right">
-                    <div class="total">
+                    <div class="total" id="total" total="{{totalCart}}">
                         <b>TOTAL: {{totalCart | currency}}</b>
                     </div>
-                    <div class="ahorro">
+                    <div class="ahorro" id="totalnot" totalnot="{{totalNotPrice}}">
                         En esta compra ahorrarás {{totalNotPrice - totalCart | currency}}
                     </div>
                 </div>

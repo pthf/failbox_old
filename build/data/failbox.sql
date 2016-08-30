@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-08-2016 a las 23:42:42
+-- Tiempo de generación: 30-08-2016 a las 17:32:36
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -2614,7 +2614,12 @@ INSERT INTO `DatosEnvios` (`IdDatosEnvios`, `TipoDireccion`, `Estado`, `Ciudad`,
 (11, 'fsdfsd', 'dsf', 'sdf', 'sdf', 'sdf', 4234, 2342, 24342, 11),
 (12, 'asdadasd', 'asdas', 'sdasd', 'asdaD', '3242', 32423, 23423, 2342423, 12),
 (13, 'dsdsfsdfs', 'sdfsdfs', 'sdfsdf', 'sdfsdf', 'sfddfsdf', 324234, 234234, 234234, 13),
-(14, 'Casa de Bryan', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'dsfsdf', 44700, 324, 324, 14);
+(14, 'Casa de Bryan', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'dsfsdf', 44700, 324, 324, 14),
+(15, 'Hacienda Atequiza', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'sdad', 44700, 213123, 1213, 15),
+(16, 'La casa de Camarena', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'vsdvd', 44700, 324234, 4234234, 16),
+(17, 'Casa de Pepe', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'saasda', 44700, 31425364, 2147483647, 17),
+(18, 'Prueba', 'Jalisco', 'Guadalajara', 'fdgsfdg', 'dfsf', 345345, 324234, 234234, 18),
+(19, 'Hacienda Atequiza', 'Jalisco', 'Guadalajara', 'Hacienda Atequiza', 'asda', 44700, 2342, 234, 19);
 
 -- --------------------------------------------------------
 
@@ -2719,6 +2724,7 @@ CREATE TABLE `Pedidos` (
   `FechaPedido` datetime NOT NULL,
   `Status` int(11) NOT NULL,
   `Total` int(11) NOT NULL,
+  `TotalList` int(11) NOT NULL,
   `Usuarios_IdUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2726,21 +2732,26 @@ CREATE TABLE `Pedidos` (
 -- Volcado de datos para la tabla `Pedidos`
 --
 
-INSERT INTO `Pedidos` (`IdPedido`, `FechaPedido`, `Status`, `Total`, `Usuarios_IdUsuario`) VALUES
-(1, '2016-08-18 17:52:50', 0, 20000, 1),
-(2, '2016-08-22 15:55:39', 0, 122994, 1),
-(3, '2016-08-22 16:36:24', 0, 1061, 1),
-(4, '2016-08-23 11:21:00', 0, 335, 1),
-(5, '2016-08-23 11:26:59', 0, 79, 1),
-(6, '2016-08-23 11:48:49', 0, 27095, 1),
-(7, '2016-08-23 13:09:36', 0, 99, 1),
-(8, '2016-08-23 16:14:57', 0, 199, 1),
-(9, '2016-08-24 10:42:54', 0, 11259, 1),
-(10, '2016-08-24 11:10:43', 0, 11259, 1),
-(11, '2016-08-24 11:19:01', 0, 11259, 1),
-(12, '2016-08-24 11:34:38', 0, 1049, 1),
-(13, '2016-08-24 13:56:37', 0, 77254, 1),
-(14, '2016-08-24 14:30:29', 0, 298, 1);
+INSERT INTO `Pedidos` (`IdPedido`, `FechaPedido`, `Status`, `Total`, `TotalList`, `Usuarios_IdUsuario`) VALUES
+(1, '2016-08-18 17:52:50', 0, 20000, 0, 1),
+(2, '2016-08-22 15:55:39', 0, 122994, 0, 1),
+(3, '2016-08-22 16:36:24', 2, 1061, 0, 1),
+(4, '2016-08-23 11:21:00', 0, 335, 0, 1),
+(5, '2016-08-23 11:26:59', 2, 79, 0, 1),
+(6, '2016-08-23 11:48:49', 0, 27095, 0, 1),
+(7, '2016-08-23 13:09:36', 0, 99, 0, 1),
+(8, '2016-08-23 16:14:57', 0, 199, 0, 1),
+(9, '2016-08-24 10:42:54', 0, 11259, 0, 1),
+(10, '2016-08-24 11:10:43', 0, 11259, 0, 1),
+(11, '2016-08-24 11:19:01', 0, 11259, 0, 1),
+(12, '2016-08-24 11:34:38', 0, 1049, 0, 1),
+(13, '2016-08-24 13:56:37', 0, 77254, 0, 1),
+(14, '2016-08-24 14:30:29', 0, 298, 0, 1),
+(15, '2016-08-25 10:00:17', 0, 2599, 0, 1),
+(16, '2016-08-25 11:12:22', 0, 59, 0, 1),
+(17, '2016-08-25 13:38:08', 1, 4005, 3500, 1),
+(18, '2016-08-26 11:15:43', 0, 118, 198, 1),
+(19, '2016-08-26 14:01:53', 0, 59, 99, 1);
 
 -- --------------------------------------------------------
 
@@ -2878,14 +2889,23 @@ CREATE TABLE `Productos_has_Pedidos` (
 
 INSERT INTO `Productos_has_Pedidos` (`Productos_IdProducto`, `Pedidos_IdPedido`, `Cantidad`, `Precio`, `CostoEnvio`) VALUES
 (25, 6, 1, 2599, 0),
+(25, 15, 1, 2599, 0),
+(25, 17, 1, 2599, 0),
 (26, 9, 1, 11259, 0),
 (26, 10, 1, 11259, 0),
 (26, 11, 1, 11259, 0),
 (29, 6, 1, 23999, 0),
 (29, 13, 2, 23999, 0),
 (31, 12, 1, 1049, 0),
+(31, 17, 1, 1049, 0),
+(32, 16, 1, 59, 0),
+(33, 18, 1, 59, 0),
+(34, 17, 1, 59, 0),
+(34, 18, 1, 59, 0),
+(34, 19, 1, 59, 0),
 (37, 6, 1, 199, 99),
 (37, 14, 1, 199, 99),
+(37, 17, 1, 199, 99),
 (41, 6, 1, 199, 0),
 (41, 8, 1, 199, 0),
 (42, 7, 1, 99, 0);
@@ -3007,7 +3027,7 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `NombreUser`, `Nombre`, `Apellido`, `Email`, `Password`, `TipoPerfil`, `Privilegios`, `UltimaConexion`) VALUES
-(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-08-19 10:03:57'),
+(1, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Administrador', 1, '2016-08-30 09:24:53'),
 (2, 'Proveedor1', 'Proveedor_Uno', 'Proveedor1', 'prov1@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 2, '2016-06-30 12:35:09'),
 (3, 'Proveedor2', 'Proveedor_Dos', 'Proveedor2', 'prov2@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 3, '2016-06-16 16:53:26'),
 (4, 'Proveedor3', 'Proveedor_Tres', 'Proveedor3', 'prov3@gmail.com', '$2y$10$K893WptPPtRswyXYeZPj2.mm3KyPnFQaYokzMenTjrMaIJPGtQYpq', 'Proveedor', 4, '0000-00-00 00:00:00'),
@@ -3175,7 +3195,7 @@ ALTER TABLE `Contactos`
 -- AUTO_INCREMENT de la tabla `DatosEnvios`
 --
 ALTER TABLE `DatosEnvios`
-  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdDatosEnvios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `Estados`
 --
@@ -3195,7 +3215,7 @@ ALTER TABLE `Newsletter`
 -- AUTO_INCREMENT de la tabla `Pedidos`
 --
 ALTER TABLE `Pedidos`
-  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `Productos`
 --
