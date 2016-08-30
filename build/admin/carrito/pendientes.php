@@ -208,8 +208,8 @@
                               <th>#</th>
                               <th>Nombre</th>
                               <th>Dirección</th>
-                              <th>Total</th>
                               <th>Status</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody> 
@@ -226,17 +226,17 @@
                                 <td><?php echo $fila['IdPedido']?></td>
                                 <td><?php echo $fila['Nombre'].' '.$fila['Apellido']?></td>
                                 <td><?php echo $fila['Direccion']?></td>
-                                <td><?php echo $fila['Total']?></td>
                                 <td style="width: 25%;">
-                                  <select required class="form-control" name="warranty" id="selectStatus">
+                                  <select required class="form-control" name="status" data-id-pedido="<?php echo $fila['IdPedido']?>">
                                       <option selected disabled value=''>Selecciona..</option>
                                       <option value="1">Pagado</option>
                                       <option value="2">Cancelar</option>
                                       <option selected value="0">Pendiente</option>
                                   </select>
-                                  <button class="status" data-status="">Cambiar</button>
-                                  <!-- <button class="status_" data-status="">Cambiar</button> -->
+                                  <button class="status" data-status="0" data-id-pedido="<?php echo $fila['IdPedido']?>">Cambiar</button>
+                                  <di class="status_"></div>
                                 </td>
+                                <td style="width: 10%;"><a href="pedido.php?idpedido=<?=$fila['IdPedido'];?>">VER DETALLE PEDIDO</a></td>
                               </tr>
                             <?php }
                             } ?>
@@ -298,26 +298,30 @@
           });
         </script>
         <script type="text/javascript">
-            // $('.status_').hide();
+            $('.status_').hide();
             $(".form-control").change(function(){
-              var status = $('select[class=form-control]').val();
-              // alert(status);
-              // $('.status').remove();
-              // $('.status_').html('<button class="status_" data-status="'+status+'" data-status="">Cambiar</button>');
-              // $('.status_').show();
+              var status = $(this,'select[class=form-control]').val();
+              var idPedido = $(this).attr('data-id-pedido');
+              $('.status').remove();
+              $('.status_').html('<button class="status" data-status="'+status+'" data-id-pedido="'+idPedido+'">Cambiar</button>');
+              $('.status_').show();
             });
           $(document).on('click', '.status', function(){
-            // alert('Click Boton');
+            var status = $(this).attr('data-status');
+            var idPedido = $(this).attr('data-id-pedido');
               $.ajax({
                 beforeSend: function(){
                 },
                   url: "../php/functions.php",
                   type: "POST",
                   data: {
-                      namefunction:'actualizar_status_pedido'
+                      namefunction:'actualizar_status_pedido',
+                      status: status,
+                      idPedido: idPedido
                   },
                   success: function(data){
-                    alert(data);
+                    // alert(data);
+                    location.reload();
                   },
                   error: function(){
                   },

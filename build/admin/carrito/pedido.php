@@ -1,10 +1,20 @@
 <?php 
   session_start();
   if(!isset($_SESSION['idAdmin']))
-    header("Location: index.php");
+    header("Location: ../index.php");
   require_once("../db/conexion.php");
-  if ($_SESSION['idPrivilegio'] > 1)
-     header("Location: ../listProducts.php");
+  // print_r($_SESSION);
+  if (isset($_GET['idpedido'])) {
+  	$idpedido = $_GET['idpedido'];
+  	$query = "SELECT * FROM Pedidos WHERE IdPedido = '".$idpedido."'";
+  	$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+  	$row = mysql_num_rows($result);
+  	if ($row == 0) {
+  		header("Location: pendientes.php");
+  	}
+  } else {
+    header("Location: pendientes.php");
+  }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,11 +96,11 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="list_providers.php">Proveedores</a>
+                    <li><a href="../proveedores/list_providers.php">Proveedores</a>
                     </li>
-                    <li><a href="create_provider.php">Crear</a>
+                    <li><a href="../proveedores/create_provider.php">Crear</a>
                     </li>
-                    <li><a href="edit_providers.php">Editar</a>
+                    <li><a href="../proveedores/edit_providers.php">Editar</a>
                     </li>
                   </ul>
                 </li>
@@ -136,11 +146,26 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
-                  <span class=" fa fa-angle-down"></span>
-                </a>
+                <?php if($_SESSION['idPrivilegio'] == 1) { ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/user.png" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } else { 
+                  $sql = "SELECT idProveedor,User,ImageProfile FROM Productos p INNER JOIN Proveedores pr ON pr.idProveedor = p.Proveedores_idProveedor WHERE pr.User = '".$_SESSION['Usuario']."'";
+                  $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
+                  $row = mysql_fetch_array($res_sql);
+                  ?>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/profileProvider/<?php echo $row['ImageProfile']?>" alt=""><?php echo $_SESSION['Usuario']?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                <?php } ?>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <?php if($_SESSION['idPrivilegio'] != 1) { ?> 
+                    <li><a href="../proveedores/profile_provider.php?idProvider=<?=$row['idProveedor']?>">  Perfil</a>
+                    </li>
+                  <?php } ?>
                   <li><a href="../login/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesion</a>
                   </li>
                 </ul>
@@ -161,7 +186,7 @@
               <h3>
                     Administrador
                     <small>
-                        Listado de proveedores
+                        Detalle Pedido
                     </small>
                 </h3>
             </div>
@@ -171,12 +196,26 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <?php 
-                          $sql = "SELECT * FROM Proveedores";
-                          $res_sql = mysql_query($sql,Conectar::con()) or die(mysql_error());
-                          $num_total_products = mysql_num_rows($res_sql);
-                        ?>
-                        <h2>Total de proveedores: <?php echo $num_total_products;?></h2>
+                      	<?php 
+                      	$query1 = "SELECT * FROM DatosEnvios de 
+                      				INNER JOIN Pedidos pe ON pe.IdPedido = de.IdPedido 
+                      				INNER JOIN Usuarios u ON u.IdUsuario = pe.Usuarios_IdUsuario
+                      				WHERE de.IdPedido = '".$idpedido."'";
+                      	$result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+                      	$row1 = mysql_fetch_array($result1);
+                      	?>
+                        <h4>Nombre del Cliente: <?=$row1['Nombre'].' '.$row1['Apellido'];?></h4>
+                        <h4>Email: <?=$row1['Email'];?></h4>
+                        <h4>Dirección: <?=$row1['Direccion'];?></h4>
+                        <h4>Dirección específica: <?=$row1['TipoDireccion'];?></h4>
+                        <h4>Colonia: <?=$row1['Colonia'];?> CP: <?=$row1['CP'];?> Telefono: <?=$row1['Telefono'];?> Cel: <?=$row1['Celular'];?></h4>
+                        <h4>Estado: <?=$row1['Estado'];?> Ciudad: <?=$row1['Ciudad'];?></h4>
+                        <h4>Costo de envio: </h4>
+                        <h4>Total: <?=$row1['Total'];?></h4>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a href="../create/createProducts.php" class=""><i class="fa fa-plus-circle" style="color:#2A3F54"> Crear Producto&nbsp&nbsp&nbsp</i></a></li>
+                          <li><a href="../edit/editProducts.php" class=""><i class="fa fa-edit" style="color:#2A3F54"> Editar Productos</i></a></li>
+                        </ul>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
@@ -184,36 +223,32 @@
                           <thead>
                             <tr>
                               <th>#</th>
-                              <th>Razón Social</th>
+                              <th>Imagen</th>
+                              <th>Nombre</th>
                               <th>Dirección</th>
-                              <th>Teléfono</th>
-                              <th>Código Proveedor</th>
-                              <th>Tipo Proveedor</th>
-                              <th>Estado</th>
-                              <th>Ciudad</th>
-                              <th>Estatus</th>
+                              <th>Precio</th>
                             </tr>
                           </thead>
-                          <tbody>
-                          <?php 
-                          $query = "SELECT * FROM Proveedores p 
-                                      INNER JOIN TipoProveedor tp ON tp.idTipoProveedor = p.TipoProveedor_idTipoProveedor 
-                                      INNER JOIN Estados e ON e.IdEstado = p.Estados_IdEstado 
-                                      INNER JOIN Ciudades c ON c.IdCiudad = p.Ciudades_IdCiudad ORDER BY idProveedor DESC";
-                          $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
-                          while($fila = mysql_fetch_array($resultado)) { ?> 
-                            <tr>
-                              <td><?php echo $fila['idProveedor']?></td>
-                              <td><a href="edit_provider.php?idProvider=<?=$fila['idProveedor']?>"><?php echo $fila['RazonSocial']?></a></td>
-                              <td><?php echo $fila['Direccion']?></td>
-                              <td><?php echo $fila['Telefono']?></td>
-                              <td><?php echo $fila['CodigoProveedor']?></td>
-                              <td><?php echo $fila['TipoProveedor']?></td>
-                              <td><?php echo $fila['Estado']?></td>
-                              <td><?php echo $fila['Ciudad']?></td>
-                              <td><?php echo ($fila['EstatusProv'] == 0) ? 'Inactivo' : 'Activo'?></td>
-                            </tr>
-                          <?php } ?>
+                          <tbody> 
+                            <?php
+                            //Consultamos los registros almacenados en la base de datos
+                            if ($_SESSION['idPrivilegio'] == 1) {
+                              $query = "SELECT * FROM Pedidos pe
+                                          INNER JOIN Productos_has_Pedidos pp ON pp.Pedidos_IdPedido = pe.IdPedido 
+                                          INNER JOIN Productos pro ON pro.IdProducto = pp.Productos_IdProducto
+                                          WHERE pe.IdPedido = '".$idpedido."' ORDER BY pro.IdProducto DESC";
+                              $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
+                              while($fila = mysql_fetch_array($resultado)) { 
+                              	$images = explode(',', $fila['Image']);?>
+                              <tr>
+                              	<td><?php echo $fila['IdProducto']?></td>
+                                <td style="width: 20%;"><img src="../images/products/<?php echo $images[0];?>" alt="" style="width: 40%;"></td>
+                                <td><?php echo $fila['NombreProd']?></td>
+                                <td><?php echo $fila['Descripcion']?></td>
+                                <td><?php echo $fila['Precio']?></td>
+                              </tr>
+                            <?php }
+                            } ?>
                           </tbody>
                         </table>
                       </div>
@@ -271,6 +306,7 @@
             });
           });
         </script>
+        
 </body>
 
 </html>
