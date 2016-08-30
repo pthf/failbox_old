@@ -274,13 +274,11 @@
 						$scope.stock_session = req.data;
 					})
 				}).catch(function(err){
+					$scope.stock_session = 0;
 					$scope.quantity = 0;
 					$scope.disabled = true;
 				})
-
 			})
-
-
 		}])
 
 		.controller('carrito', ['$scope', function($scope){

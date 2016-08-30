@@ -1019,6 +1019,10 @@ ul.listNav li.itemGroup ul.subItems li{
 .contador-detalle-producto .buttonAddCart img{
 	width: 200px; cursor:pointer;margin-top:20px
 }
+.contador-detalle-producto .buttonAddCartDisabled img{
+	width: 200px; cursor:not-allowed;margin-top:20px;
+	opacity: 0.6;
+}
 .contador-detalle-producto table tbody table{
 	margin: 30px;
 	text-align:center;

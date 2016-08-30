@@ -173,12 +173,11 @@ switch($namefunction){
                                         $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                                         $line = mysql_fetch_array($result);
                                         $stock_max = $line['Stock'];
-
                                         $my_real_cart = $stock_max - $cantidad;
-                                        echo $stock_max - ( $cantidad_cart + $cantidad );
-
+                                        $total = $stock_max - ( $cantidad_cart + $cantidad );
+                                        echo $total;
+                                        break;
                                     } else {
-
                                         $query = "SELECT Stock FROM Productos WHERE IdProducto =".$idProduct;
                                         $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                                         $line = mysql_fetch_array($result);
@@ -232,7 +231,6 @@ switch($namefunction){
                             $line = mysql_fetch_array($result);
                             echo $line['precio_producto'];
                         }
-
                     }
 
                     //Agregar productos al carrito.

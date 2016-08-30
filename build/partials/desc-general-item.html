@@ -52,15 +52,15 @@
 			<p>Marca: {{item.marca}}</p>
 			<p>SKU: {{item.sku}}</p>
 		</div>
+
 		<!-- Contador -->
-		<div class="contador-detalle-producto" style="">
+		<div class="contador-detalle-producto">
 			<table border="1">
 				<tr>
 					<td>
 						<table>
 							<tr>
 								<td>
-
 									<button class="btn menos" type="button" id="menos"
 											ng-disabled = "quantity < 2"
 											ng-click="quantity = quantity - 1"
@@ -91,12 +91,12 @@
 							<tr>
 								<td ng-show="stock_session <= 3" ng-hide="stock_session <=0" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
 								<td ng-show="stock_session == 0" style="color:red;">Sin existencias*</td>
-								<!--td ng-show="stock_session == 0; " style="color:red;">Sin existencias*</td-->
 							</tr>
 							<tr>
 								<td>
 									<div class="test_stock">
-										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div ng-show="!disabled" class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div ng-show="disabled" class="buttonAddCartDisabled" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
 									</div>
 									<div class="test_stock_"></div>
 								</td>
@@ -107,14 +107,12 @@
 								</td>
 							</tr>
 						</table>
-
 					</td>
 				</tr>
-
-
 			</table>
+
 			<!-- redes sociales -->
-			<div class="col-md-12 text-center redes">
+			<div class="col-md-12 text-center redes" ng-show="!disabled">
 				<div class="leyenda">
 					Compartir Producto
 				</div>
