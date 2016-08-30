@@ -195,10 +195,6 @@
                           } 
                         ?>
                         <h2>Total de productos: <?php echo $num_total_products;?></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                          <li><a href="../create/createProducts.php" class=""><i class="fa fa-plus-circle" style="color:#2A3F54"> Crear Producto&nbsp&nbsp&nbsp</i></a></li>
-                          <li><a href="../edit/editProducts.php" class=""><i class="fa fa-edit" style="color:#2A3F54"> Editar Productos</i></a></li>
-                        </ul>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
@@ -209,6 +205,7 @@
                               <th>Nombre</th>
                               <th>Dirección</th>
                               <th>Status</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody> 
@@ -226,6 +223,7 @@
                                 <td><?php echo $fila['Nombre'].' '.$fila['Apellido']?></td>
                                 <td><?php echo $fila['Direccion']?></td>
                                 <td>Pagado <i class="fa fa-check"></i></td>
+                                <td style="width: 10%;"><a href="pedido.php?idpedido=<?=$fila['IdPedido'];?>">VER MÁS</a></td>
                               </tr>
                             <?php }
                             } ?>

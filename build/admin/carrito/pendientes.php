@@ -195,10 +195,6 @@
                           } 
                         ?>
                         <h2>Total de productos: <?php echo $num_total_products;?></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                          <li><a href="../create/createProducts.php" class=""><i class="fa fa-plus-circle" style="color:#2A3F54"> Crear Producto&nbsp&nbsp&nbsp</i></a></li>
-                          <li><a href="../edit/editProducts.php" class=""><i class="fa fa-edit" style="color:#2A3F54"> Editar Productos</i></a></li>
-                        </ul>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
@@ -226,7 +222,7 @@
                                 <td><?php echo $fila['IdPedido']?></td>
                                 <td><?php echo $fila['Nombre'].' '.$fila['Apellido']?></td>
                                 <td><?php echo $fila['Direccion']?></td>
-                                <td style="width: 25%;">
+                                <td style="width: 15%;">
                                   <select required class="form-control" name="status" data-id-pedido="<?php echo $fila['IdPedido']?>">
                                       <option selected disabled value=''>Selecciona..</option>
                                       <option value="1">Pagado</option>
@@ -236,7 +232,7 @@
                                   <button class="status" data-status="0" data-id-pedido="<?php echo $fila['IdPedido']?>">Cambiar</button>
                                   <di class="status_"></div>
                                 </td>
-                                <td style="width: 10%;"><a href="pedido.php?idpedido=<?=$fila['IdPedido'];?>">VER DETALLE PEDIDO</a></td>
+                                <td style="width: 10%;"><a href="pedido.php?idpedido=<?=$fila['IdPedido'];?>">VER MÁS</a></td>
                               </tr>
                             <?php }
                             } ?>

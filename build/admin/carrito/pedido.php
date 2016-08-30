@@ -204,22 +204,44 @@
                       	$result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
                       	$row1 = mysql_fetch_array($result1);
                       	?>
-                        <h4>Nombre del Cliente: <?=$row1['Nombre'].' '.$row1['Apellido'];?></h4>
-                        <h4>Email: <?=$row1['Email'];?></h4>
-                        <h4>Dirección: <?=$row1['Direccion'];?></h4>
-                        <h4>Dirección específica: <?=$row1['TipoDireccion'];?></h4>
-                        <h4>Colonia: <?=$row1['Colonia'];?> CP: <?=$row1['CP'];?> Telefono: <?=$row1['Telefono'];?> Cel: <?=$row1['Celular'];?></h4>
-                        <h4>Estado: <?=$row1['Estado'];?> Ciudad: <?=$row1['Ciudad'];?></h4>
-                        <h4>Costo de envio: </h4>
-                        <h4>Total: <?=$row1['Total'];?></h4>
-                        <ul class="nav navbar-right panel_toolbox">
-                          <li><a href="../create/createProducts.php" class=""><i class="fa fa-plus-circle" style="color:#2A3F54"> Crear Producto&nbsp&nbsp&nbsp</i></a></li>
-                          <li><a href="../edit/editProducts.php" class=""><i class="fa fa-edit" style="color:#2A3F54"> Editar Productos</i></a></li>
-                        </ul>
+                      	<div class="row">
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Nombre'].' '.$row1['Apellido'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Nombre del Cliente:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Email'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Email:</h4></div>
+
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Direccion'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Dirección:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['TipoDireccion'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Dirección específica:</h4></div>
+
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Colonia'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Colonia:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['CP'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Código Postal:</h4></div>
+
+						  
+						</div>
+						<div class="row">
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Telefono'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Teléfono:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Celular'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Celular:</h4></div>
+
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Estado'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Estado:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Ciudad'];?></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Ciudad:</h4></div>
+
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"></h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Costo de envio:</h4></div>
+						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777">$ <?=$row1['Total'];?>.00</h4></div>
+						  <div class="col-md-2 col-md-pull-3"><h4>Total:</h4></div>
+						</div>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>#</th>
