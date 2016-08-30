@@ -96,7 +96,8 @@
 							<tr>
 								<td>
 									<div class="test_stock">
-										<div class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div ng-show="!disabled" class="buttonAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
+										<div ng-show="disabled" class="buttonAddCartDisabled" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-notprice="{{item.not_price}}" data-quantity="{{quantity}}" data-stocks="{{item.stocks}}"><img src="./src/images/carrito/agregar-carrito.png"></div>
 									</div>
 									<div class="test_stock_"></div>
 								</td>
@@ -114,7 +115,7 @@
 
 			</table>
 			<!-- redes sociales -->
-			<div class="col-md-12 text-center redes">
+			<div class="col-md-12 text-center redes" ng-show="!disabled">
 				<div class="leyenda">
 					Compartir Producto
 				</div>
