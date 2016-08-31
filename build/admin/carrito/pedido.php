@@ -205,39 +205,47 @@
                       	$row1 = mysql_fetch_array($result1);
                       	?>
                       	<div class="row">
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Nombre'].' '.$row1['Apellido'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Nombre del Cliente:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Email'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Email:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Nombre'].' '.$row1['Apellido'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Nombre del Cliente:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Email'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Email:</h4></div>
 
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Direccion'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Dirección:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['TipoDireccion'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Dirección específica:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Direccion'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Dirección:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['TipoDireccion'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Dirección específica:</h4></div>
 
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Colonia'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Colonia:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['CP'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Código Postal:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Colonia'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Colonia:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['CP'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Código Postal:</h4></div>
+            						</div>
+                        <?php 
+                        $query2 = "SELECT * FROM Pedidos pe 
+                              INNER JOIN Productos_has_Pedidos pp ON pp.Pedidos_IdPedido = pe.IdPedido 
+                              WHERE pe.IdPedido = '".$idpedido."'";
+                        $result2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+                        $costo_envio = 0;
+                        while ($row2 = mysql_fetch_array($result2)) {
+                          $costo_envio = $costo_envio + $row2["CostoEnvio"];
+                        }
+                        ?>
+            						<div class="row">
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Telefono'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Teléfono:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Celular'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Celular:</h4></div>
 
-						  
-						</div>
-						<div class="row">
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Telefono'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Teléfono:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Celular'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Celular:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Estado'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Estado:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Ciudad'];?></h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Ciudad:</h4></div>
 
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Estado'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Estado:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"><?=$row1['Ciudad'];?></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Ciudad:</h4></div>
-
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777"></h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Costo de envio:</h4></div>
-						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777">$ <?=$row1['Total'];?>.00</h4></div>
-						  <div class="col-md-2 col-md-pull-3"><h4>Total:</h4></div>
-						</div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777">$ <?=$costo_envio?>.00</h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Costo de envio:</h4></div>
+            						  <div class="col-md-3 col-md-push-2"><h4 style="color:#777">$ <?=$row1['Total'];?>.00</h4></div>
+            						  <div class="col-md-2 col-md-pull-3"><h4>Total:</h4></div>
+            						</div>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
@@ -249,6 +257,7 @@
                               <th>Nombre</th>
                               <th>Dirección</th>
                               <th>Precio</th>
+                              <th>Costo envio</th>
                             </tr>
                           </thead>
                           <tbody> 
@@ -268,6 +277,7 @@
                                 <td><?php echo $fila['NombreProd']?></td>
                                 <td><?php echo $fila['Descripcion']?></td>
                                 <td><?php echo $fila['Precio']?></td>
+                                <td><?php echo $fila['CostoEnvio']?></td>
                               </tr>
                             <?php }
                             } ?>

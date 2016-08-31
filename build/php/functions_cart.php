@@ -848,8 +848,7 @@
       } else {
 
           if (isset($_SESSION['carrito'])) {
-            // $status = "Pendiente";
-            $query3 = "INSERT INTO Pedidos VALUES (null,'$datatime', '0', '".$total_cart."', '".$total_not_cart."', 1) ";
+            $query3 = "INSERT INTO Pedidos VALUES (null,'0','$datatime', '$datatime','0', '".$total_cart."', '".$total_not_cart."', 1) ";
             $result3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
 
             $idPedido = mysql_insert_id();
