@@ -161,6 +161,10 @@
 		.additional div:first-child{
 			border-right: 1px solid #fff;
 		}
+		.red-social > .btn{
+
+
+		}
 	}
 </style>
 <div ng-controller="topMenuController">
@@ -277,10 +281,10 @@
 
 				<ul class="listNav" ng-show="tabs.menuCuenta">
 					<li class="itemGroup">
-						<span class="title" ng-click="tabs.openCuenta()" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
+						<span class="title" ng-click="tabs.openCuenta();" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
 					</li>
 					<li class="itemGroup">
-						<span class="title" ng-click="tabs.openCuenta()" data-toggle="modal" data-target="#popup-registrar">Iniciar Sesión</span>
+						<span class="title" ng-click="tabs.openCuenta();" data-toggle="modal" data-target="#popup-registrar">Iniciar Sesión</span>
 					</li>
 				</ul>
 			</div>
@@ -291,17 +295,23 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1">
-
 					<img width="30px;" src="src/images/close2.jpg "/>
 				</button>
-		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		        <h4 class="modal-title" id="myModalLabel"></h4>
 		      </div>
 		      <div class="modal-body col-md-12">
-		    	<div class="col-md-6 col-sm-6 col-xs-6 ">
+
+		    	<div class="col-md-6 col-sm-6 col-xs-6" ng-show="registro=1">
+
 					<div class="text-center head-title">
 						<h2>INICIAR SESIÓN</h2>
 					</div>
-					<div class="col-md-12 inner col-sm-12 col-xs-12">
+					<div class="red-social col-md-12" style="padding: 0 40px;">
+						<button class="btn btn-lg inicio-session-face">FACEBOOK</button>
+					</div>
+					<div class="col-xs-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
+					<div class="col-md-12  col-sm-12 col-xs-12">
+
 						<form class="form col-md-12 col-sm-12 col-xs-12" method="post">
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<input class="form-control" type="text" placeholder="Correo Electrónico" value="">
@@ -315,13 +325,15 @@
 				    	</form>
 					</div>
 		    	</div>
-
-
-				<div class="col-md-6 col-sm-6 col-xs-6 registro">
+				<div class="col-md-6 col-sm-6 col-xs-6 registro" ng-show="registro=0">
 					<div class="text-center head-title">
 						<h2>REGISTRARSE</h2>
 					</div>
-					<div class="col-md-12 inner col-sm-12 col-xs-12">
+					<div class="red-social col-md-12" style="padding: 0 40px;">
+						<button class="btn btn-lg inicio-session-face">FACEBOOK</button>
+					</div>
+					<div class="col-xs-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
+					<div class="col-md-12  col-sm-12 col-xs-12">
 						<form class="form col-md-12 col-sm-12 col-xs-12 vertical-align" method="post">
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<input class="form-control" type="text" placeholder="Nombre" value="">
