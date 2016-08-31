@@ -40,7 +40,7 @@
 			this.menuCuenta = false;
 			this.menuBrand = 0;
 			this.tab_selected = 0;
-			this.registro = false;
+			this.registro;
 
 			this.selectBrand = function(brandSelect){
 					this.menuBrand = brandSelect;
@@ -57,7 +57,6 @@
 			this.openCuenta = function(registro){
 
 				if(typeof registro != 'undefined'){
-					console.log(registro)
 					this.registro = registro;
 				}
 				this.menuCuenta = !this.menuCuenta;

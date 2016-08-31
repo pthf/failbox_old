@@ -277,14 +277,14 @@
 
 		<div class="countBar" ng-controller="tabShowMenuTopController as tabs">
 			<div class="nav">
-				<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+				<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta {{registro}}<img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
 
 				<ul class="listNav" ng-show="tabs.menuCuenta">
 					<li class="itemGroup">
-						<span class="title" ng-click="tabs.openCuenta();" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
+						<span class="title" ng-click="tabs.openCuenta();registro=1" data-toggle="modal" data-target="#popup-registrar">Registrarse</span>
 					</li>
 					<li class="itemGroup">
-						<span class="title" ng-click="tabs.openCuenta();" data-toggle="modal" data-target="#popup-registrar">Iniciar Sesión</span>
+							<span class="title" ng-click="tabs.openCuenta();registro=0" data-toggle="modal" data-target="#popup-registrar">Iniciar Sesión</span>
 					</li>
 				</ul>
 			</div>
@@ -301,7 +301,7 @@
 		      </div>
 		      <div class="modal-body col-md-12">
 
-		    	<div class="col-md-6 col-sm-6 col-xs-6" ng-show="registro=1">
+		    	<div class="col-md-6 col-sm-6 col-xs-6" >
 
 					<div class="text-center head-title">
 						<h2>INICIAR SESIÓN</h2>
@@ -325,7 +325,7 @@
 				    	</form>
 					</div>
 		    	</div>
-				<div class="col-md-6 col-sm-6 col-xs-6 registro" ng-show="registro=0">
+				<div class="col-md-6 col-sm-6 col-xs-6 registro" >
 					<div class="text-center head-title">
 						<h2>REGISTRARSE</h2>
 					</div>
