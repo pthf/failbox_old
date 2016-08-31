@@ -861,5 +861,34 @@ require_once("../db/conexion.php");
 	}
 
 	function actualizar_status_pedido() {
-		// echo "Hola bebe";
+
+		if ($_POST['status'] == 1) {
+
+			$query = "SELECT * FROM Pedidos WHERE IdPedido = '".$_POST['idPedido']."'";
+			$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+			$row = mysql_fetch_array($result);
+			$query1 = "UPDATE Pedidos SET Status = 1 WHERE IdPedido = '".$row['IdPedido']."'";
+			$result1 = mysql_query($query1);
+
+		} else if ($_POST['status'] == 2){
+
+			$query = "SELECT * FROM Pedidos p INNER JOIN Productos_has_Pedidos pp ON pp.Pedidos_IdPedido = p.IdPedido WHERE p.IdPedido = '".$_POST['idPedido']."'";
+			$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+			while($row = mysql_fetch_array($result)){
+				$query1 = "SELECT Stock FROM Productos WHERE IdProducto = '".$row['Productos_IdProducto']."'";
+				$result1 = mysql_query($query1,Conectar::con()) or die (mysql_error());
+				$row1 = mysql_fetch_array($result1);
+				$stocks = ($row1['Stock'] + $row['Cantidad']);
+				$query2 = "UPDATE Productos SET Stock = '".$stocks."' WHERE IdProducto = '".$row['Productos_IdProducto']."'";
+				$result2 = mysql_query($query2,Conectar::con()) or die(mysql_error());
+			}
+			$query3 = "UPDATE Pedidos SET Status = 2 WHERE IdPedido = '".$_POST['idPedido']."'";
+			$result3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
+
+		} 
+		// else {
+		// 	echo "Pendiente";
+		// 	echo "ID: ".$_POST['idPedido'];
+		// }
+
 	}
