@@ -1741,6 +1741,7 @@ span.returnSpan{
 #popup-registrar .head-title{
 	font-family: 'Gotham-Bold';
 	color: #6EB153;
+	margin-bottom: 50px;
 }
 #popup-registrar .modal-header, #popup-registrar .modal-footer{
 	border-bottom: 0;
@@ -1750,7 +1751,7 @@ span.returnSpan{
 	border-top: 0;
 }
 #popup-registrar input{
-	border: 1px solid #000 !important;
+	border: 1px solid #58595B !important;
 	border-radius: 0;
 }
 #popup-registrar input:hover, #popup-registrar input:active, #popup-registrar input:focus{
