@@ -49,6 +49,7 @@
 	}
 
 	.topMenu .cartBar{
+		z-index: 9999;
 		width: 1.9%;
 	}
 
@@ -173,6 +174,7 @@
 	}
 
 	.topMenu .cartBar{
+		z-index: 99999;
 		width: 2.1%;
 	}
 	.selectIndicator{
@@ -308,6 +310,7 @@
 
 	.topMenu .cartBar{
 		width: 2.3%;
+		z-index: 9999;
 	}
 	.selectIndicator{
 		width: 6px;
@@ -839,6 +842,7 @@
 	}
 
 	.topMenu .cartBar{
+		z-index: 99999;
 		width: 5%;
 	}
 	.selectIndicator{
