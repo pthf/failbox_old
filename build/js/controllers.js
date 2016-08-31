@@ -2,6 +2,93 @@
 
 	angular.module('failboxStore.controllers', [])
 
+		.controller('connectFacebookController', ['$scope', function($scope){
+
+			$(function() {
+
+				var app_id = '1202462553107160';
+				var scopes = 'email, user_friends, public_profile';
+				var btn_login = '<a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>';
+				var div_session = "<div id='facebook-session'> <strong></strong> <img> <a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a> </div>";
+
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId      : app_id,
+						status     : true,
+						cookie     : true,
+						xfbml      : true,
+						version    : 'v2.7'
+					});
+					FB.getLoginStatus(function(response) {
+						console.log(response);
+						statusChangeCallback(response, function() {});
+					});
+				};
+
+				var statusChangeCallback = function(response, callback) {
+					console.log(response);
+					if (response.status === 'connected') {
+						getFacebookData();
+					} else {
+						callback(false);
+					}
+				}
+
+				var checkLoginState = function(callback) {
+					FB.getLoginStatus(function(response) {
+						callback(response);
+					});
+				}
+
+				var getFacebookData =  function() {
+					FB.api('/me', {fields: 'id,name,birthday,email,age_range,first_name,last_name,location,hometown,locale,link,gender,picture,timezone,updated_time,verified'}, function(response) {
+						console.log(JSON.stringify(response));
+						$('#login').after(div_session);
+						$('#login').remove();
+						$('#facebook-session strong').text("Welcome: "+response.name);
+						$('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+					});
+				}
+
+				var facebookLogin = function() {
+					checkLoginState(function(data) {
+						if (data.status !== 'connected') {
+							FB.login(function(response) {
+								if (response.status === 'connected')
+								getFacebookData();
+							}, {scope: scopes});
+						}
+					})
+				}
+
+				var facebookLogout = function() {
+					checkLoginState(function(data) {
+						if (data.status === 'connected') {
+							FB.logout(function(response) {
+								$('#facebook-session').before(btn_login);
+								$('#facebook-session').remove();
+							})
+						}
+					})
+				}
+
+				$(document).on('click', '#login', function(e) {
+					e.preventDefault();
+					facebookLogin();
+				})
+
+				$(document).on('click', '#logout', function(e) {
+					e.preventDefault();
+					if (confirm("¿Está seguro?"))
+					facebookLogout();
+					else
+					return false;
+				})
+
+			})
+
+		}])
+
 		.controller('topMenuController', ['$scope', 'failboxService', function($scope, failboxService){
 			failboxService.showMenuCategories().then(function(data){
 				$scope.menuProductos = data;
@@ -304,4 +391,5 @@
 				}
 			}
 		}])
+
 })();
