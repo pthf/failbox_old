@@ -89,6 +89,7 @@
 				processData: false,
 				contentType: false,
 				success: function(result){
+					// alert(result);
 					var id = result;
 					window.location.href = "../create/createCharacteristics.php?id="+id;
 				},

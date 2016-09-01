@@ -821,6 +821,7 @@
       date_default_timezone_set('UTC');
       date_default_timezone_set("America/Mexico_City");
       $datatime = date("Y-m-d H:i:s");
+      $datatime_ = date("Y-m-d H:i:s");
 
       if (isset($_SESSION['id_pedido'])) {
 
@@ -829,14 +830,21 @@
         $num_row = mysql_num_rows($result);
         if ($num_row > 0) {
           $row = mysql_fetch_array($result);
-          // echo "Actualizamos";
-          $query1 = "UPDATE Pedidos SET FechaPedido = '".$datatime."', Total='".$total_cart."', TotalList='".$total_not_cart."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
+          $query1 = "UPDATE Pedidos SET FechaPedido = '".$datatime."', FechaEntrega = '".$datatime_."', Total='".$total_cart."', TotalList='".$total_not_cart."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
           $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
           foreach ($_SESSION['carrito'] as $key => $value) {
-            $query5 = "UPDATE Productos_has_Pedidos SET Productos_IdProducto = '".$value['id_producto']."', Cantidad = '".$value['cantidad']."', Precio = '".$value['precio']."', 
-                                                        CostoEnvio = '".$value['costo_envio']."' WHERE Pedidos_IdPedido = '".$_SESSION['id_pedido']."'";
-            $result5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
+            $query = "SELECT * FROM Productos_has_Pedidos WHERE Pedidos_IdPedido = '".$_SESSION['id_pedido']."' AND Productos_IdProducto = '".$value['id_producto']."'";
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            $row = mysql_num_rows($result);
+            if ($row > 0) {
+              $query5 = "UPDATE Productos_has_Pedidos SET Cantidad = '".$value['cantidad']."', Precio = '".$value['precio']."', CostoEnvio = '".$value['costo_envio']."' 
+                                                    WHERE Pedidos_IdPedido = '".$_SESSION['id_pedido']."' AND Productos_IdProducto = '".$value['id_producto']."'";
+              $result5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
+            } else {
+              $query5 = "INSERT INTO Productos_has_Pedidos VALUES ('".$value['id_producto']."','".$_SESSION['id_pedido']."','".$value['cantidad']."','".$value['precio']."','".$value['costo_envio']."')";
+              $result5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
+            }
           }
 
           $query2 = "UPDATE DatosEnvios SET TipoDireccion='".$formData['typeAddress']."',Estado='".$formData['state']."',Ciudad='".$formData['city']."',
@@ -848,11 +856,16 @@
       } else {
 
           if (isset($_SESSION['carrito'])) {
-            $query3 = "INSERT INTO Pedidos VALUES (null,'0','$datatime', '$datatime','0', '".$total_cart."', '".$total_not_cart."', 1) ";
+            $orden_pedido = "NULL";
+            $query3 = "INSERT INTO Pedidos VALUES (null,'".$orden_pedido."','$datatime', '$datatime_','0', '".$total_cart."', '".$total_not_cart."', 1) ";
             $result3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
 
             $idPedido = mysql_insert_id();
             $_SESSION['id_pedido'] = $idPedido;
+
+            $orden_pedido = "PAYFAILBOX".$idPedido.date("Y").date("m").date("d");
+            $query = "UPDATE Pedidos SET OrdenPedido = '$orden_pedido' WHERE IdPedido = $idPedido";
+            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
 
             foreach ($_SESSION['carrito'] as $key => $value) {
               $query5 = "INSERT INTO Productos_has_Pedidos VALUES ('".$value['id_producto']."','".$idPedido."','".$value['cantidad']."','".$value['precio']."','".$value['costo_envio']."')";
