@@ -70,11 +70,11 @@
 
                     <div class="text-right pay col-md-6" ng-controller="purchaseSummary">
                         <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
-                        <!-- <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post"> -->
-                        <form id="target" style="display:none" action="https://www.sandbox.paypal.com/mx/cgi-bin/webscr" method="post">
+                        <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
+                        <!-- <form id="target" style="display:none" action="https://www.sandbox.paypal.com/mx/cgi-bin/webscr" method="post"> -->
                             <input type="hidden" name="cmd" value="_xclick">
-                            <!-- <input type="hidden" name="business" value="hola@failbox.mx"> -->
-                            <input type="hidden" name="business" value="hola-facilitator@failbox.mx">
+                            <input type="hidden" name="business" value="hola@failbox.mx">
+                            <!-- <input type="hidden" name="business" value="hola-facilitator@failbox.mx"> -->
                             <input type="hidden" name="item_name" value="Compras Failbox">
                             <input type="hidden" name="currency_code" value="MXN">
                             <input type="hidden" name="amount" value="{{totalCart | currency}}">

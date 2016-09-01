@@ -322,7 +322,7 @@ require_once("../db/conexion.php");
 	                            	RouteProd='" .$nombre_prod. "', Descripcion='" . $formData["description"] . "', 
 	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
 	                                PrecioFailbox='" . $formData['pricefailbox'] . "', CostoEnvio='".$formData['cost_shipping']."',
-	                                Garantia='" . $formData['warranty'] . "', Modelo='" . $formData['model'] . "',
+	                                Modelo='" . $formData['model'] . "',
 	                                SKU='" . $formData['sku'] . "', Estatus='" . $formData['estatus'] . "',
 	                                urlPaypal='" . $formData['url_paypal'] . "',Destacado='" . $formData['outstanding'] . "',
 	                                FechaAlta='".$datatime."', IdPrivilegio='" . $formData['idPrivilegio'] . "', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."', 
