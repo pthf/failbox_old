@@ -2,14 +2,12 @@
 
 	angular.module('failboxStore.controllers', [])
 
-		.controller('connectFacebookController', ['$scope', function($scope){
+		.controller('connectFacebookController', ['$scope', '$rootScope', function($scope, $rootScope){
 
 			$(function() {
 
 				var app_id = '1202462553107160';
 				var scopes = 'email, user_friends, public_profile';
-				var btn_login = '<a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>';
-				var div_session = "<div id='facebook-session'> <strong></strong> <img> <a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a> </div>";
 
 				window.fbAsyncInit = function() {
 					FB.init({
@@ -20,7 +18,6 @@
 						version    : 'v2.7'
 					});
 					FB.getLoginStatus(function(response) {
-						console.log(response);
 						statusChangeCallback(response, function() {});
 					});
 				};
@@ -28,8 +25,10 @@
 				var statusChangeCallback = function(response, callback) {
 					console.log(response);
 					if (response.status === 'connected') {
-						getFacebookData();
+						$rootScope.loginUser = response.authResponse.userID;
+						getFacebookData(response);
 					} else {
+						$rootScope.loginUser = 0;
 						callback(false);
 					}
 				}
@@ -40,13 +39,27 @@
 					});
 				}
 
-				var getFacebookData =  function() {
+				var getFacebookData =  function(status) {
 					FB.api('/me', {fields: 'id,name,birthday,email,age_range,first_name,last_name,location,hometown,locale,link,gender,picture,timezone,updated_time,verified'}, function(response) {
-						console.log(JSON.stringify(response));
-						$('#login').after(div_session);
-						$('#login').remove();
-						$('#facebook-session strong').text("Welcome: "+response.name);
-						$('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+						$.ajax({
+							url : './php/user.php',
+							type: 'POST',
+							data: {
+								id: response.id,
+								first_name: response.first_name,
+								last_name: response.last_name,
+								email: response.email,
+								password: status.authResponse.accessToken,
+								namefunction : 'loginFB'
+							},
+							success: function(result){
+								$rootScope.loginUser = response.id;
+							},
+							error: function(){
+								alert('Error');
+							},
+							timeout: 10000
+						})
 					});
 				}
 
@@ -55,7 +68,7 @@
 						if (data.status !== 'connected') {
 							FB.login(function(response) {
 								if (response.status === 'connected')
-								getFacebookData();
+								getFacebookData(response);
 							}, {scope: scopes});
 						}
 					})
@@ -65,28 +78,52 @@
 					checkLoginState(function(data) {
 						if (data.status === 'connected') {
 							FB.logout(function(response) {
-								$('#facebook-session').before(btn_login);
-								$('#facebook-session').remove();
+								$.ajax({
+									url : './php/user.php',
+									type: 'POST',
+									data: {
+										namefunction : 'logoutFB'
+									},
+									success: function(result){
+										$rootScope.loginUser = 0;
+									},
+									error: function(){
+										alert('Error');
+									},
+									timeout: 10000
+								})
 							})
 						}
 					})
 				}
 
-				$(document).on('click', '#login', function(e) {
+				$(document).on('click', '.setDataFB', function(e) {
 					e.preventDefault();
 					facebookLogin();
+					$('.modal-header button.close').trigger('click');
 				})
 
-				$(document).on('click', '#logout', function(e) {
+				$(document).on('click', '.logOut', function(e) {
 					e.preventDefault();
-					if (confirm("¿Está seguro?"))
 					facebookLogout();
-					else
-					return false;
+				})
+
+				$(document).on('change', '#formNewUser input[name=firstname]', function(e){
+					$('#formNewUser input[name=firstname]').css({
+						'border': '2px solid red'
+					});
+				});
+
+				$(document).on('submit', '#formNewUser', function(e){
+					e.preventDefault();
+					var firstname = $('input[name=firstname]',this).val();
+					var lastname = $('input[name=lastname]',this).val();
+					var email = $('input[name=email]',this).val();
+					var password = $('input[name=password]',this).val();
+					var confirmpassword = $('input[name=confirmpassword]',this).val();
 				})
 
 			})
-
 		}])
 
 		.controller('topMenuController', ['$scope', 'failboxService', function($scope, failboxService){
@@ -302,7 +339,6 @@
 		    });
 		}])
 
-		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
 
 			var category = $routeParams.category;

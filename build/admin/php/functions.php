@@ -170,7 +170,7 @@ require_once("../db/conexion.php");
 	}
 
 	function addNewProduct() {
-	
+
 		parse_str($_POST['action'],$formData);
 
 	    date_default_timezone_set('UTC');
@@ -188,7 +188,7 @@ require_once("../db/conexion.php");
 		$nombres_filters = array_filter($nombre_prod);
 		$nombre_prod = implode('-', $nombres_filters);
 
-		$sql_products = "INSERT INTO Productos 
+		$sql_products = "INSERT INTO Productos
 							VALUES (null,'".$formData['name_provider']."','".$formData['name_product']."',
 								'".$formData["description"]."','".$nombre_prod."','".$formData['stocks']."',
 								'".$formData['pricelist']."','".$formData['pricefailbox']."',
@@ -208,13 +208,13 @@ require_once("../db/conexion.php");
 			echo $id;
 		}
 
-		
+
 	}
 
 	function addNewCharacteristics() {
 
 		parse_str($_POST['action'],$formData);
-		
+
 	    date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
@@ -237,7 +237,7 @@ require_once("../db/conexion.php");
 			echo $formData['idProducto'];
 
 		}
-		
+
 	}
 
 	function addNewSubcategory() {
@@ -270,14 +270,14 @@ require_once("../db/conexion.php");
 			// echo '<span style="color:red">Ya existe la subcategoria, intente de nuevo!!</span><br>';
 
 		}
-		
+
 	}
 
 	function addNewCategory() {
 
 		parse_str($_POST['action'],$formData);
 
-		$query = "SELECT Categoria FROM Categorias WHERE Categoria = '".$formData['other_category']."'"; 
+		$query = "SELECT Categoria FROM Categorias WHERE Categoria = '".$formData['other_category']."'";
 		$result_query = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$row = mysql_num_rows($result_query);
 
@@ -292,7 +292,7 @@ require_once("../db/conexion.php");
 			//registra las categorias de los productos
 			$sql = "INSERT INTO Categorias (IdCategoria, Categoria, RouteCategoria) VALUES ('', '".$formData['other_category']."', '".$nombre_cat."')";
 			$resultado_consulta_mysql = mysql_query($sql,Conectar::con()) or die(mysql_error());
-		
+
 			// echo '<span style="color:blue">Se agrego correctamente...!!</span><br>';
 
 		} else {
@@ -300,7 +300,7 @@ require_once("../db/conexion.php");
 			// echo '<span style="color:red">Ya existe la subcategoria, intente de nuevo!!</span><br>';
 
 		}
-		
+
 	}
 
 	function editProduct() {
@@ -317,19 +317,19 @@ require_once("../db/conexion.php");
 		$nombre_prod = implode('-', $nombres_filters);
 
 	    //Realizamos los cambios de los datos a la tabla Productos
-	    $sql_changes_prod = "UPDATE Productos 
-	                            SET NombreProveedor='".$formData['name_provider']."', NombreProd='" . $formData['name_product'] . "', 
-	                            	RouteProd='" .$nombre_prod. "', Descripcion='" . $formData["description"] . "', 
-	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "', 
+	    $sql_changes_prod = "UPDATE Productos
+	                            SET NombreProveedor='".$formData['name_provider']."', NombreProd='" . $formData['name_product'] . "',
+	                            	RouteProd='" .$nombre_prod. "', Descripcion='" . $formData["description"] . "',
+	                                Stock='" . $formData['stocks'] . "', PrecioLista='" . $formData['pricelist'] . "',
 	                                PrecioFailbox='" . $formData['pricefailbox'] . "', CostoEnvio='".$formData['cost_shipping']."',
 	                                Garantia='" . $formData['warranty'] . "', Modelo='" . $formData['model'] . "',
 	                                SKU='" . $formData['sku'] . "', Estatus='" . $formData['estatus'] . "',
 	                                urlPaypal='" . $formData['url_paypal'] . "',Destacado='" . $formData['outstanding'] . "',
-	                                FechaAlta='".$datatime."', IdPrivilegio='" . $formData['idPrivilegio'] . "', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."', 
+	                                FechaAlta='".$datatime."', IdPrivilegio='" . $formData['idPrivilegio'] . "', Marcas_IdMarca='".$formData['brand']."', Categorias_IdCategoria='".$formData['category']."',
 	                                Subcategoria_IdSubcategoria='".$formData['subcategory']."'
 								WHERE IdProducto = '" . $formData['id'] . "'";
 	    $res = mysql_query($sql_changes_prod,Conectar::con()) or die(mysql_error());
-	    
+
 	    $id_product = $formData['id'];
 	    echo $id_product;
 	}
@@ -337,8 +337,8 @@ require_once("../db/conexion.php");
 	function addImageBanner () {
 
 		parse_str($_POST['action'], $formData);
-		
-		$fileNames = []; 
+
+		$fileNames = [];
 		$indice = 0;
 		foreach ($_FILES['failboxBannerImage']["error"]  as $key => $value) {
 			$fileName = $_FILES["failboxBannerImage"]["name"][$key];
@@ -356,7 +356,7 @@ require_once("../db/conexion.php");
 	}
 
 	function deleteBannerHome ($dataBanner) {
-		
+
 		$query = "DELETE FROM BannersHome WHERE idBannersHome = $dataBanner";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 
@@ -364,45 +364,45 @@ require_once("../db/conexion.php");
 
 	function scanear_string($string)
 	{
-	 
+
 	    $string = trim($string);
-	 
+
 	    $string = str_replace(
 	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
 	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
 	        $string
 	    );
-	 
+
 	    $string = str_replace(
 	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
 	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
 	        $string
 	    );
-	 
+
 	    $string = str_replace(
 	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
 	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
 	        $string
 	    );
-	 
+
 	    $string = str_replace(
 	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
 	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
 	        $string
 	    );
-	 
+
 	    $string = str_replace(
 	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
 	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
 	        $string
 	    );
-	 
+
 	    $string = str_replace(
 	        array('ñ', 'Ñ', 'ç', 'Ç'),
 	        array('n', 'N', 'c', 'C',),
 	        $string
 	    );
-	 
+
 	    //Esta parte se encarga de eliminar cualquier caracter extraño
 	    $string = str_replace(
 	        array('¨', 'º', '-', '~',
@@ -416,8 +416,8 @@ require_once("../db/conexion.php");
 	        '',
 	        $string
 	    );
-	 
-	 
+
+
 	    return $string;
 	}
 
@@ -427,10 +427,10 @@ require_once("../db/conexion.php");
 
         $chk_ext = explode(".",$fname[0]);
         if(strtolower(end($chk_ext)) == "csv")
-        {    
+        {
           //si es correcto, entonces damos permisos de lectura para subir
           $filename = $_FILES['upload_products']['tmp_name'];
-          $handle = fopen($filename[0], "r"); 
+          $handle = fopen($filename[0], "r");
           $array_products = array();
           while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
           {
@@ -471,7 +471,7 @@ require_once("../db/conexion.php");
 				// $permitidas= array ("a","e","i","o","u","A","E","I","O","U","N","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
 				// $route_name = strtolower(str_replace($no_permitidas, $permitidas ,$convert_name));
 
-				
+
 
 				$nombre_cat = scanear_string(strtolower($capital_category));
 				$nombre_cat = explode(' ', $nombre_cat);
@@ -481,7 +481,7 @@ require_once("../db/conexion.php");
 				$sql = "INSERT INTO Categorias VALUES('', '".$capital_category."', '".$nombre_cat."')";
 				$res = mysql_query($sql,Conectar::con()) or die(mysql_error());
 
-			} 
+			}
 
 			$query6 = "SELECT * FROM Categorias WHERE Categoria = '".$array_products[$i][14]."'";
 			$resultado6 = mysql_query($query6,Conectar::con()) or die(mysql_error());
@@ -512,7 +512,7 @@ require_once("../db/conexion.php");
 				$sql2 = "INSERT INTO Subcategoria VALUES('','".$capital_subcategory."','".$nombre_subcat."','".$fila[0]."')";
 				$res2 = mysql_query($sql2,Conectar::con()) or die(mysql_error());
 
-			} 
+			}
 
 			$query3 = "SELECT * FROM Marcas WHERE Marca = '".$array_products[$i][13]."'";
 			$resultado3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
@@ -560,7 +560,7 @@ require_once("../db/conexion.php");
                     '".$array_products[$i][6]."','".$array_products[$i][7]."','".$array_products[$i][8]."','".(trim($array_products[$i][9]))."',
                     '".$images."','".$array_products[$i][11]."','".(strtoupper($array_products[$i][12]))."','".$datatime."',
                     '1','".$row3['IdMarca']."','".$row1['IdCategoria']."','".$row2['IdSubcategoria']."','2')";
-	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+	        $resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
 	        $rs = mysql_query("SELECT MAX(IdProducto) AS id FROM Productos",Conectar::con()) or die(mysql_error());
 			if ($row = mysql_fetch_row($rs)) {
@@ -571,7 +571,7 @@ require_once("../db/conexion.php");
 	           	$resultado4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
 				while ($row4 = mysql_fetch_array($resultado4)) {
 	           		$imagenes_prod = explode(',', $row4['Image']);
-	           		for ($x=0; $x < count($imagenes_prod); $x++) { 
+	           		for ($x=0; $x < count($imagenes_prod); $x++) {
 	           			$query5 = "INSERT INTO Productos_has_Imagenes VALUES('".$row4['IdProducto']."','','".$imagenes_prod[$x]."')";
 	           			$resultado5 = mysql_query($query5,Conectar::con()) or die(mysql_error());
 	           		}
@@ -583,7 +583,7 @@ require_once("../db/conexion.php");
           //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
         } else {
-          echo 0;   
+          echo 0;
         }
 
 	}
@@ -591,11 +591,11 @@ require_once("../db/conexion.php");
 	function cargaMasivaCaracteristicas () {
 
 		$fname = $_FILES['upload_char']['name'];
-		
+
         // echo 'Cargando nombre del archivo: '.$fname[1].' <br>';
         $chk_ext = explode(".",$fname[1]);
         if(strtolower(end($chk_ext)) == "csv")
-        {    
+        {
           //si es correcto, entonces damos permisos de lectura para subir
           $filename = $_FILES['upload_char']['tmp_name'];
           $handle = fopen($filename[1], "r");
@@ -634,7 +634,7 @@ require_once("../db/conexion.php");
            //cerramos la lectura del archivo "abrir archivo" con un "cerrar archivo"
           fclose($handle);
         } else {
-          echo '<span style="color:red">Formato de archivo incorrecto</span>';     
+          echo '<span style="color:red">Formato de archivo incorrecto</span>';
         }
 
 	}
@@ -649,7 +649,7 @@ require_once("../db/conexion.php");
 		if (password_verify($formData['repeat_password'], $passwordhash)) {
 		    // echo '¡La contraseña es válida!';
 
-		    $fileNames = []; 
+		    $fileNames = [];
 			$indice = 0;
 			foreach ($_FILES['profileImage']["error"]  as $key => $value) {
 				$fileName = $_FILES["profileImage"]["name"][$key];
@@ -668,13 +668,13 @@ require_once("../db/conexion.php");
 			  	date_default_timezone_set("America/Mexico_City");
 			  	$datatime = date("Y-m-d H:i:s");
 
-				$query = "INSERT INTO Proveedores 
+				$query = "INSERT INTO Proveedores
 						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
 						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','0','0','0','".$formData['code']."','".$datatime."','2',
 						'".$fileName."','".$formData['user']."','".$passwordhash."','".$formData['status']."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
 				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
-				$query1 = "INSERT INTO Usuarios 
+				$query1 = "INSERT INTO Usuarios
 						VALUES('','".$formData['user']."','".$formData['reason_social']."','','".$formData['email']."','".$passwordhash."','Proveedor','2','')";
 				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
@@ -686,14 +686,14 @@ require_once("../db/conexion.php");
 			  	date_default_timezone_set("America/Mexico_City");
 			  	$datatime = date("Y-m-d H:i:s");
 
-				$query = "INSERT INTO Proveedores 
+				$query = "INSERT INTO Proveedores
 						VALUES('','".$formData['reason_social']."','".$formData['address']."','".$formData['colony']."','".$formData['cp']."',
 						'".$formData['tel']."','".$formData['email']."','".$formData['outstanding']."','".$formData['priceSmall']."','".$formData['priceMedium']."',
 						'".$formData['priceBig']."','".$formData['code']."','".$datatime."','2','".$fileName."',
 						'".$formData['user']."','".$passwordhash."','".$formData['status']."','".$formData['type_provider']."','".$formData['state']."','".$formData['city']."')";
 				$resultado = mysql_query($query,Conectar::con()) or die(mysql_error());
 
-				$query1 = "INSERT INTO Usuarios 
+				$query1 = "INSERT INTO Usuarios
 						VALUES('','".$formData['user']."','".$formData['reason_social']."','','".$formData['email']."','".$passwordhash."','Proveedor','2','')";
 				$resultado1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
 
@@ -706,7 +706,7 @@ require_once("../db/conexion.php");
 		    echo 1;
 
 		}
-		
+
 	}
 
 	function addNewTypeProvider () {
@@ -740,7 +740,7 @@ require_once("../db/conexion.php");
 
 		parse_str($_POST['action'],$formData);
 
-		    $fileNames = []; 
+		    $fileNames = [];
 			$indice = 0;
 			foreach ($_FILES['profileImage']["error"]  as $key => $value) {
 				$fileName = $_FILES["profileImage"]["name"][$key];
@@ -765,8 +765,8 @@ require_once("../db/conexion.php");
 
 			  	if ($row2 == 0) {
 
-			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
-			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."',
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0',
 			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', ImageProfile='".$fileName."', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
@@ -776,8 +776,8 @@ require_once("../db/conexion.php");
 
 			  	} else {
 
-			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
-			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0', 
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."',
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='0', PaqMediano='0',
 			  					PaqGrande='0', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
@@ -799,9 +799,9 @@ require_once("../db/conexion.php");
 
 			  	if ($row2 == 0) {
 
-			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
-			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
-			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2',  
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."',
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."',
+			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2',
 			  					ImageProfile='".$fileName."', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
@@ -811,8 +811,8 @@ require_once("../db/conexion.php");
 
 			  	} else {
 
-			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."', 
-			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."', 
+			  		$query = "UPDATE Proveedores SET RazonSocial='".$formData['reason_social']."', Direccion='".$formData['address']."', Colonia='".$formData['colony']."', CP='".$formData['cp']."',
+			  					Telefono='".$formData['tel']."', Email='".$formData['email']."', CostoEnvio='".$formData['outstanding']."', PaqChico='".$formData['priceSmall']."',
 			  					PaqMediano='".$formData['priceMedium']."', PaqGrande='".$formData['priceBig']."', FechaAlta='".$datatime."', IdPrivilegio='2', User='".$formData['user']."', EstatusProv='".$formData['status']."',
 			  					TipoProveedor_idTipoProveedor='".$formData['type_provider']."', Estados_IdEstado='".$formData['state']."', Ciudades_IdCiudad='".$formData['city']."'
 			  					WHERE idProveedor = '".$formData['idProveedor']."'";
@@ -885,7 +885,7 @@ require_once("../db/conexion.php");
 			$query3 = "UPDATE Pedidos SET Status = 2 WHERE IdPedido = '".$_POST['idPedido']."'";
 			$result3 = mysql_query($query3,Conectar::con()) or die(mysql_error());
 
-		} 
+		}
 		// else {
 		// 	echo "Pendiente";
 		// 	echo "ID: ".$_POST['idPedido'];
