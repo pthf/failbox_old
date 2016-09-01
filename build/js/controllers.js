@@ -40,7 +40,7 @@
 			this.menuCuenta = false;
 			this.menuBrand = 0;
 			this.tab_selected = 0;
-			this.registro;
+			$scope.registro = 0;
 
 			this.selectBrand = function(brandSelect){
 					this.menuBrand = brandSelect;
@@ -57,7 +57,16 @@
 			this.openCuenta = function(registro){
 
 				if(typeof registro != 'undefined'){
-					this.registro = registro;
+					$('.modal .inicio, .modal .registro').hide();
+					if(registro == 1)
+						$('.modal .inicio').show();
+					else
+						$('.modal .registro').show();
+					$scope.registro = registro;
+
+					$('.modal').modal({
+					    show: 'false'
+					});
 				}
 				this.menuCuenta = !this.menuCuenta;
 			};
