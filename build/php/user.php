@@ -6,6 +6,13 @@
     function __construct($namefunction){
       $this->$namefunction();
     }
+    private function verifySession(){
+      session_start();
+      if(isset($_SESSION['idUser']))
+        echo $_SESSION['idUser'];
+      else
+        echo 0;
+    }
     private function loginFB(){
       $id = $_POST['id'];
       $first_name = $_POST['first_name'];
@@ -16,7 +23,7 @@
       $query = "SELECT idUser FROM user WHERE idUser = '$id'";
       $result = mysql_query($query) or die(mysql_error());
       if(mysql_num_rows($result)==0){
-        $query = "INSERT INTO user (idUser, firstNameUser, lastNameUser, emailUser, passwordUser, lastConnection) VALUES ('$id','$first_name','$last_name','$email','$password', '$date')";
+        $query = "INSERT INTO user (idUser, firstNameUser, lastNameUser, emailUser, passwordUser, lastConnection, newsletter) VALUES ('$id','$first_name','$last_name','$email','$password', '$date', 1)";
         $result = mysql_query($query) or die(mysql_error());
       }else{
         $query = "SELECT idUser FROM user WHERE idUser = '$id' AND passwordUser = '$password'";
@@ -32,9 +39,26 @@
       session_start();
       $_SESSION['idUser'] = $id;
     }
-    private function logoutFB(){
+    private function logout(){
       session_start();
       session_destroy();
+    }
+    private function addUser(){
+      parse_str($_POST['formData'], $data);
+      $firstname = $data['firstname'];
+      $lastname = $data['lastname'];
+      $email = $data['email'];
+      $password = $data['password'];
+      $passwordhash = password_hash($password, PASSWORD_DEFAULT);
+      $date = date('Y-m-d H:i:s');
+      $id = substr(date('Y'),2)."".date('mdHis');
+      //$newsletter = $data['newsletter'];
+      $query = "INSERT INTO user (idUser, firstNameUser, lastNameUser, emailUser, passwordUser, lastConnection, newsletter)
+      VALUES ('$id','$firstname','$lastname','$email','$passwordhash', '$date', 1)";
+      $result = mysql_query($query) or die(mysql_error());
+      session_start();
+      $_SESSION['idUser'] = $id;
+      echo $id;
     }
     private function verifyEmail(){
       $email = $_POST['email'];
@@ -42,6 +66,7 @@
       $result = mysql_query($query) or die(mysql_error());
       echo mysql_num_rows($result);
     }
+
   }
   $namefunction = $_POST['namefunction'];
   new user($namefunction);

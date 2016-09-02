@@ -28,7 +28,7 @@
 						$rootScope.loginUser = response.authResponse.userID;
 						getFacebookData(response);
 					} else {
-						$rootScope.loginUser = 0;
+						// $rootScope.loginUser = 0;
 						callback(false);
 					}
 				}
@@ -76,23 +76,40 @@
 
 				var facebookLogout = function() {
 					checkLoginState(function(data) {
-						if (data.status === 'connected') {
-							FB.logout(function(response) {
-								$.ajax({
-									url : './php/user.php',
-									type: 'POST',
-									data: {
-										namefunction : 'logoutFB'
-									},
-									success: function(result){
-										$rootScope.loginUser = 0;
-									},
-									error: function(){
-										alert('Error');
-									},
-									timeout: 10000
-								})
+						if (data.status === 'unknown'){
+							$.ajax({
+								url : './php/user.php',
+								type: 'POST',
+								data: {
+									namefunction : 'logout'
+								},
+								success: function(result){
+									$rootScope.loginUser = 0;
+								},
+								error: function(){
+									alert('Error');
+								},
+								timeout: 10000
 							})
+						}else{
+							if (data.status === 'connected') {
+								FB.logout(function(response) {
+									$.ajax({
+										url : './php/user.php',
+										type: 'POST',
+										data: {
+											namefunction : 'logout'
+										},
+										success: function(result){
+											$rootScope.loginUser = 0;
+										},
+										error: function(){
+											alert('Error');
+										},
+										timeout: 10000
+									})
+								})
+							}
 						}
 					})
 				}
@@ -109,6 +126,7 @@
 				})
 
 			})
+
 		}])
 
 		.controller('topMenuController', ['$scope', 'failboxService', function($scope, failboxService){
@@ -143,7 +161,7 @@
 
 		}])
 
-		.controller('tabShowMenuTopController',['$scope', function($scope){
+		.controller('tabShowMenuTopController',['$scope', '$rootScope', function($scope, $rootScope){
 
 			this.menuProductos = false;
 			this.menuCuenta = false;
@@ -164,7 +182,6 @@
 			};
 
 			this.openCuenta = function(registro){
-
 				if(typeof registro != 'undefined'){
 					$('.modal .inicio, .modal .registro').hide();
 					if(registro == 1)
@@ -186,6 +203,7 @@
 				this.menuBrand = 0;
 				this.tab_selected = 0;
 			};
+
 		}])
 
 		.controller('tabShowMenuTopControllerMobile',['$scope', function($scope){

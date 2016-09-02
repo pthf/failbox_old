@@ -277,9 +277,9 @@
 
 <div class="countBar" ng-controller="tabShowMenuTopController as tabs">
 	<div class="nav">
-		<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta<img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
+		<span class="opctit" ng-click="tabs.openCuenta()">Mi Cuenta <img class="selectIndicator" src="src/images/indMostLess-02.png"></span>
 
-		<ul class="listNav" ng-show="tabs.menuCuenta" ng-if="loginUser===0">
+		<ul class="listNav" ng-show="tabs.menuCuenta" ng-if="loginUser==0">
 			<li class="itemGroup">
 				<span class="title" ng-click="tabs.openCuenta(1)">Registrarse</span>
 			</li>
@@ -344,7 +344,7 @@
 						<button class="btn btn-lg inicio-session-face setDataFB"><strong>REGÍSTRATE CON FACEBOOK</strong></button>
 					</div>
 					<div class="col-xs-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
-					<div class="col-xs-12" style="text-align: center; margin-top: -.25em; margin-bottom: 2em;"><span><strong style="color:#000;">Regístrate con tu dirección de email<strong></span></div>
+					<div class="col-xs-12" style="text-align: center; margin-top: -.25em; margin-bottom: 2em;"><span><strong style="color:#000;">Regístrate con tu dirección de email</strong></span></div>
 						<div class="col-md-12  col-sm-12 col-xs-12">
 							<form id="formNewUser" class="form col-md-12 col-sm-12 col-xs-12 vertical-align" method="post">
 								<div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -396,51 +396,51 @@
 		</div>
 	</div>
 
-</div>	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-ng-controller="tabShowMenuTopControllerMobile as tabs">
+</div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="tabShowMenuTopControllerMobile as tabs">
 
-<ul class="nav navbar-nav ulmenuMobile" ng-repeat="(key, data) in menuProductos">
+	<ul class="nav navbar-nav ulmenuMobile" ng-repeat="(key, data) in menuProductos">
 
-	<li class="title menuMobile" ng-repeat="(key, datas) in data">
-		<span class="h-title">{{key}}</span>
-		<ul class="main-submenu-mobile">
-			<li ng-show="$first" class="sub">
-				<span class="title">
-					<a href="productos/{{key | urlName}}">
-						Todos
+		<li class="title menuMobile" ng-repeat="(key, datas) in data">
+			<span class="h-title">{{key}}</span>
+			<ul class="main-submenu-mobile">
+				<li ng-show="$first" class="sub">
+					<span class="title">
+						<a href="productos/{{key | urlName}}">
+							Todos
+						</a>
+					</span>
+				</li>
+				<li ng-repeat="(subkey, subdatas) in datas" class="sub">
+					<a ng-repeat="(keysubDataKey, datasubDataKey) in subdatas" href="productos/{{key | urlName}}/{{keysubDataKey | urlName}}">
+						{{keysubDataKey}}
 					</a>
-				</span>
-			</li>
-			<li ng-repeat="(subkey, subdatas) in datas" class="sub">
-				<a ng-repeat="(keysubDataKey, datasubDataKey) in subdatas" href="productos/{{key | urlName}}/{{keysubDataKey | urlName}}">
-					{{keysubDataKey}}
+				</li>
+			</ul>
+		</li>
+		<li ng-show="$last" class="close-menu">
+			<span class="title" style="margin-left:10px">
+				<a href="productos">
+					Todos los productos
 				</a>
-			</li>
-		</ul>
-	</li>
-	<li ng-show="$last" class="close-menu">
-		<span class="title" style="margin-left:10px">
-			<a href="productos">
-				Todos los productos
-			</a>
-		</span>
-	</li>
-	<li ng-show="$last" class="row additional no-padding close-menu">
-		<div class="col-xs-6 text-center no-padding">
-			<a href="faq">
-				<i class="glyphicon glyphicon-book"></i>
-				FAQ
-			</a>
-		</div>
-		<div class="col-xs-6 text-center no-padding close-menu">
-			<a href="contacto">
-				<i class="glyphicon glyphicon-edit"></i>
-				Contacto
-			</a>
-		</div>
-	</li>
+			</span>
+		</li>
+		<li ng-show="$last" class="row additional no-padding close-menu">
+			<div class="col-xs-6 text-center no-padding">
+				<a href="faq">
+					<i class="glyphicon glyphicon-book"></i>
+					FAQ
+				</a>
+			</div>
+			<div class="col-xs-6 text-center no-padding close-menu">
+				<a href="contacto">
+					<i class="glyphicon glyphicon-edit"></i>
+					Contacto
+				</a>
+			</div>
+		</li>
 
-</ul>
+	</ul>
 </div>
 
 </div>

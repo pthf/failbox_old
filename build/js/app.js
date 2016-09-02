@@ -81,5 +81,20 @@
 			$rootScope.$destroy();
 			$(document).find("*").off();
 		});
+		//This call to server will work to verify the session in the site.
+		$.ajax({
+			type: 'POST',
+			url : './php/user.php',
+			data : {
+				namefunction : 'verifySession'
+			},
+			success: function(result){
+				$rootScope.loginUser = result;
+			},
+			error: function(){
+				alert('Error');
+			},
+			timeout: 10000
+		});
 	}])
 })();

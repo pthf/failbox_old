@@ -2,7 +2,7 @@
 
 	angular.module('failboxStore.directives', [])
 
-	.directive('topMenu', function(){
+	.directive('topMenu', ['$rootScope', function($rootScope){
 		return {
 			restrict: 'E',
 			templateUrl: './partials/top-menu.html',
@@ -189,17 +189,29 @@
 					var status_confirmpassword = $('#formNewUser div input[name=confirmpassword]').attr('data-status');
 
 					if(status_firstname == 'acepted' && status_lastname == 'acepted' && status_email == 'acepted' && status_password == 'acepted' && status_confirmpassword == 'acepted'){
-						alert('Enviamos');
+						$.ajax({
+							type: 'POST',
+							url : './php/user.php',
+							data : {
+								formData : $(this).serialize(),
+								namefunction : 'addUser'
+							},
+							success: function(result){
+								$rootScope.loginUser = result;
+							},
+							error: function(){
+								alert('Error');
+							},
+							timeout: 10000
+						});
 					}else{
 						alert('No enviamos');
 					}
 				});
 
-
-
 			}
 		};
-	})
+	}])
 
 	.directive('questionsList', function(){
 		return{
