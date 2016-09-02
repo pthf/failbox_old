@@ -2,6 +2,115 @@
 
 	angular.module('failboxStore.controllers', [])
 
+		.controller('connectFacebookController', ['$scope', '$rootScope', function($scope, $rootScope){
+
+			$(function() {
+
+				var app_id = '1202462553107160';
+				var scopes = 'email, user_friends, public_profile';
+
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId      : app_id,
+						status     : true,
+						cookie     : true,
+						xfbml      : true,
+						version    : 'v2.7'
+					});
+					FB.getLoginStatus(function(response) {
+						statusChangeCallback(response, function() {});
+					});
+				};
+
+				var statusChangeCallback = function(response, callback) {
+					console.log(response);
+					if (response.status === 'connected') {
+						$rootScope.loginUser = response.authResponse.userID;
+						getFacebookData(response);
+					} else {
+						$rootScope.loginUser = 0;
+						callback(false);
+					}
+				}
+
+				var checkLoginState = function(callback) {
+					FB.getLoginStatus(function(response) {
+						callback(response);
+					});
+				}
+
+				var getFacebookData =  function(status) {
+					FB.api('/me', {fields: 'id,name,birthday,email,age_range,first_name,last_name,location,hometown,locale,link,gender,picture,timezone,updated_time,verified'}, function(response) {
+						$.ajax({
+							url : './php/user.php',
+							type: 'POST',
+							data: {
+								id: response.id,
+								first_name: response.first_name,
+								last_name: response.last_name,
+								email: response.email,
+								password: status.authResponse.accessToken,
+								namefunction : 'loginFB'
+							},
+							success: function(result){
+								$rootScope.loginUser = response.id;
+							},
+							error: function(){
+								alert('Error');
+							},
+							timeout: 10000
+						})
+					});
+				}
+
+				var facebookLogin = function() {
+					checkLoginState(function(data) {
+						if (data.status !== 'connected') {
+							FB.login(function(response) {
+								if (response.status === 'connected')
+								getFacebookData(response);
+							}, {scope: scopes});
+						}
+					})
+				}
+
+				var facebookLogout = function() {
+					checkLoginState(function(data) {
+						if (data.status === 'connected') {
+							FB.logout(function(response) {
+								$.ajax({
+									url : './php/user.php',
+									type: 'POST',
+									data: {
+										namefunction : 'logoutFB'
+									},
+									success: function(result){
+										$rootScope.loginUser = 0;
+									},
+									error: function(){
+										alert('Error');
+									},
+									timeout: 10000
+								})
+							})
+						}
+					})
+				}
+
+				$(document).on('click', '.setDataFB', function(e) {
+					e.preventDefault();
+					facebookLogin();
+					$('.modal-header button.close').trigger('click');
+				})
+
+				$(document).on('click', '.logOut', function(e) {
+					e.preventDefault();
+					facebookLogout();
+				})
+
+			})
+		}])
+
 		.controller('topMenuController', ['$scope', 'failboxService', function($scope, failboxService){
 			failboxService.showMenuCategories().then(function(data){
 				$scope.menuProductos = data;
@@ -58,7 +167,7 @@
 
 				if(typeof registro != 'undefined'){
 					$('.modal .inicio, .modal .registro').hide();
-					if(registro == 1)
+					if(registro == 0)
 						$('.modal .inicio').show();
 					else
 						$('.modal .registro').show();
@@ -66,6 +175,14 @@
 
 					$('.modal').modal({
 					    show: 'false'
+					});
+					$('.modal').on('hidden.bs.modal', function () {
+						$.each($('#popup-registrar').find('form'), function(k , v){
+							v.reset();
+							$.each($(v).find('input'), function(ke, va){
+								$(va).attr('style', '');
+							})
+						})
 					});
 				}
 				this.menuCuenta = !this.menuCuenta;
@@ -224,7 +341,6 @@
 		    });
 		}])
 
-		// .controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', function($scope, $routeParams, failboxService){
 		.controller('showProdutsByFilters', ['$scope', '$routeParams', 'failboxService', '$rootScope', function($scope, $routeParams, failboxService, $rootScope){
 
 			var category = $routeParams.category;
@@ -318,4 +434,5 @@
 				}
 			}
 		}])
+
 })();

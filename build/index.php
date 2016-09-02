@@ -4,23 +4,27 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=nos">
-	<!-- <base href="http://paratodohayfans.com/web/failbox/"> -->
 	<base href="http://localhost/www/failbox/build/">
-	<title>FailBox - Lo que cuenta es de adentro.</title>
+	<title>FailBox - Lo que cuenta es lo de adentro.</title>
 	<link rel="shortcut icon" type="image/png" href="./src/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
 	<link rel="stylesheet" type="text/css" href="./css/home_responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<link rel="stylesheet" type="text/css" href="./css/carrito.css">
-	<!-- Bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="./js/lib/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-81923103-1', 'auto');
+	ga('send', 'pageview');
+	</script>
 </head>
 <body>
-	<div class="contenedor">
+	<div class="contenedor" ng-controller="connectFacebookController">
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view>
@@ -28,7 +32,6 @@
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
 	</div>
-
 	<script src="./js/lib/underscore-min.js"></script>
 	<script src="./js/lib/angular.min.js"></script>
 	<script src="./js/lib/angular-route.min.js"></script>
@@ -38,7 +41,15 @@
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
 	<script src="./js/lib/slider.js"></script>
-	<script src="http://localhost:35729/livereload.js"></script>
-
+	<script>
+	// Load the SDK asynchronously
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
 </body>
 </html>
