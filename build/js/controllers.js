@@ -40,7 +40,7 @@
 			this.menuCuenta = false;
 			this.menuBrand = 0;
 			this.tab_selected = 0;
-			$scope.registro = 0;
+			this.registro;
 
 			this.selectBrand = function(brandSelect){
 					this.menuBrand = brandSelect;
