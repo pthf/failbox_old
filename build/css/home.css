@@ -1751,7 +1751,7 @@ span.returnSpan{
 	border-top: 0;
 }
 #popup-registrar input{
-	border: 1px solid #a2a4a7 !important;
+	border: 1px solid #a2a4a7;
 	border-radius: 0;
 }
 #popup-registrar input:hover, #popup-registrar input:active, #popup-registrar input:focus{
@@ -1798,4 +1798,20 @@ span.returnSpan{
 .inicio-session-face:active,
 .inicio-session-face:focus{
 	color: #fff !important;
+}
+
+#formNewUser input{
+	padding: 20px 5px 20px 5px !important;
+}
+
+#formNewUser div{
+	flex-wrap: wrap;
+}
+
+.msgError{
+	width: 100% !important;
+	height: auto;
+	font-size: .9em;
+	color: red;
+	margin-top: 5px;
 }

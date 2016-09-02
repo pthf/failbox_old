@@ -108,21 +108,6 @@
 					facebookLogout();
 				})
 
-				$(document).on('change', '#formNewUser input[name=firstname]', function(e){
-					$('#formNewUser input[name=firstname]').css({
-						'border': '2px solid red'
-					});
-				});
-
-				$(document).on('submit', '#formNewUser', function(e){
-					e.preventDefault();
-					var firstname = $('input[name=firstname]',this).val();
-					var lastname = $('input[name=lastname]',this).val();
-					var email = $('input[name=email]',this).val();
-					var password = $('input[name=password]',this).val();
-					var confirmpassword = $('input[name=confirmpassword]',this).val();
-				})
-
 			})
 		}])
 

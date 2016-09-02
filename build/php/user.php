@@ -36,6 +36,12 @@
       session_start();
       session_destroy();
     }
+    private function verifyEmail(){
+      $email = $_POST['email'];
+      $query = "SELECT idUser FROM user WHERE emailUser = '$email'";
+      $result = mysql_query($query) or die(mysql_error());
+      echo mysql_num_rows($result);
+    }
   }
   $namefunction = $_POST['namefunction'];
   new user($namefunction);
