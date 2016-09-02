@@ -52,9 +52,10 @@
       $passwordhash = password_hash($password, PASSWORD_DEFAULT);
       $date = date('Y-m-d H:i:s');
       $id = substr(date('Y'),2)."".date('mdHis');
-      //$newsletter = $data['newsletter'];
+      if(isset($data['newsletter']))
+        $newsletter = 1; else $newsletter = 0;
       $query = "INSERT INTO user (idUser, firstNameUser, lastNameUser, emailUser, passwordUser, lastConnection, newsletter)
-      VALUES ('$id','$firstname','$lastname','$email','$passwordhash', '$date', 1)";
+      VALUES ('$id','$firstname','$lastname','$email','$passwordhash', '$date', '$newsletter')";
       $result = mysql_query($query) or die(mysql_error());
       session_start();
       $_SESSION['idUser'] = $id;
@@ -66,7 +67,6 @@
       $result = mysql_query($query) or die(mysql_error());
       echo mysql_num_rows($result);
     }
-
   }
   $namefunction = $_POST['namefunction'];
   new user($namefunction);

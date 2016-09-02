@@ -241,6 +241,11 @@
   z-index: 11;
   overflow-y: hidde;
   right: 10px; }
+  .buy-slide .comineza .texto {
+    padding: 30px 15px;
+    padding-bottom: 10px; }
+  .buy-slide .comineza .cnt {
+    padding: 20px 17px; }
   .buy-slide .content-buy {
     height: 400px;
     max-height: 400px;

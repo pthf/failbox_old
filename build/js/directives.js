@@ -198,6 +198,7 @@
 							},
 							success: function(result){
 								$rootScope.loginUser = result;
+								$('.modal-header button.close').trigger('click');
 							},
 							error: function(){
 								alert('Error');

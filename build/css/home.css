@@ -1753,18 +1753,33 @@ span.returnSpan{
 #popup-registrar input{
 	border: 1px solid #a2a4a7;
 	border-radius: 0;
+    padding: 20px 5px 20px 15px;
 }
 #popup-registrar input:hover, #popup-registrar input:active, #popup-registrar input:focus{
 	box-shadow: none;
 }
-#popup-registrar .btn-default{
-	background-color: #58595B !important;
+#popup-registrar .btn-success{
+	background-color: #6EB153;
 	color: #fff;
-	border-radius: 0;
 }
 #popup-registrar .inner{
 	padding-top: 50px;
 }
+#popup-registrar .opcion{
+	color: #000;
+	padding: 10px 0;
+	font-size: 15px;
+}
+
+#popup-registrar .opcion.olvidaste,
+#popup-registrar .opcion.olvidaste a,
+#popup-registrar .opcion.no-tienes .registrate{
+	color: #6EB153;
+}
+#popup-registrar .opcion.no-tienes .registrate{
+	cursor: pointer;
+}
+
 
 .divider {
     border-top: 1px solid #d9dadc;
@@ -1801,17 +1816,21 @@ span.returnSpan{
 }
 
 #formNewUser input{
-	padding: 20px 5px 20px 5px !important;
+	padding: 20px 5px 20px 15px;
 }
 
 #formNewUser div{
 	flex-wrap: wrap;
 }
 
+
 .msgError{
-	width: 100% !important;
+	width: 100%;
 	height: auto;
 	font-size: .9em;
 	color: red;
 	margin-top: 5px;
+}
+.inicio-session-face{
+	font-family: 'Gotham-Bold';
 }

@@ -183,7 +183,7 @@
 
 		<div class="logoFailBox">
 			<div class="img">
-				<a href="#/"><img src="src/images/failbox-04.png"></a>
+				<a href="/www/failbox/build/"><img src="src/images/failbox-04.png"></a>
 			</div>
 			<div class="titleNav">
 				<span>¿Quiénes somos?</span>
@@ -300,7 +300,7 @@
 	</div>
 </div>
 <!-- Modal -->
-<div ng-controller="tabShowMenuTopController as tabs" class="modal fade in" id="popup-registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div ng-controller="tabShowMenuTopController as tabs" class="modal modal-login fade in" id="popup-registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog " role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -313,13 +313,13 @@
 
 				<div class="col-md-12 col-sm-12 col-xs-12 inicio text-center" style="display:none">
 
-					<div class="text-center head-title">
+					<div class="text-center head-title col-md-12">
 						<h2>INICIAR SESIÓN</h2>
 					</div>
 					<div class="red-social col-md-12" style="padding: 0 40px;">
-						<button class="btn btn-lg inicio-session-face setDataFB">FACEBOOK</button>
+						<button class="btn btn-lg inicio-session-face setDataFB" style="padding: 13px 0">FACEBOOK</button>
 					</div>
-					<div class="col-xs-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
+					<div class="col-xs-12 col-md-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
 					<div class="col-md-12  col-sm-12 col-xs-12">
 
 						<form class="form col-md-12 col-sm-12 col-xs-12" method="post">
@@ -329,10 +329,29 @@
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<input class="form-control" type="text" placeholder="Contraseña" value="">
 							</div>
-							<div class="form-group col-md-12 text-right col-sm-12 col-xs-12" >
-								<button type="submit" class="btn btn-default">Ingresar</button>
+							<div class="checkbox form-group col-md-6 col-sm-6 col-xs-6 text-left">
+								<label style="color: #757575; font-size: 14px">
+									<input type="checkbox"> Recordarme
+								</label>
+							</div>
+							<div class="form-group col-md-6 text-right col-sm-6 col-xs-6">
+								<button type="submit" class="btn btn-success btn-lg">Ingresar</button>
 							</div>
 						</form>
+
+					</div>
+					<br><br>
+					<div class="col-md-12 col-sm-12 col-xs-12">
+
+
+						<div class="olvidaste opcion">
+							<a href="#">
+								¿Olvidaste tu nombre de usuario o contraseña?
+							</a>
+						</div>
+						<div class="no-tienes opcion">
+							¿No tienes cuenta? <span class="registrate">Regístrate</span>
+						</div>
 					</div>
 				</div>
 
@@ -341,60 +360,69 @@
 						<h2>REGISTRARSE</h2>
 					</div>
 					<div class="red-social col-md-12" style="padding: 0 40px;">
-						<button class="btn btn-lg inicio-session-face setDataFB"><strong>REGÍSTRATE CON FACEBOOK</strong></button>
+						<button class="btn btn-lg inicio-session-face setDataFB " style="padding: 13px 0">REGÍSTRATE CON FACEBOOK</button>
 					</div>
 					<div class="col-xs-12 cont-social"><div class="divider"><strong class="divider-title ng-binding">o</strong></div></div>
-					<div class="col-xs-12" style="text-align: center; margin-top: -.25em; margin-bottom: 2em;"><span><strong style="color:#000;">Regístrate con tu dirección de email</strong></span></div>
-						<div class="col-md-12  col-sm-12 col-xs-12">
-							<form id="formNewUser" class="form col-md-12 col-sm-12 col-xs-12 vertical-align" method="post">
-								<div class="form-group col-md-12 col-sm-12 col-xs-12">
-									<input data-status="denied" class="form-control col-md-12 col-sm-12 col-xs-12" type="text" placeholder="Nombre" value="" name="firstname">
-									<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
-								</div>
-								<div class="form-group col-md-12 col-sm-12 col-xs-12">
-									<input data-status="denied" class="form-control" type="text" placeholder="Apellido" value="" name="lastname">
-									<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
-								</div>
-								<div class="form-group col-md-12 col-sm-12 col-xs-12">
-									<input data-status="denied" class="form-control" type="text" placeholder="Correo Electrónico" value="" name="email">
-									<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
-								</div>
-								<div class="form-group col-md-12 col-sm-12 col-xs-12">
-									<input data-status="denied" class="form-control" type="password" placeholder="Contraseña" value="" name="password">
-									<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
-								</div>
-								<div class="form-group col-md-12 col-sm-12 col-xs-12">
-									<input data-status="denied" class="form-control" type="password" placeholder="Confirmar contraseña" value="" name="confirmpassword">
-									<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
-								</div>
-								<div class="form-group col-md-12 text-right col-sm-12 col-xs-12">
-									<button type="submit" class="btn btn-default">REGÍSTRATE</button>
-								</div>
-							</form>
-						</div>
+
+					<div class="col-xs-12" style="text-align: center; margin-top: -.25em; margin-bottom: 2em;"><span><strong style="color:#757575;">Regístrate con tu dirección de email</strong></span></div>
+					<div class="col-md-12  col-sm-12 col-xs-12">
+						<form id="formNewUser" class="form col-md-12 col-sm-12 col-xs-12 vertical-align" method="post">
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+								<input data-status="denied" class="form-control col-md-12 col-sm-12 col-xs-12" type="text" placeholder="Nombre" value="" name="firstname">
+								<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
+							</div>
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+								<input data-status="denied" class="form-control" type="text" placeholder="Apellido" value="" name="lastname">
+								<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
+							</div>
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+								<input data-status="denied" class="form-control" type="text" placeholder="Correo Electrónico" value="" name="email">
+								<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
+							</div>
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+								<input data-status="denied" class="form-control" type="password" placeholder="Contraseña" value="" name="password">
+								<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
+							</div>
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+								<input data-status="denied" class="form-control" type="password" placeholder="Confirmar contraseña" value="" name="confirmpassword">
+								<span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
+							</div>
+							<div class="checkbox form-group col-md-12 col-sm-12 col-xs-12" style="display:block">
+								<label style="color: #757575; font-size: 14px">
+									<input type="checkbox" name="newsletter" checked> Deseo suscribirme al Newsletter
+								</label>
+							</div>
+							<div class="form-group col-md-12 col-xs-12 col-sm-12" style="display:block; color: #757575">
+								Al hacer click en Registrarse, aceptas los <a>términos y condiciones</a> y la <a>política de privacidad</a> de Failbox.
+							</div>
+							<div class="form-group col-md-12 text-right col-sm-12 col-xs-12 submit">
+								<button type="submit" class="btn btn-success btn-lg">REGÍSTRATE</button>
+							</div>
+						</form>
 					</div>
 				</div>
-
-				<div class="modal-footer">
-				</div>
-
 			</div>
+
+			<div class="modal-footer">
+			</div>
+
 		</div>
 	</div>
+</div>
 
-	<div class="cartBar" ng-controller="countItemsCart">
-		<div class="nav">
-			<!--a href="carrito" -->
-			<div ng-if="countCart == ''" class="icon-countCart">
-				<img src="src/images/failbox-03.png">
-			</div>
-			<div ng-if="countCart" class="icon-countCart">
-				<span class="cantidad">{{countCart}}</span>
-				<img src="src/images/failbox-03.png">
-			</div>
-			<!--/a-->
+<div class="cartBar" ng-controller="countItemsCart">
+	<div class="nav">
+		<!--a href="carrito" -->
+		<div ng-if="countCart == ''" class="icon-countCart">
+			<img src="src/images/failbox-03.png">
 		</div>
+		<div ng-if="countCart" class="icon-countCart">
+			<span class="cantidad">{{countCart}}</span>
+			<img src="src/images/failbox-03.png">
+		</div>
+		<!--/a-->
 	</div>
+</div>
 
 </div>
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="tabShowMenuTopControllerMobile as tabs">

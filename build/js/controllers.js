@@ -167,7 +167,7 @@
 			this.menuCuenta = false;
 			this.menuBrand = 0;
 			this.tab_selected = 0;
-			$scope.registro = 0;
+			this.registro;
 
 			this.selectBrand = function(brandSelect){
 					this.menuBrand = brandSelect;
@@ -184,7 +184,7 @@
 			this.openCuenta = function(registro){
 				if(typeof registro != 'undefined'){
 					$('.modal .inicio, .modal .registro').hide();
-					if(registro == 1)
+					if(registro == 0)
 						$('.modal .inicio').show();
 					else
 						$('.modal .registro').show();
@@ -192,6 +192,14 @@
 
 					$('.modal').modal({
 					    show: 'false'
+					});
+					$('.modal').on('hidden.bs.modal', function () {
+						$.each($('#popup-registrar').find('form'), function(k , v){
+							v.reset();
+							$.each($(v).find('input'), function(ke, va){
+								$(va).attr('style', '');
+							})
+						})
 					});
 				}
 				this.menuCuenta = !this.menuCuenta;
