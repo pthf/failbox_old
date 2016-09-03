@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-4 texto">
                             {{itemsCart.nombre_producto}}
-                            <br><br>    
+                            <br><br>
                             Cantidad: {{itemsCart.cantidad}}
                         </div>
                         <div class="col-md-4 precio text-center">
@@ -70,8 +70,8 @@
 
                     <div class="text-right pay col-md-6" ng-controller="purchaseSummary">
                         <input class="formPaypal" type="image" src="./src/images/carrito/paypal.jpg" name="button">
-                        <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">
-                        <!-- <form id="target" style="display:none" action="https://www.sandbox.paypal.com/mx/cgi-bin/webscr" method="post"> -->
+                        <!-- <form id="target" style="display:none" action="https://www.paypal.com/mx/cgi-bin/webscr" method="post">-->
+                        <form id="target" style="display:none" action="https://www.sandbox.paypal.com/mx/cgi-bin/webscr" method="post">
                             <input type="hidden" name="cmd" value="_xclick">
                             <input type="hidden" name="business" value="hola@failbox.mx">
                             <!-- <input type="hidden" name="business" value="hola-facilitator@failbox.mx"> -->
@@ -84,6 +84,7 @@
                             <!-- <input type="hidden" name="cancel_return" value="http://paratodohayfans.com/web/failbox/cancelado"> -->
                             <input type="hidden" name="notify_url" value="http://failbox.mx/test/php/pay_valite.php?num={{idPedido}}">
                             <!-- <input type="hidden" name="notify_url" value="http://paratodohayfans.com/web/failbox/php/pay_valite.php?num={{idPedido}}"> -->
+
                             <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
                         </form>
                     </div>

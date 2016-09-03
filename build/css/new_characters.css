@@ -1,0 +1,257 @@
+.gridCategories{
+  position: fixed;
+  z-index: 3 !important;
+  top: 20%;
+  left: 0;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+}
+
+.gridCategories ul{
+  position: relative;
+}
+
+.gridCategories ul .open_close{
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 0%;
+  left: 100%;
+  z-index: 10;
+  background: #58595B;
+  width: 1.6vw;
+  max-width: 120px;
+  height: auto;
+  cursor: pointer;
+}
+
+.gridCategories ul .open_close img{
+  width: 100%;
+  height: auto;
+}
+
+.gridCategories ul, .gridCategories li{
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gridCategories ul li{
+  display: block !important;
+  border-bottom: 1px solid #FFF;
+  padding-right: 50px;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: .3s;
+  background: #6EB153;
+}
+
+.gridCategories ul li:hover{
+  background: #58595B;
+}
+
+.gridCategories ul li.title{
+  background: #58595B;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.gridCategories ul li span{
+  display: inline-block !important;
+  width: auto;
+  color: #FFF;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.gridCategories ul li span.image{
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.gridCategories ul li span.image img{
+  width: 100%;
+  height: auto;
+}
+
+.gridSerives2{
+  position: fixed;
+  z-index: 3 !important;
+  top: 40%;
+  right: 0;
+  width: 12%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
+}
+
+.gridSerives{
+  position: fixed;
+  z-index: 3 !important;
+  top: 11.5%;
+  right: 0;
+  width: 20%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
+}
+
+.gridSerives ul, .gridSerives li, .gridSerives2 ul, .gridSerives2 li{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.gridSerives li, .gridSerives2 li{
+  width: 100%;
+  height: auto;
+}
+
+.gridSerives li img, .gridSerives2 li img{
+  width: 100%;
+  height: auto;
+}
+
+.view_hiden, .view_hiden2{
+  position: absolute;
+  top: 0;
+  left: -1.6vw;
+  width: 1.6vw;
+  max-width: 120px;
+  height: auto;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.view_hiden img, .view_hiden2 img{
+  width: 100%;
+  height: auto;
+}
+
+
+.capa{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  -webkit-flex-direction: center;
+  -webkit-justify-content: center;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+
+  overflow: auto;
+}
+.capa .popupInformation{
+  width: 70%;
+  height: 70%;
+  background: #FFF;
+  overflow: auto;
+}
+
+.marcasFb{
+  width: 100%;
+  height: auto;
+}
+
+.marcasFb img{
+  width: 100%;
+  height: auto;
+}
+
+.gridComoComprar{
+  padding: 0;
+  text-align: center;
+  width: 80%;
+  height: auto;
+  margin: 0 auto !important;
+  background: #F2F2F2;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.gridComoComprar div{
+  color: #39A847;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  -webkit-flex-direction: center;
+  -webkit-justify-content: center;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+}
+
+.gridComoComprar div span{
+  display: inline-block;
+}
+
+.gridComoComprar div span.image{
+  width: 30%;
+  height: auto;
+  margin-right: 5%;
+}
+
+.gridComoComprar div span.text{
+  width: 60%;
+  height: auto;
+}
+
+.gridComoComprar div span.image img{
+  width: 100%;
+  height: auto;
+}
+
+.containerDescription{
+  margin: 0 auto;
+  width: 70%;
+}
+
+.textDeco{
+  display: block !important;
+  width: 90% !important;
+  text-align: left !important;
+  font-weight: bold;
+}
+
+.title{
+  font-size: 1.5em;
+
+}
+
+.url{
+  color: blue;
+  cursor: pointer;
+  margin-top: 5px;
+}
