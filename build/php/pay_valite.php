@@ -1,4 +1,167 @@
-<?php 
+<?php
+require_once("../admin/db/conexion.php");
+
+/* Email Failbox*/
+$id_pedido = $_GET['num'];
+$query4 = "SELECT * FROM Pedidos p INNER JOIN Usuarios u ON u.IdUsuario = p.Usuarios_IdUsuario WHERE p.IdPedido = '".$id_pedido."'";
+$result4 = mysql_query($query4,Conectar::con()) or die (mysql_error());
+$field = mysql_fetch_array($result4);
+
+$orden_pedido = $field['OrdenPedido'];
+$nombre_cliente = $field['Nombre'];
+$apellidos_cliente = $field['Apellido'];
+$email_cliente = $field['Email'];
+// $telefono_cliente = $field['Email'];
+$fecha_pedido = $field['FechaPedido'];
+$fecha_entrega = $field['FechaEntrega'];
+$id_pedido = $field['IdPedido'];
+
+$to = "pepe@paratodohayfans.com";
+$subject = 'Compra Online FAILBOX';
+$message = "<html><head></head><body>";
+$message .= "<h1><img src='http://localhost/www/failbox/build/admin/images/logo_failbox.png' width='280px' height='auto'></h1>";
+$message .= "<span style='font-family:Gotham-Light;'>Gracias por su interes en los Productos de Failbox. <br>Su Orden ha sido recibida y será procesada una vez el Pago haya sido confirmado.</span>";
+?>
+<style>
+table, th, td {
+    border: 1px solid #97999c;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Gotham-Light';
+}
+.noborder {
+    border: 1px solid white;
+}
+.color-title-table {
+    background: #70B153;
+    color: #FFF;
+}
+span {
+    font-family: 'Gotham-Light';
+}
+</style>
+<?php
+$message .= "<table style='width:40%;margin-top: 2%;'>
+              <tr>
+                <th class='color-title-table'>Detalles de la Orden</th>
+                <th class='color-title-table'>Detalles de la Orden</th>
+              </tr>
+              <tr>
+                <td>
+                    ID de Orden: $orden_pedido<br>
+                    Fecha de Orden: $fecha_pedido<br>
+                    Fecha de Pago: $fecha_entrega<br>
+                    Fecha de Envio: $fecha_entrega<br>
+                </td>
+                <td>
+                    Email: $email_cliente<br>
+                    Telefono: 36363636<br>
+                </td>
+              </tr>
+            </table>";
+
+$query6 = "SELECT * FROM DatosEnvios
+          WHERE IdPedido =  $id_pedido";
+$result6 = mysql_query($query6) or die(mysql_error());
+$lineresult = mysql_fetch_array($result6);
+if(mysql_num_rows($result6)>0){
+
+    $message .= "<table style='width:40%;margin-top: 2%;margin-bottom: 2%;'>
+              <tr class='color-title-table'>
+                <th>Direccion de Pago</th>
+              </tr>
+              <tr>
+                <td>
+                    $nombre_cliente<br>
+                    ".$lineresult['Direccion']."<br>
+                    ".$lineresult['Colonia']."<br>
+                    ".$lineresult['CP']."<br>
+                    ".$lineresult['Ciudad']."<br>
+                    ".$lineresult['Estado']."<br>
+                </td>
+              </tr>
+            </table>";
+
+
+    $query5 = "SELECT * FROM Productos_has_Pedidos pp
+              INNER JOIN Productos p ON p.IdProducto = pp.Productos_IdProducto
+              INNER JOIN Pedidos pe ON pe.IdPedido = pp.Pedidos_IdPedido
+              WHERE pp.Pedidos_IdPedido = $id_pedido";
+    $result5 = mysql_query($query5) or die(mysql_error());
+
+    $message .= "<table style='width:40%;margin-top: 2%;margin-bottom: 2%;'>
+              <tr class='color-title-table'>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Modelo</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+              </tr>
+    ";
+    $costo_envio = 0;
+    $sub_total = 0;
+    while ($line5 = mysql_fetch_array($result5)) {
+        $subtotal = $line5['Cantidad'] * $line5['Precio'];
+        $costo_envio = $costo_envio + $line5['CostoEnvio'];
+        $sub_total = $sub_total + $subtotal;
+        $images = explode(',', $line5['Image']);
+        $message .= "
+              <tr>
+                <td><img src='../admin/images/products/".$images[0]."' width='80px' height='auto'></td>
+                <td>".$line5['NombreProd']."</td>
+                <td>".$line5['Modelo']."</td>
+                <td>".$line5['Cantidad']."</td>
+                <td>".$line5['Precio']."</td>
+                <td>".$subtotal."</td>
+              </tr>";
+
+    }
+
+     $message .= "
+            <tr>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder' style='border-right: 1px solid #97999c;'></th>
+                <th>Subtotal:</th>
+                <th>$ $sub_total.00</th>
+            </tr>
+            <tr>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder' style='border-right: 1px solid #97999c;'></th>
+                <th>Costo Envio:</th>
+                <th>$ $costo_envio.00</th>
+            </tr>
+            <tr>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder'></th>
+                <th class='noborder' style='border-right: 1px solid #97999c;'></th>
+                <th>Total:</th>
+                <th>$ ".$field['Total'].".00</th>
+            </tr>
+            </table>";
+
+    // $message .= "<h4>Total de la Compra: $ ".$field['Total'].".00</h4>";
+
+}else{
+    $message .= "<h4>Entrega en Failbox</h4><br>";
+}
+
+$message .= "</body></html>";
+
+$headers = "From: " . strip_tags($to) . "\r\n";
+$headers .= "Reply-To: ". strip_tags($to) . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+mail($to, $subject, $message, $headers);
+print_r($message);
+exit();
     // Primera comprobación. Cerraremos este if más adelante
     if($_POST){
         // Obtenemos los datos en formato variable1=valor1&variable2=valor2&...
@@ -23,7 +186,7 @@
         foreach($myPost as $key => $value){
             // Cada valor se trata con urlencode para poder pasarlo por GET
             if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) {
-                $value = urlencode(stripslashes($value)); 
+                $value = urlencode(stripslashes($value));
             } else {
                 $value = urlencode($value);
             }
@@ -52,7 +215,7 @@
                 if (strcmp ($res, "VERIFIED") == 0) {
             /**
              * A partir de aqui, deberiamos hacer otras comprobaciones rutinarias antes de continuar. Son opcionales, pero recomiendo al menos las dos primeras. Por ejemplo:
-             * 
+             *
              * * Comprobar que $_POST["payment_status"] tenga el valor "Completed", que nos confirma el pago como completado.
              * * Comprobar que no hemos tratado antes la misma id de transacción (txd_id)
              * * Comprobar que el email al que va dirigido el pago sea nuestro email principal de PayPal
@@ -64,7 +227,7 @@
             /**
              * En este punto tratamos la información.
              * Podemos hacer con ella muchas cosas:
-             * 
+             *
              * * Guardarla en una base de datos.
              * * Guardar cada linea del pedido en una linea diferente en la base de datos.
              * * Guardar un log.
@@ -96,7 +259,7 @@
             $subject = 'Compra Online FAILBOX';
             $message = "<html><head></head><body>";
             $message .= "<h1><img src='http://localhost/www/failbox/build/admin/images/logo_failbox.png' width='280px' height='auto'></h1>";
-            $message .= "<span style='font-family:Gotham-Light;'>Gracias por su interes en los Productos de Failbox. <br>Su Orden ha sido recibida y será procesada una vez el Pago haya sido confirmado.</span>"; 
+            $message .= "<span style='font-family:Gotham-Light;'>Gracias por su interes en los Productos de Failbox. <br>Su Orden ha sido recibida y será procesada una vez el Pago haya sido confirmado.</span>";
             ?>
             <style>
             table, th, td {
@@ -180,7 +343,7 @@
                 $sub_total = 0;
                 while ($line5 = mysql_fetch_array($result5)) {
                     $subtotal = $line5['Cantidad'] * $line5['Precio'];
-                    $costo_envio = $costo_envio + $line5['CostoEnvio']; 
+                    $costo_envio = $costo_envio + $line5['CostoEnvio'];
                     $sub_total = $sub_total + $subtotal;
                     $images = explode(',', $line5['Image']);
                     $message .= "
@@ -234,7 +397,7 @@
             $headers .= "Reply-To: ". strip_tags($to) . "\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-            
+
             mail($to, $subject, $message, $headers);
 
             /* Email Cliente */
@@ -335,7 +498,7 @@
                 $sub_total = 0;
                 while ($line5 = mysql_fetch_array($result5)) {
                     $subtotal = $line5['Cantidad'] * $line5['Precio'];
-                    $costo_envio = $costo_envio + $line5['CostoEnvio']; 
+                    $costo_envio = $costo_envio + $line5['CostoEnvio'];
                     $sub_total = $sub_total + $subtotal;
                     $images = explode(',', $line5['Image']);
                     $message .= "
@@ -395,7 +558,7 @@
 
         } else if (strcmp ($res, "INVALID") == 0) {
             // El estado que devuelve es INVALIDO, la información no ha sido enviada por PayPal. Deberías guardarla en un log para comprobarlo después
-        } 
+        }
     } else {    // Si no hay datos $_POST
         // Podemos guardar la incidencia en un log, redirigir a una URL...
     }

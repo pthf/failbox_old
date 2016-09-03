@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/home_responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<link rel="stylesheet" type="text/css" href="./css/carrito.css">
+	<link rel="stylesheet" type="text/css" href="./css/new_characters.css">
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<script src="./js/lib/jquery.min.js"></script>
 	<script src="./bootstrap/js/bootstrap.min.js"></script>
@@ -27,7 +28,12 @@
 	<div class="contenedor" ng-controller="connectFacebookController">
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
+
+
+
+
 		<div class="loadedView" ng-view>
+
 		</div>
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
