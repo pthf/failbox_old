@@ -22,8 +22,18 @@
                 </div>
                 <div class="form-group col-md-6 col-sm-4 col-xs-4">
                     <input required class="form-control" type="text" placeholder="C.P." value="{{datesPedido.CP}}" name="cp">
+                </div><div class="titulo">
+                    DATOS DE CONTACTO
                 </div>
-
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Nombre" value="{{datesPedido.Nombre}}" name="name">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <input required class="form-control" type="text" placeholder="Apellidos" value="{{datesPedido.Apellido}}" name="lastname">
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <input required class="form-control" type="text" value="{{datesPedido.Email}}" placeholder="Dirección de correo electrónico" name="email">
+                </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-6">
                     <input required class="form-control" type="text" placeholder="Teléfono" value="{{datesPedido.Telefono}}" name="tel">
                 </div>
@@ -71,15 +81,26 @@
                 <div class="form-group col-md-6 col-sm-4 col-xs-4">
                     <input required class="form-control" type="text" placeholder="C.P." value="" name="cp">
                 </div>
-
+                <div class="form-group col-md-12 col-sm-4 col-xs-12">
+                    <div style="color:red"class="result_cart"></div>
+                </div>
+                <div class="titulo">
+                    DATOS DE CONTACTO
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <input required class="form-control" type="text" placeholder="Nombre" value="" name="name">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <input required class="form-control" type="text" placeholder="Apellidos" value="" name="lastname">
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <input required class="form-control" type="text" value="" placeholder="Dirección de correo electrónico" name="email">
+                </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-6">
                     <input required class="form-control" type="text" placeholder="Teléfono" value="" name="tel">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-6">
                     <input required class="form-control" type="text" placeholder="Celular" value="" name="cel">
-                </div>
-                <div class="form-group col-md-12 col-sm-4 col-xs-12">
-                    <div style="color:red"class="result_cart"></div>
                 </div>
                 <div class="submit">
                     <button required type="submit" class="btn btn-success btn-lg">Continuar</button>

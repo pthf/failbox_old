@@ -849,7 +849,8 @@
 
           $query2 = "UPDATE DatosEnvios SET TipoDireccion='".$formData['typeAddress']."',Estado='".$formData['state']."',Ciudad='".$formData['city']."',
                                             Direccion='".$formData['address']."',Colonia='".$formData['colony']."',CP='".$formData['cp']."',
-                                            Telefono='".$formData['tel']."',Celular='".$formData['cel']."' WHERe IdPedido='".$_SESSION['id_pedido']."'";
+                                            Telefono='".$formData['tel']."',Celular='".$formData['cel']."',Nombre='".$formData['name']."',Apellido='".$formData['lastname']."',
+                                            Email='".$formData['email']."' WHERe IdPedido='".$_SESSION['id_pedido']."'";
           $result2 = mysql_query($query2,Conectar::con()) or die(mysql_error());                                  
         }
 
@@ -874,64 +875,13 @@
 
             $query4 = "INSERT INTO DatosEnvios VALUES (null,'".$formData['typeAddress']."', '".$formData['state']."', '".$formData['city']."', 
                                                     '".$formData['address']."', '".$formData['colony']."', '".$formData['cp']."', 
-                                                    '".$formData['tel']."','".$formData['cel']."', '".$idPedido."')";
+                                                    '".$formData['tel']."','".$formData['cel']."', '".$formData['name']."', '".$formData['lastname']."', 
+                                                    '".$formData['email']."','".$idPedido."')";
             $result4 = mysql_query($query4,Conectar::con()) or die(mysql_error());
           } else {
             echo -1;
           }
       }
-      
-
-        // $id_pedido = mysql_insert_id();
-        // $orden_pedido = "PAYMGT".$id_pedido.date("Y").date("m").date("d");
-
-        // $query = "UPDATE pedido SET orden_pedido = '$orden_pedido' WHERE id_pedido = $id_pedido";
-        // $result = mysql_query($query) or die(mysql_error());
-
-        // //Datos para la tabla detalle pedido.
-        // $data_cart = $_SESSION['carrito'];
-        // foreach ($data_cart as $key => $value) {
-        //     $id_producto = $data_cart[$key]['id_producto'];
-        //     $id_sabor_producto = $data_cart[$key]['id_sabor_producto'];
-        //     $id_tamano_producto = $data_cart[$key]['id_tamano_producto'];
-        //     $cantidad = $data_cart[$key]['cantidad'];
-
-        //     $query = "INSERT INTO detalle_pedido (id_pedido, id_producto,  id_sabor_producto, id_tamano_producto, cantidad)
-        //               VALUES ($id_pedido, $id_producto, $id_sabor_producto, $id_tamano_producto, $cantidad)";
-        //     $result = mysql_query($query) or die(mysql_error());
-        // }
-
-        // //Datos de direccion, para la tabla datos_entrega.
-        // if(isset($_POST['select_municipio']) && isset($_POST['select_colonia']) && isset($_POST['select_cpostal'])){
-
-        //     $select_municipio = $_POST['select_municipio'];
-        //     $select_colonia  = $_POST['select_colonia'];
-        //     $select_cpostal = $_POST['select_cpostal'];
-        //     $direccion_complete = $_POST['direccion_complete'];
-        //     $num_direccion = $_POST['num_direccion'];
-        //     $streets = $_POST['streets'];
-
-        //     $query = "SELECT id_direccion
-        //         FROM direcciones_aceptados
-        //         WHERE id_municipio = '$select_municipio'
-        //         AND id_colonia = '$select_colonia'
-        //         AND codigo_postal = '$select_cpostal' ";
-        //     $result = mysql_query($query) or die(mysql_error());
-        //     $line = mysql_fetch_array($result);
-        //     $id_direccion = $line['id_direccion'];
-
-        //     $query = "INSERT INTO datos_entrega (id_direccion, id_pedido, direccion_complete, num_direccion, streets) VALUES ($id_direccion, $id_pedido, '$direccion_complete', '$num_direccion', '$streets')";
-        //     $result = mysql_query($query) or die(mysql_error());
-
-        // }
-
-        // $response_2 = array(
-        //     'orden_pedido' => $orden_pedido,
-        //     'amount' => $_SESSION['total_carrito'],
-        //     'shipping' => $_SESSION['cargo_envio']
-        // );
-
-        // echo json_encode($response_2);
 
     }
 
