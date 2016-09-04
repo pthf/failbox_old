@@ -78,9 +78,13 @@
                             <input type="hidden" name="item_name" value="Compras Failbox">
                             <input type="hidden" name="currency_code" value="MXN">
                             <input type="hidden" name="amount" value="{{totalCart | currency}}">
-                            <input type="hidden" name="return" value="http://localhost/www/failbox/failbox/build/gracias/{{idPedido}}">
-                            <input type="hidden" name="cancel_return" value="http://localhost/www/failbox/failbox/build/cancelado">
-                            <input type="hidden" name="notify_url" value="http://localhost/www/failbox/failbox/build/php/pay_valite.php?num={{idPedido}}">
+                            <input type="hidden" name="return" value="http://failbox.mx/test/gracias/{{idPedido}}">
+                            <!-- <input type="hidden" name="return" value="http://paratodohayfans.com/web/failbox/gracias/{{idPedido}}"> -->
+                            <input type="hidden" name="cancel_return" value="http://failbox.mx/test/cancelado">
+                            <!-- <input type="hidden" name="cancel_return" value="http://paratodohayfans.com/web/failbox/cancelado"> -->
+                            <input type="hidden" name="notify_url" value="http://failbox.mx/test/php/pay_valite.php?num={{idPedido}}">
+                            <!-- <input type="hidden" name="notify_url" value="http://paratodohayfans.com/web/failbox/php/pay_valite.php?num={{idPedido}}"> -->
+
                             <input type="image" src="./src/images/carrito/paypal.jpg" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
                         </form>
                     </div>

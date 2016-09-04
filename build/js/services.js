@@ -184,6 +184,15 @@
 			return deferred.promise;
 		}
 
+		function showMenuCategoriesLeft(){
+			var deferred = $q.defer();
+			$http.get('./php/menu_left.php')
+			.success(function (data) {
+				deferred.resolve(data);
+			});
+			return deferred.promise;
+		}
+
 		function dates_pedido() {
 			var deferred = $q.defer();
 
@@ -257,6 +266,7 @@
 			productFilteredOne: productFilteredOne,
 			productFiltered: productFiltered,
 			showMenuCategories: showMenuCategories,
+			showMenuCategoriesLeft: showMenuCategoriesLeft,
 			products_cart: products_cart,
 			summary_products_cart: summary_products_cart,
 			total_cart: total_cart,

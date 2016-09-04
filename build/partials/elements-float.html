@@ -1,15 +1,9 @@
-<div class="gridCategories">
+<div class="gridCategories" ng-controller="topMenuController_">
 	<ul>
 		<div class="open_close"><img src="./src/images/website failbox icons-11.png"></div>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares y Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares y Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares y Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares y Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Tablets</span></li>
-		<li><span class="image"><img src="./src/images/shop.png"></span><span class="text">Celulares y Tablets</span></li>
+		<div ng-repeat="(key, menuProductos) in menuProductos">
+			<li><span class="image"><img src="./src/images/{{menuProductos.icono}}"></span><span class="text">{{menuProductos.categoria}}</span></li>
+		</div>
 	</ul>
 </div>
 <div class="gridSerives">
