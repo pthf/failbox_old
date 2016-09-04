@@ -1209,8 +1209,6 @@
 				var open = true;
 				var open1 = true;
 				var open2 = true;
-				var open3 = true;
-				var open4 = true;
 				$('.open_close').click(function(){
 					var cant = $('.gridCategories').width();
 					if(open){
@@ -1237,24 +1235,6 @@
 						$('.gridSerives2').css({ 'margin-right' : "0px"});
 					}
 					open2 = !open2;
-				});
-				$('.view_hiden3').click(function(){
-					var cant = $('.gridSerives3').width();
-					if(open3){
-						$('.gridSerives3').css({ 'margin-right' : "-"+cant+"px"});
-					}else{
-						$('.gridSerives3').css({ 'margin-right' : "0px"});
-					}
-					open3 = !open3;
-				});
-				$('.view_hiden4').click(function(){
-					var cant = $('.gridSerives4').width();
-					if(open4){
-						$('.gridSerives4').css({ 'margin-right' : "-"+cant+"px"});
-					}else{
-						$('.gridSerives4').css({ 'margin-right' : "0px"});
-					}
-					open4 = !open4;
 				});
 			}
 		}
