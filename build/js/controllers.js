@@ -161,6 +161,12 @@
 
 		}])
 
+		.controller('topMenuController_', ['$scope', 'failboxService', function($scope, failboxService){
+			failboxService.showMenuCategoriesLeft().then(function(data){
+				$scope.menuProductos = data;
+			});
+		}])
+
 		.controller('tabShowMenuTopController',['$scope', '$rootScope', function($scope, $rootScope){
 
 			this.menuProductos = false;
