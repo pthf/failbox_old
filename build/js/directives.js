@@ -364,7 +364,7 @@
 			}else{
 				$('#slide1 .rightItem, #slide1 .leftItem').css({
 					'opacity' : '1',
-					'z-index' : '9'
+					'z-index' : '2'
 				});
 			}
 
@@ -452,7 +452,7 @@
 			}else{
 				$('#slide2 .rightItem, #slide2 .leftItem').css({
 					'opacity' : '1',
-					'z-index' : '10'
+					'z-index' : '2'
 				});
 			}
 
