@@ -1,13 +1,39 @@
 .gridCategories{
-  position: fixed;
+  position: absolute;
   z-index: 3 !important;
-  top: 20%;
+  top: 0%;
   left: 0;
   width: auto;
   height: auto;
   margin: 0;
   padding: 0;
   transition: .5s;
+}
+
+.gridSerives2{
+  position: absolute;
+  z-index: 3 !important;
+  top: 8%;
+  right: 0;
+  width: 15%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
+}
+
+.gridSerives{
+  position: absolute;
+  z-index: 3 !important;
+  top: 0%;
+  right: 0;
+  width: 35%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
 }
 
 .gridCategories ul{
@@ -78,32 +104,6 @@
 .gridCategories ul li span.image img{
   width: 100%;
   height: auto;
-}
-
-.gridSerives2{
-  position: fixed;
-  z-index: 3 !important;
-  top: 35%;
-  right: 0;
-  width: 15%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  transition: .5s;
-  background: #6EB153;
-}
-
-.gridSerives{
-  position: fixed;
-  z-index: 3 !important;
-  top: 11.35%;
-  right: 0;
-  width: 35%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  transition: .5s;
-  background: #6EB153;
 }
 
 .gridSerives ul, .gridSerives li, .gridSerives2 ul, .gridSerives2 li{
