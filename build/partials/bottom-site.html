@@ -14,11 +14,14 @@ function checksize(){
 	var timeoutId = null;
 	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
+	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+	if (!isMobile) {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(function(){
+			$('.loadedView').css('margin-top', height+'px');
+		}, 250)
+	}
 
-	clearTimeout(timeoutId);
-	timeoutId = setTimeout(function(){
-		$('.loadedView').css('margin-top', height+'px');
-	}, 250)
 }
 </script>
 <style media="screen">

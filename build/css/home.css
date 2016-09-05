@@ -1529,7 +1529,7 @@ iframe {
 
 @media (max-width: 768px) {
 	.loadedView{
-		padding-top: 79px;
+		/*padding-top: 79px;*/
 	}
 
 	.contact-title{
