@@ -276,7 +276,7 @@
   z-index: 9999999999;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(88, 89, 91, 1);
   display: flex;
   flex-wrap: wrap;
   flex-direction: center;
@@ -312,7 +312,6 @@
 .capa .popupInformation, .capaModalRun .popupInformation{
   width: 60%;
   height: auto;
-  background: #FFF;
   overflow: auto;
   position: relative;
 }

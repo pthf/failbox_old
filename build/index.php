@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=nos">
-	<base href="http://localhost/www/failbox/build/">
+	<base href="http://localhost/www/failbox/failbox/build/">
 	<title>FailBox - Lo que cuenta es lo de adentro.</title>
 	<link rel="shortcut icon" type="image/png" href="./src/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
@@ -25,15 +25,14 @@
 	</script>
 </head>
 <body>
-	<div class="capaModalRun">
-		<div class="popupInformation">
-			<div class="closepopup continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div>
-			<div class="image">
-				<img src="./src/images/FAILBOX_POPUPS_800x500-01.png">
-			</div>
-		</div>
-	</div>
 	<div class="contenedor" ng-controller="connectFacebookController">
+
+
+		<!-- <div class="capaModalRun" ng-controller="viewModalPopUp">
+			<div class="imgLoading" style="width: 3%; height: auto;"><img src="./src/images/giphy.gif" style="width: 100%; height: auto;"></div>
+		</div> -->
+
+
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view style="position:relative;">
