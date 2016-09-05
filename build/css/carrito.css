@@ -303,6 +303,9 @@
     right: 0; }
 
   .buy-slide .content-buy {
-    height: 66vh; } }
+    height: 66vh; }
+
+  .resumen-compra .opciones .volver span {
+    font-size: 16px; } }
 
 /*# sourceMappingURL=carrito.css.map */

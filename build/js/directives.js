@@ -914,13 +914,13 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				setTimeout(function(){
+				/*setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
 						window.location.href = "datos-envio";
 					};
-				}, 250);
+				}, 250);*/
 				$(document).on('click', '.formPaypal', function(){
 					$.ajax({
 						beforeSend: function(){
@@ -1341,7 +1341,7 @@
 		// alert('Actualizar Carrito');
 		$.ajax({
 			beforeSend: function(){
-				location.reload();
+				//location.reload();
 			},
 			url: "./php/functions_cart.php",
 			type: "POST",
