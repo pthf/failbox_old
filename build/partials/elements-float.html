@@ -2,7 +2,7 @@
 	<ul>
 		<div class="open_close"><img src="./src/images/website failbox icons-11.png"></div>
 		<div ng-repeat="(key, menuProductos) in menuProductos">
-			<li><span class="image"><img src="./src/images/{{menuProductos.icono}}"></span><span class="text">{{menuProductos.categoria}}</span></li>
+			<li><a href="productos/{{menuProductos.ruta}}"><span class="image"><img src="./src/images/{{menuProductos.icono}}"></span><span class="text">{{menuProductos.categoria}}</span></a></li>
 		</div>
 	</ul>
 </div>
@@ -15,16 +15,29 @@
 <div class="gridSerives2">
 	<ul>
 		<div class="view_hiden2"><img src="./src/images/botones y banner-03.png"></div>
-		<li class="image"><img src="./src/images/botones y banner-05.png"></li>
-    <li class="image"><img src="./src/images/botones y banner-04.png"></li>
-    <li class="image"><img src="./src/images/botones y banner-06.png"></li>
+		<li class="image selectOpenPopUp" ng-click="selectpopup(1)"><img src="./src/images/botones y banner-05.png"></li>
+    <li class="image selectOpenPopUp" ng-click="selectpopup(2)"><img src="./src/images/botones y banner-04.png"></li>
+    <li class="image selectOpenPopUp"><a href="https://www.youtube.com/" target="_blank"><img src="./src/images/botones y banner-06.png"></a></li>
 	</ul>
 </div>
+
+<!-- This element is under the banner -->
 <div class="marcasFb">
   <img src="./src/images/Failbox Marcas.png">
 </div>
-<!-- <div class="capa">
-  <div class="popupInformation">
 
+<!-- This element will work like a popup -->
+<div class="capa">
+  <div class="popupInformation">
+		<div class="closepopup"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div>
+		<div class="image" ng-show = "popupselected===1">
+			<img src="./src/images/FAILBOX_POPUPS_800x500-01.png">
+		</div>
+		<div class="image" ng-show = "popupselected===2">
+			<img src="./src/images/FAILBOX_POPUPS_800x500-02.png">
+		</div>
+		<div class="image" ng-show = "popupselected===3">
+			<img src="./src/images/FAILBOX_POPUPS_800x500-03.png">
+		</div>
   </div>
-</div> -->
+</div>

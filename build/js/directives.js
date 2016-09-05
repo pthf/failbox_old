@@ -1234,9 +1234,36 @@
 					}
 					open2 = !open2;
 				});
+				setTimeout(function(){
+					var cant = $('.gridCategories').width();
+					$('.gridCategories').css({ 'margin-left' : "-"+cant+"px"});
+					open = false;
+					var cant = $('.gridSerives2').width();
+					$('.gridSerives2').css({ 'margin-right' : "-"+cant+"px"});
+					open2 = false;
+				},250);
+				var opened = false;
+				$(window).scroll(function(){
+					var pos = $(this).scrollTop();
+					if(!opened){
+						if(pos>$('.titleDiv').position().top){
+							var cant = $('.gridCategories').width();
+							$('.gridCategories').css({ 'margin-left' : "0px"});
+							open = true;
+							var cant = $('.gridSerives2').width();
+							$('.gridSerives2').css({ 'margin-right' : "0px"});
+							open2 = true;
+							var cant = $('.gridSerives').width();
+							$('.gridSerives').css({ 'margin-right' : "-"+cant+"px"});
+							open1 = false;
+							opened = true;
+						}
+					}
+				});
 			}
 		}
 	});
+
 	$(document).on('click', '.cartBar', function(e){
 		$('.buy-slide').slideToggle('fast')
 	})

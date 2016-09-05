@@ -70,7 +70,7 @@
 }
 
 .gridCategories ul li span.image{
-  width: 20px;
+  width: 35px;
   height: auto;
   margin-right: 10px;
 }
@@ -138,38 +138,6 @@
 .view_hiden img, .view_hiden2 img{
   width: 100%;
   height: auto;
-}
-
-.capa{
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999999999;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: center;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-
-  display: -webkit-flex;
-  -webkit-flex-wrap: wrap;
-  -webkit-flex-direction: center;
-  -webkit-justify-content: center;
-  -webkit-align-content: center;
-  -webkit-align-items: center;
-
-  overflow: auto;
-}
-
-.capa .popupInformation{
-  width: 70%;
-  height: 70%;
-  background: #FFF;
-  overflow: auto;
 }
 
 .marcasFb{
@@ -286,7 +254,82 @@
   height: auto;
 }
 
+.categoriesFailbox ul li:hover{
+  cursor: pointer;
+  opacity: .8;
+}
+
 .categoriesFailbox ul li img{
   width: 100%;
   height: auto;
+}
+
+.titleHome{
+  font-weight: bold;
+}
+
+
+.capa{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  -webkit-flex-direction: center;
+  -webkit-justify-content: center;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+
+  overflow: auto;
+  z-index: -10;
+  opacity: 0;
+  transition: 1s;
+}
+
+.capa .popupInformation{
+  width: 60%;
+  height: auto;
+  background: #FFF;
+  overflow: auto;
+  position: relative;
+}
+
+.popupInformation div.image, .popupInformation div.image img{
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.closepopup{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 3%;
+  z-index: 10;
+}
+
+.closepopup:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+
+.closepopup img{
+  width: 100%;
+  height: auto;
+}
+
+.selectOpenPopUp:hover{
+  cursor: pointer;
+  opacity: .5;
 }
