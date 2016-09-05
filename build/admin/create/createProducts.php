@@ -256,7 +256,7 @@
                                       <div id="home" class="tab-pane fade in active">
                                         <form class="form-horizontal form-label-left" id="formProduct" name="formProductData" enctype="multipart/form-data">
                                             <div class="col-sm-5"><br>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor 
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -279,7 +279,7 @@
                                                           echo "</select>"; 
                                                         } ?>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class=" form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Categoría   
                                                     </label>
@@ -301,6 +301,14 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                       <div id="result_brand"><?php include('consult_brand.php');?></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor 
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="name_provider" class="form-control col-md-7 col-xs-12" name="name_provider" placeholder="Nombre del proveedor" type="text" required>
+                                                        <div class="result"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -409,7 +417,7 @@
                                                         <select required class="form-control" name="status">
                                                             <!-- <option disabled selected value=''>Selecciona..</option> -->
                                                             <option>Activo</option>
-                                                            <!-- <option>Inactivo</option> -->
+                                                            <option>Inactivo</option>
                                                         </select>
                                                       <?php } else { ?>
                                                         <select required class="form-control" name="status">

@@ -144,7 +144,11 @@
 
                     <div class="precio-envio col-md-12 col-sm-12 col-xs-12">
                         <div class="texto-envio col-sm-6 col-xs-6">ENVÍO A DOMICILIO</div>
-                        <div class="total-envio col-sm-6 col-xs-6">{{costShipping | currency}}</div>
+                        <div class="total-envio col-sm-6 col-xs-6">
+                            <span style="color: #6EB153" ng-if="costShipping != 0">{{costShipping | currency}}</span>
+                            <span style="color: #6EB153" ng-if="costShipping == 0">¡Envio Gratis!</span>
+                        </div>
+                        <!-- <div class="total-envio col-sm-6 col-xs-6">{{costShipping | currency}}</div>-->
                     </div>
 
                 </div>
