@@ -25,10 +25,18 @@
 	</script>
 </head>
 <body>
+	<div class="capaModalRun">
+		<div class="popupInformation">
+			<div class="closepopup continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div>
+			<div class="image">
+				<img src="./src/images/FAILBOX_POPUPS_800x500-01.png">
+			</div>
+		</div>
+	</div>
 	<div class="contenedor" ng-controller="connectFacebookController">
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
-		<div class="loadedView" ng-view>
+		<div class="loadedView" ng-view style="position:relative;">
 		</div>
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
@@ -43,14 +51,25 @@
 	<script src="./js/filters.js"></script>
 	<script src="./js/lib/slider.js"></script>
 	<script>
-	// Load the SDK asynchronously
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+		// Load the SDK asynchronously
+		(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!-- Load PopUp first, before to load the home -->
+	<script>
+		function startup(){
+			$('.continueDisabled').css({'display':'block'});
+		}
+		window.onload = startup;
+		$(document).on('click', '.continueDisabled', function(){
+			$('.capaModalRun').css({'opacity' : '0','z-index' : '-10'});
+			$('html,body').css({'overflow':'auto'});
+		});
 	</script>
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 </body>

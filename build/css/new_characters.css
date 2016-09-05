@@ -1,13 +1,39 @@
 .gridCategories{
   position: fixed;
   z-index: 3 !important;
-  top: 20%;
+  top: 0%;
   left: 0;
   width: auto;
   height: auto;
   margin: 0;
   padding: 0;
   transition: .5s;
+}
+
+.gridSerives2{
+  position: fixed;
+  z-index: 3 !important;
+  top: 0%;
+  right: 0;
+  width: 15%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
+}
+
+.gridSerives{
+  position: fixed;
+  z-index: 3 !important;
+  top: 0%;
+  right: 0;
+  width: 35%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  background: #6EB153;
 }
 
 .gridCategories ul{
@@ -78,32 +104,6 @@
 .gridCategories ul li span.image img{
   width: 100%;
   height: auto;
-}
-
-.gridSerives2{
-  position: fixed;
-  z-index: 3 !important;
-  top: 35%;
-  right: 0;
-  width: 15%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  transition: .5s;
-  background: #6EB153;
-}
-
-.gridSerives{
-  position: fixed;
-  z-index: 3 !important;
-  top: 11.35%;
-  right: 0;
-  width: 35%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  transition: .5s;
-  background: #6EB153;
 }
 
 .gridSerives ul, .gridSerives li, .gridSerives2 ul, .gridSerives2 li{
@@ -269,35 +269,47 @@
 }
 
 
-.capa{
+.capa, .capaModalRun{
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999999999;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, .7);
   display: flex;
   flex-wrap: wrap;
   flex-direction: center;
   justify-content: center;
   align-content: center;
   align-items: center;
-
   display: -webkit-flex;
   -webkit-flex-wrap: wrap;
   -webkit-flex-direction: center;
   -webkit-justify-content: center;
   -webkit-align-content: center;
   -webkit-align-items: center;
-
   overflow: auto;
-  z-index: -10;
-  opacity: 0;
   transition: 1s;
 }
 
-.capa .popupInformation{
+.contenedor{
+  -webkit-filter: blur(0px); /* Chrome, Safari, Opera */
+  filter: blur(0px);
+  transition: 1s;
+}
+
+.capa{
+  z-index: -10;
+  opacity: 0;
+}
+
+.capaModalRun{
+  z-index: 9999999;
+  opacity: 1;
+}
+
+.capa .popupInformation, .capaModalRun .popupInformation{
   width: 60%;
   height: auto;
   background: #FFF;
@@ -305,7 +317,7 @@
   position: relative;
 }
 
-.popupInformation div.image, .popupInformation div.image img{
+.popupInformation div.image, .popupInformation div.image img, .capaModalRun div.image, .capaModalRun div.image img{
   width: 100%;
   height: auto;
   position: relative;
@@ -332,4 +344,8 @@
 .selectOpenPopUp:hover{
   cursor: pointer;
   opacity: .5;
+}
+
+.continueDisabled{
+  display: none;
 }
