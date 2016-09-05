@@ -14,25 +14,30 @@
         <div class="content-buy" >
 
             <!-- NGREPEAT -->
-            <div class="producto col-md-12 col-sm-12" ng-repeat="list in itemsCart">
+            <div class="producto col-md-12 col-sm-12 col-xs-12" ng-repeat="list in itemsCart">
 
-                <div class="col-md-4 col-sm-5">
+                <div class="col-md-4 col-sm-5 col-xs-6 visible-md visible-lg visible-sm">
                     <img class="img-responsive" src="./admin/images/products/{{list.foto_producto}}" />
                 </div>
-                <div class="col-md-8 col-sm-7">
-                    <div class="titulo">{{list.nombre_producto}}</div>
-                    <div class="descripcion">{{list.descripcion_producto}}</div>
-                    <div class="cantidad">Cantidad: {{list.cantidad}}</div>
-                    <div class="precio">{{list.precio | currency}}</div>
+                <div class="visible-xs col-xs-12 text-center">
+                    <div class="col-xs-6 center-block">
+                        <img class="img-responsive" src="./admin/images/products/{{list.foto_producto}}" style="margin: 0 auto" />
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-12" style="padding:0">
+                    <div class="titulo col-xs-12">{{list.nombre_producto}}</div>
+                    <div class="descripcion col-xs-12">{{list.descripcion_producto}}</div>
+                    <div class="cantidad col-xs-12">Cantidad: {{list.cantidad}}</div>
+                    <div class="precio col-xs-12">{{list.precio | currency}}</div>
                 </div>
             </div>
         </div>
-        <div class="subtotal col-md-12 col-sm-12" ng-controller="purchaseSummary">
-            <div class="col-md-6 text-left col-sm-6"><strong>SUBTOTAL: </strong></div>
-            <div class="precio col-md-6 col-sm-6 text-right">{{totalCart | currency}}</div>
+        <div class="subtotal col-md-12 col-sm-12 col-xs-12" ng-controller="purchaseSummary">
+            <div class="col-md-6 text-left col-sm-6 col-xs-6"><strong>SUBTOTAL: </strong></div>
+            <div class="precio col-md-6 col-sm-6 col-xs-6 text-right">{{totalCart | currency}}</div>
         </div>
-        <div class="col-md-12 col-sm-12 text-center content-btn">
-            <a href="carrito"> <button class="btn btn-success btn-lg ">IR A CARRITO</button></a>
+        <div class="col-md-12 col-sm-12 text-center content-btn col-xs-12">
+            <a href="carrito"> <button class="btn btn-success btn-lg">IR A CARRITO</button></a>
         </div>
     </div>
 </div>

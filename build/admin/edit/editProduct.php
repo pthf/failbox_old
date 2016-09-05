@@ -281,7 +281,7 @@ session_start();
                               ?>
                             </div>
                           </div>
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -306,6 +306,13 @@ session_start();
                                   }
                                   echo "</select>";
                               } ?>
+                            </div>
+                          </div> -->
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_provider">Proveedor
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input class="form-control col-md-7 col-xs-12" id="name_provider" name="name_provider" placeholder="Nombre del proveedor" type="text" value="<?php echo $fila['NombreProveedor'];?>">
                             </div>
                           </div>
                           <div class="form-group">
