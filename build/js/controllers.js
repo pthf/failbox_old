@@ -422,7 +422,6 @@
 
 				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
 			    	$rootScope.pages = $(e.currentTarget).attr('name');
-					console.log($rootScope.pages);
 				});
 				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
 					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');

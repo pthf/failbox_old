@@ -238,9 +238,7 @@ top-menu{
 	z-index: 999999;
 	top: 0;
 }
-.loadedView{
-	padding-top: 108px;
-}
+
 .topMenu{
 	width: 100%;
 	height: auto;
