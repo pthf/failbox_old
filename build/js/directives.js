@@ -1175,7 +1175,6 @@
 			transclude: false,
 			link: function(scope, element, attrs) {
 				element.bind('click', function() {
-					//$rootScope.$emit('shopping:more', data);
 					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
 						scope.stock_session = req.data;
 					})
@@ -1192,7 +1191,6 @@
 			link: function(scope, element, attrs) {
 
 				element.bind('click', function() {
-					//$rootScope.$emit('shopping:more', data);
 					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
 						scope.stock_session = req.data;
 					})
