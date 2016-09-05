@@ -277,6 +277,23 @@
 					console.log(url);
 				}
 			});
+			//This code is for make control of popup.
+			$scope.popupselected = 0;
+			$scope.selectpopup = function(item){
+				$scope.popupselected = item;
+			}
+			$(document).on('click', '.selectOpenPopUp', function(){
+				$('.capa').css({
+					'z-index': '99999999',
+				  'opacity': '1'
+				})
+			});
+			$(document).on('click', '.closepopup', function(){
+				$('.capa').css({
+					'z-index': '-10',
+				  'opacity': '0'
+				})
+			});
 		}])
 
 		.controller('sliderNewProductsController', ['$scope', 'failboxService', function($scope, failboxService){

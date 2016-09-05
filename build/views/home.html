@@ -21,7 +21,7 @@
           <img width="50%" height="auto" src="./src/images/Pasos_Sitio_Failbox-05.png">
         </span>
       </div>
-      <span class="url textDeco">¿Qué es PayPal?</span>
+      <span class="url textDeco selectOpenPopUp" ng-click="selectpopup(3)">¿Qué es PayPal?</span>
     </div>
   </div>
   <div class="col-md-4">
@@ -33,7 +33,7 @@
           Monitorea tu producto en el tiempo de entrega estimado. Envio sin costo en la mayoría de modalidades y a todo México.
         </span>
       </div>
-      <span class="url textDeco">¿Cuales son los costos de envio?</span>
+      <span class="url textDeco selectOpenPopUp" ng-click="selectpopup(3)">¿Cuales son los costos de envio?</span>
     </div>
   </div>
   <div class="col-md-4">
@@ -45,7 +45,7 @@
           Recibe la garantía de tu producto directamente del fabrícante y aprovecha los descuentos de un producto nuevo con empaque dañado.
         </span>
       </div>
-      <span class="url textDeco">¿Cúal es la garantia de mi producto?</span>
+      <span class="url textDeco selectOpenPopUp" ng-click="selectpopup(1)">¿Cúal es la garantia de mi producto?</span>
     </div>
   </div>
 </div>
@@ -58,15 +58,21 @@
 
 <slider-cart-new ng-controller="sliderNewProductsController" ng-if="loadingData"></slider-cart-new>
 
+<div class="titleDiv">
+	<span class='titleHome'>
+		CATEGORIAS
+	</span>
+</div>
+
 <div class="categoriesFailbox">
 	<ul>
-		<li><img src="./src/images/botones y banner-08.png"></li>
-		<li><img src="./src/images/botones y banner-11.png"></li>
-		<li><img src="./src/images/botones y banner-12.png"></li>
-		<li><img src="./src/images/botones y banner-13.png"></li>
-		<li><img src="./src/images/botones y banner-14.png"></li>
-		<li><img src="./src/images/botones y banner-15.png"></li>
-		<li><img src="./src/images/botones y banner-09.png"></li>
-		<li><img src="./src/images/botones y banner-10.png"></li>
+		<li><a href="productos/apple"><img src="./src/images/botones y banner-08.png"></a></li>
+		<li><a href="productos/audio/bocinas"><img src="./src/images/botones y banner-11.png"></a></li>
+		<li><a href="productos/audio/audifonos"><img src="./src/images/botones y banner-12.png"></a></li>
+		<li><a href="productos/accesorios/camara-sport"><img src="./src/images/botones y banner-13.png"></a></li>
+		<li><a href="productos/bags-%7C-cases"><img src="./src/images/botones y banner-14.png"></a></li>
+		<li><a href="productos/apple/iphone"><img src="./src/images/botones y banner-15.png"></a></li>
+		<li><a href="productos/zona-gamer"><img src="./src/images/botones y banner-09.png"></a></li>
+		<li><a href="productos/accesorios/power-banks"><img src="./src/images/botones y banner-10.png"></a></li>
 	</ul>
 </div>
