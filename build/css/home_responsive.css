@@ -843,6 +843,9 @@
 
 	.topMenu .cartBar{
 		z-index: 99999;
+		position: relative;
+		left: 25px;
+		bottom: 27px;
 		width: 5%;
 	}
 	.selectIndicator{
@@ -921,6 +924,9 @@
 
 	.faqs{
 		font-size: .4em;
+	}
+	.buy-slide{
+		right: 0;
 	}
 
 }

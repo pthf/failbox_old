@@ -1314,7 +1314,7 @@
 		// alert('Actualizar Carrito');
 		$.ajax({
 			beforeSend: function(){
-				//location.reload();
+				location.reload();
 			},
 			url: "./php/functions_cart.php",
 			type: "POST",
