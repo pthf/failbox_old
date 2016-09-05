@@ -8,13 +8,13 @@ $(window).resize(function(){
 function checksize(){
 	if($(document).width() < 751){
 		$('.socialFailBox').addClass('container');
-	}else if($(document).width() > 752){
+	} else if($(document).width() > 752) {
 		$('.socialFailBox').removeClass('container');
 	}
+
 	var timeoutId = null;
 	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
-
 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 	if (!isMobile) {
 		timeoutId = setTimeout(function(){

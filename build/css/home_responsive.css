@@ -525,6 +525,9 @@
 
 	.topMenu .cartBar{
 		width: 3.5%;
+		top: 15px;
+		position: absolute;
+		right: 10px;
 	}
 
 	.itemsSelecteds li{
