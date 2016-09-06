@@ -914,13 +914,13 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				/*setTimeout(function(){
+				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
 						window.location.href = "datos-envio";
 					};
-				}, 250);*/
+				}, 250);
 				$(document).on('click', '.formPaypal', function(){
 					$.ajax({
 						beforeSend: function(){
@@ -967,11 +967,11 @@
 			restrict: 'E',
 			templateUrl: './partials/agradecimiento.html',
 			controller: function($document){
-				// setTimeout(function(){
-				// 	idpedido = $("#idpedido_resumen").attr('pedido');
-				// 	if (idpedido == '') {
-				// 		window.location.href = "productos";
-				// 	}
+				 setTimeout(function(){
+				 	idpedido = $("#idpedido_resumen").attr('pedido');
+				 	if (idpedido == '') {
+				 		window.location.href = "productos";
+				 	}
 				// 	// else{
 				// 	// 	$.ajax({
 				//  //          	beforeSend: function(){
@@ -994,7 +994,7 @@
 				//  //          	timeout: 10000
 				//  //      	});
 				// 	// };
-				// }, 250);
+				 }, 250);
 			}
 		}
 	})

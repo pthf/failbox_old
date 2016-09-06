@@ -71,9 +71,11 @@
 						<td>Cant.</td>
 					</tr>
 					<tr>
-						<td ng-show="stock_session <= 3" ng-hide="stock_session <=0" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+					
+						<td ng-show="stock_session <= 3" ng-hide="stock_session >=3 || stock_session <=1" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+						<td ng-show="stock_session == 1" style="color:red;">Último producto*</td>
 						<td ng-show="stock_session == 0" style="color:red;">Sin existencias*</td>
-						<!--td ng-show="stock_session == 0; " style="color:red;">Sin existencias*</td-->
+
 					</tr>
 					<tr>
 						<td>
