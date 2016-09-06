@@ -323,7 +323,7 @@
   z-index: 9999999999;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(88, 89, 91, 1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -377,7 +377,6 @@
 .capa .popupInformation, .capaModalRun .popupInformation{
   width: 60%;
   height: auto;
-  background: #FFF;
   overflow: auto;
   position: relative;
 }
@@ -428,9 +427,22 @@
   background: transparent;
 }
 
+@media(max-width: 1680px){
+  .containerDescription{
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+
 @media(max-width: 1366px){
   .capa .popupInformation, .capaModalRun .popupInformation{
     width: 70%;
+  }
+
+  .containerDescription{
+    margin: 0 auto;
+    width: 100%;
+    font-size: .9em;
   }
 }
 
@@ -438,13 +450,35 @@
   .capa .popupInformation, .capaModalRun .popupInformation{
     width: 75%;
   }
+
+  .containerDescription{
+    font-size: .8em;
+  }
+
 }
 
 @media(max-width: 1024px){
   .capa .popupInformation, .capaModalRun .popupInformation{
     width: 85%;
   }
+
+  .containerDescription{
+    font-size: .7em;
+  }
+
 }
+
+@media(max-width: 991px){
+
+  .containerDescription{
+    font-size: 1em;
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
 
 @media(max-width: 768px){
 
@@ -529,12 +563,26 @@
       cursor: pointer;
   }
 
+  .containerDescription{
+    font-size: 1em;
+    width: 70%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 }
 
 @media(max-width: 480px){
   .categoriesFailbox ul li{
     width: 44%;
   }
+
+  .containerDescription{
+    font-size: .8em;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
 
 }
 
