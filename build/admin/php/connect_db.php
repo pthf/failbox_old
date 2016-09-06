@@ -1,16 +1,16 @@
 <?php
 
-	// $mysql_host = "localhost";
-	// $mysql_user = "failboxtest";
-	// $mysql_password = "failboxtest";
-	// $mysql_database = "failbox";
-	// $link = "";
-
 	$mysql_host = "localhost";
 	$mysql_user = "root";
 	$mysql_password = "";
 	$mysql_database = "failbox";
 	$link = "";
+
+	// $mysql_host = "localhost";
+	// $mysql_user = "root";
+	// $mysql_password = "j8ykhpLukx";
+	// $mysql_database = "failbox";
+	// $link = "";
 
 	function connect_base_de_datos (){
 		$GLOBALS['link'] = mysql_connect($GLOBALS['mysql_host'],$GLOBALS['mysql_user'],$GLOBALS['mysql_password'])
