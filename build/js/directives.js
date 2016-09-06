@@ -830,6 +830,8 @@
 			templateUrl: './partials/datos-envio.html',
 			controller: function($document){
 				setTimeout(function(){
+					$('.nocupon').hide();
+					$('.cuponvalido').hide();
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					totalCart = $("#total").attr('total');
 					totalNotCart = $("#totalnot").attr('totalnot');
@@ -904,6 +906,58 @@
 							});
 						});
 					};
+					$(document).ready(function(){ 
+                       $('#alternar-form-cupon').click(function(){
+                            if($("#formCuponInput").is(":visible"))
+                            {
+                                $("#formCuponInput").slideUp()
+                            }else{
+                                $("#formCuponInput").slideDown()
+                            }
+                        });
+                    });
+                    $('#formCupon').submit(function(){
+                    	// alert('Entramos');
+                    	var ajaxData = new FormData();
+                    	ajaxData.append("action", $(this).serialize());
+						ajaxData.append("namefunction", "registrar_cupon");
+                    	$.ajax({
+							type: 'POST',
+							url: './php/functions_cart.php',
+							data: ajaxData,
+							processData: false,
+							contentType: false,
+							success : function(result){
+								// alert(result);
+								// if (result == 0) {
+			     //                	$('.nocupon').html('Código de cupón no válido.');
+			     //                	$('.nocupon').slideDown(250);
+			     //                	$('.nocupon').hide(4000);
+			     //                	$('.cuponvalido').hide();
+			     //                	$('#formCupon')[0].reset();
+								// } else {
+									location.reload();
+								// }
+								// else if (result == -1){
+			     //                	$('.nocupon').html('El código ha expirado.');
+			     //                	$('.nocupon').slideDown(250);
+			     //                	$('.nocupon').slideUp(4000);
+			     //                	$('.cuponvalido').hide();
+			     //                	$('#formCupon')[0].reset();
+								// } else if (result == 1){
+								// 	$('.cuponvalido').html('Código aplicado en tu compra.');
+			     //                	$('.cuponvalido').slideDown(250);
+			     //                	$('.cuponvalido').slideUp(4000);
+			     //                	$('.nocupon').hide();
+			     //                	$('#formCupon')[0].reset();
+								// };
+							},
+							error: function(){
+								alert('error');
+							},
+							timeout: 10000
+						});
+                    });
 				}, 250);
 			}
 		}
