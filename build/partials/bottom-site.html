@@ -18,7 +18,9 @@ function topheight(){
 	var timeoutId = null;
 	if (timeoutId) clearTimeout(timeout);
 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 	if (!isMobile) {
+
 		setTimeout(function(){
 			var height =  document.getElementById('menutopmain').offsetHeight;
 			var height2 = $('.gridSerives').height() + height+30;
