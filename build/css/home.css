@@ -260,7 +260,7 @@ div.item .imgBox img.imgInfo{
 top-menu{
 	position: fixed;
 	width: 100%;
-	z-index: 999999;
+	z-index: 8;
 	top: 0;
 }
 
