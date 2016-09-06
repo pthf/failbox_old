@@ -2,6 +2,18 @@
 
 	angular.module('failboxStore.controllers', [])
 
+		.controller('viewModalPopUp', ['$location', '$scope', function($location, $scope){
+			$scope.showPopup = false;
+			if($location.path() === '/'){
+				$('.capaModalRun').html('<div class="popupInformation"><div class="closepopup continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div><div class="image"><img src="./src/images/FAILBOX_POPUPS_800x500-01.png"></div></div>');
+				$('body,html').css({'overflow':'hidden'});
+			}else{
+				setTimeout(function(){
+					$('.capaModalRun').css({'opacity' : '0','z-index' : '-10'});
+				},500);
+			}
+		}])
+
 		.controller('connectFacebookController', ['$scope', '$rootScope', function($scope, $rootScope){
 
 			$(function() {

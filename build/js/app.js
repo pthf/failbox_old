@@ -97,9 +97,5 @@
 			},
 			timeout: 10000
 		});
-
-		$('.capaModalRun').css({'display':'none'});
-
-
 	}])
 })();
