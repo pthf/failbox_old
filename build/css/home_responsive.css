@@ -950,7 +950,7 @@
 	}
 }
 
-@media (min-width: 615px) and (max-width: 768px) {
+@media (min-width: 485px) and (max-width: 768px) {
 	.topMenu .cartBar{
 		position: absolute;
 		top: 15px;
