@@ -239,7 +239,7 @@
   font-family: 'Gotham-Light';
   position: fixed !important;
   z-index: 11;
-  overflow-y: hidde;
+  overflow-y: hidden;
   right: 10px; }
   .buy-slide .comineza .texto {
     padding: 30px 15px;
@@ -297,5 +297,15 @@
 .vertical-align > [class*=" col-"] > div {
   /* flex: 1; */
   flex-grow: 1; }
+
+@media (max-width: 480px) {
+  .buy-slide {
+    right: 0; }
+
+  .buy-slide .content-buy {
+    height: 66vh; }
+
+  .resumen-compra .opciones .volver span {
+    font-size: 16px; } }
 
 /*# sourceMappingURL=carrito.css.map */

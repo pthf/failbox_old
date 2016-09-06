@@ -2,6 +2,18 @@
 
 	angular.module('failboxStore.controllers', [])
 
+		.controller('viewModalPopUp', ['$location', '$scope', function($location, $scope){
+			$scope.showPopup = false;
+			if($location.path() === '/'){
+				$('.capaModalRun').html('<div class="popupInformation"><div class="closepopup continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div><div class="image"><img src="./src/images/FAILBOX_POPUPS_800x500-01.png"></div></div>');
+				$('body,html').css({'overflow':'hidden'});
+			}else{
+				setTimeout(function(){
+					$('.capaModalRun').css({'opacity' : '0','z-index' : '-10'});
+				},500);
+			}
+		}])
+
 		.controller('connectFacebookController', ['$scope', '$rootScope', function($scope, $rootScope){
 
 			$(function() {
@@ -277,6 +289,23 @@
 					console.log(url);
 				}
 			});
+			//This code is for make control of popup.
+			$scope.popupselected = 0;
+			$scope.selectpopup = function(item){
+				$scope.popupselected = item;
+			}
+			$(document).on('click', '.selectOpenPopUp', function(){
+				$('.capa').css({
+					'z-index': '99999999',
+				  'opacity': '1'
+				})
+			});
+			$(document).on('click', '.closepopup', function(){
+				$('.capa').css({
+					'z-index': '-10',
+				  'opacity': '0'
+				})
+			});
 		}])
 
 		.controller('sliderNewProductsController', ['$scope', 'failboxService', function($scope, failboxService){
@@ -405,7 +434,6 @@
 
 				$('.sliderCat .itemSelecteds .itemsContend span').click(function(e){
 			    	$rootScope.pages = $(e.currentTarget).attr('name');
-					console.log($rootScope.pages);
 				});
 				$('.sliderCat .itemSelecteds .first, .sliderCat .itemSelecteds .before, .sliderCat .itemSelecteds .next, .sliderCat .itemSelecteds .last').click(function(){
 					$rootScope.pages = $('.sliderCat .itemSelecteds .itemsContend span.selected').attr('name');

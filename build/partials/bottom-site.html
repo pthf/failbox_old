@@ -1,6 +1,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	checksize()
+	console.log('real')
+	console.log($('.contador-detalle-producto .redes'))
+	$('.contador-detalle-producto .redes').remove();
 })
 $(window).resize(function(){
 	checksize();
@@ -8,17 +11,26 @@ $(window).resize(function(){
 function checksize(){
 	if($(document).width() < 751){
 		$('.socialFailBox').addClass('container');
-	}else if($(document).width() > 752){
+	} else if($(document).width() > 752) {
 		$('.socialFailBox').removeClass('container');
 	}
+
 	var timeoutId = null;
 	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
+	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-	clearTimeout(timeoutId);
-	timeoutId = setTimeout(function(){
-		$('.loadedView, .buy-slide').css('padding-top', height+'px');
-	}, 250)
+	if (!isMobile) {
+		timeoutId = setTimeout(function(){
+			$('.loadedView').css('margin-top', height+'px');
+			$('.gridCategories').css('top', height+20+'px');
+			$('.gridSerives2').css('top', $('.gridSerives').height() + height+30+'px');
+			$('.gridSerives').css('top', height+'px');
+
+		}, 250);
+	} else {
+		$('.buy-slide').css('margin-top', height+'px');
+	}
 }
 </script>
 <style media="screen">
@@ -42,8 +54,31 @@ function checksize(){
 	<div class="navFailBox">
 		<a class="visible-sm" href="#/"><img style="width: 3vw" class="img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<a class="visible-xs visible-md hidden-sm visible-lg" href="#/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
-		<span class="navItem hidden-xs"><a style="color:white;" href="faq">FAQ</a></span>
-		<span class="navItem hidden-xs"><a style="color:white;" href="contacto">Contacto</a></span>
+
+		<div class="footer-options">
+			<!-- <nav class="footer-left-side">
+				<li class="footer-option"><b>FAILBOX</b></li>
+				<li class="footer-option"><a href="">quienes somos</a></li>
+				<li class="footer-option"><a href="">historia</a></li>
+				<li class="footer-option"><a href="">misión</a></li>
+				<li class="footer-option"><a href="">visión</a></li>
+				<li class="footer-option"><a href="">valores</a></li>
+				<li class="footer-option"><a href="">personajes</a></li>
+				<li class="footer-option"><a href="">premio coparmex</a></li>
+				<li class="footer-option"><a href="">legales</a></li>
+			</nav>
+
+			<nav class="footer-right-side">
+				<li class="footer-option"><b>SERVICIO AL CLIENTE</b></li>
+				<li class="footer-option"><a href="">como comprar</a></li>
+				<li class="footer-option"><a href="">forma de pago</a></li>
+				<li class="footer-option"><a href="">faqs</a></li>
+				<li class="footer-option"><a href="">politica de aviso</a></li>
+				<li class="footer-option"><a href="">garantía</a></li>
+				<li class="footer-option"><a href="">cancelaciones</a></li>
+				<li class="footer-option"><a href="">terminos y condiciones</a></li>
+			</nav> -->
+		</div>
 	</div>
 
 	<div class="socialFailBox">
@@ -65,13 +100,20 @@ function checksize(){
 				<div class="terminos" style="width: 100%; text-align: right;">
 					<input class="checkb2" type="checkbox" required></input><span class="checkb">Acepto los <a href="aviso-de-privacidad" style="text-decoration:underline !important; color: #FFF;">términos de Privacidad.</a> </span>
 					<span class="correctSusc" style="display: block; width: 100%; margin-top: .5vw; opacity: 0; transition: 1s;">Suscripcion correcta. ¡Gracias! </span>
+				<span style="width: 100%; text-align: right; display: inline-block;">
+					¿Dudas o comentarios? <br>
+					Contáctanos al hola@failbox.mx <br> o a los teléfonos (33) 1818-3282 </span>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 <div class="botttomPrivacy" style="position:relative;">
-	<a href="aviso-de-privacidad"><span class="colour-green">Condiciones de Uso - Aviso de Privacidad</span></a><span class="colour-white">©2016 FAILBOX - Website by PTHF</span>
+	<a href="aviso-de-privacidad"><span class="colour-green">Condiciones de Uso - Aviso de Privacidad</span></a>
+	<br><br>
+	<span class="colour-white">
+		Derechos reservados 2016 | Failbox ® | BOXCORP Comercializadora y Distribuidora Digital de México S.A de C.V. <br>Av. Acueducto 4581 Int. 2.2. Corporativo Torre Andares Acueducto. Puerta de Hierro. Zapopan, Jalisco.
+	</span>
 	<a href="#top" class="ancla">
 	<div class="goTop">
 		<img src="./src/images/go_top.png">

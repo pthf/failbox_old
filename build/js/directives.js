@@ -364,7 +364,7 @@
 			}else{
 				$('#slide1 .rightItem, #slide1 .leftItem').css({
 					'opacity' : '1',
-					'z-index' : '9'
+					'z-index' : '2'
 				});
 			}
 
@@ -452,7 +452,7 @@
 			}else{
 				$('#slide2 .rightItem, #slide2 .leftItem').css({
 					'opacity' : '1',
-					'z-index' : '10'
+					'z-index' : '2'
 				});
 			}
 
@@ -968,13 +968,13 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
-				setTimeout(function(){
+				/*setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
 					if (idpedido == '') {
 						window.location.href = "datos-envio";
 					};
-				}, 250);
+				}, 250);*/
 				$(document).on('click', '.formPaypal', function(){
 					$.ajax({
 						beforeSend: function(){
@@ -1229,7 +1229,6 @@
 			transclude: false,
 			link: function(scope, element, attrs) {
 				element.bind('click', function() {
-					//$rootScope.$emit('shopping:more', data);
 					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
 						scope.stock_session = req.data;
 					})
@@ -1246,7 +1245,6 @@
 			link: function(scope, element, attrs) {
 
 				element.bind('click', function() {
-					//$rootScope.$emit('shopping:more', data);
 					failboxService.verificar_existencia_session(scope.item.id, scope.quantity).then(function(req){
 						scope.stock_session = req.data;
 					})
@@ -1290,9 +1288,36 @@
 					}
 					open2 = !open2;
 				});
+				setTimeout(function(){
+					var cant = $('.gridCategories').width();
+					$('.gridCategories').css({ 'margin-left' : "-"+cant+"px"});
+					open = false;
+					var cant = $('.gridSerives2').width();
+					$('.gridSerives2').css({ 'margin-right' : "-"+cant+"px"});
+					open2 = false;
+				},250);
+				var opened = false;
+				$(window).scroll(function(){
+					var pos = $(this).scrollTop();
+					if(!opened){
+						if(pos>$('.titleDiv').position().top){
+							var cant = $('.gridCategories').width();
+							$('.gridCategories').css({ 'margin-left' : "0px"});
+							open = true;
+							var cant = $('.gridSerives2').width();
+							$('.gridSerives2').css({ 'margin-right' : "0px"});
+							open2 = true;
+							var cant = $('.gridSerives').width();
+							$('.gridSerives').css({ 'margin-right' : "-"+cant+"px"});
+							open1 = false;
+							opened = true;
+						}
+					}
+				});
 			}
 		}
 	});
+
 	$(document).on('click', '.cartBar', function(e){
 		$('.buy-slide').slideToggle('fast')
 	})

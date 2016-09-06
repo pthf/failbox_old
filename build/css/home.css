@@ -238,9 +238,7 @@ top-menu{
 	z-index: 999999;
 	top: 0;
 }
-.loadedView{
-	padding-top: 108px;
-}
+
 .topMenu{
 	width: 100%;
 	height: auto;
@@ -684,7 +682,7 @@ ul.listNav li.itemGroup ul.subItems li{
 }
 
 .bottomSite .navFailBox{
-	padding-left: 6vw;
+	padding-left: 0vw;
 }
 
 .bottomSite .navFailBox img{
@@ -703,11 +701,31 @@ ul.listNav li.itemGroup ul.subItems li{
 	margin-top: .5vw;
 }
 
+.footer-options {
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+li.footer-option {
+	font-size: 18px;
+  list-style-type: none;
+	color: #FFF;
+}
+
+li.footer-option a{
+	color: #FFF;
+	font-size: 14px;
+}
+
 .socialFailBox{
 	color: #FFF;
 	font-size: 1.2em;
 	text-align: right;
-	padding-right: 6vw;
+	padding-right: 4vw;
 }
 
 .socialFailBox .followSocial{
@@ -1513,6 +1531,12 @@ iframe {
 		color: black;
 }
 
+@media(max-width: 1271px){
+	.footer-options{
+		width: 95%;
+	}
+}
+
 @media (max-width: 1024px){
 	.contact-wrapper{
 		width: 80%;
@@ -1530,8 +1554,12 @@ iframe {
 }
 
 @media (max-width: 768px) {
+	.footer-options {
+	    width: 70%;
+	}
+
 	.loadedView{
-		padding-top: 79px;
+		/*padding-top: 79px;*/
 	}
 
 	.contact-title{
@@ -1589,6 +1617,9 @@ iframe {
 }
 
 @media (max-width: 480px){
+	.footer-options {
+	    width: 100%;
+	}
 	.loadedView{
 		padding-top: 57px;
 	}
@@ -1614,6 +1645,9 @@ iframe {
 	    width: 270px;
 	    height: 240px;
 	}
+
+
+
 }
 
 span.returnSpan{

@@ -16,7 +16,7 @@
             <div class="productos">
 
 
-                <div class="producto container-fluid vertical-align" ng-repeat="(key, itemsCart) in itemsCart">
+                <div class="producto container-fluid vertical-align visible-md visible-lg" ng-repeat="(key, itemsCart) in itemsCart">
                     <span class="close deleteItemCart" name="{{itemsCart.id_producto}}"><img src="./src/images/carrito/mas_info.png" /></span>
                     <div class="col-md-3 imagen text-center">
 
@@ -33,17 +33,40 @@
                     </div>
 
                     <div class="contador col-xs-12 col-sm-3 col-md-3 contador">
-
                         <div class="producto-wrap">
-
-                            <!-- <a ng-click="decrement(contador)" class="cont" href="#" ><img src="./src/images/carrito/min.png" /></a> -->
                             <a id="menos_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont menos_" style="cursor:pointer;"><img src="./src/images/carrito/min.png" /></a>
                             <input type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
                             <a id="mas_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont mas_" style="cursor:pointer"><img src="./src/images/carrito/mor.png" /></a>
-                            <!-- <a ng-click="increment(contador)" class="cont" href="#" ><img src="./src/images/carrito/mor.png" /></a> -->
                         </div>
                     </div>
                 </div>
+
+                <!-- MOBILE -->
+                <div class="producto container visible-xs visible-sm" ng-repeat="(key, itemsCart) in itemsCart" style="height: auto; border-top: 1px solid #58595b">
+                    <span class="close deleteItemCart col-xs-12 col-sm-12 text-right" name="{{itemsCart.id_producto}}"><img src="./src/images/carrito/mas_info.png" /></span>
+                    <div class="imagen text-center col-xs-12 col-sm-12" style="padding:0">
+                        <img style="margin: 0 auto" src="./admin/images/products/{{itemsCart.foto_producto}}" />
+                    </div>
+                    <div class="texto col-xs-12 col-sm-12">
+                        {{itemsCart.nombre_producto}}
+                    </div>
+                    <div class="col-xs-12"  style="padding:40px 0;">
+                        <div class="producto-wrap col-xs-6 col-sm-12">
+                            <div class="col-md-12 precio ">
+                                <div class="text-center precio_lista"><s>{{itemsCart.precio_lista | currency }}</s></div>
+                                <div class="text-center precio">{{itemsCart.precio | currency}}</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 contador">
+                            <div class="producto-wrap">
+                                <a id="menos_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont menos_" style="cursor:pointer;"><img src="./src/images/carrito/min.png" /></a>
+                                <input type="text" class="cantindad" name="cantidad" id="cantidad" value="{{itemsCart.cantidad}}">
+                                <a id="mas_" name="{{itemsCart.id_producto}}" data-quantity="1" class="cont mas_" style="cursor:pointer"><img src="./src/images/carrito/mor.png" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <span class="result_products" style="color: red; font-size: 13px;"></span>
                 <br>
                 <div class="text-right">
