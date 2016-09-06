@@ -15,15 +15,15 @@ function checksize(){
 	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
 
-	clearTimeout(timeoutId);
-	timeoutId = setTimeout(function(){
-		$('.loadedView').css('margin-top', height+'px');
-		$('.gridCategories').css({'top':(height+20)+'px'});
-		$('.gridSerives2').css({'top':(height+250)+'px'});
-		$('.gridSerives').css({'top':height+'px'});
-	}, 250);
-
-
+	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+	if (!isMobile) {
+		timeoutId = setTimeout(function(){
+			$('.loadedView').css('margin-top', height+'px');
+			$('.gridCategories').css('top', height+20+'px');
+			$('.gridSerives2').css('top', height+250+'px');
+			$('.gridSerives').css('top', height+'px');
+		}, 250)
+	}
 }
 </script>
 <style media="screen">

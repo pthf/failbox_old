@@ -28,9 +28,9 @@
 	<div class="contenedor" ng-controller="connectFacebookController">
 
 
-		<!-- <div class="capaModalRun" ng-controller="viewModalPopUp">
+		<div class="capaModalRun" ng-controller="viewModalPopUp">
 			<div class="imgLoading" style="width: 3%; height: auto;"><img src="./src/images/giphy.gif" style="width: 100%; height: auto;"></div>
-		</div> -->
+		</div>
 
 
 		<top-menu></top-menu>
