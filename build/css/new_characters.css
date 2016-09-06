@@ -419,16 +419,7 @@
 }
 
 .marcas-mobile {
-  display: none
-}
-
-.marcas-item {
-  width: 200px;
-  text-align: center;
-}
-
-.marcas-item img {
-  width: 200px;
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -496,13 +487,20 @@
   }
 
   .marcas-mobile{
+    display: block;
     width: 100%;
     height: auto;
     background: gray;
-    display: flex;
-    flex-direction: row;
     overflow-x: scroll;
-    justify-content: space-between;
+    white-space: nowrap;
+  }
+
+  .marcas-item {
+    display: inline-block;
+  }
+
+  .marcas-item img {
+      width: 165px;
   }
 
   .categoriesFailbox ul li{

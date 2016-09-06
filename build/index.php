@@ -35,8 +35,7 @@
 
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
-		<div class="loadedView" ng-view style="position:relative;">
-		</div>
+		<div class="loadedView" ng-view style="position:relative;"></div>
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
 	</div>
