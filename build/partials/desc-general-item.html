@@ -4,7 +4,7 @@
 
 <div class="contInformation" style="width:100%;">
 
-	<div class="returnDiv col-md-12" style="margin-bottom: 1vw;width: 100%;text-align: right">
+	<div class="returnDiv col-md-12 text-right" style="margin-bottom: 3vw;width: 100;margin-top: 2vw;">
 		<span class="returnSpan" style="font-size: 1em; top: -2.5vw;">< REGRESAR</span>
 	</div>
 
@@ -71,9 +71,11 @@
 						<td>Cant.</td>
 					</tr>
 					<tr>
-						<td ng-show="stock_session <= 3" ng-hide="stock_session <=0" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+
+						<td ng-show="stock_session <= 3" ng-hide="stock_session >=3 || stock_session <=1" style="color:red;" > Solo quedan {{stock_session}} piezas disponibles*</td>
+						<td ng-show="stock_session == 1" style="color:red;">Último producto*</td>
 						<td ng-show="stock_session == 0" style="color:red;">Sin existencias*</td>
-						<!--td ng-show="stock_session == 0; " style="color:red;">Sin existencias*</td-->
+
 					</tr>
 					<tr>
 						<td>
@@ -94,7 +96,7 @@
 		</tr>
 	</table>
 	<!-- redes sociales -->
-	<div class="col-md-12 text-center redes">
+	<!--div class="col-md-12 text-center redes">
 		<div class="leyenda">
 			Compartir Producto
 		</div>
@@ -108,7 +110,7 @@
 			</a>
 		</div>
 
-	</div>
+	</div-->
 
 </div>
 		<!-- Informacion de producto -->

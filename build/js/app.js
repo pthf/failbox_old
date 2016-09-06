@@ -80,6 +80,7 @@
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
 			$rootScope.$destroy();
 			$(document).find("*").off();
+			$('.redes').hide();
 		});
 		//This call to server will work to verify the session in the site.
 		// $.ajax({

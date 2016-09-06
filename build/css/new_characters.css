@@ -172,10 +172,10 @@
   height: auto;
   margin: 0 auto !important;
   background: #F2F2F2;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin-top: 100px !important;
-  margin-bottom: 100px !important;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  margin-top: 5vw !important;
+  margin-bottom: 5vw !important;
 }
 
 .gridComoComprar div{
@@ -315,6 +315,13 @@
   font-weight: bold;
 }
 
+.capa{
+  background: rgba(88, 89, 91, .8);
+}
+
+.capaModalRun{
+  background: rgba(88, 89, 91, 1);
+}
 
 .capa, .capaModalRun{
   position: fixed;
@@ -323,37 +330,13 @@
   z-index: 9999999999;
   width: 100%;
   height: 100%;
-  background: rgba(88, 89, 91, 1);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: center;
-  -ms-flex-direction: center;
   flex-direction: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  display: -webkit-flex;
-  -webkit-flex-wrap: wrap;
-  -webkit-flex-direction: center;
-  -webkit-justify-content: center;
-  -webkit-align-content: center;
-  -webkit-align-items: center;
   overflow: auto;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 
@@ -377,7 +360,6 @@
 .capa .popupInformation, .capaModalRun .popupInformation{
   width: 60%;
   height: auto;
-  overflow: auto;
   position: relative;
 }
 
@@ -395,12 +377,20 @@
   z-index: 10;
 }
 
-.closepopup:hover{
+.closepopupRun{
+  position: absolute;
+  top: 8%;
+  right: 5%;
+  width: 20%;
+  z-index: 10;
+}
+
+.closepopup:hover, .closepopupRun:hover{
   cursor: pointer;
   opacity: .5;
 }
 
-.closepopup img{
+.closepopup img, .closepopupRun img{
   width: 100%;
   height: auto;
 }
@@ -422,7 +412,7 @@
   display: none;
 }
 
-.marcas-mobile ::-webkit-scrollbar {
+.marcas-mobile::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
@@ -475,6 +465,10 @@
     width: 60%;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+
+  .closepopupRun{
+    width: 35%;
   }
 
 }

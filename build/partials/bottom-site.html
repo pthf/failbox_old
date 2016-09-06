@@ -1,9 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
-	checksize()
-	console.log('real')
-	console.log($('.contador-detalle-producto .redes'))
-	$('.contador-detalle-producto .redes').remove();
+	checksize();
+	topheight();
 })
 $(window).resize(function(){
 	checksize();
@@ -15,18 +13,20 @@ function checksize(){
 		$('.socialFailBox').removeClass('container');
 	}
 
+}
+function topheight(){
 	var timeoutId = null;
-	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 	if (!isMobile) {
-		timeoutId = setTimeout(function(){
+		setTimeout(function(){
+			var height =  document.getElementById('menutopmain').offsetHeight;
+			var height2 = $('.gridSerives').height() + height+30;
+			console.log($('.gridSerives').height(), height, 30 );
 			$('.loadedView').css('margin-top', height+'px');
 			$('.gridCategories').css('top', height+20+'px');
-			$('.gridSerives2').css('top', $('.gridSerives').height() + height+30+'px');
+			$('.gridSerives2').css('top', height2+'px');
 			$('.gridSerives').css('top', height+'px');
-
 		}, 500);
 	} else {
 		$('.buy-slide').css('margin-top', height+'px');

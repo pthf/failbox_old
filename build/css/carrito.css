@@ -238,7 +238,7 @@
   background-color: #fff;
   font-family: 'Gotham-Light';
   position: fixed !important;
-  z-index: 11;
+  z-index: 99999;
   overflow-y: hidden;
   right: 10px; }
   .buy-slide .comineza .texto {
@@ -298,6 +298,9 @@
   /* flex: 1; */
   flex-grow: 1; }
 
+@media (min-width: 481px) and (max-width: 670px) {
+  .mi_carrito .productos .producto {
+    font-size: 2vw; } }
 @media (max-width: 480px) {
   .buy-slide {
     right: 0; }

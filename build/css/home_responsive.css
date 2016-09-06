@@ -949,3 +949,18 @@
 		display: none !important;
 	}
 }
+
+@media (min-width: 485px) and (max-width: 768px) {
+	.topMenu .cartBar{
+		position: absolute;
+		top: 15px;
+		right: 10px;
+	}
+}
+
+@media (min-width: 449px) and (max-width: 980px) {
+	.contInformation .infoArticulo .contador-detalle-producto{
+		margin-top: 100px;
+	}
+
+}
