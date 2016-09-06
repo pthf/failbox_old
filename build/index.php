@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=nos">
-	<base href="http://localhost/failbox/build/">
+	<base href="http://localhost/www/failbox/failbox/build/">
 	<title>FailBox - Lo que cuenta es lo de adentro.</title>
 	<link rel="shortcut icon" type="image/png" href="./src/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
@@ -26,13 +26,9 @@
 </head>
 <body>
 	<div class="contenedor" ng-controller="connectFacebookController">
-
-
 		<div class="capaModalRun" ng-controller="viewModalPopUp">
 			<div class="imgLoading" style="width: 3%; height: auto;"><img src="./src/images/giphy.gif" style="width: 100%; height: auto;"></div>
 		</div>
-
-
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view style="position:relative;"></div>
@@ -49,15 +45,15 @@
 	<script src="./js/filters.js"></script>
 	<script src="./js/lib/slider.js"></script>
 	<script>
-	// 	// Load the SDK asynchronously
-	// 	(function(d, s, id) {
-	// 			var js, fjs = d.getElementsByTagName(s)[0];
-	// 			if (d.getElementById(id)) {return;}
-	// 			js = d.createElement(s); js.id = id;
-	// 			js.src = "//connect.facebook.net/en_US/sdk.js";
-	// 			fjs.parentNode.insertBefore(js, fjs);
-	// 	}(document, 'script', 'facebook-jssdk'));
-	// </script>
+		// Load the SDK asynchronously
+		// (function(d, s, id) {
+		// 		var js, fjs = d.getElementsByTagName(s)[0];
+		// 		if (d.getElementById(id)) {return;}
+		// 		js = d.createElement(s); js.id = id;
+		// 		js.src = "//connect.facebook.net/en_US/sdk.js";
+		// 		fjs.parentNode.insertBefore(js, fjs);
+		// }(document, 'script', 'facebook-jssdk'));
+	</script>
 	<!-- Load PopUp first, before to load the home -->
 	<script>
 		function startup(){
