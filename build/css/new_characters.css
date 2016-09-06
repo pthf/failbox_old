@@ -422,7 +422,7 @@
   display: none;
 }
 
-::-webkit-scrollbar {
+.marcas-mobile ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
