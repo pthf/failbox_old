@@ -1,6 +1,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	checksize()
+	console.log('real')
+	console.log($('.contador-detalle-producto .redes'))
+	$('.contador-detalle-producto .redes').remove();
 })
 $(window).resize(function(){
 	checksize();
@@ -16,13 +19,17 @@ function checksize(){
 	var height = $('.topMenu').parent().height();
 	if (timeoutId) clearTimeout(timeout);
 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 	if (!isMobile) {
 		timeoutId = setTimeout(function(){
 			$('.loadedView').css('margin-top', height+'px');
 			$('.gridCategories').css('top', height+20+'px');
 			$('.gridSerives2').css('top', $('.gridSerives').height() + height+30+'px');
 			$('.gridSerives').css('top', height+'px');
-		}, 250)
+
+		}, 250);
+	} else {
+		$('.buy-slide').css('margin-top', height+'px');
 	}
 }
 </script>
