@@ -252,16 +252,16 @@
 
 				$( ".titleNav" ).click(function() {
 					$(".video-modal-wrapper").append( '<iframe id="player" type="text/html" src="https://www.youtube.com/embed/MNwd2aQlXUA?version=3&enablejsapi=1&controls=0&&showinfo=0&rel=0&amp"> </iframe>' );
-					$('.background-blur').css('z-index','8');
+					$('.background-blur').css('z-index','9');
 					$('.background-blur').css('opacity','.6');
-					$('.video-modal').css('z-index','999999');
+					$('.video-modal').css('z-index','9');
 					$('.video-modal').css('opacity','1');
 				});
 
 				$( ".close-blur,.background-blur,.video-modal" ).click(function() {
-					$('.background-blur').css('z-index','999999');
+					$('.background-blur').css('z-index','-10');
 					$('.background-blur').css('opacity','0');
-					$('.video-modal').css('z-index','999999');
+					$('.video-modal').css('z-index','-10');
 					$('.video-modal').css('opacity','0');
 					$('iframe').get(0).remove();
 				});
@@ -1108,7 +1108,7 @@
 							} else {
 								$('.msgErrorNoSend').html('"Verifica que todos los campos esten completos, para continuar con tu compra."');
 							}
-							
+
 						});
 					} else if(idpedido){
 						$('.form2').remove();
@@ -1382,7 +1382,7 @@
 							}
 						});
 					};
-					$(document).ready(function(){ 
+					$(document).ready(function(){
                        $('#alternar-form-cupon').click(function(){
                             if($("#formCuponInput").is(":visible"))
                             {

@@ -39,9 +39,13 @@
         height: auto;
         width: 25px; }
     .carrito .productos .producto .producto-wrap {
+      display: -webkit-box;
       display: flex;
       display: -webkit-flex;
       display: -ms-flexbox;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
       align-items: center; }
       .carrito .productos .producto .producto-wrap .precio_lista {
         color: #58595b;
@@ -94,6 +98,7 @@
     font-family: 'Gotham-Bold';
     color: #6EB153; }
   .datos-envio .formulario input:hover, .datos-envio .formulario input:active, .datos-envio .formulario input:focus {
+    -webkit-box-shadow: none;
     box-shadow: none; }
   .datos-envio .formulario input, .datos-envio .formulario select {
     border: 1px solid #58595b !important;
@@ -166,6 +171,9 @@
   .resumen-compra .price_yes {
     color: #000; }
   .resumen-compra .productos .producto .texto {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
     justify-content: flex-start; }
   .resumen-compra .productos .producto .precio {
     display: inherit; }
@@ -234,6 +242,7 @@
   border-top: 0;
   padding-right: 0 !important;
   padding-left: 0 !important;
+  -webkit-box-shadow: -1px 1px 11px #58595B;
   box-shadow: -1px 1px 11px #58595B;
   background-color: #fff;
   font-family: 'Gotham-Light';
@@ -282,13 +291,29 @@
 
 /*Align all inside class*/
 .vertical-align {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
   flex-direction: row; }
 
 .vertical-align > [class^="col-"],
 .vertical-align > [class*=" col-"] {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
   /* Optional, to align inner items
      horizontally inside the column */ }
@@ -296,6 +321,9 @@
 .vertical-align > [class^="col-"] > div,
 .vertical-align > [class*=" col-"] > div {
   /* flex: 1; */
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1; }
 
 @media (min-width: 481px) and (max-width: 670px) {
@@ -310,5 +338,3 @@
 
   .resumen-compra .opciones .volver span {
     font-size: 16px; } }
-
-/*# sourceMappingURL=carrito.css.map */
