@@ -398,6 +398,8 @@
 		font-size: 1em;
 	}
 
+
+
 }
 @media only screen and (orientation: landscape) {
 	.bottomSite .navFailBox .logo{
@@ -406,7 +408,8 @@
 		margin-right: auto;
 	}
 }
-@media (max-width: 768px){
+
+@media (max-width: 1023px){
 	.flex-aside-left-menu{
 		display:none;
 	}
@@ -669,6 +672,9 @@
 		font-size: 12px !important;
 	}
 
+	.socialFailBox {
+		margin-top: 6vw;
+	}
 
 }
 
@@ -778,6 +784,12 @@
 		font-size: .6em;
 	}
 
+}
+
+@media(max-width: 807px){
+	.socialFailBox {
+	  margin: 0 auto;
+	}
 }
 
 @media (max-width: 480px){
@@ -929,7 +941,31 @@
 		right: 0;
 	}
 
+	.footer-options {
+	  flex-direction: column;
+	  align-items: center;
+	  text-align: center;
+	}
+
+	nav.footer-right-side {
+	  margin-top: 10vw;
+	}
+
+	a.visible-xs.visible-md.hidden-sm.visible-lg img.logo {
+    margin-bottom: 6vw;
+	}
+
+
+
 }
+
+@media(min-width: 807px){
+	.bottomSite .navFailBox{
+		padding-left: 25px !important;
+	}
+
+}
+
 @media (min-width: 768px) and (max-width: 1271px) {
 	.bottomSite .navFailBox{
 		padding-left: 0;
@@ -938,7 +974,7 @@
 		padding-right: 5vw;
 	}
 	.navFailBox img{
-		width: 23vw !important;
+		width: 30vw !important;
 	}
 	.navFailBox{
 		padding-left: 5vw !important;
