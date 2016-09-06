@@ -1,6 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
-	checksize()
+	checksize();
+	topheight();
 })
 $(window).resize(function(){
 	checksize();
@@ -10,6 +11,25 @@ function checksize(){
 		$('.socialFailBox').addClass('container');
 	} else if($(document).width() > 752) {
 		$('.socialFailBox').removeClass('container');
+	}
+
+}
+function topheight(){
+	var timeoutId = null;
+	if (timeoutId) clearTimeout(timeout);
+	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+	if (!isMobile) {
+		setTimeout(function(){
+			var height =  document.getElementById('menutopmain').offsetHeight;
+			var height2 = $('.gridSerives').height() + height+30;
+			console.log($('.gridSerives').height(), height, 30 );
+			$('.loadedView').css('margin-top', height+'px');
+			$('.gridCategories').css('top', height+20+'px');
+			$('.gridSerives2').css('top', height2+'px');
+			$('.gridSerives').css('top', height+'px');
+		}, 250);
+	} else {
+		$('.buy-slide').css('margin-top', height+'px');
 	}
 }
 </script>
@@ -82,7 +102,7 @@ function checksize(){
 					<span class="correctSusc" style="display: block; width: 100%; margin-top: .5vw; opacity: 0; transition: 1s;">Suscripcion correcta. ¡Gracias! </span>
 				<span style="width: 100%; text-align: right; display: inline-block;">
 					¿Dudas o comentarios? <br>
-					Contáctanos al hola@failbox.mx <br> o al teléfono (33) 1818-3282 </span>
+					Contáctanos al hola@failbox.mx <br> o a los teléfonos (33) 1818-3282 </span>
 				</div>
 			</form>
 		</div>
