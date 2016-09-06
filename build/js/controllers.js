@@ -5,7 +5,7 @@
 		.controller('viewModalPopUp', ['$location', '$scope', function($location, $scope){
 			$scope.showPopup = false;
 			if($location.path() === '/'){
-				$('.capaModalRun').html('<div class="popupInformation"><div class="closepopup continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-04.png"></div><div class="image"><img src="./src/images/FAILBOX_POPUPS_800x500-01.png"></div></div>');
+				$('.capaModalRun').html('<div class="popupInformation"><div class="closepopupRun continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-.jpg"></div><div class="image"><img src="./src/images/FAILBOX_POPUPS_800x500_web_4.jpg"></div></div>');
 				$('body,html').css({'overflow':'hidden'});
 			}else{
 				setTimeout(function(){
