@@ -76,12 +76,13 @@
 	app.run(['$rootScope', function($rootScope, $templateCache, scope){
 		//This scope is used for defined if there's a user connected.
 		$rootScope.loginUser = 0;
+		$rootScope.openPopUp = false;
 		$rootScope.pages = 1;
-		$rootScope.$on('$routeChangeStart', function(event, next, current) {
-			$rootScope.$destroy();
-			$(document).find("*").off();
-			$('.redes').hide();
-		});
+		// $rootScope.$on('$routeChangeStart', function(event, next, current) {
+		// 	$rootScope.$destroy();
+		// 	$(document).find("*").off();
+		// 	$('.redes').hide();
+		// });
 		//This call to server will work to verify the session in the site.
 		$.ajax({
 			type: 'POST',

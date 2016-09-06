@@ -26,13 +26,9 @@
 </head>
 <body>
 	<div class="contenedor" ng-controller="connectFacebookController">
-
-
 		<div class="capaModalRun" ng-controller="viewModalPopUp">
 			<div class="imgLoading" style="width: 3%; height: auto;"><img src="./src/images/giphy.gif" style="width: 100%; height: auto;"></div>
 		</div>
-
-
 		<top-menu></top-menu>
 		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view style="position:relative;"></div>
@@ -69,6 +65,6 @@
 			$('html,body').css({'overflow':'auto'});
 		});
 	</script>
-	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+	<!-- <script type="text/javascript" src="http://localhost:35729/livereload.js"></script> -->
 </body>
 </html>
