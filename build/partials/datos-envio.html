@@ -53,7 +53,8 @@
         <div class="formulario col-md-7 col-sm-12 form2" ng-show="idPedido == ''">
             <form class="form" method="post" id="formDatesSend">
                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <input required class="form-control" type="text" value="" placeholder="Tipo de Dirección (Ejemplo: Oficina, Casa)" name="typeAddress">
+                    <input id="typeAddress" data-status="denied" class="form-control" type="text" value="" placeholder="* Tipo de Dirección (Ejemplo: Oficina, Casa)" name="typeAddress">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-5 col-sm-5 col-xs-12">
                     <!-- <select class="form-control" >
@@ -61,7 +62,8 @@
                         <option value="1">Jalisco</option>
                         <option value="2">Nayarit</option>
                     </select> -->
-                    <input required class="form-control" type="text" placeholder="Selecciona estado o región" value="" name="state">
+                    <input id="state" data-status="denied" class="form-control" type="text" placeholder="* Selecciona estado o región" value="" name="state">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-7 col-sm-7 col-xs-12">
                     <!-- <select class="form-control" >
@@ -70,40 +72,51 @@
                         <option value="2">Zapopan</option>
                         <option value="2">Nayarit</option>
                     </select>
-     -->            <input required class="form-control" type="text" placeholder="Ciudad, delegación o municipio" value="" name="city">
+     -->            <input id="city" data-status="denied" class="form-control" type="text" placeholder="* Ciudad, delegación o municipio" value="" name="city">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-12 col-sm-4 col-xs-12">
-                    <input required class="form-control" type="text" placeholder="Calle y Número" value="" name="address">
+                    <input id="address" data-status="denied" class="form-control" type="text" placeholder="* Calle y Número" value="" name="address">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-6 col-sm-4 col-xs-8">
-                    <input required class="form-control" type="text" placeholder="Colonia" value="" name="colony">
+                    <input id="colony" data-status="denied" class="form-control" type="text" placeholder="* Colonia" value="" name="colony">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-6 col-sm-4 col-xs-4">
-                    <input required class="form-control" type="text" placeholder="C.P." value="" name="cp">
-                </div>
-                <div class="form-group col-md-12 col-sm-4 col-xs-12">
-                    <div style="color:red"class="result_cart"></div>
+                    <input id="cp" data-status="denied" class="form-control" type="text" placeholder="* C.P." value="" name="cp">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="titulo">
                     DATOS DE CONTACTO
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                    <input required class="form-control" type="text" placeholder="Nombre" value="" name="name">
+                    <input id="name" data-status="denied" class="form-control" type="text" placeholder="* Nombre" value="" name="name">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                    <input required class="form-control" type="text" placeholder="Apellidos" value="" name="lastname">
+                    <input id="lastname" data-status="denied" class="form-control" type="text" placeholder="* Apellidos" value="" name="lastname">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <input required class="form-control" type="text" value="" placeholder="Dirección de correo electrónico" name="email">
+                    <input id="email" data-status="denied" class="form-control" type="text" value="" placeholder="* Dirección de correo electrónico" name="email">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-6">
-                    <input required class="form-control" type="text" placeholder="Teléfono" value="" name="tel">
+                    <input id="tel" data-status="acepted" class="form-control" type="text" placeholder="Teléfono" value="" name="tel">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-6">
-                    <input required class="form-control" type="text" placeholder="Celular" value="" name="cel">
+                    <input id="cel" data-status="denied" class="form-control" type="text" placeholder="* Celular" value="" name="cel">
+                    <span class="msgError col-md-12 col-sm-12 col-xs-12"></span>
                 </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div style="color:red"class="result_cart"></div>
+                </div>
+                <span class="col-md-12 col-sm-12 col-xs-12" style="color:red">Campos obligatorios (*).</span>
+                <span class="msgErrorNoSend col-md-12 col-sm-12 col-xs-12" style="color:red"></span>
                 <div class="submit">
-                    <button required type="submit" class="btn btn-success btn-lg">Continuar</button>
+                    <button  type="submit" class="btn btn-success btn-lg">Continuar</button>
                 </div>
 
             </form>
@@ -147,8 +160,8 @@
                             <div class="cantidad col-md-12 col-sm-12 col-xs-12">
                                 CANTIDAD : {{itemsCart.cantidad}}
                             </div>
-                            <div class="precio col-md-11 col-sm-12 col-xs-12">
-                                <b>{{itemsCart.precio | currency}}</b>
+                            <div class="col-md-11 col-sm-12 col-xs-12">
+                                <b>Costo: <s style="padding-left: 16%;padding-right: 17%;">{{itemsCart.cantidad | currency}}</s></b> <b style="font-family: 'Gotham-Bold';text-weight: bold;">{{itemsCart.precio | currency}}</b>
                             </div>
                         </div>
                     </div>
