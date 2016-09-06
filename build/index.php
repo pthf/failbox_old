@@ -46,13 +46,13 @@
 	<script src="./js/lib/slider.js"></script>
 	<script>
 		// Load the SDK asynchronously
-		(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) {return;}
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/sdk.js";
-				fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+		// (function(d, s, id) {
+		// 		var js, fjs = d.getElementsByTagName(s)[0];
+		// 		if (d.getElementById(id)) {return;}
+		// 		js = d.createElement(s); js.id = id;
+		// 		js.src = "//connect.facebook.net/en_US/sdk.js";
+		// 		fjs.parentNode.insertBefore(js, fjs);
+		// }(document, 'script', 'facebook-jssdk'));
 	</script>
 	<!-- Load PopUp first, before to load the home -->
 	<script>
@@ -65,6 +65,6 @@
 			$('html,body').css({'overflow':'auto'});
 		});
 	</script>
-	<!-- <script type="text/javascript" src="http://localhost:35729/livereload.js"></script> -->
+	<!--<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>-->
 </body>
 </html>
