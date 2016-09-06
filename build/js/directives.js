@@ -1069,11 +1069,11 @@
 							var status_name = $('#formDatesSend div input[name=name]').attr('data-status');
 							var status_lastname = $('#formDatesSend div input[name=lastname]').attr('data-status');
 							var status_email = $('#formDatesSend div input[name=email]').attr('data-status');
-							var status_tel = $('#formDatesSend div input[name=tel]').attr('data-status');
+							// var status_tel = $('#formDatesSend div input[name=tel]').attr('data-status');
 							var status_cel = $('#formDatesSend div input[name=cel]').attr('data-status');
 
 							if(status_typeAddress == 'acepted' && status_state == 'acepted' && status_city == 'acepted' && status_address == 'acepted' && status_colony == 'acepted'
-							&& status_cp == 'acepted' && status_name == 'acepted' && status_lastname == 'acepted' && status_email == 'acepted' && status_tel == 'acepted' && status_cel == 'acepted'){
+							&& status_cp == 'acepted' && status_name == 'acepted' && status_lastname == 'acepted' && status_email == 'acepted' && status_cel == 'acepted'){
 								var ajaxData = new FormData();
 								ajaxData.append("action", $(this).serialize());
 								ajaxData.append("namefunction", "registrar_datos_pago");
@@ -1112,38 +1112,274 @@
 						});
 					} else if(idpedido){
 						$('.form2').remove();
+						$(document).on('change', '#formDatesSend_ div input[name=typeAddress]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red !important'});
+								$(this).siblings('.msgError').text("Agrega un tipo de dirección.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153 !important'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red !important'});
+									$(this).siblings('.msgError').text("Introduce un nombre válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=state]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega un estado.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153 !important'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce un nombre válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=city]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega una ciudad.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce un nombre válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=address]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega una dirección completa.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce una dirección válida.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=colony]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega una colonia.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce un nombre válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=cp]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega un código postal.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^([1-9]{2}|[0-9][1-9]|[1-9][0-9])[0-9]{3}$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce un código postal válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=name]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agregar nombres.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce un nombre válido.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=lastname]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega apellidos.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("Introduce los apellidos válidos.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						$(document).on('change', '#formDatesSend_ div input[name=email]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega dirección de correo electrónico.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								var expresion = new RegExp("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$");
+								if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								}else{
+									$(this).css({'border' : '2px solid red'});
+									$(this).siblings('.msgError').text("La dirección de email que proporcionaste no es válida.");
+									$(this).attr('data-status', 'denied');
+								}
+							}
+						});
+
+						// $(document).on('change', '#formDatesSend_ div input[name=tel]', function(e){
+						// 	var value = $(this).val();
+						// 	if(value.length==0){
+						// 		$(this).css({'border' : '2px solid red'});
+						// 		$(this).siblings('.msgError').text("Agrega un número de teléfono.");
+						// 		$(this).attr('data-status', 'denied');
+						// 	}else{
+						// 		// var expresion = new RegExp("/[^0-9]/");
+						// 		// if(expresion.test(value)){
+						// 			$(this).css({ 'border' : '2px solid #6EB153'});
+						// 			$(this).siblings('.msgError').text("");
+						// 			$(this).attr('data-status', 'acepted');
+						// 		// }else{
+						// 		// 	$(this).css({'border' : '2px solid red'});
+						// 		// 	$(this).siblings('.msgError').text("Introduce un número válido.");
+						// 		// 	$(this).attr('data-status', 'denied');
+						// 		// }
+						// 	}
+						// });
+
+						$(document).on('change', '#formDatesSend_ div input[name=cel]', function(e){
+							var value = $(this).val();
+							if(value.length==0){
+								$(this).css({'border' : '2px solid red'});
+								$(this).siblings('.msgError').text("Agrega un número de celular.");
+								$(this).attr('data-status', 'denied');
+							}else{
+								// var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
+								// if(expresion.test(value)){
+									$(this).css({ 'border' : '2px solid #6EB153'});
+									$(this).siblings('.msgError').text("");
+									$(this).attr('data-status', 'acepted');
+								// }else{
+								// 	$(this).css({'border' : '2px solid red'});
+								// 	$(this).siblings('.msgError').text("Introduce un número válido.");
+								// 	$(this).attr('data-status', 'denied');
+								// }
+							}
+						});
 						$('#formDatesSend_').submit(function(){
-							var ajaxData = new FormData();
-							ajaxData.append("action", $(this).serialize());
-							ajaxData.append("namefunction", "registrar_datos_pago");
-							ajaxData.append("total_cart", totalCart);
-							ajaxData.append("total_not_cart", totalNotCart);
-							$.ajax({
-								type: 'POST',
-								url: './php/functions_cart.php',
-								data: ajaxData,
-								processData: false,
-								contentType: false,
-								success : function(result){
-									if (result == -1) {
-										$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
-										$('.result_cart').css({'opacity' : '1'});
-										setTimeout(function () {
-											$('.result_cart').css({'opacity' : '0'});
-											$('.result_cart').text('');
-										}, 5000);
-										$('#formDatesSend_')[0].reset();
-									}else {
-										// alert(result);
-										$('#formDatesSend_')[0].reset();
-										window.location.href = "resumen-compra";
-									};
-								},
-								error: function(){
-									alert('error');
-								},
-								timeout: 10000
-							});
+							var status_typeAddress = $('#formDatesSend_ div input[name=typeAddress]').attr('data-status');
+							var status_state = $('#formDatesSend_ div input[name=state]').attr('data-status');
+							var status_city = $('#formDatesSend_ div input[name=city]').attr('data-status');
+							var status_address = $('#formDatesSend_ div input[name=address]').attr('data-status');
+							var status_colony = $('#formDatesSend_ div input[name=colony]').attr('data-status');
+							var status_cp = $('#formDatesSend_ div input[name=cp]').attr('data-status');
+							var status_name = $('#formDatesSend_ div input[name=name]').attr('data-status');
+							var status_lastname = $('#formDatesSend_ div input[name=lastname]').attr('data-status');
+							var status_email = $('#formDatesSend_ div input[name=email]').attr('data-status');
+							// var status_tel = $('#formDatesSend_ div input[name=tel]').attr('data-status');
+							var status_cel = $('#formDatesSend_ div input[name=cel]').attr('data-status');
+
+							if(status_typeAddress == 'acepted' && status_state == 'acepted' && status_city == 'acepted' && status_address == 'acepted' && status_colony == 'acepted'
+							&& status_cp == 'acepted' && status_name == 'acepted' && status_lastname == 'acepted' && status_email == 'acepted' && status_cel == 'acepted'){
+								var ajaxData = new FormData();
+								ajaxData.append("action", $(this).serialize());
+								ajaxData.append("namefunction", "registrar_datos_pago");
+								ajaxData.append("total_cart", totalCart);
+								ajaxData.append("total_not_cart", totalNotCart);
+								$.ajax({
+									type: 'POST',
+									url: './php/functions_cart.php',
+									data: ajaxData,
+									processData: false,
+									contentType: false,
+									success : function(result){
+										if (result == -1) {
+											$('.result_cart').html('Agrega productos al carrito para realizar el pedido.');
+											$('.result_cart').css({'opacity' : '1'});
+											setTimeout(function () {
+												$('.result_cart').css({'opacity' : '0'});
+												$('.result_cart').text('');
+											}, 5000);
+											$('#formDatesSend_')[0].reset();
+										}else {
+											// alert(result);
+											$('#formDatesSend_')[0].reset();
+											window.location.href = "resumen-compra";
+										};
+									},
+									error: function(){
+										alert('error');
+									},
+									timeout: 10000
+								});
+							} else {
+								$('.msgErrorNoSend').html('"Verifica que todos los campos esten completos, para continuar con tu compra."');
+							}
 						});
 					};
 					$(document).ready(function(){ 
@@ -1156,6 +1392,7 @@
                             }
                         });
                     });
+
                     $('#formCupon').submit(function(){
                     	// alert('Entramos');
                     	var ajaxData = new FormData();

@@ -191,7 +191,6 @@
 					$('.buy-slide').css('margin-top', height+'px');
 				}
 			}
-
 			window.addEventListener("load",function(){
 				topheight();
 			})
