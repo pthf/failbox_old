@@ -238,7 +238,7 @@
   background-color: #fff;
   font-family: 'Gotham-Light';
   position: fixed !important;
-  z-index: 11;
+  z-index: 99999;
   overflow-y: hidden;
   right: 10px; }
   .buy-slide .comineza .texto {
