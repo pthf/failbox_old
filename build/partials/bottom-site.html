@@ -35,30 +35,14 @@ function topheight(){
 	}
 }
 </script>
-<style media="screen">
-	@media (min-width: 768px) and (max-width: 1271px) {
-		.bottomSite .navFailBox{
-			padding-left: 40px !important;
-		}
-		.socialFailBox{
-		    padding-right: 5vw;
-		}
-		.bottomSite .navFailBox .logo{
-			width: 23vw !important;
-		}
-		.navFailBox{
-			padding-left: 5vw !important;
-		}
-	}
 
-</style>
 <div class="bottomSite">
 	<div class="navFailBox">
 		<a class="visible-sm" href="#/"><img style="width: 3vw" class="img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<a class="visible-xs visible-md hidden-sm visible-lg" href="#/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
 
 		<div class="footer-options">
-			<!-- <nav class="footer-left-side">
+			<nav class="footer-left-side">
 				<li class="footer-option"><b>FAILBOX</b></li>
 				<li class="footer-option"><a href="">quienes somos</a></li>
 				<li class="footer-option"><a href="">historia</a></li>
@@ -79,7 +63,7 @@ function topheight(){
 				<li class="footer-option"><a href="">garantía</a></li>
 				<li class="footer-option"><a href="">cancelaciones</a></li>
 				<li class="footer-option"><a href="">terminos y condiciones</a></li>
-			</nav> -->
+			</nav>
 		</div>
 	</div>
 
@@ -122,3 +106,30 @@ function topheight(){
 	</div>
 	</a>
 </div>
+
+<style media="screen">
+	@media (min-width: 768px) and (max-width: 1271px) {
+		.socialFailBox{
+		    padding-right: 5vw;
+		}
+		.bottomSite .navFailBox .logo{
+			width: 28vw !important;
+		}
+		.navFailBox{
+			padding-left: 5vw !important;
+		}
+
+	}
+
+	@media(max-width: 806px){
+		.navFailBox {
+		  margin: 0 auto;
+		  width: 85%;
+		}
+
+		img.img-responsive {
+		  margin: 0 auto;
+		}
+
+	}
+</style>

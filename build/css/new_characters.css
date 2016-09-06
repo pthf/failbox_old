@@ -463,6 +463,15 @@
     font-size: .7em;
   }
 
+  .view_hiden, .view_hiden2 {
+    left: -2.8vw;
+    width: 2.8vw;
+  }
+
+  .gridCategories ul .open_close{
+    width: 2.9vw;
+  }
+
 }
 
 @media(max-width: 991px){

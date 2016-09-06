@@ -711,7 +711,6 @@ ul.listNav li.itemGroup ul.subItems li{
 }
 
 li.footer-option {
-	font-size: 18px;
   list-style-type: none;
 	color: #FFF;
 }
@@ -719,6 +718,12 @@ li.footer-option {
 li.footer-option a{
 	color: #FFF;
 	font-size: 14px;
+	font-weight: 100;
+}
+
+li.footer-option b{
+	font-weight: bolder;
+	font-size: 18px;
 }
 
 .socialFailBox{
@@ -1533,7 +1538,7 @@ iframe {
 
 @media(max-width: 1271px){
 	.footer-options{
-		width: 95%;
+		width: 105%;
 	}
 }
 
@@ -1555,7 +1560,7 @@ iframe {
 
 @media (max-width: 768px) {
 	.footer-options {
-	    width: 70%;
+	    width: 80%;
 	}
 
 	.loadedView{
@@ -1613,6 +1618,18 @@ iframe {
 		width: 50%;
 	}
 
+	.socialFailBox{
+		margin: 0 auto;
+		padding-top: 8vw;
+	}
+
+
+}
+
+@media (max-width: 640px) {
+	.footer-options {
+	    width: 90%;
+	}
 
 }
 
