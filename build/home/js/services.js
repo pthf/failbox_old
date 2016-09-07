@@ -193,6 +193,15 @@
 			return deferred.promise;
 		}
 
+		function cart_isset() {
+			var deferred = $q.defer();
+			$http.get('./php/cart_isset.php')
+			.success(function (data) {
+				deferred.resolve(data);
+			});
+			return deferred.promise;
+		}
+
 		function dates_pedido() {
 			var deferred = $q.defer();
 
@@ -277,7 +286,8 @@
 			dates_pedido: dates_pedido,
 			getIdPedido: getIdPedido,
 			verificar_existencia_session: verificar_existencia_session,
-			verificar_existencias_global: verificar_existencias_global
+			verificar_existencias_global: verificar_existencias_global,
+			cart_isset: cart_isset
 		}
 
 	}]);
