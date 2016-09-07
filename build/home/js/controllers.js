@@ -361,6 +361,14 @@
 			});
 		}])
 
+		.controller('getProductsCart', ['$scope', 'failboxService', function($scope, failboxService){
+			$scope.loadingData = false;
+			failboxService.cart_isset().then(function(data){
+				$scope.valueCart = data;
+				$scope.loadingData = true;
+			});
+		}])
+
 		.controller('getListItemsCart', ['$scope', 'failboxService', '$rootScope', function($scope, failboxService, $rootScope){
 
 			$scope.loadingData = false;
