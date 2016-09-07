@@ -7,8 +7,15 @@ if (isset($_SESSION['total_carrito'])) {
 		$total_price = $total_price + $_SESSION['carrito'][$key]["sub_total"];
 	 	$costo_envio = $costo_envio + $_SESSION['carrito'][$key]['costo_envio'];
 	 	$total = $total_price + $costo_envio;
-		
 	}
-	print_r(json_encode($total));
+	$arrayName = array(
+		'costo_envio' => $costo_envio,
+		'total_price' => $total_price,
+		'total' =>	$total
+		);
+	print_r(json_encode($arrayName));
+	// print_r(json_encode($costo_envio));
+	// print_r(json_encode($total_price));
+	// print_r(json_encode($total));
 }
 ?>

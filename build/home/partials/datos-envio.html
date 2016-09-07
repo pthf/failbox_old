@@ -174,7 +174,7 @@
                                 CANTIDAD : {{itemsCart.cantidad}}
                             </div>
                             <div class="col-md-11 col-sm-12 col-xs-12">
-                                <b>Costo: <s style="padding-left: 16%;padding-right: 17%;">{{itemsCart.cantidad | currency}}</s></b> <b style="font-family: 'Gotham-Bold';text-weight: bold;">{{itemsCart.precio | currency}}</b>
+                                <b>Costo: <s style="padding-left: 16%;padding-right: 15%;">{{itemsCart.precio_lista | currency}}</s></b> <b style="font-family: 'Gotham-Bold';text-weight: bold;">{{itemsCart.precio | currency}}</b>
                             </div>
                         </div>
                     </div>
@@ -192,10 +192,10 @@
 
                 <div class="final text-right">
                     <div class="total" id="total" total="{{totalCart}}">
-                        <b>TOTAL: {{totalCart | currency}}</b>
+                        <b>TOTAL: {{totalCart.total | currency}}</b>
                     </div>
                     <div class="ahorro" id="totalnot" totalnot="{{totalNotPrice}}">
-                        En esta compra ahorrarás {{totalNotPrice - totalCart | currency}}
+                        En esta compra ahorrarás {{totalNotPrice - totalCart.total_price | currency}}
                     </div>
                 </div>
 

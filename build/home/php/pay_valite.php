@@ -32,8 +32,8 @@
             $req .= "&$key=$value";
         }
 
-        // $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');   // Esta URL debe variar dependiendo si usamos SandBox o no. Si lo usamos, se queda así.
-        $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');         // Si no usamos SandBox, debemos usar esta otra linea en su lugar.
+        $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');   // Esta URL debe variar dependiendo si usamos SandBox o no. Si lo usamos, se queda así.
+        // $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');         // Si no usamos SandBox, debemos usar esta otra linea en su lugar.
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -235,7 +235,7 @@
                 $subject = '!Tienda Failbox Online¡';
                 $message = "<html><head></head><body>";
                 $message .= "<h1><img src='http://failbox.mx/test/admin/images/logo_failbox.png' width='200px' height='auto'></h1>";
-                $message .= "<span style='font-family:Gotham-Light;'>Gracias ".$nombre_cliente.' '.$apellidos_cliente." por tu compra en Failbox.<br>Proporcionaste los números teléfonicos: $telefono_cliente y $telefono_cliente_cel.<br></span>";
+                $message .= "<span style='font-family:Gotham-Light;'>Gracias ".$nombre_cliente.' '.$apellidos_cliente." por tu compra en Failbox.<br>Proporcionaste los números teléfonicos: $telefono_cliente - $telefono_cliente_cel.<br></span>";
                 $message .= "<span style='font-family:Gotham-Light;'><br></span>";
                 $message .= "<span style='font-family:Gotham-Light;'>Tu orden de pedido es '".$orden_pedido."' por favor guárdalo para futuras aclaraciones.</span><br>";
                 $message .= "<span style='font-family:Gotham-Light;'>La fecha de entrega será de 5 a 8 días hábiles.<br>";

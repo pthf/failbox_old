@@ -845,16 +845,9 @@
 								$(this).siblings('.msgError').text("Agrega un tipo de dirección.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153 !important'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red !important'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -865,16 +858,9 @@
 								$(this).siblings('.msgError').text("Agrega un estado.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153 !important'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -885,16 +871,9 @@
 								$(this).siblings('.msgError').text("Agrega una ciudad.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -905,16 +884,9 @@
 								$(this).siblings('.msgError').text("Agrega una dirección completa.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce una dirección válida.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -925,16 +897,9 @@
 								$(this).siblings('.msgError').text("Agrega una colonia.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -965,16 +930,9 @@
 								$(this).siblings('.msgError').text("Agregar nombres.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -985,16 +943,9 @@
 								$(this).siblings('.msgError').text("Agrega apellidos.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce los apellidos válidos.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1045,16 +996,9 @@
 								$(this).siblings('.msgError').text("Agrega un número de celular.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								// var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								// if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								// }else{
-								// 	$(this).css({'border' : '2px solid red'});
-								// 	$(this).siblings('.msgError').text("Introduce un número válido.");
-								// 	$(this).attr('data-status', 'denied');
-								// }
+								$(this).css({ 'border' : '2px solid #6EB153'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1119,16 +1063,9 @@
 								$(this).siblings('.msgError').text("Agrega un tipo de dirección.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153 !important'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red !important'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1139,16 +1076,9 @@
 								$(this).siblings('.msgError').text("Agrega un estado.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153 !important'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1159,16 +1089,9 @@
 								$(this).siblings('.msgError').text("Agrega una ciudad.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1179,16 +1102,9 @@
 								$(this).siblings('.msgError').text("Agrega una dirección completa.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce una dirección válida.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1199,16 +1115,9 @@
 								$(this).siblings('.msgError').text("Agrega una colonia.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1239,16 +1148,9 @@
 								$(this).siblings('.msgError').text("Agregar nombres.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce un nombre válido.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1259,16 +1161,9 @@
 								$(this).siblings('.msgError').text("Agrega apellidos.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								}else{
-									$(this).css({'border' : '2px solid red'});
-									$(this).siblings('.msgError').text("Introduce los apellidos válidos.");
-									$(this).attr('data-status', 'denied');
-								}
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 
@@ -1319,16 +1214,9 @@
 								$(this).siblings('.msgError').text("Agrega un número de celular.");
 								$(this).attr('data-status', 'denied');
 							}else{
-								// var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]*$");
-								// if(expresion.test(value)){
-									$(this).css({ 'border' : '2px solid #6EB153'});
-									$(this).siblings('.msgError').text("");
-									$(this).attr('data-status', 'acepted');
-								// }else{
-								// 	$(this).css({'border' : '2px solid red'});
-								// 	$(this).siblings('.msgError').text("Introduce un número válido.");
-								// 	$(this).attr('data-status', 'denied');
-								// }
+								$(this).css({ 'border' : '2px solid #6EB153 !important'});
+								$(this).siblings('.msgError').text("");
+								$(this).attr('data-status', 'acepted');
 							}
 						});
 						$('#formDatesSend_').submit(function(){
@@ -1445,6 +1333,17 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
+
+				$(document).on('mouseover', '.buttonPaypal', function(){
+                    $(this).css({ 'cursor' : 'pointer' });
+                    $('input', this).attr('src', './src/images/carrito/button_paypal03.png');
+                });
+
+                $(document).on('mouseout', '.buttonPaypal', function(){
+                    $(this).css({ 'cursor' : 'normal' });
+                    $('input', this).attr('src', './src/images/carrito/button_paypal02.png');
+                });
+
 				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
