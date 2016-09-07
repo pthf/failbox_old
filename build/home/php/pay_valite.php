@@ -235,7 +235,7 @@
                 $subject = '!Tienda Failbox Online¡';
                 $message = "<html><head></head><body>";
                 $message .= "<h1><img src='http://failbox.mx/test/admin/images/logo_failbox.png' width='200px' height='auto'></h1>";
-                $message .= "<span style='font-family:Gotham-Light;'>Gracias ".$nombre_cliente.' '.$apellidos_cliente." por tu compra en Failbox.<br>Proporcionaste los números teléfonicos: $telefono_cliente y $telefono_cliente_cel.<br></span>";
+                $message .= "<span style='font-family:Gotham-Light;'>Gracias ".$nombre_cliente.' '.$apellidos_cliente." por tu compra en Failbox.<br>Proporcionaste los números teléfonicos: $telefono_cliente - $telefono_cliente_cel.<br></span>";
                 $message .= "<span style='font-family:Gotham-Light;'><br></span>";
                 $message .= "<span style='font-family:Gotham-Light;'>Tu orden de pedido es '".$orden_pedido."' por favor guárdalo para futuras aclaraciones.</span><br>";
                 $message .= "<span style='font-family:Gotham-Light;'>La fecha de entrega será de 5 a 8 días hábiles.<br>";
