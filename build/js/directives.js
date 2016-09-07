@@ -1445,6 +1445,17 @@
 			restrict: 'E',
 			templateUrl: './partials/resumen-compra.html',
 			controller: function($document){
+
+				$(document).on('mouseover', '.buttonPaypal', function(){
+                    $(this).css({ 'cursor' : 'pointer' });
+                    $('input', this).attr('src', './src/images/carrito/button_paypal03.png');
+                });
+
+                $(document).on('mouseout', '.buttonPaypal', function(){
+                    $(this).css({ 'cursor' : 'normal' });
+                    $('input', this).attr('src', './src/images/carrito/button_paypal02.png');
+                });
+
 				setTimeout(function(){
 					idpedido = $("#idpedido_resumen").attr('pedido');
 					// alert(idpedido);
