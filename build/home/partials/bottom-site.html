@@ -40,33 +40,29 @@ function checksize(){
 	<div class="navFailBox">
 		<a class="visible-sm" href="#/"><img style="width: 3vw" class="img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<a class="visible-xs visible-md hidden-sm visible-lg" href="#/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
-
 		<div class="footer-options">
 			<nav class="footer-left-side">
-				<li class="footer-option"><b>FAILBOX</b></li>
-				<li class="footer-option"><a href="">quienes somos</a></li>
-				<li class="footer-option"><a href="">historia</a></li>
-				<li class="footer-option"><a href="">misión</a></li>
-				<li class="footer-option"><a href="">visión</a></li>
-				<li class="footer-option"><a href="">valores</a></li>
-				<li class="footer-option"><a href="">personajes</a></li>
-				<li class="footer-option"><a href="">premio coparmex</a></li>
-				<li class="footer-option"><a href="">legales</a></li>
+				<li class="footer-option"><b>Failbox</b></li><br>
+				<li class="footer-option"><a href="">Quiénes somos</a></li>
+				<li class="footer-option"><a href="">Historia</a></li>
+				<li class="footer-option"><a href="">Misión</a></li>
+				<li class="footer-option"><a href="">Visión</a></li>
+				<li class="footer-option"><a href="">Valores</a></li>
+				<li class="footer-option"><a href="">Personajes</a></li>
+				<li class="footer-option"><a href="">Reconocimientos</a></li>
 			</nav>
-
 			<nav class="footer-right-side">
-				<li class="footer-option"><b>SERVICIO AL CLIENTE</b></li>
-				<li class="footer-option"><a href="">como comprar</a></li>
-				<li class="footer-option"><a href="">forma de pago</a></li>
-				<li class="footer-option"><a href="">faqs</a></li>
-				<li class="footer-option"><a href="">politica de aviso</a></li>
-				<li class="footer-option"><a href="">garantía</a></li>
-				<li class="footer-option"><a href="">cancelaciones</a></li>
-				<li class="footer-option"><a href="">terminos y condiciones</a></li>
+				<li class="footer-option"><b>Servicio al Cliente</b></li><br>
+				<li class="footer-option"><a href="">¿Cómo comprar? </a></li>
+				<li class="footer-option selectOpenPopUp" ng-click="selectpopup(3)"><a href="">Formas de Pago</a></li>
+				<li class="footer-option"><a href="./faq">Faq's </a></li>
+				<li class="footer-option"><a href="./aviso-de-privacidad">Aviso de privacidad</a></li>
+				<li class="footer-option selectOpenPopUp" ng-click="selectpopup(1)"><a href="">Garantía</a></li>
+				<li class="footer-option"><a href="">Condiciones de uso</a></li>
+				<li class="footer-option"><a href="./contacto">Contacto</a></li>
 			</nav>
 		</div>
 	</div>
-
 	<div class="socialFailBox">
 		<div class="followSocial" style="display: inline-flex">
 			<span class="titleFollow" style="display: inline-block; margin-right: .9vw;">¡Síguenos!</span>
@@ -94,6 +90,7 @@ function checksize(){
 		</div>
 	</div>
 </div>
+
 <div class="botttomPrivacy" style="position:relative;">
 	<a href="aviso-de-privacidad"><span class="colour-green" >Condiciones de Uso - Aviso de Privacidad</span></a>
 	<br><br>
@@ -120,16 +117,13 @@ function checksize(){
 		}
 
 	}
-
 	@media(max-width: 806px){
 		.navFailBox {
 		  margin: 0 auto;
 		  width: 85%;
 		}
-
 		img.img-responsive {
 		  margin: 0 auto;
 		}
-
 	}
 </style>
