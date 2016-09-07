@@ -2,12 +2,11 @@
 
 	angular.module('failboxStore.controllers', [])
 
-		.controller('viewModalPopUp', ['$location', '$scope', '$rootScope',function($location, $scope, $rootScope){
+		.controller('viewModalPopUp', ['$location', '$scope', function($location, $scope){
 			$scope.showPopup = false;
 			if($location.path() === '/'){
 				$('.capaModalRun').html('<div class="popupInformation"><div class="closepopupRun continueDisabled"><img src="./src/images/FAILBOX_POPUPS_800x500-.jpg"></div><div class="image"><img src="./src/images/FAILBOX_POPUPS_800x500_web_4.jpg"></div></div>');
 				$('body,html').css({'overflow':'hidden'});
-				$rootScope.openPopUp = true;
 			}else{
 				setTimeout(function(){
 					$('.capaModalRun').css({'opacity' : '0','z-index' : '-10'});
@@ -173,30 +172,6 @@
 				//}
 			};
 
-
-			topheight = function(){
-				var timeoutId = null;
-				if (timeoutId) clearTimeout(timeout);
-				var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-				if (!isMobile) {
-					$window.setTimeout(function(){
-						var height =  document.getElementById('menutopmain').offsetHeight;
-						var height2 = $('.gridSerives').height() + height+30;
-						console.log($('.gridSerives').height(), height, 30 );
-						$('.loadedView').css('margin-top', height+'px');
-						$('.gridCategories').css('top', height+20+'px');
-						$('.gridSerives2').css('top', height2+'px');
-						$('.gridSerives').css('top', height+'px');
-					}, 250);
-				} else {
-					$('.buy-slide').css('margin-top', height+'px');
-				}
-			}
-			window.addEventListener("load",function(){
-				topheight();
-			})
-
-
 		}])
 
 		.controller('topMenuController_', ['$scope', 'failboxService', function($scope, failboxService){
@@ -326,7 +301,7 @@
 				  'opacity': '1'
 				})
 			});
-			$(document).on('click', '.capa', function(){
+			$(document).on('click', '.closepopup', function(){
 				$('.capa').css({
 					'z-index': '-10',
 				  'opacity': '0'
