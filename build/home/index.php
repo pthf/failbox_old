@@ -29,7 +29,9 @@
 		<div class="capaModalRun">
 			<div class="imgLoading" style="width: 18%; height: auto;"><img src="./src/images/1.gif" style="width: 100%; height: auto;"></div>
 		</div>
+
 		<top-menu></top-menu>
+		<div class="box-hidden" style="display:block"></div>
 		<buy-slide></buy-slide>
 		<div class="loadedView" ng-view style="position:relative;"></div>
 		<bottom-site></bottom-site>
