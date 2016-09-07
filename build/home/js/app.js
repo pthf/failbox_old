@@ -9,40 +9,32 @@
 	app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 		$routeProvider
 		.when('/', {
-			templateUrl: 'views/home.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/home.html'
 		})
 		.when('/productos/', {
-			templateUrl: 'views/productos.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/productos.html'
 		})
 		.when('/productos/:category/:subcategory/:brand', {
-			templateUrl: 'views/productos.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/productos.html'
 		})
 		.when('/productos/:category/:subcategory', {
-			templateUrl: 'views/productos.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/productos.html'
 		})
 		.when('/productos/:category', {
-			templateUrl: 'views/productos.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/productos.html'
 		})
 		.when('/articulo/:url', {
 			templateUrl: 'views/articulo.html',
 			controller: 'itemController'
 		})
 		.when('/contacto', {
-			templateUrl: 'views/contacto.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/contacto.html'
 		})
 		.when('/faq', {
-			templateUrl: 'views/faq.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/faq.html'
 		})
 		.when('/aviso-de-privacidad', {
-			templateUrl: 'views/privacidad.html',
-			controller: 'homeSliderController'
+			templateUrl: 'views/privacidad.html'
 		})
 		.when('/carrito', {
 			templateUrl: 'views/carrito/micarrito.html',
