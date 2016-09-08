@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=nos">
-	<base href="http://localhost/www/failbox/failbox/build/home/">
+	<base href="http://localhost/www/failbox/build/home/">
 	<title>FailBox - Lo que cuenta es lo de adentro.</title>
 	<link rel="shortcut icon" type="image/png" href="./src/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
@@ -51,8 +51,8 @@
 		</div>
 
 		<top-menu></top-menu>
-		<div class="box-hidden" style="display:block"></div>
 		<buy-slide></buy-slide>
+		<div class="margin-responsive"></div>
 		<div class="loadedView" ng-view style="position:relative;"></div>
 		<bottom-site></bottom-site>
 		<show-modal-video></show-modal-video>
@@ -67,6 +67,7 @@
 	<script src="./js/services.js"></script>
 	<script src="./js/filters.js"></script>
 	<script src="./js/lib/slider.js"></script>
+
 	<script>
 		// Load the SDK asynchronously
 		// (function(d, s, id) {
@@ -91,6 +92,7 @@
 			$('html,body').css({'overflow':'auto'});
 		});
 	</script>
+
 	<!--<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>-->
 </body>
 </html>

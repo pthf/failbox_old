@@ -1,178 +1,178 @@
 
 <style>
-@media (max-width: 767px){
-	.titleNav{
-		display:none;
-	}
-	.ulmenuMobile{
+	@media (max-width: 767px){
+		.titleNav{
+			display:none;
+		}
+		.ulmenuMobile{
 
-	}
-	.topMenu{
-		padding:0;
-	}
-	.navbar{
-		position: absolute;;
-		background-color: rgba(248, 248, 248, 0);
-		border: none;
-		left:0;
-		width: 100%;
-		height: 100%;
-	}
-	.navbar-header{
-		height: auto;
-	}
+		}
+		.topMenu{
+			padding:0;
+		}
+		.navbar{
+			position: absolute;;
+			background-color: rgba(248, 248, 248, 0);
+			border: none;
+			left:0;
+			width: 100%;
+			height: 100%;
+		}
+		.navbar-header{
+			height: auto;
+		}
 
-	.navbar-toggle{
-		position: absolute;
-		margin: 0;
+		.navbar-toggle{
+			position: absolute;
+			margin: 0;
 
-		height: 100%;
-		border-radius: 0;
-	}
-	.navbar-default .navbar-toggle{
-		border: 1px solid rgba(255, 255, 255, 0);
-		top: 4px;
-		left:3px;
-	}
-	.navbar-fixed-top {
-		position: relative;
-		top: auto;/* Auto position navbar top */
-	}
+			height: 100%;
+			border-radius: 0;
+		}
+		.navbar-default .navbar-toggle{
+			border: 1px solid rgba(255, 255, 255, 0);
+			top: 4px;
+			left:3px;
+		}
+		.navbar-fixed-top {
+			position: relative;
+			top: auto;/* Auto position navbar top */
+		}
 
-	.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
-		max-height:inherit;/* Clear max-height */
-	}
+		.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+			max-height:inherit;/* Clear max-height */
+		}
 
-	.navbar-toggle .top-bar {
-		transform: rotate(45deg);
-		-webkit-transform: rotate(45deg);
-		transform-origin: 10% 10%;
-		-webkit-transform-origin: 10% 10%;
-	}
-	.navbar-toggle .middle-bar {
-		opacity: 0;
-	}
-	.navbar-toggle .bottom-bar {
-		transform: rotate(-45deg);
-		transform-origin: 10% 90%;
-		-webkit-transform: rotate(-45deg);
-		-webkit-transform-origin: 10% 90%;
-	}
-	.navegationFailBox input.barNav {
-		width: 75%;
-		margin-left: 15%;
-	}
-	.navbar-toggle .icon-bar {
-		transition: all 0.2s;
-		-webkit-transition: all 0.2s;
-	}
-	.navbar-toggle.collapsed .top-bar {
-		transform: rotate(0);
-		-webkit-transform: rotate(0);
-	}
-	.navbar-toggle.collapsed .middle-bar {
-		opacity: 1;
-	}
-	.navbar-toggle.collapsed .bottom-bar {
-		transform: rotate(0);
-		-webkit-transform: rotate(0);
-	}
+		.navbar-toggle .top-bar {
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			transform-origin: 10% 10%;
+			-webkit-transform-origin: 10% 10%;
+		}
+		.navbar-toggle .middle-bar {
+			opacity: 0;
+		}
+		.navbar-toggle .bottom-bar {
+			transform: rotate(-45deg);
+			transform-origin: 10% 90%;
+			-webkit-transform: rotate(-45deg);
+			-webkit-transform-origin: 10% 90%;
+		}
+		.navegationFailBox input.barNav {
+			width: 75%;
+			margin-left: 15%;
+		}
+		.navbar-toggle .icon-bar {
+			transition: all 0.2s;
+			-webkit-transition: all 0.2s;
+		}
+		.navbar-toggle.collapsed .top-bar {
+			transform: rotate(0);
+			-webkit-transform: rotate(0);
+		}
+		.navbar-toggle.collapsed .middle-bar {
+			opacity: 1;
+		}
+		.navbar-toggle.collapsed .bottom-bar {
+			transform: rotate(0);
+			-webkit-transform: rotate(0);
+		}
 
-	.navbar-default .navbar-toggle .icon-bar{
-		background-color: #fff;
-		width: 30px;
-		height: 3px;
-	}
-	.navbar-toggle .icon-bar+.icon-bar{
-		margin-top: 5px;
-	}
+		.navbar-default .navbar-toggle .icon-bar{
+			background-color: #fff;
+			width: 30px;
+			height: 3px;
+		}
+		.navbar-toggle .icon-bar+.icon-bar{
+			margin-top: 5px;
+		}
 
-	.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
-		background-color: rgba(248, 248, 248, 0);
-	}
-	.navbar-collapse{
-		position: absolute;
-		z-index: 999;
-	}
+		.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+			background-color: rgba(248, 248, 248, 0);
+		}
+		.navbar-collapse{
+			position: absolute;
+			z-index: 999;
+		}
 
-	.navbar-collapse .title{
-		color: #fff;
+		.navbar-collapse .title{
+			color: #fff;
 
-	}
-	.navbar-collapse .sub{
-		background-color: #3e3e3e;
-		padding: 0;
-		border-bottom: 1px solid #6b6b6b;
-	}
-	.navbar-collapse .sub:last-child{
-		border-bottom: none;
-	}
-	.navbar-collapse .main-submenu-mobile{
-		padding-top: 2px;
-	}
-	.navbar-collapse .sub a{
-		display: block;
-		padding: 12px 35px;
-	}
-	.navbar-collapse, .navbar-default .navbar-form{
-		border-color: rgb(231, 231, 231);
-		background-color: #58595B;
-		width: 100%;
-		font-size: 12px;
-	}
-	.navbar-collapse ul li{
-		border-bottom: 1px solid #dcdcdc;
-		padding: 15px 0;
-	}
-	.navbar-collapse ul li:last-child{
-		border-bottom: 0px solid #fff;
-	}
-	.navbar-collapse ul li:first-child{
-		border-top: 0px solid #fff;
-	}
-	.topMenu .navegationFailBox label{
-		width: 100%;
-		left: 44px;
-		z-index: 9999;
-	}
-	.nav>li>a:focus, .nav>li>a:hover{
-		background-color: rgba(238, 238, 238, 0);
-	}
-	.navbar-nav a{
-		width: 100%;
-		height: 100%;
-	}
-	.navbar-nav{
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-	.main-submenu-mobile .sub{
-		display: none;
-	}
-	.h-title{
-		padding-left: 10px;
-	}
-	.no-padding{
-		padding: 0 !important;
-	}
-	.no-padding a{
-		display: block;
-		padding: 10px 0;
-	}
-	.additional div:first-child{
-		border-right: 1px solid #fff;
-	}
-	.red-social > .btn{
-	}
-	@media (max-width: 480px){
-		.navegationFailBox input.barNav{
-			margin-left: 0;
+		}
+		.navbar-collapse .sub{
+			background-color: #3e3e3e;
+			padding: 0;
+			border-bottom: 1px solid #6b6b6b;
+		}
+		.navbar-collapse .sub:last-child{
+			border-bottom: none;
+		}
+		.navbar-collapse .main-submenu-mobile{
+			padding-top: 2px;
+		}
+		.navbar-collapse .sub a{
+			display: block;
+			padding: 12px 35px;
+		}
+		.navbar-collapse, .navbar-default .navbar-form{
+			border-color: rgb(231, 231, 231);
+			background-color: #58595B;
+			width: 100%;
+			font-size: 12px;
+		}
+		.navbar-collapse ul li{
+			border-bottom: 1px solid #dcdcdc;
+			padding: 15px 0;
+		}
+		.navbar-collapse ul li:last-child{
+			border-bottom: 0px solid #fff;
+		}
+		.navbar-collapse ul li:first-child{
+			border-top: 0px solid #fff;
 		}
 		.topMenu .navegationFailBox label{
-			left: 25px;
+			width: 100%;
+			left: 44px;
+			z-index: 9999;
+		}
+		.nav>li>a:focus, .nav>li>a:hover{
+			background-color: rgba(238, 238, 238, 0);
+		}
+		.navbar-nav a{
+			width: 100%;
+			height: 100%;
+		}
+		.navbar-nav{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.main-submenu-mobile .sub{
+			display: none;
+		}
+		.h-title{
+			padding-left: 10px;
+		}
+		.no-padding{
+			padding: 0 !important;
+		}
+		.no-padding a{
+			display: block;
+			padding: 10px 0;
+		}
+		.additional div:first-child{
+			border-right: 1px solid #fff;
+		}
+		.red-social > .btn{
+		}
+		@media (max-width: 480px){
+			.navegationFailBox input.barNav{
+				margin-left: 0;
+			}
+			.topMenu .navegationFailBox label{
+				left: 25px;
+			}
 		}
 	}
-}
 </style>
 
 <div ng-controller="topMenuController" class="menuTopPosition" id="menutopmain" style="height: 100%">
@@ -191,7 +191,7 @@
 
 		<div class="logoFailBox">
 			<div class="img">
-				<a href="#/"><img src="src/images/failbox-04.png"></a>
+				<a href="./home"><img src="src/images/failbox-04.png"></a>
 			</div>
 			<div class="titleNav">
 				<span>¿Quiénes somos?</span>

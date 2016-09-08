@@ -289,11 +289,12 @@
 					observeParents: true
 				}
 				setTimeout(function(){
-					mySwiper = new Swiper('.swiper-container', conf)
-
+					mySwiper = new Swiper('.swiper-container.swiper-home', conf)
 				}, 80);
+
 				var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 				if (!isMobile) {
+					//Funcion para recargar cada vez que cambie de tamaño la ventana del navegador
 					$(window).resize(function(){
 						location.reload();
 					});
@@ -675,7 +676,7 @@
 			controller: function($document){
 				var mySwiper;
 				setTimeout(function(){
-					mySwiper = new Swiper('.swiper-container',{
+					mySwiper = new Swiper('.swiper-container.swiper-general-item',{
 						pagination: '.pagination',
 						loop:false,
 						grabCursor: false,
@@ -685,6 +686,7 @@
 						debugger: false
 					})
 				}, 80);
+				//reinicia el slider al hacer resize a la ventana
 				$(window).resize(function(){
 					mySwiper.reInit() // or mySwiper.resizeFix()
 				});
