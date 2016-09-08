@@ -147,7 +147,7 @@
 				$scope.menuProductos = data;
 			});
 
-			//Reajusta el tamaño de margen entre el header y el contenido 
+			//Reajusta el tamaño de margen entre el header y el contenido
 			var heightHeader333 = $('top-menu').height();
 			$('.margin-responsive').height(heightHeader333);
 
@@ -200,6 +200,7 @@
 						$('.gridSerives').css('top', height+'px');
 					}, 250);
 				} else {
+					var height =  document.getElementById('menutopmain').offsetHeight;
 					$('.buy-slide').css('margin-top', height+'px');
 				}
 			}

@@ -87,18 +87,14 @@
 						$('.gridCategories').css('top', height+20+'px');
 						$('.gridSerives2').css('top', height2+'px');
 						$('.gridSerives').css('top', height+'px');
-						$('.buy-slide').css('top', height+'px');
 					}, 500);
 				} else {
+					var height =  document.getElementById('menutopmain').offsetHeight;
 					$('.buy-slide').css('margin-top', height+'px');
 				}
 			}
 			window.addEventListener("load",function(){
 				topheight();
-				setTimeout(function(){
-					var height =  document.getElementById('menutopmain').offsetHeight;
-					$('.buy-slide').css('margin-top', height+'px');
-				}, 500);
 			})
 		});
 

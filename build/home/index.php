@@ -47,6 +47,9 @@
 				<div class="image" ng-show = "popupselected===4">
 					<img src="./src/images/FAILBOX_POPUPS_800x500_web_5.jpg">
 				</div>
+				<div class="image" ng-show = "popupselected===5">
+					<img src="./src/images/FAILBOX_POPUPS_800x500_web_5.jpg">
+				</div>
 		  </div>
 		</div>
 
