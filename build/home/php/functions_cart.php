@@ -356,6 +356,7 @@
         unset($_SESSION['total_carrito']);
         unset($_SESSION['id_pedido']);
         unset($_SESSION['descuento-aplicado']);
+        unset($_SESSION['descuento']);
       }
 
     }
@@ -386,6 +387,7 @@
           unset($_SESSION['total_carrito']);
           unset($_SESSION['id_pedido']);
           unset($_SESSION['descuento-aplicado']);
+          unset($_SESSION['descuento']);
         }
       }
     }
@@ -416,6 +418,7 @@
         unset($_SESSION['total_carrito']);
         unset($_SESSION['id_pedido']);
         unset($_SESSION['descuento-aplicado']);
+        unset($_SESSION['descuento']);
       }
 
     }
@@ -484,6 +487,7 @@
               unset($_SESSION['total_carrito']);
               unset($_SESSION['id_pedido']);
               unset($_SESSION['descuento-aplicado']);
+              unset($_SESSION['descuento']);
             }
           } else if ($value['cantidad'] > $row['Stock']) {
             $resultado = -1;
@@ -496,6 +500,7 @@
             unset($_SESSION['total_carrito']);
             unset($_SESSION['id_pedido']);
             unset($_SESSION['descuento-aplicado']);
+            unset($_SESSION['descuento']);
             $resultado = 1;
           }
         }
@@ -750,6 +755,7 @@
           $row = mysql_fetch_array($result);
           $num_row = mysql_num_rows($result);
           if ($num_row > 0) {
+            $_SESSION['descuento'] = $row['Descuento']/100;
             $descuento = ($_SESSION['total_carrito'] * $row['Descuento'])/100;
             $precio_descuento = $_SESSION['total_carrito'] - $descuento;
             $_SESSION['total_carrito'] = $precio_descuento;
@@ -780,6 +786,7 @@
           $row = mysql_fetch_array($result);
           $num_row = mysql_num_rows($result);
           if ($num_row > 0) {
+            $_SESSION['descuento'] = $row['Descuento']/100;
             $descuento = ($_SESSION['total_carrito'] * $row['Descuento'])/100;
             $precio_descuento = $_SESSION['total_carrito'] - $descuento;
             $_SESSION['total_carrito'] = $precio_descuento;
