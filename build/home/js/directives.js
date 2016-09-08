@@ -1728,6 +1728,8 @@
 					agregar_producto(idProduct,notprice,quantity,sub_total);
 					actualizar_carrito();
 					if($('.buy-slide:hidden')){
+						var height =  document.getElementById('menutopmain').offsetHeight;
+						$('.buy-slide').css('margin-top', height+'px');
 						$('.buy-slide').slideDown('fast');
 					}
 				} else if(result == 0){

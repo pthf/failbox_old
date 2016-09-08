@@ -1,6 +1,7 @@
 section.slider-wrapper {
 	position: relative;
 	height: 100%;
+	overflow: hidden;
 }
 
 /*.touch-slider {
@@ -39,7 +40,7 @@ section.slider-wrapper {
 
 .swiper-slide img {
 	width: 100%;
-	height:auto;
+	height:100%;
 	position: relative;
 }
 
@@ -224,6 +225,7 @@ section.slider-wrapper {
 	.content-swiper .pagination{
 		margin: 15px 0;
 	}
+
 }
 
 @media (max-width: 480px) {
@@ -250,4 +252,5 @@ section.slider-wrapper {
 		-ms-flex-align: center;
 		align-items: center;
 	}
+
 }

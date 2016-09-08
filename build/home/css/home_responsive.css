@@ -112,6 +112,9 @@
 
 @media (max-width: 1366px){
 
+	span.returnSpan{
+		font-size: 14px !important;
+	}
 	.goTop{
 		width: 2.5vw;
 		height: 2.5vw;
@@ -413,6 +416,10 @@
 		width: 100% !important;
 	}
 
+	.navegationFailBox .nav{
+		display:none !important;
+	}
+
 	.goTop{
 		top: 25%;
 		width: 3.5vw;
@@ -686,16 +693,28 @@
 
 }
 
+@media (max-width: 640px){
+
+	span.returnSpan{
+		font-size: 10px !important;
+	}
+
+	.returnDiv {
+    width: 90% !important;
+
+}
+
 @media (max-width: 767px){
 	.navegationFailBox .nav{
 		display:none !important;
+
 	}
 }
 
 @media (max-width: 640px){
 
 	.goTop{
-		top: 20%;
+		top: 5%;
 		width: 4vw;
 		height: 4vw;
 	}

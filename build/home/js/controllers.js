@@ -147,15 +147,17 @@
 				$scope.menuProductos = data;
 			});
 
-			//Reajusta el tamaño de margen entre el header y el contenido 
-			var heightHeader333 = $('top-menu').height();
-			$('.margin-responsive').height(heightHeader333);
-
-			$( window ).resize(function() {
+			//Reajusta el tamaño de margen entre el header y el contenido
+			setTimeout(function(){
 				var heightHeader333 = $('top-menu').height();
 				$('.margin-responsive').height(heightHeader333);
-			});
-			///////
+
+				$( window ).resize(function() {
+					var heightHeader333 = $('top-menu').height();
+					$('.margin-responsive').height(heightHeader333);
+				});
+			}, 100);
+
 
 
 			var activeCategory = false;
@@ -200,6 +202,7 @@
 						$('.gridSerives').css('top', height+'px');
 					}, 250);
 				} else {
+					var height =  document.getElementById('menutopmain').offsetHeight;
 					$('.buy-slide').css('margin-top', height+'px');
 				}
 			}

@@ -41,7 +41,7 @@ function checksize(){
 		<a class="visible-sm" href="#/"><img style="width: 3vw" class="img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<a class="visible-xs visible-md hidden-sm visible-lg" href="#/"><img class="logo img-responsive" src="./src/images/failbox-04.png"></a><br>
 		<div class="footer-options">
-			<nav class="footer-left-side">
+			<!-- <nav class="footer-left-side">
 				<li class="footer-option"><b>Failbox</b></li><br>
 				<li class="footer-option"><a href="">Quiénes somos</a></li>
 				<li class="footer-option"><a href="">Historia</a></li>
@@ -50,15 +50,15 @@ function checksize(){
 				<li class="footer-option"><a href="">Valores</a></li>
 				<li class="footer-option"><a href="">Personajes</a></li>
 				<li class="footer-option"><a href="">Reconocimientos</a></li>
-			</nav>
+			</nav> -->
 			<nav class="footer-right-side">
 				<li class="footer-option"><b>Servicio al Cliente</b></li><br>
-				<li class="footer-option"><a href="">¿Cómo comprar? </a></li>
+				<!-- <li class="footer-option selectOpenPopUp" ng-click="selectpopup(5)"><a href="">¿Cómo comprar? </a></li> -->
 				<li class="footer-option selectOpenPopUp" ng-click="selectpopup(3)"><a href="">Formas de Pago</a></li>
 				<li class="footer-option"><a href="./faq">Faq's </a></li>
 				<li class="footer-option"><a href="./aviso-de-privacidad">Aviso de privacidad</a></li>
 				<li class="footer-option selectOpenPopUp" ng-click="selectpopup(1)"><a href="">Garantía</a></li>
-				<li class="footer-option"><a href="">Condiciones de uso</a></li>
+				<li class="footer-option"><a href="./aviso-de-privacidad">Condiciones de uso</a></li>
 				<li class="footer-option"><a href="./contacto">Contacto</a></li>
 			</nav>
 		</div>
@@ -105,6 +105,10 @@ function checksize(){
 </div>
 
 <style media="screen">
+	.footer-right-side li a:hover{
+		cursor: pointer;
+		opacity: .5;
+	}
 	@media (min-width: 768px) and (max-width: 1271px) {
 		.socialFailBox{
 		    padding-right: 5vw;
