@@ -1700,6 +1700,8 @@
 	});
 
 	$(document).on('click', '.cartBar', function(e){
+		var height =  document.getElementById('menutopmain').offsetHeight;
+		$('.buy-slide').css('margin-top', height+'px');
 		$('.buy-slide').slideToggle('fast');
 	})
 

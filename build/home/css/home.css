@@ -1726,17 +1726,25 @@ iframe {
 }
 
 @media (max-width: 991px){
+
 	.returnDiv{
-			margin-bottom: 3vw;
-			position: relative !important;
-			margin-left: 50%;
+		margin-top: 6vw !important;
+		margin-bottom: 6vw !important;
 	}
+
+	.returnDiv .returnSpan{
+		font-size: 10px !important;
+	}
+
 }
 
 @media (max-width: 768px) {
 
+	.returnDiv .returnSpan{
+		font-size: 8px !important;
+	}
+
 	.returnDiv{
-			margin-top: 6vw !important;
 	}
 
 	.footer-options {
@@ -1824,6 +1832,11 @@ iframe {
 
 @media (max-width: 480px){
 
+	.returnDiv{
+		margin-top: 8vw !important;
+		margin-bottom: 8vw !important;
+	}
+
 	.content-swiper img{
 		width: 80% !important;
 		height: auto !important;
@@ -1869,7 +1882,6 @@ iframe {
 }
 
 span.returnSpan{
-	font-family: 1em !important;
 	font-family: 'Gotham-Light' !important;
 }
 

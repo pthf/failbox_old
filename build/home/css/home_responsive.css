@@ -112,10 +112,6 @@
 
 @media (max-width: 1366px){
 
-	span.returnSpan{
-		font-size: .8em !important;
-	}
-
 	.goTop{
 		width: 2.5vw;
 		height: 2.5vw;
@@ -416,9 +412,6 @@
 	.flex-asise-right-items{
 		width: 100% !important;
 	}
-	span.returnSpan{
-		font-size: .6em !important;
-	}
 
 	.goTop{
 		top: 25%;
@@ -700,10 +693,6 @@
 }
 
 @media (max-width: 640px){
-
-	span.returnSpan{
-		font-size: .5em !important;
-	}
 
 	.goTop{
 		top: 20%;
@@ -1036,9 +1025,8 @@
 
 }
 
-@media (min-width: 449px) and (max-width: 991px) {
+@media (max-width: 991px) {
 	.contInformation .infoArticulo .contador-detalle-producto{
 		margin-top: 6vw;
 	}
-
 }
