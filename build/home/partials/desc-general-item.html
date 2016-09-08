@@ -4,8 +4,8 @@
 
 <div class="contInformation" style="width:100%;">
 
-	<div class="returnDiv col-md-12 text-right" style="margin-bottom: 3vw;width: 100;margin-top: 2vw;">
-		<span class="returnSpan" style="font-size: 1em; top: -2.5vw;">< REGRESAR</span>
+	<div class="returnDiv col-md-12 text-right" style="margin-bottom: 3vw; width: 100;margin-top: 3vw;">
+		<span class="returnSpan" style="font-size: 12px; background-color:#58595B; color: #FFF; font-weight: bold; padding: 10px 20px 10px 20px;">REGRESAR</span>
 	</div>
 
 	<div class="infoArticulo" style="width: 100%">
@@ -36,7 +36,7 @@
 		</div>
 		<!-- Contador -->
 		<div class="contador-detalle-producto col-md-3">
-			<table border="1">
+			<table border="1" >
 				<tr>
 					<td>
 						<table>
@@ -53,7 +53,7 @@
 									<img src="./src/images/carrito/min.png" />
 								</button>
 
-								<input readonly="{{readonly}}" class="input_stocks" id="cantidad" type="text" style="text-align: center; width:50px;" ng-model="quantity">
+								<input readonly="{{readonly}}" class="input_stocks" id="cantidad" type="text" style="text-align: center; width:50px; padding: 5px 0px 5px 0px;" ng-model="quantity">
 
 								<button class="btn mas" type="button" id="mas"
 								ng-disabled="stock_session == 0"

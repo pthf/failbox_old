@@ -25,14 +25,18 @@
                     <div class="cantidad">Cantidad: {{list.cantidad}}</div>
                     <div class="precio">{{list.precio | currency}}</div>
                 </div>
+
             </div>
+
+            <div class="subtotal col-md-12 col-lg-12 col-sm-12" ng-controller="purchaseSummary">
+                <div class="col-md-6 col-lg-6 text-left col-sm-6"><strong>SUBTOTAL: </strong></div>
+                <div class="precio col-md-6 col-lg-6 col-sm-6 text-right">{{totalCart.total | currency}}</div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 text-center content-btn">
+                <a href="carrito"> <button class="btn btn-success btn-lg ">IR A CARRITO</button></a>
+            </div>
+            
         </div>
-        <div class="subtotal col-md-12 col-lg-12 col-sm-12" ng-controller="purchaseSummary">
-            <div class="col-md-6 col-lg-6 text-left col-sm-6"><strong>SUBTOTAL: </strong></div>
-            <div class="precio col-md-6 col-lg-6 col-sm-6 text-right">{{totalCart.total | currency}}</div>
-        </div>
-        <div class="col-md-12 col-lg-12 col-sm-12 text-center content-btn">
-            <a href="carrito"> <button class="btn btn-success btn-lg ">IR A CARRITO</button></a>
-        </div>
+
     </div>
 </div>

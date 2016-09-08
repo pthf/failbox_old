@@ -79,7 +79,6 @@
 				var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 				if (!isMobile) {
 					setTimeout(function(){
-
 						var height =  document.getElementById('menutopmain').offsetHeight;
 						$('.box-hidden').css('height', height+'px');
 						var height2 = $('.gridSerives').height() + height+30;
@@ -96,6 +95,10 @@
 			}
 			window.addEventListener("load",function(){
 				topheight();
+				setTimeout(function(){
+					var height =  document.getElementById('menutopmain').offsetHeight;
+					$('.buy-slide').css('margin-top', height+'px');
+				}, 500);
 			})
 		});
 
