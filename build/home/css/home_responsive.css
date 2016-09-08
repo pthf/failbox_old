@@ -113,7 +113,7 @@
 @media (max-width: 1366px){
 
 	span.returnSpan{
-		font-size: .8em !important;
+		font-size: 14px !important;
 	}
 
 	.goTop{
@@ -419,9 +419,7 @@
 	.navegationFailBox .nav{
 		display:none !important;
 	}
-	span.returnSpan{
-		font-size: .6em !important;
-	}
+
 
 	.goTop{
 		top: 25%;
@@ -699,11 +697,15 @@
 @media (max-width: 640px){
 
 	span.returnSpan{
-		font-size: .5em !important;
+		font-size: 10px !important;
+	}
+
+	.returnDiv {
+    width: 90% !important;
 	}
 
 	.goTop{
-		top: 20%;
+		top: 5%;
 		width: 4vw;
 		height: 4vw;
 	}
