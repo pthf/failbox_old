@@ -1,3 +1,32 @@
+.productsFlex{
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
 .carrito {
   font-family: 'Gotham-Light'; }
   .carrito .titulo {
@@ -237,6 +266,10 @@
     padding: 50px 0; }
 
 .buy-slide {
+  width: 25%;
+  max-width: 320px;
+  min-width: 220px;
+  height: auto;
   display: none;
   border: 1px solid #58595B;
   border-top: 0;
@@ -247,18 +280,18 @@
   background-color: #fff;
   font-family: 'Gotham-Light';
   position: fixed !important;
-  z-index: 99999;
-  overflow-y: hidden;
-  right: 10px; }
+  z-index: 8;
+  overflow: hidden;
+  right: 0px; }
   .buy-slide .comineza .texto {
     padding: 30px 15px;
     padding-bottom: 10px; }
   .buy-slide .comineza .cnt {
     padding: 20px 17px; }
   .buy-slide .content-buy {
-    height: 400px;
+    height: auto;
     max-height: 400px;
-    overflow-x: hidden; }
+    overflow-x: auto; }
   .buy-slide .btn-lg {
     background-color: #6EB153;
     width: 100%;
@@ -326,15 +359,34 @@
   -ms-flex-positive: 1;
   flex-grow: 1; }
 
+
+@media (max-width: 991px){
+
+}
+
+@media (max-width: 767px){
+  .buy-slide {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+    margin: 0 auto;
+  }
+}
+
+
+
+
 @media (min-width: 481px) and (max-width: 670px) {
   .mi_carrito .productos .producto {
     font-size: 2vw; } }
 @media (max-width: 480px) {
   .buy-slide {
-    right: 0; }
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
 
-  .buy-slide .content-buy {
-    height: 66vh; }
 
   .resumen-compra .opciones .volver span {
     font-size: 16px; } }

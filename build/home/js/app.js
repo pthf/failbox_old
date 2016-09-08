@@ -88,7 +88,8 @@
 						$('.gridCategories').css('top', height+20+'px');
 						$('.gridSerives2').css('top', height2+'px');
 						$('.gridSerives').css('top', height+'px');
-					}, 250);
+						$('.buy-slide').css('top', height+'px');
+					}, 500);
 				} else {
 					$('.buy-slide').css('margin-top', height+'px');
 				}

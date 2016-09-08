@@ -1701,7 +1701,7 @@
 	});
 
 	$(document).on('click', '.cartBar', function(e){
-		$('.buy-slide').slideToggle('fast')
+		$('.buy-slide').slideToggle('fast');
 	})
 
 	$(document).on('click', '.buttonAddCart', function(e){

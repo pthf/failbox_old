@@ -1,4 +1,4 @@
-<div class="buy-slide col-md-2 col-sm-5 col-xs-12" ng-controller="getListItemsCart">
+<div class="buy-slide" ng-controller="getListItemsCart">
     <div ng-if="!itemsCart" class="comineza">
         <div class="col-md-12 text-center texto">
             <h4>No tienes productos</h4>
@@ -14,12 +14,12 @@
         <div class="content-buy" >
 
             <!-- NGREPEAT -->
-            <div class="producto col-md-12 col-lg-12 col-sm-12" ng-repeat="list in itemsCart">
+            <div class="producto productsFlex" ng-repeat="list in itemsCart">
 
-                <div class="col-md-12 col-lg-6 col-sm-5">
-                    <img class="img-responsive" src="./admin/images/products/{{list.foto_producto}}" />
+                <div style="width: 50%;">
+                    <img style="width: 80%; height: auto; margin: 0 auto;" src="./admin/images/products/{{list.foto_producto}}" />
                 </div>
-                <div class="col-md-12 col-lg-6 col-sm-7">
+                <div style="width: 50%;">
                     <div class="titulo">{{list.nombre_producto}}</div>
                     <div class="descripcion">{{list.descripcion_producto | limitTo: 20}}...</div>
                     <div class="cantidad">Cantidad: {{list.cantidad}}</div>
