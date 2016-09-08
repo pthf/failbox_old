@@ -729,42 +729,70 @@
       $date = date('Y-m-d');
       if (!isset($_SESSION['descuento-aplicado'])) {
         if (isset($_SESSION['id_pedido'])) {
-          foreach ($_SESSION['carrito'] as $key => $value) {
-            $query = "SELECT * FROM Productos WHERE IdProducto = '".$value['id_producto']."'";
-            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-            $row = mysql_fetch_array($result);
-            if ($row['CodigoCupon'] == $formData['cupon']) {
-              if ($row['FechaInicio'] == $date) {
-                $descuento = ($value['precio'] * $row['Descuento'])/100;
-                $precio_descuento = ($value['precio'] - $descuento) * $value['cantidad'];
-                $_SESSION['carrito'][$key]['sub_total'] = $precio_descuento;
-                $_SESSION['total_carrito'] = $_SESSION['total_carrito'] - $precio_descuento;
-                $_SESSION['descuento-aplicado'] = 1;
-                $query = "UPDATE Pedidos SET Total = '".$_SESSION['total_carrito']."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
-                $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-              }
-            }
+          // foreach ($_SESSION['carrito'] as $key => $value) {
+          //   $query = "SELECT * FROM Productos WHERE IdProducto = '".$value['id_producto']."'";
+          //   $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+          //   $row = mysql_fetch_array($result);
+          //   if ($row['CodigoCupon'] == $formData['cupon']) {
+          //     if ($row['FechaInicio'] == $date) {
+          //       $descuento = ($value['precio'] * $row['Descuento'])/100;
+          //       $precio_descuento = ($value['precio'] - $descuento) * $value['cantidad'];
+          //       $_SESSION['carrito'][$key]['sub_total'] = $precio_descuento;
+          //       $_SESSION['total_carrito'] = $_SESSION['total_carrito'] - $precio_descuento;
+          //       $_SESSION['descuento-aplicado'] = 1;
+          //       $query = "UPDATE Pedidos SET Total = '".$_SESSION['total_carrito']."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
+          //       $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+          //     }
+          //   }
+          // }
+          $query = "SELECT * FROM Cupones WHERE CodigoCupon = '".$formData['cupon']."'";
+          $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+          $row = mysql_fetch_array($result);
+          $num_row = mysql_num_rows($result);
+          if ($num_row > 0) {
+            $descuento = ($_SESSION['total_carrito'] * $row['Descuento'])/100;
+            $precio_descuento = $_SESSION['total_carrito'] - $descuento;
+            $_SESSION['total_carrito'] = $precio_descuento;
+            $_SESSION['descuento-aplicado'] = 1;
+            $query1 = "UPDATE Pedidos SET Total = '".$_SESSION['total_carrito']."' WHERE IdPedido = '".$_SESSION['id_pedido']."'";
+            $result1 = mysql_query($query1,Conectar::con()) or die(mysql_error());
+            echo 1;
+          } else {
+            echo 0;
           }
         } else {
-          foreach ($_SESSION['carrito'] as $key => $value) {
-            $query = "SELECT * FROM Productos WHERE IdProducto = '".$value['id_producto']."'";
-            $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-            $row = mysql_fetch_array($result);
-            if ($row['CodigoCupon'] == $formData['cupon']) {
-              if ($row['FechaInicio'] == $date) {
-                $descuento = ($value['precio'] * $row['Descuento'])/100;
-                $precio_descuento = ($value['precio'] - $descuento) * $value['cantidad'];
-                $_SESSION['carrito'][$key]['sub_total'] = $precio_descuento;
-                $_SESSION['total_carrito'] = $_SESSION['total_carrito'] - $precio_descuento;
-                $_SESSION['descuento-aplicado'] = 1;
-              }
-            }
+          // foreach ($_SESSION['carrito'] as $key => $value) {
+            // $query = "SELECT * FROM Productos WHERE IdProducto = '".$value['id_producto']."'";
+            // $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+            // $row = mysql_fetch_array($result);
+            // if ($row['CodigoCupon'] == $formData['cupon']) {
+            //   if ($row['FechaInicio'] == $date) {
+            //     $descuento = ($value['precio'] * $row['Descuento'])/100;
+            //     $precio_descuento = ($value['precio'] - $descuento) * $value['cantidad'];
+            //     $_SESSION['carrito'][$key]['sub_total'] = $precio_descuento;
+            //     $_SESSION['total_carrito'] = $_SESSION['total_carrito'] - $precio_descuento;
+            //     $_SESSION['descuento-aplicado'] = 1;
+            //   }
+            // }
+            // }
+          $query = "SELECT * FROM Cupones WHERE CodigoCupon = '".$formData['cupon']."'";
+          $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+          $row = mysql_fetch_array($result);
+          $num_row = mysql_num_rows($result);
+          if ($num_row > 0) {
+            $descuento = ($_SESSION['total_carrito'] * $row['Descuento'])/100;
+            $precio_descuento = $_SESSION['total_carrito'] - $descuento;
+            $_SESSION['total_carrito'] = $precio_descuento;
+            $_SESSION['descuento-aplicado'] = 1;
+            echo 1;
+          } else {
+            echo 0;
           }
         }
+
+      } else if(isset($_SESSION['descuento-aplicado']) == 1){
+        echo -1;
       }
-      // else {
-      //   echo 0;
-      // }
     }
 
 ?>

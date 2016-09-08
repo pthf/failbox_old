@@ -1298,29 +1298,26 @@
 								processData: false,
 								contentType: false,
 								success : function(result){
-									// alert(result);
-									// if (result == 0) {
-				     //                	$('.nocupon').html('Código de cupón no válido.');
-				     //                	$('.nocupon').slideDown(250);
-				     //                	$('.nocupon').hide(4000);
-				     //                	$('.cuponvalido').hide();
-				     //                	$('#formCupon')[0].reset();
-									// } else {
-										location.reload();
-									// }
-									// else if (result == -1){
-				     //                	$('.nocupon').html('El código ha expirado.');
-				     //                	$('.nocupon').slideDown(250);
-				     //                	$('.nocupon').slideUp(4000);
-				     //                	$('.cuponvalido').hide();
-				     //                	$('#formCupon')[0].reset();
-									// } else if (result == 1){
-									// 	$('.cuponvalido').html('Código aplicado en tu compra.');
-				     //                	$('.cuponvalido').slideDown(250);
-				     //                	$('.cuponvalido').slideUp(4000);
-				     //                	$('.nocupon').hide();
-				     //                	$('#formCupon')[0].reset();
-									// };
+									if (result == 0) {
+				                    	$('.nocupon').html('Código de cupón no válido.');
+				                    	$('.nocupon').slideDown(250);
+				                    	$('.nocupon').hide(4000);
+				                    	$('.cuponvalido').hide();
+				                    	$('#formCupon')[0].reset();
+									}else if (result == -1){
+				                    	$('.nocupon').html('El código ha expirado.');
+				                    	$('.nocupon').slideDown(250);
+				                    	$('.nocupon').slideUp(4000);
+				                    	$('.cuponvalido').hide();
+				                    	$('#formCupon')[0].reset();
+									} else if (result == 1){
+										$('.cuponvalido').html('Código aplicado en tu compra.');
+				                    	$('.cuponvalido').slideDown(250);
+				                    	$('.cuponvalido').slideUp(4000);
+				                    	$('.nocupon').hide();
+				                    	$('#formCupon')[0].reset();
+				                    	location.reload();
+									};
 								},
 								error: function(){
 									alert('error');
