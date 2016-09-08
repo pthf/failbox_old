@@ -148,7 +148,7 @@
                     Resúmen de compra
                 </div>
                 <div class="detalle row col-sm-12 col-xs-12">
-                    <div class="row">
+                    <!-- <div class="row">
                         <span><a id="alternar-form-cupon" style="cursor:pointer" class="texto"><u>¿Tienes un cupón?</u></a></span>
                         <div id="formCuponInput" style="display:none">
                             <form class="form-inline" id="formCupon">
@@ -161,7 +161,7 @@
                             </form>
                             <hr style="margin-top: 15px;margin-bottom: 5px;border: 0;border-top: 1px solid #cecccc;">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="principal row" style="margin-top: 10px;">
                         <div class="col-md-12 producto col-sm-12 col-xs-12" ng-repeat="(key, itemsCart) in itemsCart">
                             <div class="imagen col-md-4 col-sm-4 col-xs-5">
@@ -175,7 +175,7 @@
                                     CANTIDAD : {{itemsCart.cantidad}}
                                 </div>
                                 <div class="col-md-11 col-sm-12 col-xs-12">
-                                    <b>Costo: <s style="padding-left: 16%;padding-right: 15%;">{{itemsCart.precio_lista | currency}}</s></b> <b style="font-family: 'Gotham-Bold';text-weight: bold;">{{itemsCart.precio | currency}}</b>
+                                    <b>Costo: <s style="padding-left: 12%;padding-right: 12%;">{{(itemsCart.precio_lista * itemsCart.cantidad) | currency}}</s></b> <b style="font-family: 'Gotham-Bold';text-weight: bold;">{{(itemsCart.precio * itemsCart.cantidad) | currency}}</b>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
 
                     <div class="final text-right">
                         <div class="total" id="total" total="{{totalCart.total}}" ng-if="totalCart.total == totalCart.total_descuento">
-                            <b>{{totalCart.total | currency}}</b>
+                            <b>TOTAL: {{totalCart.total | currency}}</b>
                             <!-- <b>TOTAL: {{totalCart.total | currency}}</b> -->
                         </div>
                         <div class="total" id="total" total="{{totalCart.total_descuento}}" ng-if="totalCart.total != totalCart.total_descuento">
